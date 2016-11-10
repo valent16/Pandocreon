@@ -5,31 +5,31 @@ import strategy.*;
 /**Classe qui représente un ordinateur avec une stratégie de jeu*/
 public class Bot extends Player{
 
-	/**Constructeur de joeuur qui est appelé*/
+	/**Constructeur de joueur qui est appelé pour créer un ordinateur*/
 	public Bot(String pseudo) {
 		super(pseudo);
 	}
 
-	////////////////////////////////////////////////////////////
-	public static void jouer(Strategy strategy,int num){
-		strategy.jouer(num);
+	/**Methode qui fait jouer les bots avec la difficulté choisie*/
+	public static void play(Strategy strategy){
+		strategy.play();
 	}
 	
-////////////////////////////////////////////////////////////
-	public static void JouerFacile(int i) {
+	/**Methode qui configure les bots en difficulté facile*/
+	public static void easyPlay() {
 		System.out.println("BOT : difficulté facile");
-		jouer(new EasyStrategy(), i);
+		play(new EasyStrategy());
 	}
 
-////////////////////////////////////////////////////////////
-	public static void JouerMoyen(int i) {
+	/**Methode qui configure les bots en difficulté moyenne*/
+	public static void mediumPlay() {
 		System.out.println("BOT : difficulté moyen");
-		jouer(new MediumStrategy(), i);	
+		play(new MediumStrategy());	
 	}
 
-////////////////////////////////////////////////////////////
-	public static void JouerDifficile(int i) {
+	/**Methode qui configure les bots en difficulté difficile*/
+	public static void hardPlay() {
 		System.out.println("BOT : difficulté difficile");
-		jouer(new HardStrategy(), i);
+		play(new HardStrategy());
 	}
 }
