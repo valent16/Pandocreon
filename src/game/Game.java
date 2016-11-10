@@ -23,6 +23,7 @@ import fr.utt.srt.lo02.projet.chatironlagrange.uno.joueur.Joueur;*/
 	 */
 
 	/*methodes:
+	 * - faire une methode static distribuer pour distribuer a chaque joueur et bot dans la game 7 cartes et une divinité
 	 * - Constructeur Game()
 	 * - methode static initGame qui fait un scanner qui appele une methode numberPlayer() demande le nombre de joueur, et une autre method DescriptionPlayer 
 	 * 			qui demande le nom du joueur

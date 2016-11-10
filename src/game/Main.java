@@ -1,7 +1,7 @@
 package game;
 
 /**Classe de lancement du programme*/
-public class Launcher{
+public class Main{
 	
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	

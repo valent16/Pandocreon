@@ -7,7 +7,7 @@ package cards;
 
 ////////////A VOIR SI CELA PEUT ETRE UNE INTERFACE///////////////////
 /**Classe abstraite qui represente n'importe quel carte*/
-public class Card {
+public abstract class Card {
 	
 	/**nom du fichier de l'image de la carte*/
 	 private String img;
