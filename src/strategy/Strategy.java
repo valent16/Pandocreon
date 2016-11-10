@@ -1,5 +1,7 @@
 package strategy;
 
 public interface Strategy {	
-	public void jouer(int i);
+	
+	/**Méthode qui fait jouer le bot avec la stratégie initialisé*/
+	public void play();
 }
