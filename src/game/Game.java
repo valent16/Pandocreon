@@ -2,130 +2,88 @@ package game;
 
 import java.util.LinkedList;
 import java.util.Scanner;
+import player.Bot;
+import player.Human;
 import player.Player;
+import strategy.EasyStrategy;
+import strategy.HardStrategy;
+import strategy.MediumStrategy;
 
-/*import fr.utt.srt.lo02.projet.chatironlagrange.uno.Game;
-import fr.utt.srt.lo02.projet.chatironlagrange.uno.Pioche;
-import fr.utt.srt.lo02.projet.chatironlagrange.uno.Talon;
-import fr.utt.srt.lo02.projet.chatironlagrange.uno.carte.CarteUno;
-import fr.utt.srt.lo02.projet.chatironlagrange.uno.joueur.Bot;
-import fr.utt.srt.lo02.projet.chatironlagrange.uno.joueur.Joueur;*/
-
-
-/* Faire une classe pour chaque type de carte qui herite de Carte:
- * - Classe Croyant
- * - classe Guide
- * 
- * 
-	/*attributs:
-	 * - une pile de carte
-	 * - des joueurs
-	 */
-
-	/*methodes:
-	 * - faire une methode static distribuer pour distribuer a chaque joueur et bot dans la game 7 cartes et une divinité
-	 * - Constructeur Game()
-	 * - methode static initGame qui fait un scanner qui appele une methode numberPlayer() demande le nombre de joueur, et une autre method DescriptionPlayer 
-	 * 			qui demande le nom du joueur
-	 * - a voir si on met des noms specifiques au joueur ou on met des numeros
-	 * - une méthode ensuite cardsDistribution() qui distribut 7 cartes par joueurs et une carte divinté
-	 * - une methode Start_game qui demarre la partie, initialise le nombre de joueurs etc
-	 * - une méthode qui demande le nombre de joueurs
-	 * - une méthode qui gere les tours 	
-	 * - une méthode lancerDé qui retourne de manière random une origin	 	
-	 */
-
-	//Arraylist de la class Player
-	//avec un getter et un setter 
-	//ensuite un autre getter et setter pour le nombre de joueur 
 
 /**Classe qui gere la partie*/
 public class Game {
 
 	/**Attribut qui contient la liste des joueurs et des bots dans la partie*/
 	public static LinkedList<Player> Players;
-	
+
 	/**Attribut qui représente le nombre de joueurs dans la partie*/
 	public static int nbJoueur = 0;
-	
+
 	/**Attribut qui représente la liste des cartes du jeu*/
 	static CardGame cardgame = new CardGame();
-	
-	/*protected static String joueurEnCours;
-	public static boolean presenceBOT = false;*/	
-	
-	public static String niveauBOT;
-	
-	/**Méthode qui permet de configurer la partie : (nombre de joueurs et de bots)*/
-	
-	/////////////////////////////AVANT TOUT DEMANDER COMBIEN DE JOUEURS rééle on veut ajouter ensuite le nombre de bot
-	//ensuite on donne les noms des joueurs et des bots 
-	//seuleemnt après on peut distribuer les cartes//////////////////////////////////////////////////
-	public void initGame() {
-		Game.Players = new LinkedList<Player>();
-		boolean leave = false;
-		System.out.println("Commencer une nouvelle partie \n");
 
-		while (leave == false) {
+	/*protected static String joueurEnCours;*/
+
+
+	/**Methpde pour initialiser la partie, le nombre de joueurs et de bots*/
+	public static void initGame() {
+		Game.Players = new LinkedList<Player>();
+		System.out.println("Commencer une nouvelle partie\n");
+		
+
+		Scanner sc;
+		String choix;
+		int boucle = 0;
+		do{
+			System.out.println("Combien de joueurs voulez ajouter:");
+			try{
+				sc = new Scanner(System.in);
+				choix = sc.nextLine();
+				boucle = Integer.parseInt(choix);
+				if(boucle<2)
+					System.out.println("il faut au minimum 2 joueurs");
+			}catch(Exception e){
+				e.getMessage();
+				System.out.println("Vous n'avez pas entré un nombre correct ! ");
+				
+			}
+		}while(boucle<2);
+
+		for (int i = 0; i < boucle; i++) {//boucle qui continu tant qu'on a pas atteint le nombre de joueur demandé
+
 			System.out.println("Choix 1 : Ajouter Joueur");
 			System.out.println("Choix 2 : Ajouter BOT");
-			System.out.println("Choix 3 : Commencer partie");
 			System.out.println("Votre choix : ");
-			Scanner sc = new Scanner(System.in);
-			String choix = sc.nextLine();
-			int ch = Integer.parseInt(choix);
-			
+			int ch;
+
+			try{
+				sc = new Scanner(System.in);
+				choix = sc.nextLine();
+				ch = Integer.parseInt(choix);
+			}catch(Exception e){
+				e.getMessage();
+				System.out.println("Vous n'avez pas entré un nombre correct ! ");
+				break;
+			}
+
 			switch(ch){
 			case 1: //ajout d'un joueur
-				if(nbJoueur<10){
-					ajouterJoueur();
-					nbJoueur++;
-				}else
-					System.out.println("Il faut au maxi 10 joueurs");
+				ajouterJoueur();
+				nbJoueur++;
 				break;
 
 			case 2: //ajout d'un bot
-				if(nbJoueur<10){
-					ajouterBot();
-					nbJoueur++;
-				}
-
-				else
-					System.out.println("Il faut au maxi 10 joueurs");
-				break;
-
-			case 3:
-
-				/*
-				 * M�thode qu'on avait dans la class Test.
-				 * Dans la class test, il ne reste plus que la m�thode pour cr�e un nouvelle partie, qui appellera la 
-				 * methode commencerPartie();
-				 */
-
-				if(nbJoueur<2)
-					System.out.println("il faut au minimum 2 joueurs");
-
-				else{
-					System.out.println("il y a "+nbJoueur+" joueurs dans la partie");
-					System.out.println("La partie commence, on peut distribuer les cartes \n");
-					Game.startGame(); //démarre la partie une fois que tous les joueueurs sont ajoutés
-					leave=true;
-				}
-				break;
-
+				ajouterBot();
+				nbJoueur++;
 			default:
-				/*
-				 * Si l'on ne rentre pas un chiffre parmis ceux que l'on
-				 * demande. N�anmoins, si l'on rentre une lettre, ou un symbole,
-				 * �a g�n�re une erreur, donc faudra trouver le moyen de bloqu�
-				 * ca, ou d'y mettre une exception
-				 */
-				System.out.println("Vous n'avez pas entr� un nombre correct ! ");
-
 				break;
 			}
 		}
+		System.out.println("il y a "+nbJoueur+" joueurs dans la partie");
+		System.out.println("La partie commence, on peut distribuer les cartes \n");
+		Game.startGame(); //démarre la partie une fois que tous les joueueurs sont ajoutés
 	}
+
 
 	/**Méthode qui permet de commencer la partie*/
 	private static void startGame() {
@@ -141,9 +99,9 @@ public class Game {
 	// a voir si on fait une methode tour ou une classe
 	/*public static void Tour(int i){
 		//nbCarteValide(i);
-		 * Affiche les caract�ristiquent de la carte Talon*/
-		// TestTalon();
-		/*afficherJoueurEnCours(i);
+	 * Affiche les caract�ristiquent de la carte Talon*/
+	// TestTalon();
+	/*afficherJoueurEnCours(i);
 
 		if(verificationMainJoueur()==false ){
 			//while(verificationMainJoueur()==false){
@@ -154,275 +112,25 @@ public class Game {
 					int carteAPoser = tour.nextInt();
 
 					/*
-					 * Cr�ation d'une carte qui s'appel carteTest, et qui prend les caract�ristiques de la carte que l'on souhaite jouer.
-					 * Celle-ci servira donc pour valider le coup
-					 */
-
-					/*CarteUno carteTest = new CarteUno(Players.get(i).main.get(carteAPoser).getValeur(), Players.get(i).main.get(carteAPoser).getCouleur(), 0);
-					if(Players.get(i).main.get(carteAPoser).getValeur()==11 && carteTest.CoupValide(carteTest, talon) == true ){
-						determinerSens();
-						talon.afficherCartePremiereTalon(Players.get(i).main.get(carteAPoser));	
-						Players.get(i).JouerCarte(carteAPoser);
-						System.out.println("Le sens de la partie change \n");
-
-						if(i==0 && nbJoueur==2){
-							i=0;
-							//afficherJoueurEnCours(i);
-							Tour(i);
-						}
-						else if(i==1 && nbJoueur==2){
-							i=1;
-							//afficherJoueurEnCours(i);
-							Tour(i);
-						}
-					}
-					
-					//si la carte est noire et donc soit plus4 ou joker, on ne v�rifie pas, on pose, c'est tout car ces cartes peut aller sur n'importe 
-					//quelle couleur et mm valeur
-					else if(Players.get(i).main.get(carteAPoser).getEffet()==2 && carteTest.CoupValide(carteTest, talon) == true ){		
-
-						//System.out.println("Carte talon : " +talon.afficherCartePremiereTalon(Joueurs.get(i).main.get(carteAPoser)));
-						//on r�actualise la talon � l'affichage pour le prochain joueur
-						piocher(i,2);
-						talon.afficherCartePremiereTalon(Players.get(i).main.get(carteAPoser));	
-						Players.get(i).JouerCarte(carteAPoser);
-						System.out.println("Le joueurs suivant a piocher 2 cartes et passe son tour \n");
-
-						if(sens==true){
-							if(i==nbJoueur-2 && nbJoueur>2){
-								i=0;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i!=nbJoueur-1 && nbJoueur>2){
-								i=i+2;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i!=nbJoueur-1 && nbJoueur==2){
-								i=0;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i==nbJoueur-1 && nbJoueur>2){
-								i=1;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else{
-								i=1;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-						}
-						else if(sens==false){
-
-							if(i>=2 && nbJoueur>2){
-								i=i-2;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}else if(i==1){
-								i=nbJoueur-1;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}else if(i==0 ){
-								i=nbJoueur-2;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-						}
-					}
-
-					//si la carte est noire et donc soit plus4 ou joker, on ne v�rifie pas, on pose, 
-					//c'est tout car ces cartes peut aller sur n'importe quelle couleur et mm valeur
-					else if(Players.get(i).main.get(carteAPoser).getValeur()==14){		
-
-						//System.out.println("Carte talon : " +talon.afficherCartePremiereTalon(Joueurs.get(i).main.get(carteAPoser)));		
-						//on r�actualise la talon � l'affichage pour le prochain joueur
-
-						ChangementCouleur(carteAPoser, i);
-						talon.afficherCartePremiereTalon(Players.get(i).main.get(carteAPoser));	
-						Players.get(i).JouerCarte(carteAPoser);
-						piocher(i,4);
-						System.out.println("Le joueurs suivant a piocher 4 cartes et passe son tour \n");
-
-						if(sens==true){
-							if(i==nbJoueur-2 && nbJoueur>2){
-								i=0;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i!=nbJoueur-1 && nbJoueur>2){
-								i=i+2;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i!=nbJoueur-1 && nbJoueur==2){
-								i=0;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i==nbJoueur-1 && nbJoueur>2){
-								i=1;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else{
-								i=1;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-						}
-						else if(sens==false){
-							if(i>=2 && nbJoueur>2){
-								i=i-2;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}else if(i==1){
-								i=nbJoueur-1;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}else if(i==0 ){
-								i=nbJoueur-2;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-						}
-						// System.out.println("CA MARCHE !!!!!!!!!!!!!!!!! Carte sp�ciale !! COUP VALIDE");
-					}
-
-					else if(Players.get(i).main.get(carteAPoser).getValeur()==13){		
-						//si la carte est noire et donc soit plus4 ou joker, on ne v�rifie pas, on pose, c'est tout car ces cartes peut aller 
-						//sur n'importe quelle couleur et mm valeur
-						//System.out.println("Carte talon : " +talon.afficherCartePremiereTalon(Joueurs.get(i).main.get(carteAPoser)));		
-						//on r�actualise la talon � l'affichage pour le prochain joueur
-						ChangementCouleur(carteAPoser, i);
-						talon.afficherCartePremiereTalon(Joueurs.get(i).main.get(carteAPoser));	
-						Joueurs.get(i).JouerCarte(carteAPoser);
-					}else if(Joueurs.get(i).main.get(carteAPoser).getValeur()==10 && carteTest.CoupValide(carteTest, talon) == true ){	
-						//Carte passer tour	
-						//System.out.println("Carte talon : " +talon.afficherCartePremiereTalon(Joueurs.get(i).main.get(carteAPoser)));		
-						//on r�actualise la talon � l'affichage pour le prochain joueur
-						talon.afficherCartePremiereTalon(Joueurs.get(i).main.get(carteAPoser));		//on r�actualise la talon � l'affichage pour le prochain joueur
-						Joueurs.get(i).JouerCarte(carteAPoser);
-						System.out.println("Le joueur suivant ne peut pas jouer \n");
-
-						if(sens==true){
-							if(i==nbJoueur-2 && nbJoueur>2){
-								i=0;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}else if(i!=nbJoueur-1 && nbJoueur>2){
-								i=i+2;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i!=nbJoueur-1 && nbJoueur==2){
-								i=0;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i==nbJoueur-1 && nbJoueur>2){
-								i=1;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else{
-								i=1;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-						}
-						else if(sens==false){
-
-							if(i>=2 && nbJoueur>2){
-								i=i-2;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i==1){
-								i=nbJoueur-1;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-							else if(i==0 ){
-								i=nbJoueur-2;
-								//afficherJoueurEnCours(i);
-								Tour(i);
-							}
-
-						}	
-
-					}else if(carteTest.CoupValide(carteTest, talon) == true){
-						//TestCarteAPoser(carteAPoser, i);
-						talon.afficherCartePremiereTalon(Joueurs.get(i).main.get(carteAPoser));		//on r�actualise la talon � l'affichage pour le prochain joueur
-						Joueurs.get(i).JouerCarte(carteAPoser);
-						//System.out.println("CA MARCHE !!!!!!!!!!!!!!!!! COUP VALIDE");
-
-					}else{
-						System.out.println("coup non valide");
-						//afficherJoueurEnCours(i);
-						Tour(i);
-					}
-
-				}else{
-					if(niveauBOT=="facile")
-						Bot.JouerFacile(i);
-					else if(niveauBOT == "moyen")
-						Bot.JouerMoyen(i);
-					else
-						Bot.JouerDifficile(i);
-				}
-			}
-
-			if(sens==true){
-				if(i!=nbJoueur-1){
-					i++;
-					//afficherJoueurEnCours(i);
-					Tour(i);
-				}
-				else{
-					i=0;
-					//afficherJoueurEnCours(i);
-					Tour(i);
-				}
-			}
-			else if(sens==false){
-				if(i!=0){
-					i--;
-					//afficherJoueurEnCours(i);
-					Tour(i);
-				}
-				else if(i==0 && nbJoueur>2){
-					i=nbJoueur-1;
-					//afficherJoueurEnCours(i);
-					Tour(i);
-				}
-				else if(i==0 && nbJoueur==2){
-					i=nbJoueur-1;
-					//afficherJoueurEnCours(i);
-					Tour(i);
-				}
-			}
-		}
-	}*/
+	 * Cr�ation d'une carte qui s'appel carteTest, et qui prend les caract�ristiques de la carte que l'on souhaite jouer.
+	 * Celle-ci servira donc pour valider le coup
+	 */
 
 	/**Méthode qui permet d'ajouter un joueur à la partie*/
-	public void ajouterJoueur(){
+	public static void ajouterJoueur(){
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Entrez un nom de joueur : ");
 		String joueur = scan.nextLine();
 		System.out.println(Player.NOM[nbJoueur]+ " : " +joueur+ "\n");
-		Player J1 = new Player(joueur);
+		Player J1 = new Human(joueur);
 		Players.add(J1);
 	}
 
 	/**Méthode qui permet d'ajouter un bot à la partie*/
-	public void ajouterBot(){
-
+	public static void ajouterBot(){
 		String bot = "BOT";
 		System.out.println(Player.NOM[nbJoueur]+ " : " + bot+ "\n");
-		Player J2 = new Player(bot);
+		Player J2 = new Bot(bot);
 		Players.add(J2);
 		////////////////////presenceBOT = true;
 	}
@@ -443,30 +151,30 @@ public class Game {
 
 			Scanner sc = new Scanner(System.in);
 			String choix = sc.nextLine();
-			int ch = Integer.parseInt(choix);
+			int strategy = Integer.parseInt(choix);
 
-			switch(ch){
+			switch(strategy){
 			case 1: //bot facile
-				niveauBOT = "facile";
+				Bot.setStrategy(new EasyStrategy());
 				partieEnCours=true;
 				break;
 			case 2: //bot moyen
-				niveauBOT = "moyen";
+				Bot.setStrategy(new MediumStrategy());
 				partieEnCours=true;
 				break;
 			case 3: //bot difficile
-				niveauBOT = "difficile";
+				Bot.setStrategy(new HardStrategy());
 				partieEnCours=true;
 				break;
 
 			default: //erreur si le nombre entré n'est pas correcte
-				System.out.println("Error ! Vous n'avez pas entré un bon choix \n");
+				System.out.println("Erreur ! Vous n'avez pas entré un bon choix \n");
 				break;
 			}
 		}
 	}
 
-	
+
 
 	//Calculer le score de chqaue joueur 
 	//pour cela il aut calculer le nombre de croyant
@@ -516,7 +224,7 @@ public class Game {
 		System.out.println("Main de " +Players.get(i).getNom()+ " :  " );
 		System.out.println(Players.get(i));
 	}*/
-	
+
 	//Si on a besoin d'un sens
 	public static void determinerSens() {}
 
@@ -531,7 +239,7 @@ public class Game {
 			}
 		}						
 	}*/
-	
+
 	////////////////////////////////////////////////////*TEST*///////////////////////////////////////////////////////////////////////
 	/*
 	public void  carteTest(int valeur, int couleur, int i, int carteAPoser){

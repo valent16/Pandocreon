@@ -5,32 +5,11 @@ import cards.Card;
 import cards.Divinity;
 
 /**Classe qui représente un joueur*/
-public class Player {
-	
-
-	/*attributs:
-	 * - Possede un attribut de la classe divinité
-	 * 
-	 */
-	
-	/*methodes:
-	 * - un methode piocher() qui recupere une carte de la pile de carte
-	 */
-	
+public abstract class Player {
 
 	//A voir si chaque joueur a un tableau de Points d'action
-	// ou si on fait un tableau pour chaque type
-	
-/////////////////////////////////////////// A VOIR SI ON FAIT UNE CLASSE HAND ou on MET JUSTE UN ATTRIBUT
-//si on dit que la main du joueur est un attribut savoir si c'est un likedlist ou une arraylist
-/////////////////////////faire un getter et un setter de Hand
-	
-	/*A voir a quoi cela sert
-	public final static int Joueur1 = 0;
-	public final static int Joueur2 = 1;
-	public final static int Joueur3 = 2;
-	public final static int Joueur4 = 3;
-	*/
+	// ou si on fait un tableau pour chaque type de point d'action
+	//ou un seul tableau de taille 3 avec en indice 0 les points de jour, indice 1 les points de nuit, indice 2 les points de neant, 
 	
 	/**chaîne de caractère représebtant le nom du joueur*/
 	protected String pseudo;
@@ -45,7 +24,7 @@ public class Player {
 	private Divinity divinity;
 	
 	/**Attribut représentant la liste des joueurs*/
-	////////////////////////////////////////////FAire en sorte que cette liste soit créer en fonction du nombre de joueur définie par l'utilisateur*/
+	////////////////////////////////////////////Faire en sorte que cette liste soit créer en fonction du nombre de joueur définie par l'utilisateur*/
 	public final static String[] NOM = {"Joueur1","Joueur2","Joueur3","Joueur4","Joueur5","Joueur6","Joueur7","Joueur8","Joueur9","Joueur10"};
 
 	/**Constructeur public*/

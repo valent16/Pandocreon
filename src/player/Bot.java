@@ -2,12 +2,15 @@ package player;
 
 import strategy.*;
 
-/**Classe qui représente un ordinateur avec une stratégie de jeu*/
+/**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
 public class Bot extends Player{
+	
+	/**recupere la stratégie choisi au départ pour tous les bots*/
+	private static Strategy strategy;
 
 	/**Constructeur de joueur qui est appelé pour créer un ordinateur*/
 	public Bot(String pseudo) {
-		super(pseudo);
+		super(pseudo); 
 	}
 
 	/**Methode qui fait jouer les bots avec la difficulté choisie*/
@@ -32,4 +35,15 @@ public class Bot extends Player{
 		System.out.println("BOT : difficulté difficile");
 		play(new HardStrategy());
 	}
+	
+////////////////////////////////GETTERS & SETTERS////////////////////////////////////////////////
+	
+	public static Strategy getStrategy(){
+		return Bot.strategy;
+	}
+	
+	public static void setStrategy(Strategy strategy){
+		Bot.strategy = strategy;
+	}
+	
 }
