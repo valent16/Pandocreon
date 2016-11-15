@@ -5,7 +5,29 @@ public class Main{
 	
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
-		Game game = new Game();  //Creation de la partie
-		game.initGame();  //lancement de la partie
+		int valeur =1;
+		//1: lancement du jeu
+		
+		
+		switch(valeur){
+			case 1:
+				Game game = new Game();  //Creation de la partie
+				game.initGame();  //lancement de la partie
+				
+			case 2:
+				
+			default:
+				//ne rien mettre
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

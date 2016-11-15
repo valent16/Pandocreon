@@ -2,6 +2,9 @@ package game;
 
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import cards.ActionCard;
+import cards.Divinity;
 import player.Bot;
 import player.Human;
 import player.Player;
@@ -15,15 +18,20 @@ public class Game {
 
 	/**Attribut qui contient la liste des joueurs et des bots dans la partie*/
 	public static LinkedList<Player> Players;
-
+	
 	/**Attribut qui reprÃ©sente le nombre de joueurs dans la partie*/
 	public static int nbJoueur = 0;
 
 	/**Attribut qui reprÃ©sente la liste des cartes du jeu*/
 	static CardGame cardgame = new CardGame();
+	
+	/**Attribut qui représente la liste de cartes actions*/
+	private LinkedList<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
+	
+	/**Attribut  qui représente la liste de divinités*/
+	private LinkedList<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
 
 	/*protected static String joueurEnCours;*/
-
 
 	/**Methpde pour initialiser la partie, le nombre de joueurs et de bots*/
 	public static void initGame() {

@@ -1,0 +1,17 @@
+package game;
+
+public class GameManager {
+	private static volatile GameManager managerUnique;
+	
+	
+	public static GameManager getInstanceUniqueManager(){
+		if (managerUnique == null){
+			synchronized (GameManager.class){ //pour gerer le multi-thread
+				if (managerUnique == null) 
+					managerUnique= new GameManager();
+			}
+		}
+		return managerUnique;
+	}
+
+}

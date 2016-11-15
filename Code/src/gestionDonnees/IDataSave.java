@@ -1,5 +1,7 @@
 package gestionDonnees;
 
-public interface IDataSave {
+import game.GameManager;
 
+public interface IDataSave {
+	public void enregistrerPartie(GameManager gestionnaire);
 }

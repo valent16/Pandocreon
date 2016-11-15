@@ -1,0 +1,6 @@
+package gestionDonnees;
+
+public interface IDataLoad {
+	public Collection<ActionCard> chargerCartes();
+	
+}
