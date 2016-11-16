@@ -1,5 +1,7 @@
 package cards;
 
-public class ActionCard {
+/**Classe abstraite représente les cartes actions*/
+public abstract class ActionCard {
+	
 
 }
