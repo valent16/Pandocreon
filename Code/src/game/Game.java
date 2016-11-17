@@ -25,10 +25,10 @@ public class Game {
 	/**Attribut qui représente la liste des cartes du jeu*/
 	static CardGame cardgame = new CardGame();
 	
-	/**Attribut qui repr�sente la liste de cartes actions*/
+	/**Attribut qui représente la liste de cartes actions*/
 	private LinkedList<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
 	
-	/**Attribut  qui repr�sente la liste de divinit�s*/
+	/**Attribut  qui représente la liste de divinités*/
 	private LinkedList<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
 
 	/*protected static String joueurEnCours;*/
@@ -38,10 +38,10 @@ public class Game {
 		Game.Players = new LinkedList<Player>();
 		System.out.println("Commencer une nouvelle partie\n");
 		
-
 		Scanner sc;
 		String choix;
 		int boucle = 0;
+		boolean presenceBot = false;
 		do{
 			System.out.println("Combien de joueurs voulez ajouter:");
 			try{
@@ -82,11 +82,14 @@ public class Game {
 
 			case 2: //ajout d'un bot
 				ajouterBot();
+				presenceBot=true;
 				nbJoueur++;
 			default:
 				break;
 			}
 		}
+		if(presenceBot)
+			choisirDifficulteBot();
 		System.out.println("il y a "+nbJoueur+" joueurs dans la partie");
 		System.out.println("La partie commence, on peut distribuer les cartes \n");
 		Game.startGame(); //démarre la partie une fois que tous les joueueurs sont ajoutés
@@ -120,7 +123,7 @@ public class Game {
 					int carteAPoser = tour.nextInt();
 
 					/*
-	 * Cr�ation d'une carte qui s'appel carteTest, et qui prend les caract�ristiques de la carte que l'on souhaite jouer.
+	 * Création d'une carte qui s'appel carteTest, et qui prend les caract�ristiques de la carte que l'on souhaite jouer.
 	 * Celle-ci servira donc pour valider le coup
 	 */
 
@@ -140,16 +143,12 @@ public class Game {
 		System.out.println(Player.NOM[nbJoueur]+ " : " + bot+ "\n");
 		Player J2 = new Bot(bot);
 		Players.add(J2);
-		////////////////////presenceBOT = true;
 	}
 
 	/**Methode qui permet de choisir la difficulté du bot*/
 	public static void choisirDifficulteBot(){
 		boolean partieEnCours = false;
-		/*
-		 * 
-		 */
-		System.out.println("\nChoississez la difficult� des BOTs \n");
+		System.out.println("\nChoississez la difficulté des BOTs \n");
 
 		while(partieEnCours==false){
 
@@ -164,14 +163,17 @@ public class Game {
 			switch(strategy){
 			case 1: //bot facile
 				Bot.setStrategy(new EasyStrategy());
+				System.out.println("Vous avez choisi la difficulté facile pour les bots\n");
 				partieEnCours=true;
 				break;
 			case 2: //bot moyen
 				Bot.setStrategy(new MediumStrategy());
+				System.out.println("Vous avez choisi la difficulté moyen pour les bots\n");
 				partieEnCours=true;
 				break;
 			case 3: //bot difficile
 				Bot.setStrategy(new HardStrategy());
+				System.out.println("Vous avez choisi la difficulté difficile pour les bots\n");
 				partieEnCours=true;
 				break;
 
