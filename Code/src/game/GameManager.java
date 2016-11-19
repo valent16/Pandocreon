@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 import cards.ActionCard;
+import cards.Believer;
 import cards.Card;
 import cards.Divinity;
 import player.Player;
@@ -13,7 +14,7 @@ public class GameManager {
 	
 	private LinkedList<ActionCard> pioche = new LinkedList<ActionCard>();
 	
-	private LinkedList<Card> defausse = new LinkedList<Card>();
+	private LinkedList<ActionCard> defausse = new LinkedList<ActionCard>();
 	
 	private LinkedList<ActionCard> croyants = new LinkedList<ActionCard>();
 	
@@ -77,5 +78,39 @@ public class GameManager {
 		this.pioche = cartesAction;
 	}
 	
+	/**
+	 * Permet d'ajouter un croyant sur la table de jeu
+	 * @param carte
+	 */
+	public void deposerCroyant(Believer carte){
+		croyants.add(carte);
+	}
 
+	/**
+	 * Permet de retirer un croyant de la table de jeu
+	 * @param carte
+	 */
+	public void retirerCroyant(Believer carte){
+		croyants.remove(carte);
+	}
+	
+	public ActionCard piocherCarte(){
+		if (pioche.size() == 0){
+			if (defausse.size() == 0){
+				//lancer une exception qui arrete la partie => pas assez de carte pour jouer
+			}
+			pioche.addAll(defausse);
+			melangerCartes();
+		}
+		return pioche.pop();
+	}
+	
+	public void defausserCarte(ActionCard carte){
+		defausse.add(carte);
+	}
+	
+	public void defausserCarte(LinkedList<ActionCard> cartes){
+		defausse.addAll(cartes);
+	}
+	
 }

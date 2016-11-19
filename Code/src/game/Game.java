@@ -133,7 +133,7 @@ public class Game {
 		System.out.println("Entrez un nom de joueur : ");
 		String joueur = scan.nextLine();
 		System.out.println(Player.NOM[nbJoueur]+ " : " +joueur+ "\n");
-		Player J1 = new Human(joueur);
+		Player J1 = new Human(joueur,10);
 		Players.add(J1);
 	}
 
@@ -141,7 +141,7 @@ public class Game {
 	public static void ajouterBot(){
 		String bot = "BOT";
 		System.out.println(Player.NOM[nbJoueur]+ " : " + bot+ "\n");
-		Player J2 = new Bot(bot);
+		Player J2 = new Bot(bot, new HardStrategy());
 		Players.add(J2);
 	}
 
@@ -162,17 +162,17 @@ public class Game {
 
 			switch(strategy){
 			case 1: //bot facile
-				Bot.setStrategy(new EasyStrategy());
+				//Bot.setStrategy(new EasyStrategy());
 				System.out.println("Vous avez choisi la difficulté facile pour les bots\n");
 				partieEnCours=true;
 				break;
 			case 2: //bot moyen
-				Bot.setStrategy(new MediumStrategy());
+				//Bot.setStrategy(new MediumStrategy());
 				System.out.println("Vous avez choisi la difficulté moyen pour les bots\n");
 				partieEnCours=true;
 				break;
 			case 3: //bot difficile
-				Bot.setStrategy(new HardStrategy());
+				//Bot.setStrategy(new HardStrategy());
 				System.out.println("Vous avez choisi la difficulté difficile pour les bots\n");
 				partieEnCours=true;
 				break;

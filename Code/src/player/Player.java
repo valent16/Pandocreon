@@ -1,8 +1,15 @@
 package player;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+
+import Enum.EnumPointAction;
+import cards.ActionCard;
 import cards.Card;
 import cards.Divinity;
+import game.De;
+import game.GameManager;
 
 /**Classe qui représente un joueur*/
 public abstract class Player {
@@ -11,14 +18,21 @@ public abstract class Player {
 	// ou si on fait un tableau pour chaque type de point d'action
 	//ou un seul tableau de taille 3 avec en indice 0 les points de jour, indice 1 les points de nuit, indice 2 les points de neant, 
 	
+	public static final int NB_CARTE_MAX = 7;
+	
 	/**chaîne de caractère représebtant le nom du joueur*/
-	protected String pseudo;
+	private String pseudo;
 	
 	/**Entier représentant le nombre de croyant que possede le joueur*/
 	protected int score;
 	
+	private int age;
+	
 	/**Liste représentant la main d'un joueur*/ 
-	protected LinkedList<Card> hand; 
+	protected LinkedList<Card> hand = new LinkedList<Card>();
+	
+	/**Dictionnaire contenant les points d'action du joueur*/
+	private HashMap<EnumPointAction, Integer> dicoPA = new HashMap<EnumPointAction, Integer>();
 	
 	/**Carte divinté du joueur*/
 	private Divinity divinity;
@@ -28,8 +42,16 @@ public abstract class Player {
 	public final static String[] NOM = {"Joueur1","Joueur2","Joueur3","Joueur4","Joueur5","Joueur6","Joueur7","Joueur8","Joueur9","Joueur10"};
 
 	/**Constructeur public*/
-	public Player(String pseudo){
-		this.setNom(pseudo);	
+	public Player(String pseudo, int age){
+		this.setNom(pseudo);
+		this.setAge(age);
+		
+		//Permet l'initialisation du dictionnaire de points d'action du joueur
+		EnumPointAction valuesEnumPointAction[] = EnumPointAction.values();
+		for (int i = 0; i< valuesEnumPointAction.length; i++) {
+			dicoPA.put(valuesEnumPointAction[i], 0);
+		}
+		
 	}
 	
 	/** Le joueur joue une carte et donc on l'enleve de sa main*/
@@ -40,8 +62,7 @@ public abstract class Player {
 	/**Methode piocher*/
 	public void piocher(Card carte){
 		hand.add(carte);
-    }	
-	
+    }
 	
 	//////////////////////////////// GETTERS & SETTERS////////////////////////////////////////////////
 	
@@ -76,6 +97,48 @@ public abstract class Player {
 	/**Setter de la divinité du joueur*/
 	public void setDivinity(Divinity divinity) {
 		this.divinity = divinity;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	private void setAge(int age) {
+		this.age = age;
+	}
+	
+	public void lancerDe(){
+		De.getInstanceDe().lancerDe();
+	}
+	
+	public void defausserCartes(LinkedList<ActionCard> cartes){
+		hand.removeAll(cartes);
+		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
+	}
+	
+	public void piocherCartes(){
+		while (hand.size() <= NB_CARTE_MAX){
+			GameManager.getInstanceUniqueManager().piocherCarte();
+		}
+	}
+	
+	public void decrementerPointAction(EnumPointAction typePA, int nbPA){
+		if ((dicoPA.get(typePA) - nbPA) < 0){
+			//lancer Exception, le joueur ne peut pas jouer la carte
+		}
+		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
+	}
+	
+	
+
+	public void incrementerPointAction(EnumPointAction typePA, int nbPA){
+		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
+	}
+	
+	@Override
+	public String toString() {
+		return "Player [pseudo=" + pseudo + ", score=" + score + ", age=" + age + ", hand=" + hand + ", dicoPA="
+				+ dicoPA + ", divinity=" + divinity + "]";
 	}
 }
 

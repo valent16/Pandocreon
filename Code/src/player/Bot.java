@@ -4,19 +4,22 @@ import strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
 public class Bot extends Player{
+	public static final int AGE_BOT = 200;
 	
 	/**recupere la stratégie choisi au départ pour tous les bots*/
-	private static Strategy strategy;
+	private Strategy strategy;
 
 	/**Constructeur de joueur qui est appelé pour créer un ordinateur*/
-	public Bot(String pseudo) {
-		super(pseudo); 
+	public Bot(String pseudo, Strategy strat) {
+		super(pseudo, AGE_BOT);
+		this.strategy = strat;
 	}
 
 	/**Methode qui fait jouer les bots avec la difficulté choisie*/
 	public static void play(Strategy strategy){
 		strategy.play();
 	}
+	
 	
 	/**Methode qui configure les bots en difficulté facile*/
 	public static void easyPlay() {
@@ -38,12 +41,14 @@ public class Bot extends Player{
 	
 ////////////////////////////////GETTERS & SETTERS////////////////////////////////////////////////
 	
+	//normalement pas besoin de faire de getteur sur la strat du bot
+	/*
 	public static Strategy getStrategy(){
 		return Bot.strategy;
 	}
 	
 	public static void setStrategy(Strategy strategy){
 		Bot.strategy = strategy;
-	}
+	}*/
 	
 }

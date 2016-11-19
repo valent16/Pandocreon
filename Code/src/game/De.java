@@ -1,11 +1,11 @@
 package game;
 
-import Enum.FaceDe;
+import Enum.EnumPointAction;
 
 public class De {
 	/*un singleton pour avoir un unique dé*/
 	private volatile static De de;
-	private FaceDe face;
+	private EnumPointAction face;
 
 	private De(){
 
@@ -29,17 +29,17 @@ public class De {
 		//genere un nombre random entre 1 et 6
 		int random = (int) (Math.random() * 6 + 1);
 		if(random == 1 || random == 4)
-			de.face = FaceDe.JOUR;
+			de.face = EnumPointAction.JOUR;
 
 		if(random == 2 || random == 5)
-			de.face = FaceDe.NUIT;
+			de.face = EnumPointAction.NUIT;
 
 		if(random == 3 || random == 6)
-			de.face = FaceDe.NEANT;
+			de.face = EnumPointAction.NEANT;
 	}
 
 	/**methode qui permet de recuperer l'origine sur lequel le dé est retombé*/
-	public FaceDe getFace(){
+	public EnumPointAction getFace(){
 		return face;
 	}
 
