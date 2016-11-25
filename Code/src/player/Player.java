@@ -127,8 +127,6 @@ public abstract class Player {
 		}
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
 	}
-	
-	
 
 	public void incrementerPointAction(Face typePA, int nbPA){
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
