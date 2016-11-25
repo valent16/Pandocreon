@@ -3,12 +3,11 @@ package player;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-
-import Enum.EnumPointAction;
 import cards.ActionCard;
 import cards.Card;
 import cards.Divinity;
 import game.De;
+import game.De.Face;
 import game.GameManager;
 
 /**Classe qui représente un joueur*/
@@ -32,7 +31,7 @@ public abstract class Player {
 	protected LinkedList<Card> hand = new LinkedList<Card>();
 	
 	/**Dictionnaire contenant les points d'action du joueur*/
-	private HashMap<EnumPointAction, Integer> dicoPA = new HashMap<EnumPointAction, Integer>();
+	private HashMap<Face, Integer> dicoPA = new HashMap<Face, Integer>();
 	
 	/**Carte divinté du joueur*/
 	private Divinity divinity;
@@ -47,7 +46,7 @@ public abstract class Player {
 		this.setAge(age);
 		
 		//Permet l'initialisation du dictionnaire de points d'action du joueur
-		EnumPointAction valuesEnumPointAction[] = EnumPointAction.values();
+		Face valuesEnumPointAction[] = Face.values();
 		for (int i = 0; i< valuesEnumPointAction.length; i++) {
 			dicoPA.put(valuesEnumPointAction[i], 0);
 		}
@@ -122,7 +121,7 @@ public abstract class Player {
 		}
 	}
 	
-	public void decrementerPointAction(EnumPointAction typePA, int nbPA){
+	public void decrementerPointAction(Face typePA, int nbPA){
 		if ((dicoPA.get(typePA) - nbPA) < 0){
 			//lancer Exception, le joueur ne peut pas jouer la carte
 		}
@@ -131,7 +130,7 @@ public abstract class Player {
 	
 	
 
-	public void incrementerPointAction(EnumPointAction typePA, int nbPA){
+	public void incrementerPointAction(Face typePA, int nbPA){
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
 	}
 	

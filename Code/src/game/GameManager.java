@@ -2,10 +2,8 @@ package game;
 
 import java.util.Collections;
 import java.util.LinkedList;
-
 import cards.ActionCard;
 import cards.Believer;
-import cards.Card;
 import cards.Divinity;
 import player.Player;
 
@@ -16,6 +14,7 @@ public class GameManager {
 	
 	private LinkedList<ActionCard> defausse = new LinkedList<ActionCard>();
 	
+	/**ReprÃ©sente les cartes croyants sur la table*/
 	private LinkedList<ActionCard> croyants = new LinkedList<ActionCard>();
 	
 	private LinkedList<Divinity> divinites = new LinkedList<Divinity>();
@@ -27,7 +26,7 @@ public class GameManager {
 	private Player joueurActif;
 	
 	/**
-	 * Constructeur privé du singleton GameManager
+	 * Constructeur privÃ© du singleton GameManager
 	 */
 	private GameManager(){
 		
@@ -45,7 +44,7 @@ public class GameManager {
 	}
 	
 	/**
-	 * méthode permettant de mélanger les cartes du jeu
+	 * mï¿½thode permettant de mï¿½langer les cartes du jeu
 	 */
 	public void melangerCartes(){
 		Collections.shuffle(pioche);
@@ -61,7 +60,7 @@ public class GameManager {
 	
 
 	/**
-	 * Permet d'éliminer un joueur de la partie
+	 * Permet d'ï¿½liminer un joueur de la partie
 	 * @param joueur
 	 */
 	public void eliminerJoueur(Player joueur){

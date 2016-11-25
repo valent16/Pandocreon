@@ -12,7 +12,7 @@ public class Bot extends Player{
 	/**Constructeur de joueur qui est appelé pour créer un ordinateur*/
 	public Bot(String pseudo, Strategy strat) {
 		super(pseudo, AGE_BOT);
-		this.strategy = strat;
+		this.setStrategy(strat);
 	}
 
 	/**Methode qui fait jouer les bots avec la difficulté choisie*/
@@ -38,17 +38,12 @@ public class Bot extends Player{
 		System.out.println("BOT : difficulté difficile");
 		play(new HardStrategy());
 	}
-	
-////////////////////////////////GETTERS & SETTERS////////////////////////////////////////////////
-	
-	//normalement pas besoin de faire de getteur sur la strat du bot
-	/*
-	public static Strategy getStrategy(){
-		return Bot.strategy;
+
+	public Strategy getStrategy() {
+		return strategy;
 	}
-	
-	public static void setStrategy(Strategy strategy){
-		Bot.strategy = strategy;
-	}*/
-	
+
+	public void setStrategy(Strategy strategy) {
+		this.strategy = strategy;
+	}
 }
