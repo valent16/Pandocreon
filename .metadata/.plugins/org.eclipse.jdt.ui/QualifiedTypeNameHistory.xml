@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="game.GameManager"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="cards.Card"/>
-<fullyQualifiedTypeName name="cards.ActionCard"/>
 <fullyQualifiedTypeName name="cards.Divinity"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="cards.Believer"/>
+<fullyQualifiedTypeName name="game.De"/>
+<fullyQualifiedTypeName name="game.GameManager"/>
+<fullyQualifiedTypeName name="cards.ActionCard"/>
+<fullyQualifiedTypeName name="strategy.HardStrategy"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="player.Human"/>
+<fullyQualifiedTypeName name="player.Player"/>
+<fullyQualifiedTypeName name="Enum.EnumPointAction"/>
 </qualifiedTypeNameHistroy>

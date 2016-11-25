@@ -1,5 +1,0 @@
-package gestionDonnees;
-
-public interface IDataSave {
-	public void enregistrerPartie(GestionnairePartie gestionnaire);
-}
