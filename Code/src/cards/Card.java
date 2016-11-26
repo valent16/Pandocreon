@@ -15,9 +15,9 @@ public abstract class Card {
 
 	/**Liste des dogmes de la carte*/
 	protected ArrayList<Dogme> dogmes = new ArrayList<Dogme>(3);
-
-	/* - Un Sacrifice*/
-
+	
+	/**Etat de la carte*/
+	protected Etat etat;
 
 	/**énumeration pour l'origine des cartes*/
 	protected enum Origin{
@@ -35,6 +35,9 @@ public abstract class Card {
 		MYSTIQUE,
 		CHAOS
 	}
+	
+	 /**Définir les etats possibles de cartes*/
+	 protected enum Etat {ENTAS,PIOCHEE,JOUEE,DEFAUSSEE}
 
 	/**Constructeur de la classe Carte pour instncirer le cartes (Croyants, Guide, Apocalypse, Divinité)
 	 * @param nom le nom de la carte
