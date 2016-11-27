@@ -1,6 +1,7 @@
 package model.game;
 
-import model.game.De.Face;
+import model.EnumType.EnumOrigineCA;
+//import model.game.De.Face;
 import model.player.Human;
 import model.player.Player;
 
@@ -27,9 +28,9 @@ public class Main{
 	
 	public static void testJoueur(){
 		Player p1 = new Human("jean Yves", 12);
-		p1.incrementerPointAction(Face.JOUR, 2);
+		p1.incrementerPointAction(EnumOrigineCA.JOUR, 2);
 		System.out.println(p1.toString());
-		p1.decrementerPointAction(Face.JOUR, 1);
+		p1.decrementerPointAction(EnumOrigineCA.JOUR, 1);
 		System.out.println(p1.toString());
 	}
 }

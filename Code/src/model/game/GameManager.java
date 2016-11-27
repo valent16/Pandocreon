@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 import model.cards.ActionCard;
-import model.cards.Believer;
 import model.cards.Divinity;
+import model.cards.OriginCards.Believer;
 import model.player.Player;
 
 public class GameManager {

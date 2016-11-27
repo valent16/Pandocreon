@@ -1,0 +1,18 @@
+package model.cards;
+
+import model.EnumType.EnumOrigineCA;
+
+import java.util.ArrayList;
+
+import model.EnumType.EnumDogme;
+
+public class CarteDogmatique extends ActionCardWithOrigin {
+
+	private ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
+	
+	public CarteDogmatique(String nom, EnumOrigineCA origine) {
+		super(nom, origine);
+		// TODO Auto-generated constructor stub
+	}
+
+}

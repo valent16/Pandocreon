@@ -1,0 +1,12 @@
+package model.cards;
+
+import model.EnumType.EnumOrigineCA;
+
+public class CarteDogmatique extends ActionCardWithOrigin {
+
+	public CarteDogmatique(String nom, EnumOrigineCA origine) {
+		super(nom, origine);
+		// TODO Auto-generated constructor stub
+	}
+
+}

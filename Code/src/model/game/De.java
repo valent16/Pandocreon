@@ -1,16 +1,11 @@
 package model.game;
 
+import model.EnumType.EnumOrigineCA;
+
 public class De {
 	/*un singleton pour avoir un unique dé*/
 	private volatile static De de;
-	private Face face;
-
-	/**Enumération pour la face du dé*/
-	public enum Face{
-		JOUR,
-		NUIT,
-		NEANT
-	}
+	private EnumOrigineCA face;
 	
 	private De(){
 
@@ -34,17 +29,17 @@ public class De {
 		//genere un nombre random entre 1 et 6
 		int random = (int) (Math.random() * 6 + 1);
 		if(random == 1 || random == 4)
-			de.face = Face.JOUR;
+			de.face = EnumOrigineCA.JOUR;
 
 		if(random == 2 || random == 5)
-			de.face = Face.NUIT;
+			de.face = EnumOrigineCA.NUIT;
 
 		if(random == 3 || random == 6)
-			de.face = Face.NEANT;
+			de.face = EnumOrigineCA.NEANT;
 	}
 
 	/**méthode qui permet de récuperer l'origine sur lequel le dé est retombé*/
-	public Face getFace(){
+	public EnumOrigineCA getFace(){
 		return face;
 	}
 

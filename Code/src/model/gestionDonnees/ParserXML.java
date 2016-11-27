@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -40,13 +42,62 @@ public class ParserXML implements IDataLoad {
 		
 	}
 	
+	private String recupTypeCarte(String type){
+		Pattern p=Pattern.compile("carte-([a-zA-Z]*),.*");
+		Matcher m=p.matcher(type);
+		while(m.find()){
+			return m.group(1);
+		}	
+		return null;
+	}
+	
+	private String recupOrigineCarte(String template){
+		Pattern p=Pattern.compile(".*origine-([a-zA-Z]*).*");
+		Matcher m=p.matcher(template);
+		while(m.find()){
+			//System.out.println(m.group(1));
+			return m.group(1);
+		}	
+		return null;
+	}
+	private String recupOrigineCarteDiv(String template){
+		Pattern p=Pattern.compile(".*origine-divinites-([a-zA-Z]*).*");
+		Matcher m=p.matcher(template);
+		while(m.find()){
+			return m.group(1);
+		}	
+		return null;
+	}
+	
+	private String[] getDogmeDiv(String template){
+		Pattern p=Pattern.compile(".*dogmes-divinites-(.*)");
+		Matcher m=p.matcher(template);
+		while(m.find()){
+			String[] rsltt = m.group(1).split("_");
+			return rsltt;
+		}	
+		return null;
+	}
+	private String[] getDogmeCA(String template){
+		Pattern p=Pattern.compile(".*dogmes-(.*)");
+		Matcher m=p.matcher(template);
+		while(m.find()){
+			String[] rsltt = m.group(1).split("_");
+			return rsltt;
+		}	
+		return null;
+	}
+	
+	
 	public void parserFichier(){
 		System.out.println("début du parse de fichier");
-		//SAXBuilder builder = new SAXBuilder();
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		HashMap<String,Integer > mapNbCroyants = new HashMap<String,Integer >();
+		mapNbCroyants.put("nbr_un", 1);
+		mapNbCroyants.put("nbr_deux", 2);
+		mapNbCroyants.put("nbr_trois", 3);
+		mapNbCroyants.put("nbr_quatre", 4);
 		
-
-
 		try{
 			final DocumentBuilder builder = factory.newDocumentBuilder();
 			final Document document=(Document) builder.parse(new File("cartes.xml"));
@@ -56,34 +107,50 @@ public class ParserXML implements IDataLoad {
 			
 			for (int i = 0; i<nbRacineNoeuds; i++) {
 				if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-				//    System.out.println(racineNoeuds.item(i).getNodeName());
 				    final Element deck =  (Element) racineNoeuds.item(i);
 				    final NodeList cartes = deck.getElementsByTagName("card");
 				    final int nbCartes = cartes.getLength();
 				    if (nbCartes != 0){
 				    	for(int j = 0; j<nbCartes; j++) {
 			                final Element carte = (Element) cartes.item(j);
-		                    //Affichage du téléphone
-//			                String con = carte.getTextContent();
-//			                con.trim();
 			                String[] lstr =  carte.getTextContent().trim().split("\n");
 			                try{
-			                System.out.println(carte.getAttribute("template"));
-			                
-			                //for (int f = 0; f<lstr.length; f++){
-			                System.out.println(lstr[0]);
-			                System.out.println(lstr[3].trim());
+			                	String type = recupTypeCarte(carte.getAttribute("template"));
+			                	String texteCarte =type +" ";
+			                	String[] dCarte;
+			                	if (type.equals("divinites")){
+			                		String orDIv = recupOrigineCarteDiv(carte.getAttribute("template"));
+			                		dCarte = getDogmeDiv(carte.getAttribute("template"));
+			                		texteCarte = orDIv + " "+ texteCarte;
+			                		
+			                	}else{
+			                		String orCA = recupOrigineCarte(carte.getAttribute("template"));
+			                		dCarte = getDogmeCA(carte.getAttribute("template"));
+			                		texteCarte = orCA + " "+ texteCarte;
+			                		
+			                		NodeList image = carte.getElementsByTagName("image");
+			                		int nbImage = image.getLength();
+			                		for (int m = 0; m<nbImage; m++){
+			                			Element croyants = (Element) image.item(m);
+			                			String valeurCroyant = croyants.getAttribute("id");
+			                			texteCarte = texteCarte + mapNbCroyants.get(valeurCroyant) +" ";
+			                		}
+			                	}
+			                	if (dCarte != null){
+		                			String org="";
+		                			for (int y = 0; y<dCarte.length; y++){
+		                				texteCarte = dCarte[y]+" "+texteCarte;
+		                			}
+		                		}
+			                	System.out.println(texteCarte);		                
+				                System.out.println(lstr[0]);
+				                System.out.println(lstr[3].trim());
 			                }catch(Exception e){
 			                	
 			                }
-			                
-			                //}
-			                //System.out.println(j);
 				    	}
 				    }
-				    
 				}
-			    
 			}
 		}
 		catch(Exception e){

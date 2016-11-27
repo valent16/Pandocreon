@@ -10,7 +10,6 @@
 <fullyQualifiedTypeName name="game.GameManager"/>
 <fullyQualifiedTypeName name="cards.ActionCard"/>
 <fullyQualifiedTypeName name="strategy.HardStrategy"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="player.Human"/>
 <fullyQualifiedTypeName name="player.Player"/>
@@ -27,4 +26,14 @@
 <fullyQualifiedTypeName name="org.w3c.dom.Element"/>
 <fullyQualifiedTypeName name="org.w3c.dom.NodeList"/>
 <fullyQualifiedTypeName name="org.w3c.dom.Node"/>
+<fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+<fullyQualifiedTypeName name="java.util.regex.Matcher"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="model.cards.ActionCardWithOrigin"/>
+<fullyQualifiedTypeName name="model.EnumType.EnumDogme"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="model.cards.CarteDogmatique"/>
+<fullyQualifiedTypeName name="model.cards.ActionCard"/>
+<fullyQualifiedTypeName name="model.cards.OriginCards.ActionCardWithOrigin"/>
+<fullyQualifiedTypeName name="model.EnumType.EnumOrigineCA"/>
 </qualifiedTypeNameHistroy>

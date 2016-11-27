@@ -1,0 +1,7 @@
+package model.EnumType;
+
+public enum EnumOrigineCA {
+	JOUR,
+	AUBE,
+	NEANT
+}

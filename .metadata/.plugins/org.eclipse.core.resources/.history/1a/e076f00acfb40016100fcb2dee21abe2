@@ -1,0 +1,13 @@
+package model.cards;
+
+public abstract class ActionCardWithOrigin extends ActionCard {
+	public ActionCardWithOrigin(String nom, ) {
+		super(nom);
+	}
+
+
+	@Override
+	public void utiliserPouvoir(String commande) {
+		// TODO Auto-generated method stub
+		
+	}}
