@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public abstract class Card {
 
 	/**nom du fichier de l'image de la carte*/
-	private String img;
+	protected String img;
 	
 	protected String nom;
 
