@@ -1,0 +1,17 @@
+package model.cards.OriginCards;
+
+import model.cards.ActionCard;
+
+public class DeusExWithOrigin extends ActionCardWithOrigin {
+
+	public DeusExWithOrigin(String nom) {
+		super(nom);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void utiliserPouvoir(String commande) {
+		// TODO Auto-generated method stub
+		
+	}
+}
