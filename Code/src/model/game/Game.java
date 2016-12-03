@@ -1,8 +1,8 @@
 package model.game;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
-
 import model.cards.ActionCard;
 import model.cards.Divinity;
 import model.player.Bot;
@@ -17,7 +17,7 @@ import model.strategy.MediumStrategy;
 public class Game {
 
 	/**Attribut qui contient la liste des joueurs et des bots dans la partie*/
-	public static LinkedList<Player> Players;
+	public static List<Player> Players = new LinkedList<Player>();
 	
 	/**Attribut qui représente le nombre de joueurs dans la partie*/
 	public static int nbJoueur = 0;
@@ -26,10 +26,10 @@ public class Game {
 	static CardGame cardgame = new CardGame();
 	
 	/**Attribut qui représente la liste de cartes actions*/
-	private LinkedList<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
+	private List<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
 	
 	/**Attribut  qui représente la liste de divinités*/
-	private LinkedList<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
+	private List<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
 
 	/*protected static String joueurEnCours;*/
 
@@ -92,40 +92,9 @@ public class Game {
 			choisirDifficulteBot();
 		System.out.println("il y a "+nbJoueur+" joueurs dans la partie");
 		System.out.println("La partie commence, on peut distribuer les cartes \n");
-		Game.startGame(); //démarre la partie une fois que tous les joueueurs sont ajoutés
+		GameManager.getInstanceUniqueManager();	//Initialisation du GameManager
+		GameManager.startGame(); //démarre la partie dans le GAMEMANAGER
 	}
-
-
-	/**Méthode qui permet de commencer la partie*/
-	private static void startGame() {
-		/*int i =  0;
-		if(presenceBOT == true){
-			choisirDifficulteBot();
-		}
-		//System.out.println(jdc.getCarte());
-		jdc.melangerCarte();
-		Distribuer();*/
-	}
-
-	// a voir si on fait une methode tour ou une classe
-	/*public static void Tour(int i){
-		//nbCarteValide(i);
-	 * Affiche les caract�ristiquent de la carte Talon*/
-	// TestTalon();
-	/*afficherJoueurEnCours(i);
-
-		if(verificationMainJoueur()==false ){
-			//while(verificationMainJoueur()==false){
-			if(nbCarteValide(i)==true){
-				if(Players.get(i).getNom() != "BOT"){
-					tour = new Scanner(System.in);
-					System.out.println("Quelle carte jouer ?");
-					int carteAPoser = tour.nextInt();
-
-					/*
-	 * Création d'une carte qui s'appel carteTest, et qui prend les caract�ristiques de la carte que l'on souhaite jouer.
-	 * Celle-ci servira donc pour valider le coup
-	 */
 
 	/**Méthode qui permet d'ajouter un joueur à la partie*/
 	public static void ajouterJoueur(){
@@ -141,7 +110,7 @@ public class Game {
 	public static void ajouterBot(){
 		String bot = "BOT";
 		System.out.println(Player.NOM[nbJoueur]+ " : " + bot+ "\n");
-		Player J2 = new Bot(bot, new HardStrategy());
+		Player J2 = new Bot(bot, new HardStrategy()); ///////////////////Ce sera new Strategie voirs le design pattern Strategie en exemple
 		Players.add(J2);
 	}
 
@@ -188,66 +157,20 @@ public class Game {
 
 	//Calculer le score de chqaue joueur 
 	//pour cela il aut calculer le nombre de croyant
+	//A RAJOUTER DANS LE GAMEMANGER
 	public static void Score(int k){}
 
 	///////////A VOIR SI C'est Utile de regenerer la pioche
+	//A RAJOUTER DANS LE GAMEMANAGER
 	public static void regenererPioche(){}
-
-	/*piocher une carte
-	public static boolean piocher(int i, int n){
-		if(sens==true){
-			for(int k =0; k<n;k++){
-				if(i!=nbJoueur-1){
-					if(Pioche.pioche.JDC.size()==0)
-						regenererPioche();
-					Players.get(i+1).prendreCarte(Pioche.tirerCarte());
-				}
-				else{
-					if(Pioche.pioche.JDC.size()==0)
-						regenererPioche();
-					Players.getFirst().prendreCarte(Pioche.tirerCarte());
-				}
-			}
-		}
-		else if(sens==false){
-			for(int k =0; k<n;k++){
-				if(i!=0){
-					if(Pioche.pioche.JDC.size()==0){
-						regenererPioche();
-					}
-					Players.get(i-1).prendreCarte(Pioche.tirerCarte());
-				}
-				else{
-					if(Pioche.pioche.JDC.size()==0){
-						regenererPioche();
-					}
-					Players.getLast().prendreCarte(Pioche.tirerCarte());
-				}
-			}
-		}
-		return false;
-	}	*/
+	
+	////////////A VOIR SI le code en dessous C'est Valentin qui a fait ça ou si c'ets moi/////////////////////////////////////////////////////////////////////////////////
 
 	/*Afficher le joueur qui joue
 	private static void afficherJoueurEnCours(int i) {
 		System.out.println(Players.get(i).getNom()+ " doit jouer \n");
 		System.out.println("Main de " +Players.get(i).getNom()+ " :  " );
 		System.out.println(Players.get(i));
-	}*/
-
-	//Si on a besoin d'un sens
-	public static void determinerSens() {}
-
-	/*Methode qui permet de distribuer des cartes
-	public static void Distribuer() {
-		int i;	
-		Iterator<Player> it = Players.iterator();
-		while(it.hasNext()){
-			Player player = it.next();
-			for(i=0;i<7;i++){
-				player.prendreCarte(jdc.tirerCarte());
-			}
-		}						
 	}*/
 
 	////////////////////////////////////////////////////*TEST*///////////////////////////////////////////////////////////////////////
