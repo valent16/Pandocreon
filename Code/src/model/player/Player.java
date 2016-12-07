@@ -2,8 +2,6 @@ package model.player;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
-
 import model.EnumType.EnumOrigineCA;
 import model.cards.ActionCard;
 import model.cards.Card;

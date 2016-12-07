@@ -1,12 +1,8 @@
 package model.gestionDonnees;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +16,6 @@ import org.w3c.dom.NodeList;
 
 import model.cards.ActionCard;
 import model.cards.Divinity;
-import model.game.Game;
 
 public class ParserXML implements IDataLoad {
 
@@ -90,7 +85,7 @@ public class ParserXML implements IDataLoad {
 	
 	
 	public void parserFichier(){
-		System.out.println("début du parse de fichier");
+		System.out.println("dï¿½but du parse de fichier");
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		HashMap<String,Integer > mapNbCroyants = new HashMap<String,Integer >();
 		mapNbCroyants.put("nbr_un", 1);
@@ -137,7 +132,6 @@ public class ParserXML implements IDataLoad {
 			                		}
 			                	}
 			                	if (dCarte != null){
-		                			String org="";
 		                			for (int y = 0; y<dCarte.length; y++){
 		                				texteCarte = dCarte[y]+" "+texteCarte;
 		                			}

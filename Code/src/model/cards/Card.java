@@ -1,7 +1,5 @@
 package model.cards;
 
-import java.util.ArrayList;
-
 /**Classe abstraite qui represente n'importe quel carte*/
 public abstract class Card {
 

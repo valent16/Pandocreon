@@ -10,14 +10,14 @@ public class Main{
 	
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
-		int valeur =2;
+		int valeur =1;
 		//1: lancement du jeu
 		//2: test sur la classe joueur
 		
 		switch(valeur){
 			case 1:
-				Game game = new Game();  //Creation de la partie
-				game.initGame();  //lancement de la partie
+				//Game game = new Game();  //Creation de la partie
+				Game.initGame();  //lancement de la partie
 				break;
 				
 			case 2:

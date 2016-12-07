@@ -1,6 +1,7 @@
 package model.game;
 
 import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Scanner;
 import model.cards.ActionCard;
@@ -98,12 +99,13 @@ public class Game {
 
 	/**Méthode qui permet d'ajouter un joueur à la partie*/
 	public static void ajouterJoueur(){
-		Scanner scan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Entrez un nom de joueur : ");
-		String joueur = scan.nextLine();
+		String joueur = sc.nextLine();
 		System.out.println(Player.NOM[nbJoueur]+ " : " +joueur+ "\n");
 		Player J1 = new Human(joueur,10);
 		Players.add(J1);
+		sc.close();
 	}
 
 	/**Méthode qui permet d'ajouter un bot à la partie*/
@@ -125,19 +127,20 @@ public class Game {
 		Scanner sc = new Scanner(System.in);
 		String choix = sc.nextLine();
 		int strategy = Integer.parseInt(choix);
+		sc.close();
 
 		switch(strategy){
 		case 1: //bot facile
 			//Bot.setStrategy(new EasyStrategy());
-			System.out.println("Vous avez choisi la difficulté facile pour les bots\n");
+			System.out.println("Vous avez choisi la difficulté EASY pour les bots\n");
 			break;
 		case 2: //bot moyen
 			//Bot.setStrategy(new MediumStrategy());
-			System.out.println("Vous avez choisi la difficulté moyen pour les bots\n");
+			System.out.println("Vous avez choisi la difficulté MEDIUM pour les bots\n");
 			break;
 		case 3: //bot difficile
 			//Bot.setStrategy(new HardStrategy());
-			System.out.println("Vous avez choisi la difficulté difficile pour les bots\n");
+			System.out.println("Vous avez choisi la difficulté HARD pour les bots\n");
 			break;
 
 		default: //erreur si le nombre entré n'est pas correcte
