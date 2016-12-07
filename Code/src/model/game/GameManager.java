@@ -62,6 +62,7 @@ public class GameManager {
 	
 	/**Méthode qui permet de commencer la partie*/
 	public static void startGame() {
+		System.out.println("Salut");
 		/*int i =  0;
 		if(presenceBOT == true){
 			choisirDifficulteBot();

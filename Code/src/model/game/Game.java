@@ -18,16 +18,16 @@ public class Game {
 
 	/**Attribut qui contient la liste des joueurs et des bots dans la partie*/
 	public static List<Player> Players = new LinkedList<Player>();
-	
+
 	/**Attribut qui représente le nombre de joueurs dans la partie*/
 	public static int nbJoueur = 0;
 
 	/**Attribut qui représente la liste des cartes du jeu*/
 	static CardGame cardgame = new CardGame();
-	
+
 	/**Attribut qui représente la liste de cartes actions*/
 	private List<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
-	
+
 	/**Attribut  qui représente la liste de divinités*/
 	private List<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
 
@@ -37,7 +37,7 @@ public class Game {
 	public static void initGame() {
 		Game.Players = new LinkedList<Player>();
 		System.out.println("Commencer une nouvelle partie\n");
-		
+
 		Scanner sc;
 		String choix;
 		int boucle = 0;
@@ -53,7 +53,7 @@ public class Game {
 			}catch(Exception e){
 				e.getMessage();
 				System.out.println("Vous n'avez pas entré un nombre correct ! ");
-				
+
 			}
 		}while(boucle<2);
 
@@ -116,40 +116,33 @@ public class Game {
 
 	/**Methode qui permet de choisir la difficulté du bot*/
 	public static void choisirDifficulteBot(){
-		boolean partieEnCours = false;
 		System.out.println("\nChoississez la difficulté des BOTs \n");
 
-		while(partieEnCours==false){
+		System.out.println("Choix 1 : Facile/Easy");
+		System.out.println("Choix 2 : Moyen/Medium");
+		System.out.println("Choix 3 : Difficile/Hard");
 
-			System.out.println("Choix 1 : Facile/Easy");
-			System.out.println("Choix 2 : Moyen/Medium");
-			System.out.println("Choix 3 : Difficile/Hard");
+		Scanner sc = new Scanner(System.in);
+		String choix = sc.nextLine();
+		int strategy = Integer.parseInt(choix);
 
-			Scanner sc = new Scanner(System.in);
-			String choix = sc.nextLine();
-			int strategy = Integer.parseInt(choix);
+		switch(strategy){
+		case 1: //bot facile
+			//Bot.setStrategy(new EasyStrategy());
+			System.out.println("Vous avez choisi la difficulté facile pour les bots\n");
+			break;
+		case 2: //bot moyen
+			//Bot.setStrategy(new MediumStrategy());
+			System.out.println("Vous avez choisi la difficulté moyen pour les bots\n");
+			break;
+		case 3: //bot difficile
+			//Bot.setStrategy(new HardStrategy());
+			System.out.println("Vous avez choisi la difficulté difficile pour les bots\n");
+			break;
 
-			switch(strategy){
-			case 1: //bot facile
-				//Bot.setStrategy(new EasyStrategy());
-				System.out.println("Vous avez choisi la difficulté facile pour les bots\n");
-				partieEnCours=true;
-				break;
-			case 2: //bot moyen
-				//Bot.setStrategy(new MediumStrategy());
-				System.out.println("Vous avez choisi la difficulté moyen pour les bots\n");
-				partieEnCours=true;
-				break;
-			case 3: //bot difficile
-				//Bot.setStrategy(new HardStrategy());
-				System.out.println("Vous avez choisi la difficulté difficile pour les bots\n");
-				partieEnCours=true;
-				break;
-
-			default: //erreur si le nombre entré n'est pas correcte
-				System.out.println("Erreur ! Vous n'avez pas entré un bon choix \n");
-				break;
-			}
+		default: //erreur si le nombre entré n'est pas correcte
+			System.out.println("Erreur ! Vous n'avez pas entré un bon choix \n");
+			break;
 		}
 	}
 
@@ -163,7 +156,7 @@ public class Game {
 	///////////A VOIR SI C'est Utile de regenerer la pioche
 	//A RAJOUTER DANS LE GAMEMANAGER
 	public static void regenererPioche(){}
-	
+
 	////////////A VOIR SI le code en dessous C'est Valentin qui a fait ça ou si c'ets moi/////////////////////////////////////////////////////////////////////////////////
 
 	/*Afficher le joueur qui joue
