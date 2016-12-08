@@ -6,12 +6,14 @@
  */ 
 package view.ihm;
 
-import java.awt.*;
-
-import java.awt.event.*;
 import javax.swing.*;
 
 public class frameExemple extends JFrame{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	int type;

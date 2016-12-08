@@ -2,7 +2,6 @@ package model.gestionDonnees;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
@@ -114,7 +113,7 @@ public class ParserXML implements IDataLoad {
 		return null;
 	}
 	
-	//Permet de d'obtenir à partir d'un dogme en chaine de caractère sa correspondance en 
+	//Permet de d'obtenir Ã  partir d'un dogme en chaine de caractï¿½re sa correspondance en 
 	//EnumDogme
 	private EnumDogme convertDogmeFromString(String dogme){
 		switch(dogme){
@@ -138,7 +137,7 @@ public class ParserXML implements IDataLoad {
 		}
 	}
 	
-	//Permet de d'obtenir à partir d'une origine en chaine de caractère sa correspondance en 
+	//Permet de d'obtenir ï¿½ partir d'une origine en chaine de caractï¿½re sa correspondance en 
 	//EnumOrigneDivinite
 	private EnumOrigineDivinite convertOrigineDiviniteFromString(String origine){
 		switch(origine){
@@ -156,7 +155,7 @@ public class ParserXML implements IDataLoad {
 		}
 	}
 	
-	//Permet de d'obtenir à partir d'une origine en chaine de caractère sa correspondance en 
+	//Permet de d'obtenir ï¿½ partir d'une origine en chaine de caractï¿½re sa correspondance en 
 	//EnumOrigineCA
 	private EnumOrigineCA convertOrigineCAFromString(String origine){
 		switch(origine){
@@ -195,14 +194,13 @@ public class ParserXML implements IDataLoad {
 				    final NodeList cartes = deck.getElementsByTagName("card");
 				    final int nbCartes = cartes.getLength();
 				    
-				    // cas ou la balise carte est trouvée
+				    // cas ou la balise carte est trouvï¿½e
 				    if (nbCartes != 0){
 				    	for(int j = 0; j<nbCartes; j++) {
 			                final Element carte = (Element) cartes.item(j);
 			                String[] lstr =  carte.getTextContent().trim().split("\n");
 			                try{
 			                	String type = recupTypeCarte(carte.getAttribute("template"));
-			                	String texteCarte =type +" ";
 			                	ArrayList<EnumDogme> dogmesCarte;
 			                	if (type.equals("divinites")){
 			                		EnumOrigineDivinite orDIv = recupOrigineCarteDiv(carte.getAttribute("template"));

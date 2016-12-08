@@ -11,14 +11,15 @@ public abstract class ActionCardWithOrigin extends ActionCard {
 		return origine;
 	}
 
+	public ActionCardWithOrigin(String nom, EnumOrigineCA origine) {
+		super(nom);
+		this.setOrigine(origine);
+	}
+	
 	private void setOrigine(EnumOrigineCA origine) {
 		this.origine = origine;
 	}
 
-	public ActionCardWithOrigin(String nom, EnumOrigineCA origine) {
-		super(nom);
-		this.origine = origine;
-	}
 
 	@Override
 	public String toString() {

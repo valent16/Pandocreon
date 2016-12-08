@@ -1,7 +1,6 @@
 package model.cards.OriginCards;
 
 import model.EnumType.EnumOrigineCA;
-import model.cards.ActionCard;
 
 public class DeusExWithOrigin extends ActionCardWithOrigin {
 

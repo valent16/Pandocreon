@@ -1,6 +1,5 @@
 package model.gestionDonnees;
 
-import java.util.Collection;
 import java.util.LinkedList;
 
 import model.cards.ActionCard;

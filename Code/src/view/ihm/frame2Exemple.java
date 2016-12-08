@@ -6,17 +6,21 @@
  */ 
 
 package view.ihm;
-
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.*;
-import javax.swing.border.*;
-import java.io.*;
+import javax.swing.border.LineBorder;
+import model.game.GameManager;
+import model.player.Player;
 
 public class frame2Exemple extends JFrame{
 
 	
-	/**private static final long serialVersionUID = 4391664540697754823L;
+	private static final long serialVersionUID = 4391664540697754823L;
 	ImageIcon joker = new ImageIcon("img/joker.gif");
 	ImageIcon vide  = new ImageIcon("img/vide.gif");
 
@@ -39,14 +43,9 @@ public class frame2Exemple extends JFrame{
 
 	JTextArea Detail = new JTextArea(4,5);
 
-
-	Jeu J;
-	Player P1;
-	Player P2;
-	Carte C1;
-	Carte C2;
-	Hand H1 = new Hand();
-	Hand H2 = new Hand();
+	GameManager gameManager;
+	Player player1;
+	Player player2;
 
 	int numetape;
 	int type;
@@ -156,33 +155,32 @@ public class frame2Exemple extends JFrame{
 		//gestion du jeu
 		this.type = type;
 		d = false;
-		J = new Jeu();
-
-		if(S != null){
+		gameManager = GameManager.getInstanceUniqueManager() ;
+		
+		//CHARGER LES CARTES
+		/*if(S != null){
 			Carte[] C = J.Chargerjeu(S);
 			if(C == null){
 				JOptionPane.showMessageDialog(null,"le jeu choisi n'est pas valid");
 			} 
 			else {
-				J.distribuer(C);
+				gameManager.distribuer(C);
 			}
 		}
 		else{
-		}
+		}*/
 
-		P1 = J.getPlayer(1);
-		P2 = J.getPlayer(2);
-		J.initFichier();
-		P1.addHand();
-		P2.addHand();
+		player1= gameManager.getPlayer(1);
+		player2 = gameManager.getPlayer(2);
+	/////////	game.initFichier();//appeler la methode pour charger les cartes////////////////////////////////////////////////////////////////
 
 		Detail.setText(Detail.getText()+"la partie : ");
-		Detail.setText(Detail.getText()+J.getFichier());
 
 		//gestion du timer
 		ActionListener taskPerformer = new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				Button_on_click(evt);;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Button_on_click(e);;
 			}
 		};
 
@@ -205,9 +203,6 @@ public class frame2Exemple extends JFrame{
 
 			break;		
 		}
-
-
-
 
 		//gestion des evenement sur les composant
 		Stop.addActionListener(new java.awt.event.ActionListener() {
@@ -243,10 +238,10 @@ public class frame2Exemple extends JFrame{
 		});
 		//gestion des événements sur la fenétre
 		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent evt) {
+			public void windowClosing(WindowEvent e) {
 				dispose();
 			}
-			public void windowClosed(WindowEvent evt) {
+			public void windowClosed(WindowEvent e) {
 
 			}
 		});
@@ -280,7 +275,8 @@ public class frame2Exemple extends JFrame{
 		}
 		if(source == Charger){
 			String S = JOptionPane.showInputDialog(null,"Entrez votre partie sous forme 11112222....(au min 20 chiffre 1-5)");
-			if(S != null){
+			
+			/*if(S != null){ //Faire le chargement du jeu///////////////////////////////////////////////////////////////
 				Carte[] C = J.Chargerjeu(S);
 				if(C == null){
 					JOptionPane.showMessageDialog(null,"le jeu choisi n'est pas valid");
@@ -292,13 +288,13 @@ public class frame2Exemple extends JFrame{
 					frame2Exemple P = new frame2Exemple(this.type, S);
 					P.setVisible(true); 
 				}
-			}
+			}*/
 		}
-		if(source == Psuivante){
+		/*if(source == Psuivante){
 
 			switch(this.numetape){
 			case 1 : //vous jouer
-				if(P1.aperdu()|| P2.aperdu()|| d){
+				if(player1.apercu()|| player2.apercu()|| d){
 					this.numetape = 4;
 				}
 				else{
@@ -380,9 +376,9 @@ public class frame2Exemple extends JFrame{
 				D.setVisible(true);	
 				break;			
 			}
-		}
+		}*/
 
-		if(source == Csuivant){
+		/*if(source == Csuivant){
 			if(!P1.aperdu() && !P2.aperdu() && !d && this.numetape != 4){
 				C1 = new Carte(J.play1());
 				H1.insertCard(C1);
@@ -449,8 +445,9 @@ public class frame2Exemple extends JFrame{
 				frameExemple D = new frameExemple();
 				D.setVisible(true);
 			}
-		}
-		if(source == T){
+		}*/
+		
+		/*if(source == T){
 			switch(this.numetape){
 			case 1 : //vous jouer
 				if(P1.aperdu()|| P2.aperdu()|| d){
@@ -537,9 +534,9 @@ public class frame2Exemple extends JFrame{
 				break;			
 			}
 
-		}
-		if(source == this.ChFichier){
-
+		}*/
+		
+		/*if(source == this.ChFichier){
 			String S = JOptionPane.showInputDialog(null,"Entrez votre partie sous forme 11112222....(au min 20 chiffre 1-5)");
 			String St = this.LirePartie(S);
 			if(St != null){
@@ -553,8 +550,7 @@ public class frame2Exemple extends JFrame{
 			else{
 				JOptionPane.showMessageDialog(null,"cette partie n'exite pas.");	
 			}  
-		}
-
+		}*/
 	}
 
 	/*

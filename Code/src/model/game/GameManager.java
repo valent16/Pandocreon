@@ -163,6 +163,10 @@ public class GameManager {
 	public void setDivinites(LinkedList<Divinity> divinites) {
 		this.listDivinites = divinites;
 	}
+	
+	public Player getPlayer(int index){
+		return players.get(index);
+	}
 
 	public Player getJoueurDebutTour() {
 		return joueurDebutTour;
