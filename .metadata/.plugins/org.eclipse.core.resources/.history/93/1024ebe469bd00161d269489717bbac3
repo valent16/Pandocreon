@@ -1,0 +1,12 @@
+package controller;
+import view.console.VueGame;
+
+public class GameController {
+	VueGame vueJeu;
+	
+	public GameController(){
+		vueJeu = new VueGame();
+	}
+	
+	
+}

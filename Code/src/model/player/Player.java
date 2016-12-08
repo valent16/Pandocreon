@@ -49,7 +49,6 @@ public abstract class Player {
 		for (int i = 0; i< valuesEnumPointAction.length; i++) {
 			dicoPA.put(valuesEnumPointAction[i], 0);
 		}
-		
 	}
 	
 	/** Le joueur joue une carte et donc on l'enleve de sa main*/
@@ -58,9 +57,14 @@ public abstract class Player {
 	}
 	
 	/**Methode piocher*/
-	public void piocher(Card carte){
-		hand.add(carte);
+	public void piocher(){
+		hand.add(GameManager.getInstanceUniqueManager().piocherCarte());
     }
+	
+	//Permet au joueur de piocher sa divinite
+	public void piocherDivinite(){
+		this.divinity = GameManager.getInstanceUniqueManager().piocherDivinite();
+	}
 	
 	//////////////////////////////// GETTERS & SETTERS////////////////////////////////////////////////
 	

@@ -1,0 +1,20 @@
+package controller;
+import model.game.Game;
+import view.console.VueGame;
+
+public class GameController {
+	VueGame vueJeu;
+	
+	Game game;
+	
+	public GameController(){
+		vueJeu = new VueGame();
+	}
+	
+	public void startGame(){
+		game = new Game();
+		game.initGame();
+		
+		vueJeu.MenuPrincipal();
+	}
+}

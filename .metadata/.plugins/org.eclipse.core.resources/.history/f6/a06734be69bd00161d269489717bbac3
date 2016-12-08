@@ -1,0 +1,14 @@
+package controller;
+
+public class GameController {
+	
+	Vuegame vueJeu;
+	
+	
+	public GameController(){
+		
+	}
+	
+	
+	
+}

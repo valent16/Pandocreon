@@ -1,6 +1,8 @@
 package model.game;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,19 +11,24 @@ import model.cards.Divinity;
 import model.cards.OriginCards.Believer;
 import model.player.Player;
 
+
+
 public class GameManager {
+
+	private final static int NB_CARTE_MAX_MAIN = 7;
+	
 	private static volatile GameManager managerUnique;
 
 	private LinkedList<ActionCard> pioche = new LinkedList<ActionCard>();
 
-	private List<ActionCard> defausse = new LinkedList<ActionCard>();
+	private LinkedList<ActionCard> defausse = new LinkedList<ActionCard>();
 
 	/**ReprÃ©sente les cartes croyants sur la table*/
-	private List<ActionCard> croyants = new LinkedList<ActionCard>();
+	private LinkedList<ActionCard> croyants = new LinkedList<ActionCard>();
 
-	private List<Divinity> listDivinites = new LinkedList<Divinity>();
+	private LinkedList<Divinity> listDivinites = new LinkedList<Divinity>();
 
-	private List<Player> players = new LinkedList<Player>();
+	private ArrayList<Player> players = new ArrayList<Player>();
 
 	private Player joueurDebutTour;
 
@@ -48,10 +55,41 @@ public class GameManager {
 	/**
 	 * mï¿½thode permettant de mï¿½langer les cartes du jeu
 	 */
-	public void melangerCartes(){
+
+	
+	public void melangerDivinites(){
+		Collections.shuffle(listDivinites);
+	}
+	
+	//Permet de les cartes de la pioche
+	public void melangerPioche(){
 		Collections.shuffle(pioche);
+	}
+	
+	//Permet de mélanger les cartes de la pile de défausse
+	public void melangerDefausse(){
 		Collections.shuffle(defausse);
 	}
+	
+	//Permet de défausser une carte action
+	public void defausserCarte(ActionCard carte){
+		defausse.add(carte);
+	}
+
+	//Permet de défausser une liste de carte action
+	public void defausserCarte(LinkedList<ActionCard> cartes){
+		defausse.addAll(cartes);
+	}
+	
+	//Permet de défausser une divinite
+	public void defausserDivinite(Divinity divinite){
+		listDivinites.add(divinite);
+	}
+	
+	public Divinity piocherDivinite(){
+		return listDivinites.pop();
+	}
+
 
 	/**
 	 * Permet d'ajouter un joueur au gestionnaire de partie
@@ -60,41 +98,36 @@ public class GameManager {
 		players.add(joueur);
 	}
 	
-	/**MÃ©thode qui permet de commencer la partie*/
-	public static void startGame() {
-		System.out.println("Salut");
-		/*int i =  0;
-		if(presenceBOT == true){
-			choisirDifficulteBot();
+	//Permet de réaliser l'initialisation des jeux
+	public void intialisationDesJeux(){
+		Iterator itJoueur = players.iterator();
+		
+		//Permet l'initialisation des divinites des joueurs
+		while(itJoueur.hasNext()){
+			Player joueur = (Player) itJoueur.next();
+			joueur.piocherDivinite();
 		}
-		//System.out.println(jdc.getCarte());
-		jdc.melangerCarte();
-		Distribuer();*/
+		
+		//Permet l'intialisation des cartes action des joueurs
+		for (int i=0; i<NB_CARTE_MAX_MAIN; i++){
+			itJoueur = players.iterator();
+			while(itJoueur.hasNext()){
+				Player joueur = (Player) itJoueur.next();
+				joueur.piocher();;
+			}
+		}
+	}
+	
+	
+	/**MÃ©thode qui permet de commencer la partie*/
+	public void startGame() {
+		this.melangerDivinites();
+		this.melangerPioche();
+		this.intialisationDesJeux();
 	}
 
-	// a voir si on fait une methode tour ou une classe
-	/*public static void Tour(int i){
-		//nbCarteValide(i);
-	 * Affiche les caractï¿½ristiquent de la carte Talon*/
-	// TestTalon();
-	/*afficherJoueurEnCours(i);
-
-		if(verificationMainJoueur()==false ){
-			//while(verificationMainJoueur()==false){
-			if(nbCarteValide(i)==true){
-				if(Players.get(i).getNom() != "BOT"){
-					tour = new Scanner(System.in);
-					System.out.println("Quelle carte jouer ?");
-					int carteAPoser = tour.nextInt();
-
-					/*
-	 * CrÃ©ation d'une carte qui s'appel carteTest, et qui prend les caractï¿½ristiques de la carte que l'on souhaite jouer.
-	 * Celle-ci servira donc pour valider le coup
-	 */
-
-
 	/**
-	 * Permet d'ï¿½liminer un joueur de la partie
+	 * Permet d'éliminer un joueur de la partie
 	 * @param joueur
 	 */
 	public void eliminerJoueur(Player joueur){
@@ -143,18 +176,12 @@ public class GameManager {
 				//lancer une exception qui arrete la partie => pas assez de carte pour jouer
 			}
 			pioche.addAll(defausse);
-			melangerCartes();
+			//melangerPioche();
 		}
 		return pioche.pop();
 	}
 
-	public void defausserCarte(ActionCard carte){
-		defausse.add(carte);
-	}
-
-	public void defausserCarte(LinkedList<ActionCard> cartes){
-		defausse.addAll(cartes);
-	}
+	
 
 	public List<Divinity> getDivinites() {
 		return listDivinites;

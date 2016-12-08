@@ -1,5 +1,7 @@
 package model.game;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,21 +20,19 @@ import model.strategy.MediumStrategy;
 
 /**Classe qui gere la partie*/
 public class Game {
+	
+	private final static int NB_CARTE_MAX_MAIN = 7;
 
+	private int nbJoueurMax;
+	
 	/**Attribut qui contient la liste des joueurs et des bots dans la partie*/
-	public static List<Player> Players = new LinkedList<Player>();
-
-	/**Attribut qui représente le nombre de joueurs dans la partie*/
-	public static int nbJoueur = 0;
-
-	/**Attribut qui représente la liste des cartes du jeu*/
-	static CardGame cardgame = new CardGame();
+	private ArrayList<Player> players = new ArrayList<Player>();
 
 	/**Attribut qui représente la liste de cartes actions*/
-	private List<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
+	private LinkedList<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
 
 	/**Attribut  qui représente la liste de divinités*/
-	private List<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
+	private LinkedList<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
 
 	/*protected static String joueurEnCours;*/
 
@@ -40,7 +40,30 @@ public class Game {
 	
 	public Game(){
 		//Permet l'intialisation du dataManager
+		
 		dataManager = new DataManager(new FakeSaver(), new ParserXML());
+		
+	}
+	
+	//Permet de d�terminer le nombre maximal de joueur pour une partie de jeu
+	private void calculerNbJoueurMax(){
+		System.out.println(listeCartesAction.size());
+		System.out.println(listeCartesDivinites.size());
+		if (listeCartesAction.size()/NB_CARTE_MAX_MAIN > listeCartesDivinites.size()){
+			this.nbJoueurMax = listeCartesDivinites.size();
+		}else{
+			this.nbJoueurMax = listeCartesAction.size()/NB_CARTE_MAX_MAIN;
+		}
+	}
+	
+	public int getNbJoueurMax(){
+		return this.nbJoueurMax;
+	}
+	
+	
+	
+	public int getNbJoueur(){
+		return players.size();
 	}
 	
 	
@@ -49,97 +72,44 @@ public class Game {
 		//Fonctions permettant le chargement des cartes
 		this.listeCartesDivinites = dataManager.getGestionnaireChargement().chargerDivinites();
 		this.listeCartesAction = dataManager.getGestionnaireChargement().chargerCartes();
-		
-		
-		for (Divinity d : this.listeCartesDivinites){
-			System.out.println(d.toString());
-		}
-		
-		for (ActionCard c: this.listeCartesAction){
-			System.out.println(c.toString());
-		}
-		
-		
-		
-		//Game.Players = new LinkedList<Player>();
-		//System.out.println("Commencer une nouvelle partie\n");
-		/*
-		Scanner sc;
-		String choix;
-		int boucle = 0;
-		boolean presenceBot = false;
-		do{
-			System.out.println("Combien de joueurs voulez ajouter:");
-			try{
-				sc = new Scanner(System.in);
-				choix = sc.nextLine();
-				boucle = Integer.parseInt(choix);
-				if(boucle<2)
-					System.out.println("il faut au minimum 2 joueurs");
-			}catch(Exception e){
-				e.getMessage();
-				System.out.println("Vous n'avez pas entré un nombre correct ! ");
-
-			}
-		}while(boucle<2);
-
-		for (int i = 0; i < boucle; i++) {//boucle qui continu tant qu'on a pas atteint le nombre de joueur demandé
-
-			System.out.println("Choix 1 : Ajouter Joueur");
-			System.out.println("Choix 2 : Ajouter BOT");
-			System.out.println("Votre choix : ");
-			int ch;
-
-			try{
-				sc = new Scanner(System.in);
-				choix = sc.nextLine();
-				ch = Integer.parseInt(choix);
-			}catch(Exception e){
-				e.getMessage();
-				System.out.println("Vous n'avez pas entré un nombre correct ! ");
-				break;
-			}
-
-			switch(ch){
-			case 1: //ajout d'un joueur
-				ajouterJoueur();
-				nbJoueur++;
-				break;
-
-			case 2: //ajout d'un bot
-				ajouterBot();
-				presenceBot=true;
-				nbJoueur++;
-			default:
-				break;
-			}
-		}
-		if(presenceBot)
-			choisirDifficulteBot();
-		System.out.println("il y a "+nbJoueur+" joueurs dans la partie");
-		System.out.println("La partie commence, on peut distribuer les cartes \n");
-		GameManager.getInstanceUniqueManager();	//Initialisation du GameManager
-		GameManager.startGame(); //démarre la partie dans le GAMEMANAGER
-		*/
+		this.calculerNbJoueurMax();
 	}
+	
+	//Permet de faire l'intialisation de la nouvelle partie
+	public void nouvellePartie(){
+		//transmission du deck de jeu
+		GameManager.getInstanceUniqueManager().initialisationPartie(this.listeCartesAction, this.listeCartesDivinites);
+		
+		//transmission de la liste de joueurs
+		Iterator it = players.iterator();
+		while (it.hasNext()){
+			GameManager.getInstanceUniqueManager().ajouterJoueur((Player) it.next());
+		}
+	}
+	
 
 	/**Méthode qui permet d'ajouter un joueur à la partie*/
-	public static void ajouterJoueur(){
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Entrez un nom de joueur : ");
-		String joueur = sc.nextLine();
-		System.out.println(Player.NOM[nbJoueur]+ " : " +joueur+ "\n");
-		Player J1 = new Human(joueur,10);
-		Players.add(J1);
-		sc.close();
+	public void ajouterJoueurReel(Human joueur){
+		//Check � voir si on peut mettre plusieurs joueur r�els 
+		this.players.add(joueur);
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("Entrez un nom de joueur : ");
+//		String joueur = sc.nextLine();
+//		System.out.println(Player.NOM[nbJoueur]+ " : " +joueur+ "\n");
+//		Player J1 = new Human(joueur,10);
+		//Players.;
+//		sc.close();
 	}
 
 	/**Méthode qui permet d'ajouter un bot à la partie*/
-	public static void ajouterBot(){
+	public void ajouterBot(Bot joueur){
+		this.players.add(joueur);
+		/*
 		String bot = "BOT";
 		System.out.println(Player.NOM[nbJoueur]+ " : " + bot+ "\n");
 		Player J2 = new Bot(bot, new HardStrategy()); ///////////////////Ce sera new Strategie voirs le design pattern Strategie en exemple
-		Players.add(J2);
+		*/
+		//Players.add(J2);
 	}
 
 	/**Methode qui permet de choisir la difficulté du bot*/
@@ -180,11 +150,11 @@ public class Game {
 	//Calculer le score de chqaue joueur 
 	//pour cela il aut calculer le nombre de croyant
 	//A RAJOUTER DANS LE GAMEMANGER
-	public static void Score(int k){}
+	//public static void Score(int k){}
 
 	///////////A VOIR SI C'est Utile de regenerer la pioche
 	//A RAJOUTER DANS LE GAMEMANAGER
-	public static void regenererPioche(){}
+//	public static void regenererPioche(){}
 
 	////////////A VOIR SI le code en dessous C'est Valentin qui a fait ça ou si c'ets moi/////////////////////////////////////////////////////////////////////////////////
 

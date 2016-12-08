@@ -31,7 +31,6 @@
 <fullyQualifiedTypeName name="model.cards.CarteDogmatique"/>
 <fullyQualifiedTypeName name="model.cards.OriginCards.ActionCardWithOrigin"/>
 <fullyQualifiedTypeName name="model.EnumType.EnumDogme"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="model.EnumType.EnumOrigineCA"/>
 <fullyQualifiedTypeName name="model.EnumType.EnumOrigineDivinite"/>
 <fullyQualifiedTypeName name="model.cards.OriginCards.Believer"/>
@@ -48,4 +47,11 @@
 <fullyQualifiedTypeName name="model.gestionDonnees.ParserXML"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="model.cards.ActionCard"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="model.game.GameManager"/>
+<fullyQualifiedTypeName name="view.console.VueGame"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="controller.GameController"/>
+<fullyQualifiedTypeName name="model.game.Game"/>
 </qualifiedTypeNameHistroy>

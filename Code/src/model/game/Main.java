@@ -1,5 +1,6 @@
 package model.game;
 
+import controller.GameController;
 import model.EnumType.EnumOrigineCA;
 //import model.game.De.Face;
 import model.player.Human;
@@ -16,8 +17,11 @@ public class Main{
 		
 		switch(valeur){
 			case 1:
-				Game game = new Game();
-				game.initGame();
+				//Game game = new Game();
+				//game.initGame();
+				
+				GameController gc = new GameController();
+				gc.startGame();
 				break;
 				
 			case 2:
