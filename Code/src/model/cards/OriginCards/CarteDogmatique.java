@@ -10,13 +10,20 @@ public abstract class CarteDogmatique extends ActionCardWithOrigin {
 
 	private ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
 	
-	private String nomTypeCarte;
+	private String sacrifice;
 	
-	public CarteDogmatique(String nom, EnumOrigineCA origine, ArrayList<EnumDogme> dogmes, String nomTypeCarte) {
+//	private String nomTypeCarte;
+	
+	public CarteDogmatique(String nom, EnumOrigineCA origine, ArrayList<EnumDogme> dogmes, String sacrifice) {
 		super(nom, origine);
 		//faire une deepCopy
 		this.dogmes = dogmes;
-		this.nomTypeCarte = nomTypeCarte;
+//		this.nomTypeCarte = nomTypeCarte;
+		this.sacrifice = sacrifice;
 	}
 
+	@Override
+	public String toString() {
+		return "CarteDogmatique [dogmes=" + dogmes + ", nom=" + nom + ", sacrifice="+sacrifice+"]";
+	}
 }

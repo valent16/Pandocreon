@@ -3,6 +3,8 @@ package model.cards;
 /**Classe abstraite qui represente n'importe quel carte*/
 public abstract class Card {
 
+	
+
 	/**nom du fichier de l'image de la carte*/
 	private String img;
 	
@@ -20,6 +22,12 @@ public abstract class Card {
 	public String getImg(){
 		return this.img;
 	}
+	
+	@Override
+	public String toString() {
+		return "Card [nom=" + nom + "]";
+	}
+	
 	
 	public abstract void utiliserPouvoir(String commande);
 	

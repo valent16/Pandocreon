@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 import model.cards.ActionCard;
 import model.cards.Divinity;
+import model.gestionDonnees.DataManager;
+import model.gestionDonnees.FakeSaver;
+import model.gestionDonnees.ParserXML;
 import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
@@ -34,11 +37,34 @@ public class Game {
 
 	/*protected static String joueurEnCours;*/
 
+	DataManager dataManager;
+	
+	public Game(){
+		//Permet l'intialisation du dataManager
+		dataManager = new DataManager(new FakeSaver(), new ParserXML());
+	}
+	
+	
 	/**Methpde pour initialiser la partie, le nombre de joueurs et de bots*/
-	public static void initGame() {
-		Game.Players = new LinkedList<Player>();
-		System.out.println("Commencer une nouvelle partie\n");
-
+	public void initGame() {
+		//Fonctions permettant le chargement des cartes
+		this.listeCartesDivinites = dataManager.getGestionnaireChargement().chargerDivinites();
+		this.listeCartesAction = dataManager.getGestionnaireChargement().chargerCartes();
+		
+		
+		for (Divinity d : this.listeCartesDivinites){
+			System.out.println(d.toString());
+		}
+		
+		for (ActionCard c: this.listeCartesAction){
+			System.out.println(c.toString());
+		}
+		
+		
+		
+		//Game.Players = new LinkedList<Player>();
+		//System.out.println("Commencer une nouvelle partie\n");
+		/*
 		Scanner sc;
 		String choix;
 		int boucle = 0;
@@ -95,6 +121,7 @@ public class Game {
 		System.out.println("La partie commence, on peut distribuer les cartes \n");
 		GameManager.getInstanceUniqueManager();	//Initialisation du GameManager
 		GameManager.startGame(); //démarre la partie dans le GAMEMANAGER
+		*/
 	}
 
 	/**Méthode qui permet d'ajouter un joueur à la partie*/

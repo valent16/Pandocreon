@@ -4,8 +4,10 @@ import model.cards.ActionCard;
 
 public class Apocalypse extends ActionCard {
 
-	public Apocalypse(String nom) {
-		super(nom);
+	
+
+	public Apocalypse() {
+		super("Apocalypse");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -15,4 +17,10 @@ public class Apocalypse extends ActionCard {
 		
 	}
 	//faire une methode du nom de apocalypse qui recupere le nombre de joueur et qui compte le nombre de croyants de chaque joueur
+
+	
+	@Override
+	public String toString() {
+		return "Apocalypse [nom=" + nom + "]";
+	}
 }

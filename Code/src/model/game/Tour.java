@@ -12,5 +12,4 @@ public class Tour {
 	 *  appele une methode givePoints() qui attribue au joueur les points correspondant a leur divinité
 	 *  
 	 */
-	
 }

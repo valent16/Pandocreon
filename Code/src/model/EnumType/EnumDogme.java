@@ -5,5 +5,6 @@ public enum EnumDogme {
 	HUMAIN,
 	SYMBOLE,
 	MYSTIQUE,
-	CHAOS
+	CHAOS,
+	NOTREFERENCED
 }

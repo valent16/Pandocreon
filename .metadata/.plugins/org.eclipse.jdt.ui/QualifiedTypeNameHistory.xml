@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.Collection"/>
-<fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="cards.Card"/>
 <fullyQualifiedTypeName name="cards.Divinity"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
@@ -14,7 +13,6 @@
 <fullyQualifiedTypeName name="player.Human"/>
 <fullyQualifiedTypeName name="player.Player"/>
 <fullyQualifiedTypeName name="Enum.EnumPointAction"/>
-<fullyQualifiedTypeName name="model.gestionDonnees.ParserXML"/>
 <fullyQualifiedTypeName name="org.jdom2.input.SAXBuilder"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
@@ -30,10 +28,24 @@
 <fullyQualifiedTypeName name="java.util.regex.Matcher"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="model.cards.ActionCardWithOrigin"/>
+<fullyQualifiedTypeName name="model.cards.CarteDogmatique"/>
+<fullyQualifiedTypeName name="model.cards.OriginCards.ActionCardWithOrigin"/>
 <fullyQualifiedTypeName name="model.EnumType.EnumDogme"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="model.cards.CarteDogmatique"/>
-<fullyQualifiedTypeName name="model.cards.ActionCard"/>
-<fullyQualifiedTypeName name="model.cards.OriginCards.ActionCardWithOrigin"/>
 <fullyQualifiedTypeName name="model.EnumType.EnumOrigineCA"/>
+<fullyQualifiedTypeName name="model.EnumType.EnumOrigineDivinite"/>
+<fullyQualifiedTypeName name="model.cards.OriginCards.Believer"/>
+<fullyQualifiedTypeName name="model.cards.OriginCards.SpiritGuide"/>
+<fullyQualifiedTypeName name="model.cards.OriginCards.DeusExWithOrigin"/>
+<fullyQualifiedTypeName name="model.cards.withoutOriginCards.DeusEx"/>
+<fullyQualifiedTypeName name="model.cards.withoutOriginCards.Apocalypse"/>
+<fullyQualifiedTypeName name="model.cards.OriginCards.ApocalypseWithOrigin"/>
+<fullyQualifiedTypeName name="model.cards.Divinity"/>
+<fullyQualifiedTypeName name="model.gestionDonnees.DataManager"/>
+<fullyQualifiedTypeName name="model.gestionDonnees.IDataLoad"/>
+<fullyQualifiedTypeName name="model.gestionDonnees.IDataSave"/>
+<fullyQualifiedTypeName name="model.gestionDonnees.FakeSaver"/>
+<fullyQualifiedTypeName name="model.gestionDonnees.ParserXML"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="model.cards.ActionCard"/>
 </qualifiedTypeNameHistroy>

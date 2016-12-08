@@ -1,5 +1,21 @@
 package model.gestionDonnees;
 
 public class DataManager {
-
+	
+	private IDataSave gestionnaireSauvegarde;
+	
+	private IDataLoad gestionnaireChargement;
+	
+	public DataManager(IDataSave gestionnaireSauvegarde, IDataLoad gestionnaireChargement){
+		this.gestionnaireSauvegarde = gestionnaireSauvegarde;
+		this.gestionnaireChargement = gestionnaireChargement;
+	}
+	
+	public IDataSave getGestionnaireSauvegarde(){
+		return this.gestionnaireSauvegarde;
+	}
+	
+	public IDataLoad getGestionnaireChargement(){
+		return this.gestionnaireChargement;
+	}
 }

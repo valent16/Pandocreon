@@ -13,5 +13,10 @@ public class DeusEx extends ActionCard {
 	public void utiliserPouvoir(String commande) {
 		// TODO Auto-generated method stub
 		
-	} 	
+	}
+
+	@Override
+	public String toString() {
+		return "DeusEx [nom=" + nom + "]";
+	}
 }

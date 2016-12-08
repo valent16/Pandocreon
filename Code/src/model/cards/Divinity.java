@@ -3,6 +3,7 @@ package model.cards;
 import java.util.ArrayList;
 
 import model.EnumType.EnumDogme;
+import model.EnumType.EnumOrigineDivinite;
 
 //Represente une carte divinité
 public class Divinity extends Card{
@@ -10,12 +11,16 @@ public class Divinity extends Card{
 	private String description;
 	
 	private ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
+	
+	private EnumOrigineDivinite origine;
 
 	/**Création d'une carte divinité*/
-	public Divinity(String nom, ArrayList<EnumDogme> dogmes) {
+	public Divinity(String nom, ArrayList<EnumDogme> dogmes, String description, EnumOrigineDivinite origine) {
 		super(nom);
 		//faire une deep copy 
+		this.description = description;
 		this.dogmes = dogmes;
+		this.origine = origine;
 	}
 
 	@Override
@@ -26,7 +31,7 @@ public class Divinity extends Card{
 
 	@Override
 	public String toString() {
-		return "Divinity [description=" + description + ", dogmes=" + dogmes + "]";
+		return super.toString()+" Divinity [description=" + description + ", dogmes=" + dogmes + ", origine="+ this.origine +"]";
 	}
 	
 	

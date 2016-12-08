@@ -12,14 +12,19 @@ public class SpiritGuide extends CarteDogmatique{
 	
 	private int nbCarteCroyant;
 	
-	public SpiritGuide(String nom, EnumOrigineCA origine, ArrayList<EnumDogme> dogmes,String nomTypeCarte, int pointPriere, int nbCarteCroyant) {
-		super(nom, origine, dogmes, nomTypeCarte);
-		this.pointPriere = pointPriere;
+	public SpiritGuide(String nom, EnumOrigineCA origine, ArrayList<EnumDogme> dogmes, int nbCarteCroyant, String sacrifice) {
+		super(nom, origine, dogmes, sacrifice);
+		this.pointPriere = 0;
 		this.nbCarteCroyant = nbCarteCroyant;
 	}
 
 	@Override
 	public void utiliserPouvoir(String commande) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public String toString() {
+		return " SpiritGuide [pointPriere=" + pointPriere + ", nbCarteCroyant=" + nbCarteCroyant + ", nom=" + nom + "]"+super.toString();
 	}
 }

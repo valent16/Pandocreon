@@ -10,8 +10,8 @@ public class Believer extends CarteDogmatique{
 
 	private int nbPrieres;
 	
-	public Believer(String nom, EnumOrigineCA origine, ArrayList<EnumDogme> dogmes, String nomTypeCarte, int nbPrieres) {
-		super(nom, origine, dogmes, nomTypeCarte);
+	public Believer(String nom, EnumOrigineCA origine, ArrayList<EnumDogme> dogmes, int nbPrieres, String sacrifice) {
+		super(nom, origine, dogmes, sacrifice);
 		this.nbPrieres = nbPrieres;
 	}
 
@@ -21,4 +21,10 @@ public class Believer extends CarteDogmatique{
 		
 	}
 
+	@Override
+	public String toString() {
+		return " Believer [nbPrieres=" + nbPrieres + "]"+ super.toString();
+	}
+
+	
 }

@@ -4,8 +4,8 @@ import model.EnumType.EnumOrigineCA;
 
 public class ApocalypseWithOrigin extends ActionCardWithOrigin {
 
-	public ApocalypseWithOrigin(String nom, EnumOrigineCA origine) {
-		super(nom, origine);
+	public ApocalypseWithOrigin( EnumOrigineCA origine) {
+		super("Apocalypse", origine);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -17,3 +17,15 @@
 2016-11-29 01:35:49,601 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@1c7e0144{HTTP/1.1,[http/1.1]}{127.0.0.1:0}
 2016-11-29 01:35:49,616 [Stop Help Server] INFO  o.e.j.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@7d0ab146{/help,null,UNAVAILABLE}
 2016-11-29 01:37:38,278 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2016-11-29 01:42:18,793 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2016-11-29 09:20:23,724 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2016-12-07 22:55:34,595 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2016-12-07 23:14:37,301 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2016-12-08 12:47:32,159 [Worker-2] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2016-12-08 12:52:19,131 [Start Help Server] INFO  org.eclipse.jetty.util.log - Logging initialized @329225ms
+2016-12-08 12:52:19,598 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-9.3.9.v20160517
+2016-12-08 12:52:19,765 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@3ee50875{/help,null,AVAILABLE}
+2016-12-08 12:52:19,978 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@1d829019{HTTP/1.1,[http/1.1]}{127.0.0.1:60761}
+2016-12-08 12:52:19,978 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started @330073ms
+2016-12-08 17:17:26,638 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@1d829019{HTTP/1.1,[http/1.1]}{127.0.0.1:0}
+2016-12-08 17:17:26,694 [Stop Help Server] INFO  o.e.j.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@3ee50875{/help,null,UNAVAILABLE}

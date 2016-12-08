@@ -4,5 +4,6 @@ public enum EnumOrigineDivinite {
 	JOUR,
 	AUBE,
 	CREPUSCULE,
-	NUIT
+	NUIT,
+	NOTREFERENCED
 }

@@ -1,7 +1,0 @@
-package model.cards;
-
-public class ActionCardWithOrigin extends ActionCard {
-	public ActionCardWithOrigin(String nom, ) {
-		super(nom);
-	}
-}

@@ -13,6 +13,10 @@ public class DeusExWithOrigin extends ActionCardWithOrigin {
 	@Override
 	public void utiliserPouvoir(String commande) {
 		// TODO Auto-generated method stub
-		
+	}
+
+	@Override
+	public String toString() {
+		return "DeusExWithOrigin [nom=" + nom + ", origine=" +this.getOrigine()+"]";
 	}
 }
