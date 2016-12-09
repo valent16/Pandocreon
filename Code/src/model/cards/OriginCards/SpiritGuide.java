@@ -26,6 +26,6 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 
 	@Override
 	public String toString() {
-		return " SpiritGuide [pointPriere=" + pointPriere + ", nbCarteCroyant=" + nbCarteCroyant + ", nom=" + nom + "]"+super.toString();
+		return "SpiritGuide [pointPriere=" + pointPriere + ", nbCarteCroyant=" + nbCarteCroyant + ", nom=" + nom + "]"+super.toString();
 	}
 }

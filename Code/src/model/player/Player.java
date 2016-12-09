@@ -36,7 +36,7 @@ public abstract class Player extends Observer{
 	private int age;
 	
 	/**Liste reprÃ©sentant la main d'un joueur*/ 
-	protected LinkedList<Card> hand = new LinkedList<Card>();
+	protected LinkedList<ActionCard> hand = new LinkedList<ActionCard>();
 	
 	/**Dictionnaire contenant les points d'action du joueur*/
 	private HashMap<EnumOrigineCA, Integer> dicoPA = new HashMap<EnumOrigineCA, Integer>();
@@ -98,8 +98,9 @@ public abstract class Player extends Observer{
 	
 	
 	//Permet de renvoyer une liste 
-	public List<Card> getHand(){ 
-		return Collections.unmodifiableList((LinkedList<Card>) deepClone(hand));
+	public List<ActionCard> getHand(){ 
+//		return Collections.unmodifiableList((LinkedList<ActionCard>) deepClone(hand));
+		return Collections.unmodifiableList(hand);
 	}
 	
 	/**Getter du pseudo*/
@@ -145,10 +146,14 @@ public abstract class Player extends Observer{
 		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
 	}
 	
+	public void defausserCarte(ActionCard carte){
+		hand.remove(carte);
+	}
+	
 	//Fonction permettant de compléter la main du joueur
 	public void piocherCartes(){
 		while (hand.size() <= NB_CARTE_MAX){
-			GameManager.getInstanceUniqueManager().piocherCarte();
+			hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
 		}
 	}
 	

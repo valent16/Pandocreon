@@ -53,10 +53,6 @@ public class GameManager {
 		return players.size();
 	}
 	
-	
-	
-	
-
 	/**
 	 * Méthode qui permet d'avoir une seule insatance du gestionnaire de partie
 	 * @return le gestionnaire de partie

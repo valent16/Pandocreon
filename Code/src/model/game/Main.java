@@ -54,8 +54,8 @@ public class Main{
 		game.ajouterBot(IA1);
 		game.ajouterBot(IA2);
 
-		game.ajouterJoueurReel(joueur1);
-		game.ajouterJoueurReel(joueur2);
+//		game.ajouterJoueurReel(joueur1);
+//		game.ajouterJoueurReel(joueur2);
 		game.ajouterJoueurReel(joueur3);
 		
 		game.nouvellePartie();

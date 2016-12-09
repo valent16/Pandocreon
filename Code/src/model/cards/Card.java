@@ -1,11 +1,12 @@
 package model.cards;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**Classe abstraite qui represente n'importe quel carte*/
 public abstract class Card implements Serializable{
 
-	
+	private UUID id = UUID.randomUUID();
 
 	/**nom du fichier de l'image de la carte*/
 	private String img;
@@ -31,6 +32,23 @@ public abstract class Card implements Serializable{
 	}
 	
 	
+	public UUID getID(){
+		return this.id;
+	}
+	
 	public abstract void utiliserPouvoir(String commande);
+
+	
+	@Override
+	public boolean equals(Object other){
+	    if (other == null) return false;
+	    if (other == this) return true;
+	    if (!(other instanceof Card)) return false;
+	    if (((Card) other).getID() == this.getID()){
+	    	return true;
+	    }else{
+	    	return false;
+	    }
+	}
 	
 }

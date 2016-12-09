@@ -24,7 +24,7 @@ public class Believer extends CarteDogmatique implements Serializable{
 
 	@Override
 	public String toString() {
-		return " Believer [nbPrieres=" + nbPrieres + "]"+ super.toString();
+		return "Believer [nbPrieres=" + nbPrieres + "]"+ super.toString();
 	}
 
 	
