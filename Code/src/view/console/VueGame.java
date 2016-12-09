@@ -19,14 +19,14 @@ public class VueGame {
 		String choix="1";
 		System.out.println("----------------------------------");
 		System.out.println("----------------------------------");
-		System.out.println("-----Bienvenue sur Pandocréon-----");
+		System.out.println("-----Bienvenue sur Pandocrï¿½on-----");
 		System.out.println("----------------------------------");
 		System.out.println("----------------------------------");
 		System.out.println("\n\n");
 		
 		do{
 			if (!choix.equals("1")){
-				System.out.println("vous avez fait une erreur lors de l'entrée de la valeur");
+				System.out.println("vous avez fait une erreur lors de l'entrï¿½e de la valeur");
 			}
 			System.out.println("Vous avez le choix entre les diverses options suivantes:");
 			System.out.println("1- Jouer nouvelle partie");
@@ -44,19 +44,24 @@ public class VueGame {
 			this.chargerAnciennePartie();
 			break;
 		default:
+			break;
 		}
+<<<<<<< HEAD
+=======
+		sc.close();
+>>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	}
 	
-	//méthode permettant de jouer une nouvelle partie
+	//mï¿½thode permettant de jouer une nouvelle partie
 	public void jouerNouvellePartie(){
 		Scanner sc = new Scanner(System.in);
 		String choix="2";
-		System.out.println("Vous désirez lancer un nouvelle partie");
+		System.out.println("Vous dï¿½sirez lancer un nouvelle partie");
 		System.out.println("Combien de joueur souhaitez vous initialiser ?");
 		System.out.println("Cette partie peut contenir entre 2 et " + game.getNbJoueurMax());
 		do{
 			if (!choix.equals("2")){
-				System.out.println("vous avez fait une erreur lors de l'entrée de la valeur");
+				System.out.println("vous avez fait une erreur lors de l'entrï¿½e de la valeur");
 			}
 			System.out.println("tapez 0 pour revenir au menu principal");
 			System.out.print("votre choix : ");
@@ -66,13 +71,15 @@ public class VueGame {
 		if (choix.equals("0")){
 			MenuPrincipal();
 		}else{
-			System.out.println("vous avez décidé de créer "+choix+" joueurs");
+			System.out.println("vous avez dï¿½cidï¿½ de crï¿½er "+choix+" joueurs");
 			this.creationJoueurs(Integer.parseInt(choix));
 		}
+		sc.close();
 	}
 	
-	//Permet de créer un joueur
+	//Permet de crï¿½er un joueur
 	public void creationJoueurs(int nbJoueur){
+<<<<<<< HEAD
 		//System.out.println("utilitaire de création de joueur");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\n\n");
@@ -148,11 +155,14 @@ public class VueGame {
 		
 		
 		controllerJeu.CreationBot(game.getBotName(index), nomStrat);
+=======
+		System.out.println("utilitaire de crï¿½ation de joueur");
+>>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	}
 	
-	//méthode permettant le chargement d'une ancienne partie
+	//mï¿½thode permettant le chargement d'une ancienne partie
 	public void chargerAnciennePartie(){
-		System.out.println("cette partie n'est pas encore implémentée");
+		System.out.println("cette partie n'est pas encore implï¿½mentï¿½e");
 		this.MenuPrincipal();
 	}
 	

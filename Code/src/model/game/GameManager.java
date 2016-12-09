@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 import model.cards.ActionCard;
 import model.cards.Divinity;
 import model.cards.OriginCards.Believer;
 import model.player.Player;
 
-
-
+/**Classe qui gère tous les elements de la partie*/
 public class GameManager {
 	
 	private final static int NB_CARTE_MAX_MAIN = 7;
-	
+
 	private static volatile GameManager managerUnique;
 
 	private LinkedList<ActionCard> pioche = new LinkedList<ActionCard>();
@@ -34,6 +32,7 @@ public class GameManager {
 
 	private Player joueurActif;
 
+<<<<<<< HEAD
 	public Player getJoueurDebutTour() {
 		return joueurDebutTour;
 	}
@@ -58,13 +57,13 @@ public class GameManager {
 	
 	
 	
+=======
+
+>>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	/**
-	 * Constructeur privé du singleton GameManager
+	 * Méthode qui permet d'avoir une seule insatance du gestionnaire de partie
+	 * @return le gestionnaire de partie
 	 */
-	private GameManager(){
-
-	}
-
 	public static GameManager getInstanceUniqueManager(){
 		if (managerUnique == null){
 			synchronized (GameManager.class){ //pour gerer le multi-thread
@@ -75,6 +74,7 @@ public class GameManager {
 		}
 		return managerUnique;
 	}
+<<<<<<< HEAD
 	
 	public void initialisationPartie(LinkedList<ActionCard> cartesAction, LinkedList<Divinity> divinites ){
 		this.listDivinites = divinites; 
@@ -89,35 +89,52 @@ public class GameManager {
 	}
 	
 	//M�thode permettant de m�langer les cartes divinit�s
+=======
+
+	/**Méthode permettant de mélanger les cartes divintés*/	
+>>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	public void melangerDivinites(){
 		Collections.shuffle(listDivinites);
 	}
-	
-	//Permet de les cartes de la pioche
+
+	/**Méthode permettant de mélanger les cartes de la pioche*/
 	public void melangerPioche(){
 		Collections.shuffle(pioche);
 	}
-	
-	//Permet de m�langer les cartes de la pile de d�fausse
+
+	/**Méthode qui permet de mélanger les cartes de la pile de défausse*/
 	public void melangerDefausse(){
 		Collections.shuffle(defausse);
 	}
-	
-	//Permet de d�fausser une carte action
+
+	/**
+	 * Méthode qui défausse une carte action
+	 * @param carte la carte action a defausser qui sera ajoute dans la liste defausse
+	 */
 	public void defausserCarte(ActionCard carte){
 		defausse.add(carte);
 	}
 
-	//Permet de d�fausser une liste de carte action
+	/**
+	 * Méthode qui permet de défausser une liste de carte action
+	 * @param cartes listes de cartes action à défausser
+	 */
 	public void defausserCarte(LinkedList<ActionCard> cartes){
 		defausse.addAll(cartes);
 	}
-	
-	//Permet de d�fausser une divinite
+
+	/**
+	 * Méthode qui permet de défausser une carte divinite
+	 * @param divinite la carte divinite à défausser
+	 */
 	public void defausserDivinite(Divinity divinite){
 		listDivinites.add(divinite);
 	}
-	
+
+	/**
+	 * Méthode qui permet de récuperer une divinité
+	 * @return la divinité a l'index 0 de la liste
+	 */
 	public Divinity piocherDivinite(){
 		return listDivinites.pop();
 	}
@@ -144,21 +161,25 @@ public class GameManager {
 	public void ajouterJoueur(Player joueur){
 		players.add(joueur);
 	}
+<<<<<<< HEAD
 	
 	public void eliminerJoueur(Player joueur){
 		players.remove(joueur);
 	}
 	
 	//Permet de r�aliser l'initialisation des jeux
+=======
+
+	//Permet de réaliser l'initialisation des jeux
+>>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	public void intialisationDesJeux(){
-		Iterator itJoueur = players.iterator();
-		
+		Iterator<Player> itJoueur = players.iterator();
 		//Permet l'initialisation des divinites des joueurs
 		while(itJoueur.hasNext()){
 			Player joueur = (Player) itJoueur.next();
 			joueur.piocherDivinite();
 		}
-		
+
 		//Permet l'intialisation des cartes action des joueurs
 		for (int i=0; i<NB_CARTE_MAX_MAIN; i++){
 			itJoueur = players.iterator();
@@ -168,6 +189,7 @@ public class GameManager {
 			}
 		}
 	}
+<<<<<<< HEAD
 
 	
 	public void deroulementTourJeu(){
@@ -190,10 +212,70 @@ public class GameManager {
 			cpt++;
 			if (cpt == 4){
 				b = false;
+=======
+
+
+	/**Méthode qui permet de commencer la partie*/
+	public void startGame() {
+		this.melangerDivinites();
+		this.melangerPioche();
+		this.intialisationDesJeux();
+	}
+
+	/**
+	 * Permet d'éliminer un joueur de la partie
+	 * @param joueur
+	 */
+	public void eliminerJoueur(Player joueur){
+		players.remove(joueur);
+	}
+
+	/**
+	 * Permet d'initialiser la partie de jeu
+	 * @param listeCartesAction
+	 * @param listeCartesDivinites
+	 */
+	public void initialisationPartie(LinkedList<ActionCard> listeCartesAction, LinkedList<Divinity> listeCartesDivinites ){
+		this.setDivinites(listeCartesDivinites); 
+		this.pioche = listeCartesAction;
+	}
+
+	/**
+	 * Permet d'ajouter un croyant sur la table de jeu
+	 * @param carte
+	 */
+	public void deposerCroyant(Believer carte){
+		croyants.add(carte);
+	}
+
+	/**
+	 * Assigne une Divinité a un joueur
+	 * @param joueur, Le joueur auquel on assigne la Divinité
+	 * @param div, La Divinité a assigner
+	 */
+	public void assignerDivinite(Player joueur, Divinity div){
+		joueur.setDivinity(div);
+	}
+
+
+	/**
+	 * Permet de retirer un croyant de la table de jeu
+	 * @param carte le croyant à retirer
+	 */
+	public void retirerCroyant(Believer carte){
+		croyants.remove(carte);
+	}
+
+	public ActionCard piocherCarte(){
+		if (pioche.size() == 0){
+			if (defausse.size() == 0){
+				//lancer une exception qui arrete la partie => pas assez de carte pour jouer
+>>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 			}
 		}
 	}
 
+<<<<<<< HEAD
 	
 	//Permet de d�terminer l'index du plus jeune joueur
 	public int getIndexJoueurPlusJeune(){
@@ -213,6 +295,19 @@ public class GameManager {
 	
 	
 	private Player getPlayer(int index){
+=======
+
+
+	public LinkedList<Divinity> getDivinites() {
+		return listDivinites;
+	}
+
+	public void setDivinites(LinkedList<Divinity> divinites) {
+		this.listDivinites = divinites;
+	}
+
+	public Player getPlayer(int index){
+>>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 		return players.get(index);
 	}
 	

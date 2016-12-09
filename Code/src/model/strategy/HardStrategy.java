@@ -1,5 +1,6 @@
 package model.strategy;
 
+import model.cards.ActionCard;
 import model.game.GameManager;
 import model.player.Bot;
 
@@ -45,6 +46,30 @@ public class HardStrategy implements Strategy {
 
 	@Override
 	public void JouerApocalyspe(Bot bot, GameManager context) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sacrifierCarte(Bot bot, ActionCard carte) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void recupererCroyant() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void piocherCarte() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void defausserCarteAction() {
 		// TODO Auto-generated method stub
 		
 	}

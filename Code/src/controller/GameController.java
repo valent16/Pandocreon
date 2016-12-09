@@ -10,7 +10,10 @@ import model.strategy.Strategy;
 import view.console.VueGame;
 
 public class GameController {
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	VueGame vueJeu;
 	Game game;
 	
