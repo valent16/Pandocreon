@@ -26,7 +26,7 @@ public class VueGame {
 		
 		do{
 			if (!choix.equals("1")){
-				System.out.println("vous avez fait une erreur lors de l'entree de la valeur");
+				System.out.println("vous avez fait une erreur lors de l'entrï¿½e de la valeur");
 			}
 			System.out.println("Vous avez le choix entre les diverses options suivantes:");
 			System.out.println("1- Jouer nouvelle partie");
@@ -149,11 +149,12 @@ public class VueGame {
 			nomStrat = "";
 		}
 		
+		
 		controllerJeu.CreationBot(game.getBotName(index), nomStrat);
 		System.out.println("utilitaire de crï¿½ation de joueur");
 	}
 	
-	//méthode permettant le chargement d'une ancienne partie
+	//mï¿½thode permettant le chargement d'une ancienne partie
 	public void chargerAnciennePartie(){
 		System.out.println("cette partie n'est pas encore implï¿½mentï¿½e");
 		this.MenuPrincipal();

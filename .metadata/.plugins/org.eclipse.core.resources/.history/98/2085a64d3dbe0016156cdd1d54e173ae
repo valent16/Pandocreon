@@ -63,6 +63,8 @@ public class Main{
 		GameManager.getInstanceUniqueManager().startGame();
 		
 		GameManager.getInstanceUniqueManager().afficherJoueur();
+
+		
 	}
 	
 	

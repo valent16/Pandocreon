@@ -153,7 +153,7 @@ public class VueGame {
 		System.out.println("utilitaire de crï¿½ation de joueur");
 	}
 	
-	//méthode permettant le chargement d'une ancienne partie
+	//mï¿½thode permettant le chargement d'une ancienne partie
 	public void chargerAnciennePartie(){
 		System.out.println("cette partie n'est pas encore implï¿½mentï¿½e");
 		this.MenuPrincipal();
