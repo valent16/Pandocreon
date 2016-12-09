@@ -1,0 +1,13 @@
+package view.console;
+
+import view.Observateur;
+
+public class VueJoueur implements Observateur {
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

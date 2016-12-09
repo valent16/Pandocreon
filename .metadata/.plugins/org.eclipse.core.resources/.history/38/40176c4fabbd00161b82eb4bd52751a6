@@ -1,0 +1,21 @@
+package controller;
+
+import view.Observateur;
+import view.console.VueJoueurReel;
+
+public class JoueurController implements Observateur {
+
+	VueJoueurReel vueJoueur;
+	
+	public JoueurController() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	@Override
+	public void update() {
+		vueJoueur.jouerTour();
+	}
+	
+
+}

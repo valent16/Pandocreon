@@ -36,10 +36,7 @@ public class Game {
 	DataManager dataManager;
 	
 	public Game(){
-<<<<<<< HEAD
-=======
 		//Permet l'intialisation du dataManager
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 		dataManager = new DataManager(new FakeSaver(), new ParserXML());
 	}
 	
@@ -59,13 +56,12 @@ public class Game {
 		return this.nbJoueurMax;
 	}
 	
-<<<<<<< HEAD
+
 	//méthode permettant de consulter le nombre actuel de joueurs dans la partie
-=======
+
 	/** Getter qui permet de recuperer le nombre de joueur
 	 * @return le nombre de joueur
 	 */
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	public int getNbJoueur(){
 		return players.size();
 	}

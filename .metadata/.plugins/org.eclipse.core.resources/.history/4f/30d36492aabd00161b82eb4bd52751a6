@@ -1,0 +1,16 @@
+package controller;
+
+import view.Observateur;
+import view.console.VueJoueur;
+
+public class JoueurController implements Observateur {
+
+	VueJoueur vueJoueur;
+	
+	
+	@Override
+	public void update() {
+		this.jouerTour();
+	}
+
+}

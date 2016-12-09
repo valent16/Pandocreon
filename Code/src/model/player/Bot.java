@@ -47,13 +47,8 @@ public class Bot extends Player{
 		return strategy;
 	}
 
-<<<<<<< HEAD
 	private void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
-=======
-	public static void setStrategy(Strategy strat) {
-		strategy = strat;
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	}
 	
 	@Override

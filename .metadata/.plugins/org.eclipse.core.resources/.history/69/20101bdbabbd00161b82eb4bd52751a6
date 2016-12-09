@@ -1,0 +1,16 @@
+package view.console;
+
+import model.player.Human;
+
+public class VueJoueurReel {
+
+	Human joueur;
+	
+	public void jouerTour(){
+		System.out.println("Joueur "+joueur.getNom()+", c'est à votre tour");
+		System.out.println("Quelles opérations souhaitez-vous exécuter ?");
+		System.out.println("");
+		
+		
+	}
+}

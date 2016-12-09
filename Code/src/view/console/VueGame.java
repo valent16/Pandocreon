@@ -46,10 +46,7 @@ public class VueGame {
 		default:
 			break;
 		}
-<<<<<<< HEAD
-=======
 		sc.close();
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	}
 	
 	//mï¿½thode permettant de jouer une nouvelle partie
@@ -79,7 +76,6 @@ public class VueGame {
 	
 	//Permet de crï¿½er un joueur
 	public void creationJoueurs(int nbJoueur){
-<<<<<<< HEAD
 		//System.out.println("utilitaire de création de joueur");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\n\n");
@@ -155,9 +151,7 @@ public class VueGame {
 		
 		
 		controllerJeu.CreationBot(game.getBotName(index), nomStrat);
-=======
 		System.out.println("utilitaire de crï¿½ation de joueur");
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	}
 	
 	//mï¿½thode permettant le chargement d'une ancienne partie

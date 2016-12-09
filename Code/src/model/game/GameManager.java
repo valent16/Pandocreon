@@ -32,7 +32,7 @@ public class GameManager {
 
 	private Player joueurActif;
 
-<<<<<<< HEAD
+
 	public Player getJoueurDebutTour() {
 		return joueurDebutTour;
 	}
@@ -56,10 +56,7 @@ public class GameManager {
 	
 	
 	
-	
-=======
 
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	/**
 	 * MÃ©thode qui permet d'avoir une seule insatance du gestionnaire de partie
 	 * @return le gestionnaire de partie
@@ -74,7 +71,6 @@ public class GameManager {
 		}
 		return managerUnique;
 	}
-<<<<<<< HEAD
 	
 	public void initialisationPartie(LinkedList<ActionCard> cartesAction, LinkedList<Divinity> divinites ){
 		this.listDivinites = divinites; 
@@ -89,10 +85,10 @@ public class GameManager {
 	}
 	
 	//Méthode permettant de mélanger les cartes divinités
-=======
+
 
 	/**MÃ©thode permettant de mÃ©langer les cartes divintÃ©s*/	
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
+
 	public void melangerDivinites(){
 		Collections.shuffle(listDivinites);
 	}
@@ -154,24 +150,15 @@ public class GameManager {
 		croyants.add(carte);
 	}
 	
-	public void retirerCroyant(Believer carte){
-		croyants.remove(carte);
-	}
 	
 	public void ajouterJoueur(Player joueur){
 		players.add(joueur);
 	}
-<<<<<<< HEAD
-	
-	public void eliminerJoueur(Player joueur){
-		players.remove(joueur);
-	}
+
 	
 	//Permet de réaliser l'initialisation des jeux
-=======
 
 	//Permet de rÃ©aliser l'initialisation des jeux
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 	public void intialisationDesJeux(){
 		Iterator<Player> itJoueur = players.iterator();
 		//Permet l'initialisation des divinites des joueurs
@@ -189,7 +176,6 @@ public class GameManager {
 			}
 		}
 	}
-<<<<<<< HEAD
 
 	
 	public void deroulementTourJeu(){
@@ -212,14 +198,8 @@ public class GameManager {
 			cpt++;
 			if (cpt == 4){
 				b = false;
-=======
-
-
-	/**MÃ©thode qui permet de commencer la partie*/
-	public void startGame() {
-		this.melangerDivinites();
-		this.melangerPioche();
-		this.intialisationDesJeux();
+			}
+		}
 	}
 
 	/**
@@ -230,23 +210,8 @@ public class GameManager {
 		players.remove(joueur);
 	}
 
-	/**
-	 * Permet d'initialiser la partie de jeu
-	 * @param listeCartesAction
-	 * @param listeCartesDivinites
-	 */
-	public void initialisationPartie(LinkedList<ActionCard> listeCartesAction, LinkedList<Divinity> listeCartesDivinites ){
-		this.setDivinites(listeCartesDivinites); 
-		this.pioche = listeCartesAction;
-	}
 
-	/**
-	 * Permet d'ajouter un croyant sur la table de jeu
-	 * @param carte
-	 */
-	public void deposerCroyant(Believer carte){
-		croyants.add(carte);
-	}
+
 
 	/**
 	 * Assigne une DivinitÃ© a un joueur
@@ -266,16 +231,6 @@ public class GameManager {
 		croyants.remove(carte);
 	}
 
-	public ActionCard piocherCarte(){
-		if (pioche.size() == 0){
-			if (defausse.size() == 0){
-				//lancer une exception qui arrete la partie => pas assez de carte pour jouer
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
-			}
-		}
-	}
-
-<<<<<<< HEAD
 	
 	//Permet de déterminer l'index du plus jeune joueur
 	public int getIndexJoueurPlusJeune(){
@@ -291,13 +246,6 @@ public class GameManager {
 		return index;
 	}
 
-
-	
-	
-	private Player getPlayer(int index){
-=======
-
-
 	public LinkedList<Divinity> getDivinites() {
 		return listDivinites;
 	}
@@ -307,7 +255,6 @@ public class GameManager {
 	}
 
 	public Player getPlayer(int index){
->>>>>>> 8452066bdd43a7c52b8504de641b891348049a9b
 		return players.get(index);
 	}
 	

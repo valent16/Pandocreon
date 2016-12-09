@@ -1,0 +1,9 @@
+package model;
+
+import view.Observateur;
+
+public abstract class Observer {
+	public void attacher(Observateur o){
+		
+	}
+}
