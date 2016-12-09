@@ -34,18 +34,15 @@ public class Game {
 	/**Attribut  qui représente la liste de divinités*/
 	private LinkedList<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
 
-	/*protected static String joueurEnCours;*/
-
 	DataManager dataManager;
 	
 	public Game(){
 		//Permet l'intialisation du dataManager
-		
 		dataManager = new DataManager(new FakeSaver(), new ParserXML());
 		
 	}
 	
-	//Permet de d�terminer le nombre maximal de joueur pour une partie de jeu
+	//Permet de d�terminer le nombre maximal de joueur pour une partie de jeu
 	private void calculerNbJoueurMax(){
 		System.out.println(listeCartesAction.size());
 		System.out.println(listeCartesDivinites.size());
@@ -56,18 +53,22 @@ public class Game {
 		}
 	}
 	
+	/** Getter qui permet de recuperer le nombre maximal de joueur
+	 * @return le nombre de joueur maximal possible dans une partie
+	 */
 	public int getNbJoueurMax(){
 		return this.nbJoueurMax;
 	}
 	
-	
-	
+	/** Getter qui permet de recuperer le nombre de joueur
+	 * @return le nombre de joueur
+	 */
 	public int getNbJoueur(){
 		return players.size();
 	}
 	
 	
-	/**Methpde pour initialiser la partie, le nombre de joueurs et de bots*/
+	/**Methode pour initialiser la partie, le nombre de joueurs et de bots*/
 	public void initGame() {
 		//Fonctions permettant le chargement des cartes
 		this.listeCartesDivinites = dataManager.getGestionnaireChargement().chargerDivinites();
@@ -75,22 +76,22 @@ public class Game {
 		this.calculerNbJoueurMax();
 	}
 	
-	//Permet de faire l'intialisation de la nouvelle partie
-	public void nouvellePartie(){
-		//transmission du deck de jeu
-		GameManager.getInstanceUniqueManager().initialisationPartie(this.listeCartesAction, this.listeCartesDivinites);
-		
-		//transmission de la liste de joueurs
-		Iterator it = players.iterator();
+	/**Méthode qui permet d'initialiser une nouvelle partie*/
+	public void nouvellePartie(){	
+		GameManager.getInstanceUniqueManager().initialisationPartie(this.listeCartesAction, this.listeCartesDivinites); //transmission du deck de jeu	
+		Iterator<Player> it = players.iterator(); //transmission de la liste de joueurs
 		while (it.hasNext()){
 			GameManager.getInstanceUniqueManager().ajouterJoueur((Player) it.next());
 		}
 	}
 	
 
-	/**Méthode qui permet d'ajouter un joueur à la partie*/
+	/**Méthode qui permet d'ajouter un joueur à la partie
+	 *
+	 * @param joueur le joueur réél à ajouter
+	 */
 	public void ajouterJoueurReel(Human joueur){
-		//Check � voir si on peut mettre plusieurs joueur r�els 
+		//Check � voir si on peut mettre plusieurs joueur r�els 
 		this.players.add(joueur);
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println("Entrez un nom de joueur : ");
@@ -101,7 +102,10 @@ public class Game {
 //		sc.close();
 	}
 
-	/**Méthode qui permet d'ajouter un bot à la partie*/
+	/**Méthode qui permet d'ajouter un bot à la partie
+	 * 
+	 * @param joueur le bot à ajouter
+	 */
 	public void ajouterBot(Bot joueur){
 		this.players.add(joueur);
 		/*
@@ -112,7 +116,7 @@ public class Game {
 		//Players.add(J2);
 	}
 
-	/**Methode qui permet de choisir la difficulté du bot*/
+	/**Méthode qui permet de choisir la difficulté du bot*/
 	public static void choisirDifficulteBot(){
 		System.out.println("\nChoississez la difficulté des BOTs \n");
 

@@ -7,12 +7,12 @@ public class Bot extends Player{
 	public static final int AGE_BOT = 200;
 	
 	/**recupere la stratégie choisi au départ pour tous les bots*/
-	private Strategy strategy;
+	private static Strategy strategy;
 
 	/**Constructeur de joueur qui est appelé pour créer un ordinateur*/
 	public Bot(String pseudo, Strategy strat) {
 		super(pseudo, AGE_BOT);
-		this.setStrategy(strat);
+		setStrategy(strat);
 	}
 
 	/**Methode qui fait jouer les bots avec la difficulté choisie*/
@@ -39,11 +39,11 @@ public class Bot extends Player{
 		play(new HardStrategy());
 	}
 
-	public Strategy getStrategy() {
+	public static Strategy getStrategy() {
 		return strategy;
 	}
 
-	public void setStrategy(Strategy strategy) {
-		this.strategy = strategy;
+	public static void setStrategy(Strategy strat) {
+		strategy = strat;
 	}
 }

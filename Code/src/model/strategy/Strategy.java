@@ -1,5 +1,6 @@
 package model.strategy;
 
+import model.cards.ActionCard;
 import model.game.GameManager;
 import model.player.Bot;
 
@@ -14,4 +15,8 @@ public interface Strategy {
     public void JouerGuideSpirituel(Bot botr, GameManager context);
     public void JouerDeusEx(Bot bot, GameManager context);
     public void JouerApocalyspe(Bot bot, GameManager context);
+	public void sacrifierCarte(Bot bot, ActionCard carte);
+	public void recupererCroyant();
+	public void piocherCarte();
+	public void defausserCarteAction();
 }

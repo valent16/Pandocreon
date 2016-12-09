@@ -4,7 +4,6 @@ import view.console.VueGame;
 
 public class GameController {
 	VueGame vueJeu;
-	
 	Game game;
 	
 	public GameController(){

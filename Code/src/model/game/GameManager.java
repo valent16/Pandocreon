@@ -11,8 +11,7 @@ import model.cards.Divinity;
 import model.cards.OriginCards.Believer;
 import model.player.Player;
 
-
-
+/**Classe qui gÃ¨re tous les elements de la partie*/
 public class GameManager {
 
 	private final static int NB_CARTE_MAX_MAIN = 7;
@@ -66,22 +65,22 @@ public class GameManager {
 		Collections.shuffle(pioche);
 	}
 	
-	//Permet de mélanger les cartes de la pile de défausse
+	//Permet de mï¿½langer les cartes de la pile de dï¿½fausse
 	public void melangerDefausse(){
 		Collections.shuffle(defausse);
 	}
 	
-	//Permet de défausser une carte action
+	//Permet de dï¿½fausser une carte action
 	public void defausserCarte(ActionCard carte){
 		defausse.add(carte);
 	}
 
-	//Permet de défausser une liste de carte action
+	//Permet de dï¿½fausser une liste de carte action
 	public void defausserCarte(LinkedList<ActionCard> cartes){
 		defausse.addAll(cartes);
 	}
 	
-	//Permet de défausser une divinite
+	//Permet de dï¿½fausser une divinite
 	public void defausserDivinite(Divinity divinite){
 		listDivinites.add(divinite);
 	}
@@ -98,10 +97,9 @@ public class GameManager {
 		players.add(joueur);
 	}
 	
-	//Permet de réaliser l'initialisation des jeux
+	//Permet de rï¿½aliser l'initialisation des jeux
 	public void intialisationDesJeux(){
-		Iterator itJoueur = players.iterator();
-		
+		Iterator<Player> itJoueur = players.iterator();
 		//Permet l'initialisation des divinites des joueurs
 		while(itJoueur.hasNext()){
 			Player joueur = (Player) itJoueur.next();
@@ -127,7 +125,7 @@ public class GameManager {
 	}
 
 	/**
-	 * Permet d'éliminer un joueur de la partie
+	 * Permet d'ï¿½liminer un joueur de la partie
 	 * @param joueur
 	 */
 	public void eliminerJoueur(Player joueur){
