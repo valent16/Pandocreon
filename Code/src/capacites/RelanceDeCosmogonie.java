@@ -1,7 +1,5 @@
 package capacites;
 
-import java.security.GeneralSecurityException;
-
 import model.EnumType.Cosmogonie;
 import model.game.De;
 import model.game.GameManager;
@@ -21,13 +19,13 @@ public class RelanceDeCosmogonie extends CapaciteSpeciale {
 		//ajouter les points actions aux joueur
 		switch(de.getFace()){
 		case JOUR:
-			for(Player j: gameManager.getPlayers()){
-				switch(j.getHand().getCartesDivinites().getOrigine()){//recupere l'origine de sa divinité
+			for(Player p: gameManager.getPlayers()){
+				switch(p.getDivinity().getOrigine()){//recupere l'origine de sa divinité
 				case JOUR :
-					player.incrementerPointAction(Cosmogonie.JOUR, 2);
+					p.incrementerPointAction(Cosmogonie.JOUR, 2);
 					break;
 				case AUBE:
-					player.incrementerPointAction(Cosmogonie.JOUR, 1);
+					p.incrementerPointAction(Cosmogonie.JOUR, 1);
 					break;
 				default:
 					break;
@@ -35,13 +33,13 @@ public class RelanceDeCosmogonie extends CapaciteSpeciale {
 			}
 			break;
 		case NUIT:
-			for(Player j: gameManager.getPlayers()){
-				switch(j.getHand().getCartesDivinites().getOrigine()){
+			for(Player p: gameManager.getPlayers()){
+				switch(p.getDivinity().getOrigine()){
 				case NUIT:	
-					player.incrementerPointAction(Cosmogonie.NUIT, 2);
+					p.incrementerPointAction(Cosmogonie.NUIT, 2);
 					break;
 				case CREPUSCULE:
-					player.incrementerPointAction(Cosmogonie.JOUR, 1);
+					p.incrementerPointAction(Cosmogonie.JOUR, 1);
 					break;
 				default:
 					break;
@@ -49,10 +47,9 @@ public class RelanceDeCosmogonie extends CapaciteSpeciale {
 			}
 			break;
 		case NEANT:
-			for(Player j: gameManager.getPlayers()) {
-				if ("AUBE".equals(j.getHand().getCartesDivinites().getOrigine()) || "NEANT".equals(j.getHand().getCartesDivinites().getOrigine())) {
-					player.incrementerPointAction(Cosmogonie.NEANT, 1);
-				}
+			for(Player p : gameManager.getPlayers()) {
+				if ("AUBE".equals(p.getDivinity().getOrigine()) || "NEANT".equals(p.getDivinity().getOrigine()) )
+					p.incrementerPointAction(Cosmogonie.NEANT, 1);
 			}
 			break;
 		default:
