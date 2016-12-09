@@ -3,7 +3,6 @@ package model.game;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 import model.cards.ActionCard;
 import model.cards.Divinity;
@@ -13,9 +12,6 @@ import model.gestionDonnees.ParserXML;
 import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
-import model.strategy.EasyStrategy;
-import model.strategy.HardStrategy;
-import model.strategy.MediumStrategy;
 
 
 /**Classe qui gere la partie*/
