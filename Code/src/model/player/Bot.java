@@ -36,11 +36,10 @@ public class Bot extends Player{
 		play(new HardStrategy());
 	}
 	*/
-	
-	
+		
 	public void jouerTour(){
 		incrementerPointActionWithDe();
-		//Appel à la strat du Bot
+		//Appel ï¿½ la strat du Bot
 	}
 
 	public static Strategy getStrategy() {
@@ -48,7 +47,7 @@ public class Bot extends Player{
 	}
 
 	private void setStrategy(Strategy strategy) {
-		this.strategy = strategy;
+		Bot.strategy = strategy;
 	}
 	
 	@Override
