@@ -1,8 +1,10 @@
 package model.cards.withoutOriginCards;
 
+import java.io.Serializable;
+
 import model.cards.ActionCard;
 
-public class DeusEx extends ActionCard {
+public class DeusEx extends ActionCard implements Serializable{
 
 	public DeusEx(String nom) {
 		super(nom);

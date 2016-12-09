@@ -1,8 +1,10 @@
 package model.cards.OriginCards;
 
+import java.io.Serializable;
+
 import model.EnumType.EnumOrigineCA;
 
-public class ApocalypseWithOrigin extends ActionCardWithOrigin {
+public class ApocalypseWithOrigin extends ActionCardWithOrigin implements Serializable {
 
 	public ApocalypseWithOrigin( EnumOrigineCA origine) {
 		super("Apocalypse", origine);

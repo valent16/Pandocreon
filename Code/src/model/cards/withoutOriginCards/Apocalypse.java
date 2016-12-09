@@ -1,8 +1,10 @@
 package model.cards.withoutOriginCards;
 
+import java.io.Serializable;
+
 import model.cards.ActionCard;
 
-public class Apocalypse extends ActionCard {
+public class Apocalypse extends ActionCard implements Serializable{
 
 	
 

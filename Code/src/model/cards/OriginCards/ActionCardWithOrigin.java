@@ -1,9 +1,11 @@
 package model.cards.OriginCards;
 
+import java.io.Serializable;
+
 import model.EnumType.EnumOrigineCA;
 import model.cards.ActionCard;
 
-public abstract class ActionCardWithOrigin extends ActionCard {
+public abstract class ActionCardWithOrigin extends ActionCard implements Serializable {
 	
 	private EnumOrigineCA origine;
 	

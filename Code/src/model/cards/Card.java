@@ -1,7 +1,9 @@
 package model.cards;
 
+import java.io.Serializable;
+
 /**Classe abstraite qui represente n'importe quel carte*/
-public abstract class Card {
+public abstract class Card implements Serializable{
 
 	
 

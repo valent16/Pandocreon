@@ -1,8 +1,17 @@
 package model.player;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+
+import model.Observer;
 import model.EnumType.EnumOrigineCA;
+import model.EnumType.EnumOrigineDivinite;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
@@ -10,7 +19,7 @@ import model.game.De;
 import model.game.GameManager;
 
 /**Classe qui reprÃ©sente un joueur*/
-public abstract class Player {
+public abstract class Player extends Observer{
 
 	//A voir si chaque joueur a un tableau de Points d'action
 	// ou si on fait un tableau pour chaque type de point d'action
@@ -51,6 +60,10 @@ public abstract class Player {
 		}
 	}
 	
+	//Méthode de jeu de tour qui se fait redéfinir pour le joueur et le bot
+	public abstract void jouerTour();
+	
+	
 	/** Le joueur joue une carte et donc on l'enleve de sa main*/
 	public void JouerCarte(int carte) {
 		hand.remove(carte);
@@ -68,6 +81,27 @@ public abstract class Player {
 	
 	//////////////////////////////// GETTERS & SETTERS////////////////////////////////////////////////
 	
+	public static Object deepClone(Object object) {
+	   try {
+	     ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	     ObjectOutputStream oos = new ObjectOutputStream(baos);
+	     oos.writeObject(object);
+	     ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+	     ObjectInputStream ois = new ObjectInputStream(bais);
+	     return ois.readObject();
+	   }
+	   catch (Exception e) {
+	     e.printStackTrace();
+	     return null;
+	   }
+	}
+	
+	
+	//Permet de renvoyer une liste 
+	public List<Card> getHand(){ 
+		return Collections.unmodifiableList((LinkedList<Card>) deepClone(hand));
+	}
+	
 	/**Getter du pseudo*/
 	public String getNom(){
 		return pseudo;
@@ -84,14 +118,7 @@ public abstract class Player {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	/**Getter de la main du joueur*/
-	public LinkedList<Card> getHand() {
-		return hand;
-	}
-	/**Setter de la main du joueur*/
-	public void setHand(LinkedList<Card> hand) {
-		this.hand = hand;
-	}
+
 	/**Getter de la divinitÃ© du joueur*/
 	public Divinity getDivinity() {
 		return divinity;
@@ -118,10 +145,15 @@ public abstract class Player {
 		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
 	}
 	
+	//Fonction permettant de compléter la main du joueur
 	public void piocherCartes(){
 		while (hand.size() <= NB_CARTE_MAX){
 			GameManager.getInstanceUniqueManager().piocherCarte();
 		}
+	}
+	
+	public int getNbCartes(){
+		return hand.size();
 	}
 	
 	public void decrementerPointAction(EnumOrigineCA typePA, int nbPA){
@@ -130,6 +162,23 @@ public abstract class Player {
 		}
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
 	}
+	
+	//Méthode appelée à chaque début de tour pour attribuer les PA au joueur
+	protected void incrementerPointActionWithDe(){
+		
+		if (divinity.getOrigine() == EnumOrigineDivinite.AUBE || divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE){
+			if(De.getInstanceDe().getFace() == EnumOrigineCA.NEANT){
+				dicoPA.put(EnumOrigineCA.NEANT, dicoPA.get(EnumOrigineCA.NEANT) +1);
+			}else{
+				dicoPA.put(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +1);
+			}
+		}else{
+			if (De.getInstanceDe().getFace() == EnumOrigineCA.JOUR || De.getInstanceDe().getFace() == EnumOrigineCA.NUIT){
+				dicoPA.put(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +2);
+			}
+		}
+	}
+	
 
 	public void incrementerPointAction(EnumOrigineCA typePA, int nbPA){
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
@@ -137,8 +186,12 @@ public abstract class Player {
 	
 	@Override
 	public String toString() {
+		return "Player [pseudo=" + pseudo +", dicoPA="+ dicoPA;
+		
+		/*
 		return "Player [pseudo=" + pseudo + ", score=" + score + ", age=" + age + ", hand=" + hand + ", dicoPA="
 				+ dicoPA + ", divinity=" + divinity + "]";
+				*/
 	}
 }
 

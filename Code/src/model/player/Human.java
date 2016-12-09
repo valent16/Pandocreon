@@ -7,13 +7,15 @@ public class Human extends Player{
 		super(pseudo, age);
 	}
 	
-	public void play(){
-		
+	@Override
+	public void jouerTour() {
+		incrementerPointActionWithDe();
+		notifier();
+		// TODO Auto-generated method stub
 	}
-
+	
 	@Override
 	public String toString() {
 		return super.toString();
 	}
-
 }

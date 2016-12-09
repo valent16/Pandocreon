@@ -13,13 +13,13 @@ import model.gestionDonnees.ParserXML;
 import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
-import model.strategy.EasyStrategy;
-import model.strategy.HardStrategy;
-import model.strategy.MediumStrategy;
 
 
 /**Classe qui gere la partie*/
 public class Game {
+	
+
+	private final static String[] BOT_NAME = {"Eden", "Alice", "Carla", "Andre", "Eline", "Cleo", "Ava", "Chloe", "Eva"};
 	
 	private final static int NB_CARTE_MAX_MAIN = 7;
 
@@ -39,16 +39,11 @@ public class Game {
 	DataManager dataManager;
 	
 	public Game(){
-		//Permet l'intialisation du dataManager
-		
 		dataManager = new DataManager(new FakeSaver(), new ParserXML());
-		
 	}
 	
 	//Permet de déterminer le nombre maximal de joueur pour une partie de jeu
 	private void calculerNbJoueurMax(){
-		System.out.println(listeCartesAction.size());
-		System.out.println(listeCartesDivinites.size());
 		if (listeCartesAction.size()/NB_CARTE_MAX_MAIN > listeCartesDivinites.size()){
 			this.nbJoueurMax = listeCartesDivinites.size();
 		}else{
@@ -60,12 +55,17 @@ public class Game {
 		return this.nbJoueurMax;
 	}
 	
-	
-	
+	//méthode permettant de consulter le nombre actuel de joueurs dans la partie
 	public int getNbJoueur(){
 		return players.size();
 	}
 	
+	//Méthodes permettant d'attribuer un nom à un bot à partir d'un index
+	public String getBotName(int index){
+		index = index%BOT_NAME.length;
+		return BOT_NAME[index];
+	}
+
 	
 	/**Methpde pour initialiser la partie, le nombre de joueurs et de bots*/
 	public void initGame() {

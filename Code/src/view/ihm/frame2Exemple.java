@@ -170,8 +170,8 @@ public class frame2Exemple extends JFrame{
 		else{
 		}*/
 
-		player1= gameManager.getPlayer(1);
-		player2 = gameManager.getPlayer(2);
+		//player1= gameManager.getPlayer(1);
+		//player2 = gameManager.getPlayer(2);
 	/////////	game.initFichier();//appeler la methode pour charger les cartes////////////////////////////////////////////////////////////////
 
 		Detail.setText(Detail.getText()+"la partie : ");

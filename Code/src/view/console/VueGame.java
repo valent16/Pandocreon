@@ -45,7 +45,6 @@ public class VueGame {
 			break;
 		default:
 		}
-		
 	}
 	
 	//méthode permettant de jouer une nouvelle partie
@@ -74,7 +73,81 @@ public class VueGame {
 	
 	//Permet de créer un joueur
 	public void creationJoueurs(int nbJoueur){
-		System.out.println("utilitaire de création de joueur");
+		//System.out.println("utilitaire de création de joueur");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\n\n");
+		System.out.println("Creation des joueurs:");
+		for(int i = 0; i<nbJoueur; i++){
+			String choix="3";
+			do{
+				if (!choix.equals("3")){
+					System.out.println("Vous avez fait un erreur lors de l'entrée de la valeur");
+				}
+				System.out.println("Quel type de joueur souhaitez-vous ajouter ?");
+				System.out.println("1- IA");
+				System.out.println("2- JoueurReel");
+				System.out.println("3- Quitter");
+				choix = sc.nextLine();
+			}while(!choix.equals("3") && !choix.equals("2") && !choix.equals("1") );
+			
+			if (choix.equals("3")){
+				MenuPrincipal();
+			}else if (choix.equals("2")){
+				creationHumain();
+			}else{
+				creationBot(i);
+			}
+		}
+	}
+	
+	//Permet de créer un joueur humain
+	public void creationHumain(){
+		String nom;
+		String age;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\n");
+		System.out.println("veuillez renseigner le nom de la personne : ");
+		nom = sc.nextLine();
+		System.out.println("veuillez renseigner l'age de la personne : ");
+		age = sc.nextLine();
+		while(!age.matches("[0-9]+")){
+			System.out.println("l'age entré est invalide");
+			age = sc.nextLine();
+		}
+		controllerJeu.CreationJoueur(nom, Integer.parseInt(age));
+	}
+	
+	//Permet de créer un bot
+	public void creationBot(int index){
+		String nomStrat;
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Veuillez renseigner le niveau de difficulté de ce bot : ");
+		System.out.println("1- facile");
+		System.out.println("2- medium");
+		System.out.println("3- difficile");
+		String choix = sc.nextLine();
+		while(!choix.matches("[0-9]+") && Integer.parseInt(choix)>3 && Integer.parseInt(choix)<1){
+			System.out.println("le choix de difficulté est invalide");
+		}
+		
+		switch(choix){
+		case "1":
+			nomStrat = "facile";
+			break;
+		case "2": 
+			nomStrat = "medium";
+			break;
+		case "3":
+			nomStrat = "difficile";
+			break;
+		default:
+			//Lancement Exception
+			nomStrat = "";
+		}
+		
+		
+		controllerJeu.CreationBot(game.getBotName(index), nomStrat);
 	}
 	
 	//méthode permettant le chargement d'une ancienne partie

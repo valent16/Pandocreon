@@ -16,34 +16,44 @@ public class Bot extends Player{
 	}
 
 	/**Methode qui fait jouer les bots avec la difficulté choisie*/
-	public static void play(Strategy strategy){
-		strategy.play();
-	}
+//	public static void play(Strategy strategy){
+//		strategy.play();
+//	}
 	
-	
-	/**Methode qui configure les bots en difficulté facile*/
+	/*
 	public static void easyPlay() {
 		System.out.println("BOT : difficulté facile");
 		play(new EasyStrategy());
 	}
 
-	/**Methode qui configure les bots en difficulté moyenne*/
 	public static void mediumPlay() {
 		System.out.println("BOT : difficulté moyen");
 		play(new MediumStrategy());	
 	}
 
-	/**Methode qui configure les bots en difficulté difficile*/
 	public static void hardPlay() {
 		System.out.println("BOT : difficulté difficile");
 		play(new HardStrategy());
+	}
+	*/
+	
+	
+	public void jouerTour(){
+		incrementerPointActionWithDe();
+		//Appel � la strat du Bot
 	}
 
 	public Strategy getStrategy() {
 		return strategy;
 	}
 
-	public void setStrategy(Strategy strategy) {
+	private void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString();
+		//return "Bot [strategy=" +" getStrategy()=" + getStrategy() + "]"+super.toString();
 	}
 }

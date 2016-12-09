@@ -14,7 +14,7 @@ import model.player.Player;
 
 
 public class GameManager {
-
+	
 	private final static int NB_CARTE_MAX_MAIN = 7;
 	
 	private static volatile GameManager managerUnique;
@@ -34,6 +34,30 @@ public class GameManager {
 
 	private Player joueurActif;
 
+	public Player getJoueurDebutTour() {
+		return joueurDebutTour;
+	}
+
+	private void setJoueurDebutTour(Player joueurDebutTour) {
+		this.joueurDebutTour = joueurDebutTour;
+	}
+
+	public Player getJoueurActif() {
+		return joueurActif;
+	}
+
+	private void setJoueurActif(Player joueurActif) {
+		this.joueurActif = joueurActif;
+	}
+	
+	public int getNbJoueur(){
+		return players.size();
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Constructeur privÃ© du singleton GameManager
 	 */
@@ -51,12 +75,20 @@ public class GameManager {
 		}
 		return managerUnique;
 	}
-
-	/**
-	 * mï¿½thode permettant de mï¿½langer les cartes du jeu
-	 */
-
 	
+	public void initialisationPartie(LinkedList<ActionCard> cartesAction, LinkedList<Divinity> divinites ){
+		this.listDivinites = divinites; 
+		this.pioche = cartesAction;
+	}
+	
+	public void startGame() {
+		this.melangerDivinites();
+		this.melangerPioche();
+		this.intialisationDesJeux();
+		this.deroulementTourJeu();
+	}
+	
+	//Méthode permettant de mélanger les cartes divinités
 	public void melangerDivinites(){
 		Collections.shuffle(listDivinites);
 	}
@@ -89,13 +121,32 @@ public class GameManager {
 	public Divinity piocherDivinite(){
 		return listDivinites.pop();
 	}
-
-
-	/**
-	 * Permet d'ajouter un joueur au gestionnaire de partie
-	 */
+	
+	public ActionCard piocherCarte(){
+		if (pioche.size() == 0){
+			if (defausse.size() == 0){
+				//lancer une exception qui arrete la partie => pas assez de carte pour jouer
+			}
+			pioche.addAll(defausse);
+			melangerPioche();
+		}
+		return pioche.pop();
+	}
+	
+	public void deposerCroyant(Believer carte){
+		croyants.add(carte);
+	}
+	
+	public void retirerCroyant(Believer carte){
+		croyants.remove(carte);
+	}
+	
 	public void ajouterJoueur(Player joueur){
 		players.add(joueur);
+	}
+	
+	public void eliminerJoueur(Player joueur){
+		players.remove(joueur);
 	}
 	
 	//Permet de réaliser l'initialisation des jeux
@@ -117,98 +168,63 @@ public class GameManager {
 			}
 		}
 	}
+
 	
-	
-	/**MÃ©thode qui permet de commencer la partie*/
-	public void startGame() {
-		this.melangerDivinites();
-		this.melangerPioche();
-		this.intialisationDesJeux();
-	}
-
-	/**
-	 * Permet d'éliminer un joueur de la partie
-	 * @param joueur
-	 */
-	public void eliminerJoueur(Player joueur){
-		players.remove(joueur);
-	}
-
-	/**
-	 * Permet d'initialiser la partie de jeu
-	 * @param cartesAction
-	 * @param divinites
-	 */
-	public void initialisationPartie(LinkedList<ActionCard> cartesAction, LinkedList<Divinity> divinites ){
-		this.setDivinites(divinites); 
-		this.pioche = cartesAction;
-	}
-
-	/**
-	 * Permet d'ajouter un croyant sur la table de jeu
-	 * @param carte
-	 */
-	public void deposerCroyant(Believer carte){
-		croyants.add(carte);
-	}
-
-	/**
-	 * Assigne une DivinitÃ© a un joueur
-	 * @param joueur, Le joueur auquel on assigne la DivinitÃ©
-	 * @param div, La DivinitÃ© a assigner
-	 */
-	public void assignerDivinite(Player joueur, Divinity div){
-		joueur.setDivinity(div);
-	}
-
-
-	/**
-	 * Permet de retirer un croyant de la table de jeu
-	 * @param carte
-	 */
-	public void retirerCroyant(Believer carte){
-		croyants.remove(carte);
-	}
-
-	public ActionCard piocherCarte(){
-		if (pioche.size() == 0){
-			if (defausse.size() == 0){
-				//lancer une exception qui arrete la partie => pas assez de carte pour jouer
+	public void deroulementTourJeu(){
+		int start = 5;
+		int cpt = 0;
+		boolean b = true;
+		
+		//players.size()>2
+		while(b){
+			System.out.println("Tour N°"+cpt);
+			players.get(start%players.size()).lancerDe();
+			
+			for (int i = start; i<start+this.getNbJoueur(); i++){
+				players.get(i%players.size()).jouerTour();	
+				System.out.println(players.get(i%players.size()).toString());
 			}
-			pioche.addAll(defausse);
-			//melangerPioche();
+			start = start+1;
+			start = start%players.size();
+			
+			cpt++;
+			if (cpt == 4){
+				b = false;
+			}
 		}
-		return pioche.pop();
 	}
 
 	
-
-	public List<Divinity> getDivinites() {
-		return listDivinites;
+	//Permet de déterminer l'index du plus jeune joueur
+	public int getIndexJoueurPlusJeune(){
+		Player joueurJeune;
+		int index = 0;
+		joueurJeune = players.get(index);
+		for (int i = 1; i<players.size(); i++){
+			if(joueurJeune.getAge() > players.get(i).getAge()){
+				joueurJeune = players.get(i);
+				index = i;
+			}
+		}
+		return index;
 	}
 
-	public void setDivinites(LinkedList<Divinity> divinites) {
-		this.listDivinites = divinites;
-	}
+
 	
-	public Player getPlayer(int index){
+	
+	private Player getPlayer(int index){
 		return players.get(index);
 	}
-
-	public Player getJoueurDebutTour() {
-		return joueurDebutTour;
+	
+	
+	/*
+	 * Méthodes de test d'affichage, ces méthodes seront supprimées par la suite
+	 */
+	
+	public void afficherJoueur(){
+		for (Player p : players){
+			System.out.println(p.toString());
+		}
 	}
-
-	public void setJoueurDebutTour(Player joueurDebutTour) {
-		this.joueurDebutTour = joueurDebutTour;
-	}
-
-	public Player getJoueurActif() {
-		return joueurActif;
-	}
-
-	public void setJoueurActif(Player joueurActif) {
-		this.joueurActif = joueurActif;
-	}
-
+	
 }

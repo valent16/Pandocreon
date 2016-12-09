@@ -2,11 +2,12 @@ package model.cards.OriginCards;
 
 import model.EnumType.EnumOrigineCA;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.EnumType.EnumDogme;
 
-public abstract class CarteDogmatique extends ActionCardWithOrigin {
+public abstract class CarteDogmatique extends ActionCardWithOrigin implements Serializable{
 
 	private ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
 	

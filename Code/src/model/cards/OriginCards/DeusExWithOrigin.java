@@ -1,8 +1,10 @@
 package model.cards.OriginCards;
 
+import java.io.Serializable;
+
 import model.EnumType.EnumOrigineCA;
 
-public class DeusExWithOrigin extends ActionCardWithOrigin {
+public class DeusExWithOrigin extends ActionCardWithOrigin implements Serializable{
 
 	public DeusExWithOrigin(String nom, EnumOrigineCA origine) {
 		super(nom, origine);

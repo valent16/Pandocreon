@@ -26,16 +26,16 @@ public class De {
 	/**méthode qui lance de maniere random un Dé pour obtenir une face
 	 * @return */
 	public void lancerDe(){
-		//genere un nombre random entre 1 et 6
-		int random = (int) (Math.random() * 6 + 1);
-		if(random == 1 || random == 4)
+		int random = (int) (Math.random() * 3 + 1);
+		if(random == 1){
 			de.face = EnumOrigineCA.JOUR;
-
-		if(random == 2 || random == 5)
+		}
+		if(random == 2 ){
 			de.face = EnumOrigineCA.NUIT;
-
-		if(random == 3 || random == 6)
+		}
+		if(random == 3 ){
 			de.face = EnumOrigineCA.NEANT;
+		}
 	}
 
 	/**méthode qui permet de récuperer l'origine sur lequel le dé est retombé*/

@@ -1,12 +1,13 @@
 package model.cards.OriginCards;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.EnumType.EnumDogme;
 import model.EnumType.EnumOrigineCA;
 
 /**Classe représentant une carte guide spirituel*/
-public class SpiritGuide extends CarteDogmatique{
+public class SpiritGuide extends CarteDogmatique implements Serializable{
 	
 	private int pointPriere;
 	
