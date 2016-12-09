@@ -1,8 +1,9 @@
 package model.game;
 
 import controller.GameController;
+
 import controller.JoueurController;
-import model.EnumType.EnumOrigineCA;
+import model.EnumType.Cosmogonie;
 import model.player.Bot;
 //import model.game.De.Face;
 import model.player.Human;
@@ -69,9 +70,9 @@ public class Main{
 	
 	public static void testJoueur(){
 		Player p1 = new Human("jean Yves", 12);
-		p1.incrementerPointAction(EnumOrigineCA.JOUR, 2);
+		p1.incrementerPointAction(Cosmogonie.JOUR, 2);
 		System.out.println(p1.toString());
-		p1.decrementerPointAction(EnumOrigineCA.JOUR, 1);
+		p1.decrementerPointAction(Cosmogonie.JOUR, 1);
 		System.out.println(p1.toString());
 	}
 }

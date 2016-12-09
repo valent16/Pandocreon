@@ -1,17 +1,18 @@
 package model.cards.OriginCards;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import model.EnumType.EnumDogme;
-import model.EnumType.EnumOrigineCA;
+import model.EnumType.Cosmogonie;
 
 /**Classe représentant une carte croyant*/
 public class Believer extends CarteDogmatique implements Serializable{
 
 	private int nbPrieres;
 	
-	public Believer(String nom, EnumOrigineCA origine, ArrayList<EnumDogme> dogmes, int nbPrieres, String sacrifice) {
+	public Believer(String nom, Cosmogonie origine, ArrayList<EnumDogme> dogmes, int nbPrieres, String sacrifice) {
 		super(nom, origine, dogmes, sacrifice);
 		this.nbPrieres = nbPrieres;
 	}

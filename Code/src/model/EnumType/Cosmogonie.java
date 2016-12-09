@@ -1,6 +1,6 @@
 package model.EnumType;
 
-public enum EnumOrigineCA {
+public enum Cosmogonie {
 	JOUR,
 	NUIT,
 	NEANT,

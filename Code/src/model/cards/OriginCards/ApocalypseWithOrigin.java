@@ -2,11 +2,11 @@ package model.cards.OriginCards;
 
 import java.io.Serializable;
 
-import model.EnumType.EnumOrigineCA;
+import model.EnumType.Cosmogonie;
 
 public class ApocalypseWithOrigin extends ActionCardWithOrigin implements Serializable {
 
-	public ApocalypseWithOrigin( EnumOrigineCA origine) {
+	public ApocalypseWithOrigin( Cosmogonie origine) {
 		super("Apocalypse", origine);
 		// TODO Auto-generated constructor stub
 	}

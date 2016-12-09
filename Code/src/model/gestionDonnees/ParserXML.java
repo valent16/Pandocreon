@@ -1,6 +1,7 @@
 package model.gestionDonnees;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -16,7 +17,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import model.EnumType.EnumDogme;
-import model.EnumType.EnumOrigineCA;
+import model.EnumType.Cosmogonie;
 import model.EnumType.EnumOrigineDivinite;
 import model.cards.ActionCard;
 import model.cards.Divinity;
@@ -64,7 +65,7 @@ public class ParserXML implements IDataLoad {
 		return null;
 	}
 	
-	private EnumOrigineCA recupOrigineCarte(String template){
+	private Cosmogonie recupOrigineCarte(String template){
 		Pattern p=Pattern.compile(".*origine-([a-zA-Z]*).*");
 		Matcher m=p.matcher(template);
 		while(m.find()){
@@ -157,16 +158,16 @@ public class ParserXML implements IDataLoad {
 	
 	//Permet de d'obtenir � partir d'une origine en chaine de caract�re sa correspondance en 
 	//EnumOrigineCA
-	private EnumOrigineCA convertOrigineCAFromString(String origine){
+	private Cosmogonie convertOrigineCAFromString(String origine){
 		switch(origine){
 		case "jour":
-			return EnumOrigineCA.JOUR;
+			return Cosmogonie.JOUR;
 		case "nuit":
-			return EnumOrigineCA.NUIT;
+			return Cosmogonie.NUIT;
 		case "neant":
-			return EnumOrigineCA.NEANT;
+			return Cosmogonie.NEANT;
 		default:
-			return EnumOrigineCA.NOTREFERENCED;
+			return Cosmogonie.NOTREFERENCED;
 		}
 	}
 	
@@ -210,7 +211,7 @@ public class ParserXML implements IDataLoad {
 //			                		System.out.println(divinite.toString());
 			                	}else if(type.equals("croyants") || type.equals("guides")){
 			                		dogmesCarte = getDogmeCA(carte.getAttribute("template".trim()));
-			                		EnumOrigineCA orCA = recupOrigineCarte(carte.getAttribute("template"));
+			                		Cosmogonie orCA = recupOrigineCarte(carte.getAttribute("template"));
 			                		NodeList image = carte.getElementsByTagName("image");
 			                		int nbImage = image.getLength();
 			                		int valeurCroyant =0;
@@ -229,7 +230,7 @@ public class ParserXML implements IDataLoad {
 			                		}
 			                		
 			                	}else if (type.equals("deusex")){
-			                		EnumOrigineCA orCA = recupOrigineCarte(carte.getAttribute("template"));
+			                		Cosmogonie orCA = recupOrigineCarte(carte.getAttribute("template"));
 			                		if (orCA == null){
 			                			DeusEx deusEx = new DeusEx(lstr[0].trim());
 			                			cartesAction.push(deusEx);
@@ -240,7 +241,7 @@ public class ParserXML implements IDataLoad {
 //			                			System.out.println(deusExOrigine.toString());
 			                		}
 			                	}else if (type.equals("apocalypses")){
-			                		EnumOrigineCA orCA = recupOrigineCarte(carte.getAttribute("template"));
+			                		Cosmogonie orCA = recupOrigineCarte(carte.getAttribute("template"));
 			                		if (orCA == null){
 			                			Apocalypse apocalypse = new Apocalypse();
 			                			cartesAction.push(apocalypse);

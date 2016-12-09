@@ -1,12 +1,11 @@
 package model.cards.OriginCards;
 
 import java.io.Serializable;
-
-import model.EnumType.EnumOrigineCA;
+import model.EnumType.Cosmogonie;
 
 public class DeusExWithOrigin extends ActionCardWithOrigin implements Serializable{
 
-	public DeusExWithOrigin(String nom, EnumOrigineCA origine) {
+	public DeusExWithOrigin(String nom, Cosmogonie origine) {
 		super(nom, origine);
 		// TODO Auto-generated constructor stub
 	}

@@ -1,11 +1,11 @@
 package model.game;
 
-import model.EnumType.EnumOrigineCA;
+import model.EnumType.Cosmogonie;
 
 public class De {
 	/*un singleton pour avoir un unique dé*/
 	private volatile static De de;
-	private EnumOrigineCA face;
+	private Cosmogonie face;
 	
 	private De(){
 
@@ -28,18 +28,18 @@ public class De {
 	public void lancerDe(){
 		int random = (int) (Math.random() * 3 + 1);
 		if(random == 1){
-			de.face = EnumOrigineCA.JOUR;
+			de.face = Cosmogonie.JOUR;
 		}
 		if(random == 2 ){
-			de.face = EnumOrigineCA.NUIT;
+			de.face = Cosmogonie.NUIT;
 		}
 		if(random == 3 ){
-			de.face = EnumOrigineCA.NEANT;
+			de.face = Cosmogonie.NEANT;
 		}
 	}
 
 	/**méthode qui permet de récuperer l'origine sur lequel le dé est retombé*/
-	public EnumOrigineCA getFace(){
+	public Cosmogonie getFace(){
 		return face;
 	}
 

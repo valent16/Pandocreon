@@ -1,6 +1,6 @@
 package model.cards.OriginCards;
 
-import model.EnumType.EnumOrigineCA;
+import model.EnumType.Cosmogonie;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public abstract class CarteDogmatique extends ActionCardWithOrigin implements Se
 	
 //	private String nomTypeCarte;
 	
-	public CarteDogmatique(String nom, EnumOrigineCA origine, ArrayList<EnumDogme> dogmes, String sacrifice) {
+	public CarteDogmatique(String nom, Cosmogonie origine, ArrayList<EnumDogme> dogmes, String sacrifice) {
 		super(nom, origine);
 		//faire une deepCopy
 		this.dogmes = dogmes;

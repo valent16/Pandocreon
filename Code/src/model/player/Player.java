@@ -1,6 +1,7 @@
 package model.player;
 
 import java.io.ByteArrayInputStream;
+
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -10,10 +11,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Observer;
-import model.EnumType.EnumOrigineCA;
+import model.EnumType.Cosmogonie;
 import model.EnumType.EnumOrigineDivinite;
 import model.cards.ActionCard;
-import model.cards.Card;
 import model.cards.Divinity;
 import model.game.De;
 import model.game.GameManager;
@@ -39,7 +39,7 @@ public abstract class Player extends Observer{
 	protected LinkedList<ActionCard> hand = new LinkedList<ActionCard>();
 	
 	/**Dictionnaire contenant les points d'action du joueur*/
-	private HashMap<EnumOrigineCA, Integer> dicoPA = new HashMap<EnumOrigineCA, Integer>();
+	private HashMap<Cosmogonie, Integer> dicoPA = new HashMap<Cosmogonie, Integer>();
 	
 	/**Carte divint√© du joueur*/
 	private Divinity divinity;
@@ -54,13 +54,13 @@ public abstract class Player extends Observer{
 		this.setAge(age);
 		
 		//Permet l'initialisation du dictionnaire de points d'action du joueur
-		EnumOrigineCA valuesEnumPointAction[] = EnumOrigineCA.values();
+		Cosmogonie valuesEnumPointAction[] = Cosmogonie.values();
 		for (int i = 0; i< valuesEnumPointAction.length; i++) {
 			dicoPA.put(valuesEnumPointAction[i], 0);
 		}
 	}
 	
-	//MÈthode de jeu de tour qui se fait redÈfinir pour le joueur et le bot
+	//MÔøΩthode de jeu de tour qui se fait redÔøΩfinir pour le joueur et le bot
 	public abstract void jouerTour();
 	
 	
@@ -150,7 +150,7 @@ public abstract class Player extends Observer{
 		hand.remove(carte);
 	}
 	
-	//Fonction permettant de complÈter la main du joueur
+	//Fonction permettant de complÔøΩter la main du joueur
 	public void piocherCartes(){
 		while (hand.size() <= NB_CARTE_MAX){
 			hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
@@ -161,31 +161,31 @@ public abstract class Player extends Observer{
 		return hand.size();
 	}
 	
-	public void decrementerPointAction(EnumOrigineCA typePA, int nbPA){
+	public void decrementerPointAction(Cosmogonie typePA, int nbPA){
 		if ((dicoPA.get(typePA) - nbPA) < 0){
 			//lancer Exception, le joueur ne peut pas jouer la carte
 		}
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
 	}
 	
-	//MÈthode appelÈe ‡ chaque dÈbut de tour pour attribuer les PA au joueur
+	//MÔøΩthode appelÔøΩe ÔøΩ chaque dÔøΩbut de tour pour attribuer les PA au joueur
 	protected void incrementerPointActionWithDe(){
 		
 		if (divinity.getOrigine() == EnumOrigineDivinite.AUBE || divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE){
-			if(De.getInstanceDe().getFace() == EnumOrigineCA.NEANT){
-				dicoPA.put(EnumOrigineCA.NEANT, dicoPA.get(EnumOrigineCA.NEANT) +1);
+			if(De.getInstanceDe().getFace() == Cosmogonie.NEANT){
+				dicoPA.put(Cosmogonie.NEANT, dicoPA.get(Cosmogonie.NEANT) +1);
 			}else{
 				dicoPA.put(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +1);
 			}
 		}else{
-			if (De.getInstanceDe().getFace() == EnumOrigineCA.JOUR || De.getInstanceDe().getFace() == EnumOrigineCA.NUIT){
+			if (De.getInstanceDe().getFace() == Cosmogonie.JOUR || De.getInstanceDe().getFace() == Cosmogonie.NUIT){
 				dicoPA.put(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +2);
 			}
 		}
 	}
 	
 
-	public void incrementerPointAction(EnumOrigineCA typePA, int nbPA){
+	public void incrementerPointAction(Cosmogonie typePA, int nbPA){
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
 	}
 	
