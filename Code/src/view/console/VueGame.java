@@ -71,12 +71,11 @@ public class VueGame {
 			System.out.println("vous avez dï¿½cidï¿½ de crï¿½er "+choix+" joueurs");
 			this.creationJoueurs(Integer.parseInt(choix));
 		}
-		sc.close();
 	}
 	
 	//Permet de crï¿½er un joueur
 	public void creationJoueurs(int nbJoueur){
-		//System.out.println("utilitaire de création de joueur");
+		//System.out.println("utilitaire de crï¿½ation de joueur");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\n\n");
 		System.out.println("Creation des joueurs:");
@@ -84,7 +83,7 @@ public class VueGame {
 			String choix="3";
 			do{
 				if (!choix.equals("3")){
-					System.out.println("Vous avez fait un erreur lors de l'entrée de la valeur");
+					System.out.println("Vous avez fait un erreur lors de l'entrï¿½e de la valeur");
 				}
 				System.out.println("Quel type de joueur souhaitez-vous ajouter ?");
 				System.out.println("1- IA");
@@ -103,7 +102,7 @@ public class VueGame {
 		}
 	}
 	
-	//Permet de créer un joueur humain
+	//Permet de crï¿½er un joueur humain
 	public void creationHumain(){
 		String nom;
 		String age;
@@ -114,24 +113,24 @@ public class VueGame {
 		System.out.println("veuillez renseigner l'age de la personne : ");
 		age = sc.nextLine();
 		while(!age.matches("[0-9]+")){
-			System.out.println("l'age entré est invalide");
+			System.out.println("l'age entrï¿½ est invalide");
 			age = sc.nextLine();
 		}
 		controllerJeu.CreationJoueur(nom, Integer.parseInt(age));
 	}
 	
-	//Permet de créer un bot
+	//Permet de crï¿½er un bot
 	public void creationBot(int index){
 		String nomStrat;
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Veuillez renseigner le niveau de difficulté de ce bot : ");
+		System.out.println("Veuillez renseigner le niveau de difficultï¿½ de ce bot : ");
 		System.out.println("1- facile");
 		System.out.println("2- medium");
 		System.out.println("3- difficile");
 		String choix = sc.nextLine();
 		while(!choix.matches("[0-9]+") && Integer.parseInt(choix)>3 && Integer.parseInt(choix)<1){
-			System.out.println("le choix de difficulté est invalide");
+			System.out.println("le choix de difficultï¿½ est invalide");
 		}
 		
 		switch(choix){

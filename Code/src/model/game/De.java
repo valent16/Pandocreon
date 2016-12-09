@@ -42,6 +42,10 @@ public class De {
 	public Cosmogonie getFace(){
 		return face;
 	}
+	
+	public void setFace(Cosmogonie face){
+		this.face = face;
+	}
 
 	//TEST
 	public static void main(String[] args){

@@ -24,14 +24,14 @@ public class JoueurController implements Observateur {
 		vueJoueur.jouerTour();
 	}
 	
-	//Méthode appelée lorsque le joueur est en tour d'attente
+	//Mï¿½thode appelï¿½e lorsque le joueur est en tour d'attente
 	public void jouerCarteHorsTour(){
 		
 	}
 	
 	public void completerMain(){
 		if (joueur.getNbCartes() == Player.NB_CARTE_MAX){
-			System.out.println("Votre jeu est déjà complet");
+			System.out.println("Votre jeu est dï¿½jï¿½ complet");
 			vueJoueur.jouerTour();
 		}
 		joueur.piocherCartes();

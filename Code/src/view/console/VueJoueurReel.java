@@ -1,6 +1,5 @@
 package view.console;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,10 +20,10 @@ public class VueJoueurReel {
 		this.joueur = j;
 	}
 	
-	//affichage lorsqu'il s'agit du début du tour du joueur
+	//affichage lorsqu'il s'agit du dï¿½but du tour du joueur
 	public void passageTour(){
 		List<ActionCard> cartes;
-		System.out.println("Joueur "+joueur.getNom()+", c'est à votre tour");
+		System.out.println("Joueur "+joueur.getNom()+", c'est ï¿½ votre tour");
 		System.out.println("\n");
 		cartes = joueur.getHand();
 		//liste des cartes
@@ -37,15 +36,15 @@ public class VueJoueurReel {
 	
 	public void jouerTour(){
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Quelle opération souhaitez-vous exécuter ?");
-		System.out.println("1- Vous défausser d'une partie de vos cartes");
-		System.out.println("2- Compléter votre main");
+		System.out.println("Quelle opï¿½ration souhaitez-vous exï¿½cuter ?");
+		System.out.println("1- Vous dï¿½fausser d'une partie de vos cartes");
+		System.out.println("2- Complï¿½ter votre main");
 		System.out.println("3- Jouer des cartes");
 		System.out.print("votre choix: ");
 		String choix = sc.nextLine();
 		
 		while(!choix.matches("[0-9]+") && Integer.parseInt(choix)>3 && Integer.parseInt(choix)<1){
-			System.out.println("le choix de vos opérations est invalide");
+			System.out.println("le choix de vos opï¿½rations est invalide");
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 		}
@@ -68,19 +67,19 @@ public class VueJoueurReel {
 	public void defausserCartes(){
 		LinkedList<ActionCard> cartesToDelete = new LinkedList<ActionCard>();
 		Scanner sc = new Scanner(System.in);
-		System.out.println("liste des cartes pouvant être défaussées:");
+		System.out.println("liste des cartes pouvant ï¿½tre dï¿½faussï¿½es:");
 		List<ActionCard> listeAAfficher = joueur.getHand();;
 //		afficherListeCarte(listeAAfficher);
-//		System.out.println("veuillez renseigner la carte à défausser en renseignant son numéro:");
-//		System.out.println("taper \"end\" si votre sélection de carte à supprimer est terminée");
+//		System.out.println("veuillez renseigner la carte ï¿½ dï¿½fausser en renseignant son numï¿½ro:");
+//		System.out.println("taper \"end\" si votre sï¿½lection de carte ï¿½ supprimer est terminï¿½e");
 //		System.out.print("votre choix: ");
 		String choix = "";
 		
 		while(!(choix.equals("end") || listeAAfficher.size() == 0)){
 			listeAAfficher = joueur.getHand();
 			afficherListeCarte(listeAAfficher);
-			System.out.println("veuillez renseigner la carte à défausser en renseignant son numéro:");
-			System.out.println("taper \"end\" si votre sélection de carte à supprimer est terminée");
+			System.out.println("veuillez renseigner la carte ï¿½ dï¿½fausser en renseignant son numï¿½ro:");
+			System.out.println("taper \"end\" si votre sï¿½lection de carte ï¿½ supprimer est terminï¿½e");
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 			
@@ -89,7 +88,7 @@ public class VueJoueurReel {
 			while(!(choix.matches("[0-9]+") && listeAAfficher.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))){
 				System.out.println("\n");
 				afficherListeCarte(listeAAfficher);
-				System.out.println("votre choix est invalide, veuillez le renseigner à nouveau.");
+				System.out.println("votre choix est invalide, veuillez le renseigner ï¿½ nouveau.");
 				System.out.println("votre choix: ");
 				choix = sc.nextLine();
 			}

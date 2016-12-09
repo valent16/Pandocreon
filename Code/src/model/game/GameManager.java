@@ -53,6 +53,23 @@ public class GameManager {
 		return players.size();
 	}
 	
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(ArrayList<Player> players) {
+		this.players = players;
+	}
+	
+	public LinkedList<ActionCard> getCroyants() {
+		return croyants;
+	}
+
+	public void setCroyants(LinkedList<ActionCard> croyants) {
+		this.croyants = croyants;
+	}
+
+	
 	/**
 	 * MÃ©thode qui permet d'avoir une seule insatance du gestionnaire de partie
 	 * @return le gestionnaire de partie
@@ -80,7 +97,7 @@ public class GameManager {
 		this.deroulementTourJeu();
 	}
 	
-	//Méthode permettant de mélanger les cartes divinités
+	//Mï¿½thode permettant de mï¿½langer les cartes divinitï¿½s
 
 
 	/**MÃ©thode permettant de mÃ©langer les cartes divintÃ©s*/	
@@ -152,7 +169,7 @@ public class GameManager {
 	}
 
 	
-	//Permet de réaliser l'initialisation des jeux
+	//Permet de rï¿½aliser l'initialisation des jeux
 
 	//Permet de rÃ©aliser l'initialisation des jeux
 	public void intialisationDesJeux(){
@@ -181,7 +198,7 @@ public class GameManager {
 		
 		//players.size()>2
 		while(b){
-			System.out.println("Tour N°"+cpt);
+			System.out.println("Tour Nï¿½"+cpt);
 			players.get(start%players.size()).lancerDe();
 			
 			for (int i = start; i<start+this.getNbJoueur(); i++){
@@ -228,7 +245,7 @@ public class GameManager {
 	}
 
 	
-	//Permet de déterminer l'index du plus jeune joueur
+	//Permet de dï¿½terminer l'index du plus jeune joueur
 	public int getIndexJoueurPlusJeune(){
 		Player joueurJeune;
 		int index = 0;
@@ -256,13 +273,11 @@ public class GameManager {
 	
 	
 	/*
-	 * Méthodes de test d'affichage, ces méthodes seront supprimées par la suite
+	 * Mï¿½thodes de test d'affichage, ces mï¿½thodes seront supprimï¿½es par la suite
 	 */
-	
 	public void afficherJoueur(){
 		for (Player p : players){
 			System.out.println(p.toString());
 		}
 	}
-	
 }
