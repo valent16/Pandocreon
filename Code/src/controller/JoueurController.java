@@ -2,6 +2,7 @@ package controller;
 
 import model.cards.ActionCard;
 import model.cards.Card;
+import model.exception.PAInsuffisantException;
 import model.player.Human;
 import model.player.Player;
 import view.Observateur;
@@ -39,6 +40,21 @@ public class JoueurController implements Observateur {
 	
 	public void supprimerCarte(ActionCard carte){
 		joueur.defausserCarte(carte);
+	}
+	
+	public String jouerCarte(ActionCard carte){
+		
+		
+		
+		try{
+			
+			
+			
+			//joueur.JouerCarte(carte);
+		}catch(PAInsuffisantException e){
+			return e.getMessage();
+		}
+		return "l'action a été effectuée";
 	}
 
 }

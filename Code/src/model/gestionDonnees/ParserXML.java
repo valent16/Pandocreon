@@ -27,6 +27,10 @@ import model.cards.OriginCards.DeusExWithOrigin;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.cards.withoutOriginCards.DeusEx;
+import model.pouvoir.Pouvoir;
+import model.pouvoir.pouvoirCarte.ConversionCroyant;
+import model.pouvoir.pouvoirCarte.DepotCroyant;
+import model.pouvoir.pouvoirCarte.PouvoirApocalypse;
 
 public class ParserXML implements IDataLoad {
 
@@ -195,6 +199,12 @@ public class ParserXML implements IDataLoad {
 				    final NodeList cartes = deck.getElementsByTagName("card");
 				    final int nbCartes = cartes.getLength();
 				    
+				    
+				    Pouvoir pvCroyant = new DepotCroyant();
+				    Pouvoir pvGuide = new ConversionCroyant();
+				    Pouvoir pvApocalypse = new PouvoirApocalypse();
+				    
+				    
 				    // cas ou la balise carte est trouv�e
 				    if (nbCartes != 0){
 				    	for(int j = 0; j<nbCartes; j++) {
@@ -220,11 +230,15 @@ public class ParserXML implements IDataLoad {
 			                			valeurCroyant = mapNbCroyants.get(croyants.getAttribute("id"));
 			                		}
 			                		if (type.equals("croyants")){
+			                			
 			                			Believer croyant = new Believer(lstr[0].trim(), orCA, dogmesCarte, valeurCroyant, lstr[3].trim());
+			                			croyant.ajouterPouvoir("deposer Croyant", pvCroyant);
 			                			cartesAction.push(croyant);
 //			                			System.out.println(croyant.toString());
 			                		}else{
+			                			
 			                			SpiritGuide guide = new SpiritGuide(lstr[0].trim(), orCA, dogmesCarte, valeurCroyant, lstr[3].trim());
+			                			guide.ajouterPouvoir("convertir Croyant", pvGuide);
 //			                			System.out.println(guide.toString());
 			                			cartesAction.push(guide);
 			                		}
@@ -244,7 +258,8 @@ public class ParserXML implements IDataLoad {
 			                		Cosmogonie orCA = recupOrigineCarte(carte.getAttribute("template"));
 			                		if (orCA == null){
 			                			Apocalypse apocalypse = new Apocalypse();
-			                			cartesAction.push(apocalypse);
+			                			apocalypse.ajouterPouvoir("declencher apocalypse", pvApocalypse);
+//			                			cartesAction.push(apocalypse);
 //			                			System.out.println(apocalypse.toString());
 			                		}else{
 			                			ApocalypseWithOrigin apocalypse = new ApocalypseWithOrigin(orCA);

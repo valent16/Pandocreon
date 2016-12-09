@@ -1,0 +1,5 @@
+package model.pouvoir.capacite;
+
+public class Capacite {
+
+}

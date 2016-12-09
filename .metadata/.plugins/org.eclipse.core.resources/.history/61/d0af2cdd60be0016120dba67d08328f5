@@ -1,0 +1,21 @@
+package model.pouvoir.pouvoirCarte;
+
+import model.cards.Card;
+import model.player.Player;
+import model.pouvoir.Pouvoir;
+
+public class DepotCroyant extends Pouvoir{
+
+	public DepotCroyant(String nom) {
+		super(nom, "Permet de déposer un coyant sur la table de jeu");
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	@Override
+	public void onAction(Card carte, Player joueur) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

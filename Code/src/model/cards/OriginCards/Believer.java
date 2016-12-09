@@ -20,7 +20,6 @@ public class Believer extends CarteDogmatique implements Serializable{
 	@Override
 	public void utiliserPouvoir(String commande) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -69,11 +69,7 @@ public class VueJoueurReel {
 		LinkedList<ActionCard> cartesToDelete = new LinkedList<ActionCard>();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("liste des cartes pouvant être défaussées:");
-		List<ActionCard> listeAAfficher = joueur.getHand();;
-//		afficherListeCarte(listeAAfficher);
-//		System.out.println("veuillez renseigner la carte à défausser en renseignant son numéro:");
-//		System.out.println("taper \"end\" si votre sélection de carte à supprimer est terminée");
-//		System.out.print("votre choix: ");
+		List<ActionCard> listeAAfficher = joueur.getHand();
 		String choix = "";
 		
 		while(!(choix.equals("end") || listeAAfficher.size() == 0)){
@@ -105,21 +101,47 @@ public class VueJoueurReel {
 	
 	
 	public void afficherListeCarte(List<ActionCard> cartes){
-//		Iterator<Card> itCarte = cartes.iterator();
-//		
-//		while(itCarte.hasNext()){
-//			Card carte = itCarte.next();
-//			System.out.println(" "carte.toString());
-//		}
 		for (int i=0; i< cartes.size(); i++){
 			System.out.println(i+"- "+cartes.get(i).toString());
 		}
-		
-		
 	}
 	
 	public void jouerCartes(){
+		//LinkedList<ActionCard> cartesToDelete = new LinkedList<ActionCard>();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("liste des cartes pouvant être défaussées:");
+		List<ActionCard> listeAAfficher = joueur.getHand();
+		String choix = "";
+		
+		while(!(choix.equals("end") || listeAAfficher.size() == 0)){
+			listeAAfficher = joueur.getHand();
+			afficherListeCarte(listeAAfficher);
+			System.out.println("veuillez renseigner la carte à utiliser en renseignant son numéro:");
+			System.out.println("taper \"end\" si vous avez fini d'utiliser des cartes");
+			System.out.print("votre choix: ");
+			choix = sc.nextLine();
+			
+//			if (!(choix.matches("[0-9]+") && listeAAfficher.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))))			
+//			while((!choix.matches("[0-9]+") || (listeAAfficher.size() > Integer.parseInt(choix)) || Integer.parseInt(choix) >= 0 ) && !choix.equals("end")){
+			while(!(choix.matches("[0-9]+") && listeAAfficher.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))){
+				System.out.println("\n");
+				afficherListeCarte(listeAAfficher);
+				System.out.println("votre choix est invalide, veuillez le renseigner à nouveau.");
+				System.out.println("votre choix: ");
+				choix = sc.nextLine();
+			}
+			if (!choix.equals("end")){
+				this.choisirPouvoirCarte(listeAAfficher.get(Integer.parseInt(choix)));
+				//controller.jouerCarte(listeAAfficher.get(Integer.parseInt(choix)));
+				//controller.supprimerCarte(listeAAfficher.get(Integer.parseInt(choix)));
+			}
+		}
 		//lister les cartes
 		//faire un check si le joueur a bien des cartes
+	}
+	
+	//Fonction permettant de définir l'action a faire avec une carte Action
+	public void choisirPouvoirCarte(ActionCard carte){
+		
 	}
 }

@@ -1,0 +1,14 @@
+package model.pouvoir;
+
+import model.cards.Card;
+import model.player.Player;
+
+public class Pouvoir {
+	private String nom;
+	
+	private String description;
+	
+	public void onAction(Card carte, Player joueur){
+		
+	}
+}
