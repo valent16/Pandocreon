@@ -20,9 +20,9 @@ public class BouleversementDivin extends CapaciteSpeciale {
             Iterator<Player> it = gameManager.getPlayers().iterator();
             while (it.hasNext()) {
                 Player p = it.next();
-                if (player.getScore() < minPriere) {
-                    minPriere = player.getScore();
-                    joueurPlusFaiblePuissance.add(player);
+                if (p.getScore() < minPriere) {
+                    minPriere = p.getScore();
+                    joueurPlusFaiblePuissance.add(p);
                 }
             }
             if (joueurPlusFaiblePuissance.size()<2) {
@@ -31,15 +31,15 @@ public class BouleversementDivin extends CapaciteSpeciale {
         }else{
             ArrayList<Player> joueurPlusFortePuissance = new ArrayList<Player>();
             int maxPriere = gameManager.getPlayers().get(0).getScore();
-            for (Player j : gameManager.getPlayers()) {
-                if (player.getScore()>maxPriere) {
-                    maxPriere = player.getScore();
-                    joueurPlusFortePuissance.add(player);
+            for (Player p : gameManager.getPlayers()) {
+                if (p.getScore()>maxPriere) {
+                    maxPriere = p.getScore();
+                    joueurPlusFortePuissance.add(p);
                 }
             }
             if (joueurPlusFortePuissance.size()<2) {
                 System.out.println("Le joueur "+joueurPlusFortePuissance.get(0).getNom()+" gagne la partie!");
-                gameManager.setEnCours(false);/////////////////////POUVOIR BLOQUER LA PARTIE
+                gameManager.setEnCours(false); /////////////////////ON ARRETE LA PARTIE
             }
         }
     }
