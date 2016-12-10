@@ -19,15 +19,10 @@ public class HardStrategy implements Strategy {
 	}
 
 	@Override
-	public void jouerCarte() {
-		// TODO Auto-generated method stub
-		
+	public void jouer(Bot b) {
+		this.setBot(b); //Passage des données du bot
+		System.out.println(bot.getNom());
+		bot.afficherHand();
+		System.out.print("ACTION DU BOT: "+ bot.getNom() + " ");	
 	}
-
-	@Override
-	public void poserCroyant() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

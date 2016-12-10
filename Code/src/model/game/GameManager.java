@@ -268,6 +268,14 @@ public class GameManager {
 	public void setCroyants(LinkedList<ActionCard> croyants) {
 		this.croyants = croyants;
 	}
+	
+	public int getIndexJoueur(Player p){
+		return players.indexOf(p);
+	}
+	
+	public Player getJoueurAtIndex(int index){
+		return players.get(index);
+	}
 
 	
 	/*

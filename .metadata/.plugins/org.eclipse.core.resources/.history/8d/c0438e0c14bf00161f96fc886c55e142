@@ -1,0 +1,8 @@
+package view;
+
+import model.player.Player;
+
+public interface ObservateurJoueurReel {
+	public Player selectTarget();
+	
+}

@@ -16,7 +16,7 @@ public class Main{
 	
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
-		int valeur = 3;
+		int valeur = 1;
 		//1: lancement du jeu
 		//2: test sur la classe joueur
 		
@@ -71,14 +71,14 @@ public class Main{
 		joueur2.attacher(new JoueurController(joueur2));
 		Human joueur3 = new Human("Lucas", 20);
 		joueur3.attacher(new JoueurController(joueur3));
-		Bot IA1 = new Bot("henry", new EasyStrategy());
-		Bot IA2 = new Bot("jean jacque", new MediumStrategy());
-		
-		game.ajouterBot(IA1);
-		game.ajouterBot(IA2);
+//		Bot IA1 = new Bot("henry", new EasyStrategy());
+//		Bot IA2 = new Bot("jean jacque", new MediumStrategy());
+//		
+//		game.ajouterBot(IA1);
+//		game.ajouterBot(IA2);
 
-//		game.ajouterJoueurReel(joueur1);
-//		game.ajouterJoueurReel(joueur2);
+		game.ajouterJoueurReel(joueur1);
+		game.ajouterJoueurReel(joueur2);
 		game.ajouterJoueurReel(joueur3);
 		
 		game.nouvellePartie();

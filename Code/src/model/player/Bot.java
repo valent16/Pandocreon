@@ -11,6 +11,7 @@ import model.cards.ActionCard;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
+import model.exception.TargetSelectionException;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
@@ -31,65 +32,7 @@ public class Bot extends Player{
 	public void jouerTour(){
 		incrementerPointActionWithDe();
 		strategy.jouer(this);
-		/*HashMap<Cosmogonie, Integer> pointsAction = this.getDicoPA();
-		System.out.println("les points du BOT "+ this.getNom() +": "  
-				+ pointsAction.get(Cosmogonie.JOUR) +" Point Jour | "
-				+ pointsAction.get(Cosmogonie.NUIT) +" Point Nuit | " + 
-				+ pointsAction.get(Cosmogonie.NEANT) +" Point Néant"); 
-
-
-		//depart
-		int action = (int) (Math.random() * 5) + 1;
-		System.out.println("LACTION "+action);
-		switch (action){
-		case 1: //jouer une carte random et active son pouvoir
-			if(this.getHand().size() != 0){	//si le bot possede des cartes
-				strategy.jouerCarte();
-				System.out.println("action2");
-			}else{//sinon on rappelle la methode pour jouer
-				jouerTour(); 
-			}
-			break;
-
-		case 2://poser un croyant
-			if(getBelievers().size() !=0){
-				System.out.println("on a des croyants");
-				this.afficherHand();
-				//appeler une methode strategy.poserCroyant()
-			}else{
-				System.out.println("on a pas des croyants");
-			}
-			break;
-
-		case 3: //recuperer des croyants avec le guide spirituel
-
-			System.out.println("action3");
-			break;
-
-		case 4: //defausser une ou plusieurs carte
-			//si sa main est vide on rappelle la methode jouer
-			//this.defausserCartes(partie.getCartesDefaussees());
-			System.out.println("action4");
-			break;
-
-		case 5: //completer sa main jusqu'a 7
-			if(this.getHand().size() < 7){
-				//this.completerMain(partie.getPioche());
-				//this.jouer(partie);
-				System.out.println("pas assez de carte");
-			}else{
-				this.jouerTour();
-			}
-			break;
-		case 6: //Sacrifier une carte
-			break;
-		case 7://jouer une apocalypse
-			break;
-		default:
-			break;
-		}*/
 	}
-
 
 	//recupere la strategie des Bots
 	public static Strategy getStrategy() {
@@ -177,14 +120,37 @@ public class Bot extends Player{
 		return apocalypse;
 	}
 
-	//permet de setup le niveau dses bots
+	//permet de setup le niveau des bots
 	private void setStrategy(Strategy strategy) {
 		Bot.strategy = strategy;
+	}
+
+	//Methode qui permet au bot de se defausser d'une carte de maniere random utiliser pour la strategie Random et Easy
+	public void defausserRandom(){
+		int indexCard = (int) (Math.random() * this.getNbCartes())+1;
+		ActionCard card = this.getHand().get(indexCard);
+		this.defausserCarte(card);
+		System.out.println("se defausse de la carte "+ card);
+	}
+
+	//Methode qui permet de jouer une carte Random utiliser pour la strategie Random et Easy
+	public void jouerCarteRandom(){
+		int indexCard = (int) (Math.random() * this.getNbCartes())+1;
+		ActionCard card = this.getHand().get(indexCard);
+		System.out.println("Le bot "+ this.getNom()+" active le pouvoir de la carte "+ this.getHand().get(indexCard));
+		System.out.println("Il faut appeller la bonne methode LA CARTE A ACTIVER LE POUVOIR "+ this.getHand().get(indexCard));
+		//card.utiliserPouvoir(commande, joueur); //TODO activer le pouvoir de la carte
 	}
 
 	@Override
 	public String toString() {
 		return super.toString();
 		//return "Bot [strategy=" +" getStrategy()=" + getStrategy() + "]"+super.toString();
+	}
+
+	@Override
+	public Player pickTarget() throws TargetSelectionException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

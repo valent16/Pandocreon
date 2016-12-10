@@ -48,10 +48,10 @@ public class EasyStrategy implements Strategy {
 					System.out.println(choix);
 					switch(choix){
 						case 1: //soit jouer une carte de maniere random en activant sa capacite
-							jouerCarteRandom();
+							bot.jouerCarteRandom();
 							break;
 						case 2: // soit de se defausser d'une carte de maniere random
-							defausserRandom();
+							bot.defausserRandom();
 							break;
 					}
 				}
@@ -75,32 +75,15 @@ public class EasyStrategy implements Strategy {
 					System.out.println(choix);
 					switch(choix){
 						case 1: //soit jouer une carte de maniere random en activant sa capacite
-							jouerCarteRandom();
+							bot.jouerCarteRandom();
 							break;
 						case 2: // soit de se defausser d'une carte de maniere random
-							defausserRandom();
+							bot.defausserRandom();
 							break;
 					}
 				}
 			}
 		}
-	}
-
-	//Methode qui permet au bot de se defausser d'une carte de maniere random
-	private void defausserRandom(){
-		int indexCard = (int) (Math.random() * bot.getNbCartes())+1;
-		ActionCard card = bot.getHand().get(indexCard);
-		bot.defausserCarte(card);
-		System.out.println("se defausse de la carte "+ card);
-	}
-	
-	//Methode qui permet de jouer une carte Random
-	private void jouerCarteRandom(){
-		int indexCard = (int) (Math.random() * bot.getNbCartes())+1;
-		ActionCard card = bot.getHand().get(indexCard);
-		System.out.println("Le bot "+ bot.getNom()+" active le pouvoir de la carte "+ bot.getHand().get(indexCard));
-		System.out.println("Il faut appeller la bonne methode LA CARTE A ACTIVER LE POUVOIR "+ bot.getHand().get(indexCard));
-		//card.utiliserPouvoir(commande, joueur); //TODO activer le pouvoir de la carte
 	}
 }
 
