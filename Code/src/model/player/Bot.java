@@ -1,12 +1,16 @@
 package model.player;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import model.EnumType.Cosmogonie;
 import model.cards.ActionCard;
 import model.cards.OriginCards.Believer;
+import model.cards.OriginCards.SpiritGuide;
+import model.cards.withoutOriginCards.Apocalypse;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
@@ -26,12 +30,13 @@ public class Bot extends Player{
 	/**Methode qui fait jouer les bots avec la difficulté choisie*/
 	public void jouerTour(){
 		incrementerPointActionWithDe();
-		HashMap<Cosmogonie, Integer> pointsAction = this.getDicoPA();
+		strategy.jouer(this);
+		/*HashMap<Cosmogonie, Integer> pointsAction = this.getDicoPA();
 		System.out.println("les points du BOT "+ this.getNom() +": "  
-			+ pointsAction.get(Cosmogonie.JOUR) +" Point Jour | "
-			+ pointsAction.get(Cosmogonie.NUIT) +" Point Nuit | " + 
-			+ pointsAction.get(Cosmogonie.NEANT) +" Point Néant"); 
-		
+				+ pointsAction.get(Cosmogonie.JOUR) +" Point Jour | "
+				+ pointsAction.get(Cosmogonie.NUIT) +" Point Nuit | " + 
+				+ pointsAction.get(Cosmogonie.NEANT) +" Point Néant"); 
+
 
 		//depart
 		int action = (int) (Math.random() * 5) + 1;
@@ -82,7 +87,7 @@ public class Bot extends Player{
 			break;
 		default:
 			break;
-		}
+		}*/
 	}
 
 
@@ -90,18 +95,86 @@ public class Bot extends Player{
 	public static Strategy getStrategy() {
 		return strategy;
 	}
-	
-	//recupere tous les croyants de la main du bot
-	private LinkedList<Believer> getBelievers(){
+
+	//Tests si le bot possede des croyants dans sa main
+	public boolean hasBelievers(){
 		Iterator<ActionCard> it = getHand().iterator();
-		LinkedList<Believer> believers = new LinkedList<Believer>();
 		while(it.hasNext()){
-			ActionCard card = it.next(); 
-			if(card instanceof Believer){//si c'est un croyant on l'ajoute dans la liste finale
-				believers.add((Believer) card);
+			ActionCard card = it.next();
+			if (card instanceof Believer){
+				return true;
 			}
 		}
-		return believers;
+		return false;
+	}
+
+	//Test si le bot possede des GuidSpirit dans sa main
+	public boolean hasSpiritGuide(){
+		Iterator<ActionCard> it = getHand().iterator();
+		while(it.hasNext()){
+			ActionCard card = it.next();
+			if (card instanceof SpiritGuide){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//Test si le bot possede des Apocalypse dans sa main
+	public boolean hasApocalypse(){
+		Iterator<ActionCard> it = getHand().iterator();
+		while(it.hasNext()){
+			ActionCard card = it.next();
+			if (card instanceof Apocalypse){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//recupere une carte croyant de la main du bot de maniere Random
+	public Believer getBeliever(){
+		List<ActionCard> liste = getHand();
+		Collections.shuffle(liste);
+		Iterator<ActionCard> it = liste.iterator();
+		Believer believer = null;
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof Believer){ //on retourne le premier croyant de la liste
+				believer = (Believer) card;
+			}
+		}
+		return believer;
+	}
+
+	//recupere tous un guide spirit de la main du bot de maniere Random
+	public SpiritGuide getSpiritGuide(){
+		List<ActionCard> liste = getHand();
+		Collections.shuffle(liste);
+		Iterator<ActionCard> it = liste.iterator();
+		SpiritGuide spiritGuide = null;
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof SpiritGuide){ //on retourne le premier SpiritGuide de la liste
+				spiritGuide = (SpiritGuide) card;
+			}
+		}
+		return spiritGuide;
+	}
+
+	//recupere une apocalypse de la main du bot
+	public Apocalypse getApocalypse(){
+		List<ActionCard> liste = getHand();
+		Collections.shuffle(liste);
+		Iterator<ActionCard> it = liste.iterator();
+		Apocalypse apocalypse = null;
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof Apocalypse){ //on retourne la premiere apocalypse croyant de la liste
+				apocalypse = (Apocalypse) card;
+			}
+		}
+		return apocalypse;
 	}
 
 	//permet de setup le niveau dses bots

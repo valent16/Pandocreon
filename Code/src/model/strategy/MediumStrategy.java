@@ -9,10 +9,10 @@ public class MediumStrategy implements Strategy {
 	//- pour la mediumStrat privilégier la pose des croyants, et le récupération avec des guides
 	//- regarder le modele strategy
 	//- test des exceptions
-	
+
 	/**garde le bot qui joue en memoire pour recuperer ses donnees (cartes, score etc..)*/
 	private Bot bot;
-	
+
 	/**
 	 * Methode pour recuperer le bot qui joue
 	 * @param bot le bot qui joue
@@ -20,16 +20,11 @@ public class MediumStrategy implements Strategy {
 	public void setBot(Bot bot) {
 		this.bot = bot;
 	}
-
-	@Override
-	public void jouerCarte() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void poserCroyant() {
-		// TODO Auto-generated method stub
-		
+	
+	public void jouer(Bot b){
+		this.setBot(b); //Passage des données du bot
+		System.out.println(bot.getNom());
+		bot.afficherHand();
+		System.out.print("ACTION DU BOT: "+ bot.getNom() + " ");
 	}
 }
