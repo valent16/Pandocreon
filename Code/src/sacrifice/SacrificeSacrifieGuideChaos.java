@@ -1,4 +1,4 @@
-package capacites;
+package sacrifice;
 
 import model.game.GameManager;
 import model.player.Player;

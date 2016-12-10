@@ -1,4 +1,4 @@
-package capacites;
+package sacrifice;
 
 import java.util.Iterator;
 import model.EnumType.EnumDogme;

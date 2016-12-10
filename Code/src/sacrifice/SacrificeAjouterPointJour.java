@@ -1,4 +1,4 @@
-package capacites;
+package sacrifice;
 
 import model.EnumType.Cosmogonie;
 import model.game.GameManager;

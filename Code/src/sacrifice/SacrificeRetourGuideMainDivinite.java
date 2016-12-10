@@ -1,15 +1,14 @@
-package capacites;
+package sacrifice;
 
 import model.game.GameManager;
 import model.player.Player;
 
-public class RetourGuideMainDivinite extends CapaciteSpeciale {
+public class SacrificeRetourGuideMainDivinite extends Sacrifice{
 
     // Un guide spirituel revient dans la main de sa divinite. Ses croyants reviennent au centre de la table
-    public RetourGuideMainDivinite() {}
 
-    @Override
-    public void effectuerCapaciteSpeciale(Player player, GameManager gameManager) {
+	@Override
+    public void effectuerSacrifice(Player player, GameManager gameManager) {
     }
 
 }

@@ -1,4 +1,4 @@
-package capacites;
+package sacrifice;
 
 import model.EnumType.EnumDogme;
 import model.game.GameManager;
