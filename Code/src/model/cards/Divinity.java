@@ -34,6 +34,10 @@ public class Divinity extends Card implements Serializable{
 	public EnumOrigineDivinite getOrigine(){
 		return origine;
 	}
+	
+	public ArrayList<EnumDogme> getDogme(){
+		return dogmes;
+	}
 
 	@Override
 	public String toString() {
