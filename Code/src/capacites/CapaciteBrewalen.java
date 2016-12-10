@@ -15,7 +15,7 @@ public class CapaciteBrewalen extends CapaciteSpeciale {
     public void effectuerCapaciteSpeciale(Player player, GameManager gameManager) {
         Iterator<Player> it = gameManager.getPlayers().iterator();
         while(it.hasNext()) {
-           it.next().setDroitJouerApocalyspse(false); /////////bloque un joueur de lancer une Apocalypse
+           it.next().setDroitJouerApocalyspse(false); ///////// TODO bloque un joueur de lancer une Apocalypse
         }
     }
 }

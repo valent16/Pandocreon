@@ -2,6 +2,7 @@ package capacites;
 
 import java.util.Arrays;
 
+import model.EnumType.EnumDogme;
 import model.game.GameManager;
 import model.player.Player;
 
@@ -13,9 +14,9 @@ public class EmpecheSacrificeGuideCM extends CapaciteSpeciale {
     
     @Override
     public void effectuerCapaciteSpeciale(Player player, GameManager gameManager) {
-        for (Player player : gameManager.getPlayers()) {
-            if(Arrays.toString(player.getHand().getCartesDivinites().getDogme()).contains("Chaos")||Arrays.toString(player.getHand().getCartesDivinites().getDogme()).contains("Mystique")){
-                player.setDroitSacrifierGuide(false);
+        for (Player p : gameManager.getPlayers()) {
+            if(p.getDivinity().getDogmes().contains(EnumDogme.CHAOS) || p.getDivinity().getDogmes().contains(EnumDogme.MYSTIQUE)){
+                p.setDroitSacrifierGuide(false);
             }
         }
     }

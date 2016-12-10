@@ -25,7 +25,7 @@ public class JoueurController implements Observateur {
 		vueJoueur.jouerTour();
 	}
 	
-	//Mï¿½thode appelï¿½e lorsque le joueur est en tour d'attente
+	//Methode appelle lorsque le joueur est en tour d'attente
 	public void jouerCarteHorsTour(){
 		
 	}
@@ -49,7 +49,7 @@ public class JoueurController implements Observateur {
 //		}catch(PAInsuffisantException e){
 //			return e.getMessage();
 //		}
-		return "l'action a été effectuée";
+		return "l'action a ï¿½tï¿½ effectuï¿½e";
 	}
 
 }

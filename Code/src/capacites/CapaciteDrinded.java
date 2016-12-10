@@ -15,7 +15,7 @@ public class CapaciteDrinded extends CapaciteSpeciale {
     public void effectuerCapaciteSpeciale(Player player, GameManager gameManager){
         Iterator<Player> it = gameManager.getPlayers().iterator();
         while(it.hasNext()) {
-            it.next().setDroitSacrifierGuide(false); //Faire une methode pour empecher le sacrifice du guie par ce joueur
+            it.next().setDroitSacrifierGuide(false); // TODO Faire une methode pour empecher le sacrifice du guie par ce joueur
         }
     }
     

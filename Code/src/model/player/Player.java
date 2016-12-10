@@ -229,6 +229,10 @@ public abstract class Player extends Observer{
 		return dicoPA;
 	}
 
+	public LinkedList<SpiritGuide> getGuides() {
+		return guidesRattaches;
+	}
+
 	@Override
 	public String toString() {
 		return "Player [pseudo=" + pseudo +", dicoPA="+ dicoPA;

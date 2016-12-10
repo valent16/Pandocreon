@@ -35,7 +35,7 @@ public class Divinity extends Card implements Serializable{
 		return origine;
 	}
 	
-	public ArrayList<EnumDogme> getDogme(){
+	public ArrayList<EnumDogme> getDogmes(){
 		return dogmes;
 	}
 

@@ -32,44 +32,8 @@ public class GameManager {
 	private Player joueurDebutTour;
 
 	private Player joueurActif;
-
-
-	public Player getJoueurDebutTour() {
-		return joueurDebutTour;
-	}
-
-	private void setJoueurDebutTour(Player joueurDebutTour) {
-		this.joueurDebutTour = joueurDebutTour;
-	}
-
-	public Player getJoueurActif() {
-		return joueurActif;
-	}
-
-	private void setJoueurActif(Player joueurActif) {
-		this.joueurActif = joueurActif;
-	}
 	
-	public int getNbJoueur(){
-		return players.size();
-	}
-	
-	public ArrayList<Player> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(ArrayList<Player> players) {
-		this.players = players;
-	}
-	
-	public LinkedList<ActionCard> getCroyants() {
-		return croyants;
-	}
-
-	public void setCroyants(LinkedList<ActionCard> croyants) {
-		this.croyants = croyants;
-	}
-
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
 	 * Méthode qui permet d'avoir une seule insatance du gestionnaire de partie
@@ -86,11 +50,13 @@ public class GameManager {
 		return managerUnique;
 	}
 	
+	//Permet de recupeerer toutes les divinites et la pioche
 	public void initialisationPartie(LinkedList<ActionCard> cartesAction, LinkedList<Divinity> divinites ){
 		this.listDivinites = divinites; 
 		this.pioche = cartesAction;
 	}
 	
+	//Methode de demarrage de la partie
 	public void startGame() {
 		this.melangerDivinites();
 		this.melangerPioche();
@@ -149,6 +115,7 @@ public class GameManager {
 		return listDivinites.pop();
 	}
 	
+	//permet de piocher une carte
 	public ActionCard piocherCarte(){
 		if (pioche.size() == 0){
 			if (defausse.size() == 0){
@@ -160,6 +127,7 @@ public class GameManager {
 		return pioche.pop();
 	}
 	
+	//permet de deposer un coroyant sur la table
 	public void deposerCroyant(Card carte){
 		if(carte instanceof Believer){
 			croyants.add((Believer) carte);
@@ -168,13 +136,10 @@ public class GameManager {
 		}
 	}
 	
-	
+	//permet d'ajouter un joueur ou un bot a la partie
 	public void ajouterJoueur(Player joueur){
 		players.add(joueur);
 	}
-
-	
-	//Permet de r�aliser l'initialisation des jeux
 
 	//Permet de réaliser l'initialisation des jeux
 	public void intialisationDesJeux(){
@@ -195,7 +160,7 @@ public class GameManager {
 		}
 	}
 
-	
+	//Tour de jeu
 	public void deroulementTourJeu(){
 		int start = 5;
 		int cpt = 0;
@@ -228,18 +193,14 @@ public class GameManager {
 		players.remove(joueur);
 	}
 
-
-
-
 	/**
-	 * Assigne une Divinité a un joueur
-	 * @param joueur, Le joueur auquel on assigne la Divinité
-	 * @param div, La Divinité a assigner
+	 * Assigne une Divinite a un joueur
+	 * @param joueur, Le joueur auquel on assigne la Divinite
+	 * @param div, La Divinite a assigner
 	 */
 	public void assignerDivinite(Player joueur, Divinity div){
 		joueur.setDivinity(div);
 	}
-
 
 	/**
 	 * Permet de retirer un croyant de la table de jeu
@@ -250,7 +211,7 @@ public class GameManager {
 	}
 
 	
-	//Permet de d�terminer l'index du plus jeune joueur
+	//Permet de determiner l'index du plus jeune joueur
 	public int getIndexJoueurPlusJeune(){
 		Player joueurJeune;
 		int index = 0;
@@ -271,11 +232,43 @@ public class GameManager {
 	public void setDivinites(LinkedList<Divinity> divinites) {
 		this.listDivinites = divinites;
 	}
+	
+	public Player getJoueurDebutTour() {
+		return joueurDebutTour;
+	}
 
-	public Player getPlayer(int index){
-		return players.get(index);
+	public void setJoueurDebutTour(Player joueurDebutTour) {
+		this.joueurDebutTour = joueurDebutTour;
+	}
+
+	public Player getJoueurActif() {
+		return joueurActif;
+	}
+
+	public void setJoueurActif(Player joueurActif) {
+		this.joueurActif = joueurActif;
 	}
 	
+	public int getNbJoueur(){
+		return players.size();
+	}
+	
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(ArrayList<Player> players) {
+		this.players = players;
+	}
+	
+	public LinkedList<ActionCard> getCroyants() {
+		return croyants;
+	}
+
+	public void setCroyants(LinkedList<ActionCard> croyants) {
+		this.croyants = croyants;
+	}
+
 	
 	/*
 	 * M�thodes de test d'affichage, ces m�thodes seront supprim�es par la suite

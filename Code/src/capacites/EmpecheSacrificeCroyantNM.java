@@ -2,10 +2,9 @@ package capacites;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import joueur.Joueur;
+import model.EnumType.EnumDogme;
 import model.game.GameManager;
 import model.player.Player;
-import partie.Partie;
 
 public class EmpecheSacrificeCroyantNM extends CapaciteSpeciale {
     // Empeche une divinité possédant le dogme Nature ou Mystique de sacrifier une de ses cartes de Croyants durant ce tour
@@ -16,9 +15,9 @@ public class EmpecheSacrificeCroyantNM extends CapaciteSpeciale {
     public void effectuerCapaciteSpeciale(Player player, GameManager gameManager) {
         Iterator<Player> it = gameManager.getPlayers().iterator();
         while (it.hasNext()) {
-            Player j = it.next();
-            if(Arrays.toString(j.getMain().getCartesDivinites().getDogme()).contains("Nature")||Arrays.toString(j.getMain().getCartesDivinites().getDogme()).contains("Mystique")){
-                j.setDroitSacrifierCroyant(false);
+            Player p = it.next();
+            if(p.getDivinity().getDogmes().contains(EnumDogme.NATURE)|| p.getDivinity().getDogmes().contains(EnumDogme.MYSTIQUE)){
+                p.setDroitSacrifierCroyant(false);
             }
         }
     }

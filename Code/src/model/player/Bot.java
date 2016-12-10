@@ -91,7 +91,7 @@ public class Bot extends Player{
 		return strategy;
 	}
 	
-	//teste si dans la main on a au moins un croyant et le recupere
+	//recupere tous les croyants de la main du bot
 	private LinkedList<Believer> getBelievers(){
 		Iterator<ActionCard> it = getHand().iterator();
 		LinkedList<Believer> believers = new LinkedList<Believer>();
@@ -103,7 +103,6 @@ public class Bot extends Player{
 		}
 		return believers;
 	}
-	
 
 	//permet de setup le niveau dses bots
 	private void setStrategy(Strategy strategy) {

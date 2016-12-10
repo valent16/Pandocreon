@@ -17,15 +17,15 @@ public class CapaciteLlewella extends CapaciteSpeciale {
         Apocalypse apocalypse;
         Iterator<Player> it = gameManager.getPlayers().iterator();
         while(it.hasNext()) {
-            for (int i=0; i<it.next().getMain().getMainCartesActions().size(); i++) {
-                if (it.next().getHand().getMainCartesActions().get(i) instanceof Apocalypse) {
-                    apocalypse = ((Apocalypse) (it.next().getMain().getMainCartesActions().get(i)));
+            for (int i=0; i<it.next().getHand().size(); i++) {
+                if (it.next().getHand().get(i) instanceof Apocalypse) {
+                    apocalypse = ((Apocalypse) (it.next().getHand().get(i)));
                     break;
                 }
             }
             break;
         }
-        apocalypse.bouleversement(gameManager.getPlayers(), gameManager.getDefausse(), gameManager);
+        // TODO appeller la methode apocalypse avec apocalypse.<nom_methdode()>
     }
     
 }
