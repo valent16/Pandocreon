@@ -25,11 +25,4 @@ public class HardStrategy implements Strategy {
 		this.setBot(bot);
 	}
 
-	@Override
-	public void choisirCarte() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

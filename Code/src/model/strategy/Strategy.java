@@ -5,5 +5,8 @@ import model.player.Bot;
 /**Interface de startégie*/
 public interface Strategy {	
 	
-	public void jouer(Bot bot);
+	public void setBot(Bot bot);
+	public void jouerCarte();
+	public void poserCroyant();
+	
 }

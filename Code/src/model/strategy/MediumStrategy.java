@@ -5,28 +5,30 @@ import model.player.Bot;
 /**Stratégie de jeu moyenne pour les bots*/
 public class MediumStrategy implements Strategy {
 
-	/**garde le bot qui joue en memoir pour recuperer ses sdonnees (cartes, score etc..)*/
+	//- tant qu’il peut jouer, il joue l’ordre des cartes qu’il a 
+	//- pour la mediumStrat privilégier la pose des croyants, et le récupération avec des guides
+	//- regarder le modele strategy
+	//- test des exceptions
+	
+	/**garde le bot qui joue en memoire pour recuperer ses donnees (cartes, score etc..)*/
 	private Bot bot;
 	
 	/**
 	 * Methode pour recuperer le bot qui joue
 	 * @param bot le bot qui joue
 	 */
-	private void setBot(Bot bot) {
+	public void setBot(Bot bot) {
 		this.bot = bot;
 	}
 
 	@Override
-	/**
-	 * Methode de jeu moyenne
-	 * @param bot recupere le bot pour avoir ses parametress
-	 */
-	public void jouer(Bot bot) {
-		this.setBot(bot);
+	public void jouerCarte() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void choisirCarte() {
+	public void poserCroyant() {
 		// TODO Auto-generated method stub
 		
 	}
