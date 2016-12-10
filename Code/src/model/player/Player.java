@@ -17,9 +17,11 @@ import model.EnumType.EnumOrigineDivinite;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
+import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.exception.PAInsuffisantException;
+import model.exception.TargetSelectionException;
 import model.game.De;
 import model.game.GameManager;
 
@@ -148,6 +150,8 @@ public abstract class Player extends Observer{
 			System.out.println("Carte "+hand.indexOf(card) +": "+ card);
 		}
 	}
+	
+	public abstract Player pickTarget() throws TargetSelectionException;
 
 	public void ajouterCroyantPendantTour(Card carte){
 		if (carte instanceof Believer){

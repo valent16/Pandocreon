@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import model.EnumType.Cosmogonie;
 import model.cards.ActionCard;
 import model.cards.OriginCards.Believer;
+import model.exception.TargetSelectionException;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
@@ -113,5 +114,11 @@ public class Bot extends Player{
 	public String toString() {
 		return super.toString();
 		//return "Bot [strategy=" +" getStrategy()=" + getStrategy() + "]"+super.toString();
+	}
+
+	@Override
+	public Player pickTarget() throws TargetSelectionException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

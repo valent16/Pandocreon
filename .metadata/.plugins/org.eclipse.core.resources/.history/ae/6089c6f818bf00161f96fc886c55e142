@@ -1,0 +1,42 @@
+package model.player;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import model.exception.ObservateurNotLinkedException;
+import view.Observateur;
+import view.ObservateurJoueurReel;
+
+public class ObserverHuman {
+	
+	private ObservateurJoueurReel observateur;
+	
+	private LinkedList<Observateur> listeObservateur = new LinkedList<Observateur>();
+	
+	public void attacher(Observateur o){
+		listeObservateur.push(o);
+	}
+	
+	public void detacher(Observateur o){
+		listeObservateur.remove(o);
+	}
+	
+	public Player notifySelectPlayer(){
+		if (observateur == null){
+			throw new ObservateurNotLinkedException("un observateur n'est pas lié à un joueur humain");
+		}
+		
+		return observateur.selectTarget();
+		
+	}
+	
+	
+	public void notifier(){
+		Iterator<Observateur> itObservateur = listeObservateur.iterator();
+		Observateur o;
+		while(itObservateur.hasNext()){
+			o = itObservateur.next();
+			o.update();
+		}
+	}
+}
