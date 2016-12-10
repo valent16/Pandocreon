@@ -1,10 +1,14 @@
 package model.player;
 
+import java.util.HashMap;
+
+import model.EnumType.Cosmogonie;
+import model.game.De;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
 public class Bot extends Player{
-	public static final int AGE_BOT = 200;
+	public final static int AGE_BOT = 200;
 	
 	/**recupere la stratégie choisi au départ pour tous les bots*/
 	private static Strategy strategy;
@@ -14,38 +18,19 @@ public class Bot extends Player{
 		super(pseudo, AGE_BOT);
 		setStrategy(strat);
 	}
-
-	/**Methode qui fait jouer les bots avec la difficulté choisie*/
-//	public static void play(Strategy strategy){
-//		strategy.play();
-//	}
 	
-	/*
-	public static void easyPlay() {
-		System.out.println("BOT : difficulté facile");
-		play(new EasyStrategy());
-	}
-
-	public static void mediumPlay() {
-		System.out.println("BOT : difficulté moyen");
-		play(new MediumStrategy());	
-	}
-
-	public static void hardPlay() {
-		System.out.println("BOT : difficulté difficile");
-		play(new HardStrategy());
-	}
-	*/
-		
+	/**Methode qui fait jouer les bots avec la difficulté choisie*/
 	public void jouerTour(){
 		incrementerPointActionWithDe();
-		//Appel � la strat du Bot
+		strategy.jouer(this);
 	}
-
+	
+	//recupere la strategie des Bots
 	public static Strategy getStrategy() {
 		return strategy;
 	}
 
+	//permet de setup le niveau dses bots
 	private void setStrategy(Strategy strategy) {
 		Bot.strategy = strategy;
 	}

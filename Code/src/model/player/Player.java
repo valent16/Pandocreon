@@ -27,30 +27,30 @@ public abstract class Player extends Observer{
 	//A voir si chaque joueur a un tableau de Points d'action
 	// ou si on fait un tableau pour chaque type de point d'action
 	//ou un seul tableau de taille 3 avec en indice 0 les points de jour, indice 1 les points de nuit, indice 2 les points de neant, 
-	
+
 	public static final int NB_CARTE_MAX = 7;
-	
+
 	/**chaine de caractere representant le nom du joueur*/
 	private String pseudo;
-	
+
 	/**Entier representant le nombre de croyant que possede le joueur*/
 	protected int score;
-	
+
 	private int age;
-	
+
 	/**Liste representant la main d'un joueur*/ 
 	protected LinkedList<ActionCard> hand = new LinkedList<ActionCard>();
-	
+
 	/**Dictionnaire contenant les points d'action du joueur*/
 	private HashMap<Cosmogonie, Integer> dicoPA = new HashMap<Cosmogonie, Integer>();
-	
+
 	private LinkedList<Believer> croyantDeposesPendantTour = new LinkedList<Believer>();
-	
+
 	private LinkedList<SpiritGuide> guidesRattaches = new LinkedList<SpiritGuide>();
-	
+
 	/**Carte divinte du joueur*/
 	private Divinity divinity;
-	
+
 	/**Attribut representant la liste des joueurs*/
 	////////////////////////////////////////////Faire en sorte que cette liste soit créer en fonction du nombre de joueur définie par l'utilisateur*/
 	public final static String[] NOM = {"Joueur1","Joueur2","Joueur3","Joueur4","Joueur5","Joueur6","Joueur7","Joueur8","Joueur9","Joueur10"};
@@ -59,56 +59,56 @@ public abstract class Player extends Observer{
 	public Player(String pseudo, int age){
 		this.setNom(pseudo);
 		this.setAge(age);
-		
+
 		//Permet l'initialisation du dictionnaire de points d'action du joueur
 		Cosmogonie valuesEnumPointAction[] = Cosmogonie.values();
 		for (int i = 0; i< valuesEnumPointAction.length; i++) {
 			dicoPA.put(valuesEnumPointAction[i], 0);
 		}
 	}
-	
+
 	//M�thode de jeu de tour qui se fait red�finir pour le joueur et le bot
 	public abstract void jouerTour();
-	
-	
+
+
 	/** Le joueur joue une carte et donc on l'enleve de sa main*/
 	public void JouerCarte(ActionCard carte) {
 		//carte.utiliserPouvoir(commande, this);
 		//hand.remove(carte);
 	}
-	
+
 	/**Methode piocher*/
 	public void piocher(){
 		hand.add(GameManager.getInstanceUniqueManager().piocherCarte());
-    }
-	
+	}
+
 	//Permet au joueur de piocher sa divinite
 	public void piocherDivinite(){
 		this.divinity = GameManager.getInstanceUniqueManager().piocherDivinite();
 	}
-	
+
 	public static Object deepClone(Object object) {
-	   try {
-	     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	     ObjectOutputStream oos = new ObjectOutputStream(baos);
-	     oos.writeObject(object);
-	     ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-	     ObjectInputStream ois = new ObjectInputStream(bais);
-	     return ois.readObject();
-	   }
-	   catch (Exception e) {
-	     e.printStackTrace();
-	     return null;
-	   }
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(baos);
+			oos.writeObject(object);
+			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+			ObjectInputStream ois = new ObjectInputStream(bais);
+			return ois.readObject();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
-	
-	
+
+
 	//Permet de renvoyer une liste 
 	public List<ActionCard> getHand(){ 
-//		return Collections.unmodifiableList((LinkedList<ActionCard>) deepClone(hand));
+		//		return Collections.unmodifiableList((LinkedList<ActionCard>) deepClone(hand));
 		return Collections.unmodifiableList(hand);
 	}
-	
+
 	/**Getter du pseudo*/
 	public String getNom(){
 		return pseudo;
@@ -138,11 +138,11 @@ public abstract class Player extends Observer{
 	private void setAge(int age) {
 		this.age = age;
 	}
-	
+
 	public void lancerDe(){
 		De.getInstanceDe().lancerDe();
 	}
-	
+
 	public void ajouterCroyantPendantTour(Card carte){
 		if (carte instanceof Believer){
 			this.croyantDeposesPendantTour.add((Believer)carte);
@@ -150,7 +150,7 @@ public abstract class Player extends Observer{
 			//Lancement d'un exception
 		}
 	}
-	
+
 	public void rattacherGuide(Card carte){
 		if(carte instanceof SpiritGuide){
 			this.guidesRattaches.add((SpiritGuide) carte);
@@ -158,71 +158,79 @@ public abstract class Player extends Observer{
 			//Lancement d'une exception
 		}
 	}
-	
+
 	public void viderCroyantPendantTour(){
-//		this.croyantDeposesPendantTour.re
+		//		this.croyantDeposesPendantTour.re
 	}
-	
+
 	public void retirerCarte(ActionCard carte){
 		hand.remove(carte);
 	}
-	
+
 	public void defausserCartes(LinkedList<ActionCard> cartes){
 		hand.removeAll(cartes);
 		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
 	}
-	
+
 	public void defausserCarte(ActionCard carte){
 		hand.remove(carte);
 		GameManager.getInstanceUniqueManager().defausserCarte(carte);
 	}
-	
+
 	//Fonction permettant de compl�ter la main du joueur
 	public void piocherCartes(){
 		while (hand.size() <= NB_CARTE_MAX){
 			hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
 		}
 	}
-	
+
 	public int getNbCartes(){
 		return hand.size();
 	}
-	
+
+	//Methode qui permet d'incrementer les pointsd'action du joueur du nombre de points indiqué
+	public void incrementerPointAction(Cosmogonie typePA, int nbPA){
+		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
+	}
+
 	public void decrementerPointAction(Cosmogonie typePA, int nbPA) throws PAInsuffisantException{
 		if ((dicoPA.get(typePA) - nbPA) < 0){
 			throw new PAInsuffisantException("Pas assez de point d'action "+dicoPA.get(typePA));
 		}
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
 	}
-	
+
 	//Methode appelee a chaque debut de tour pour attribuer les PA au joueur
 	protected void incrementerPointActionWithDe(){
 		if (divinity.getOrigine() == EnumOrigineDivinite.AUBE || divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE){
 			if(De.getInstanceDe().getFace() == Cosmogonie.NEANT){
-				dicoPA.put(Cosmogonie.NEANT, dicoPA.get(Cosmogonie.NEANT) +1);
+				incrementerPointAction(Cosmogonie.NEANT, dicoPA.get(Cosmogonie.NEANT) +1);
 			}else{
-				dicoPA.put(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +1);
+				incrementerPointAction(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +1);
 			}
 		}else{
 			if (De.getInstanceDe().getFace() == Cosmogonie.JOUR || De.getInstanceDe().getFace() == Cosmogonie.NUIT){
-				dicoPA.put(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +2);
+				incrementerPointAction(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +2);
 			}
 		}
-	}
-	
+	}	
 
-	public void incrementerPointAction(Cosmogonie typePA, int nbPA){
-		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
+	/**
+	 * Methode qui permet de recuperer les points d'cations d'un joueur
+	 * @return dicoPA, les points d'action JOUR, NUIT, NEANT du joueur
+	 */
+	public HashMap<Cosmogonie, Integer> getDicoPA(){
+		return dicoPA;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Player [pseudo=" + pseudo +", dicoPA="+ dicoPA;
-		
+
 		/*
 		return "Player [pseudo=" + pseudo + ", score=" + score + ", age=" + age + ", hand=" + hand + ", dicoPA="
 				+ dicoPA + ", divinity=" + divinity + "]";
-				*/
+		 */
 	}
 }
 

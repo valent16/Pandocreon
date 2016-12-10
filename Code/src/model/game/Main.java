@@ -16,7 +16,7 @@ public class Main{
 	
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
-		int valeur =1;
+		int valeur = 3;
 		//1: lancement du jeu
 		//2: test sur la classe joueur
 		
@@ -33,12 +33,31 @@ public class Main{
 			case 2:
 				testJoueur();
 				break;
+			case 3:
+				testBot();
+				break;
 			default:
 				//ne rien mettre
 		}
 	}
 	
-	
+	//test du bot
+	private static void testBot() {
+		Game game = new Game();
+		game.initGame();
+		
+		Bot b1 = new Bot("bot1", new EasyStrategy());
+		Bot b2 = new Bot("bot2", new EasyStrategy());
+		
+		game.ajouterBot(b1);
+		game.ajouterBot(b2);
+		
+		game.nouvellePartie();
+		
+		GameManager.getInstanceUniqueManager().startGame();
+	}
+
+
 	public static void testCreationPartie(){
 		Game game = new Game();
 		game.initGame();
