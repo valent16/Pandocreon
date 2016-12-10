@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -138,6 +139,15 @@ public abstract class Player extends Observer{
 	public void lancerDe(){
 		De.getInstanceDe().lancerDe();
 	}
+	
+	/**Methode qui permet d'afficher la main du joueur*/
+	public void afficherHand(){
+		Iterator<ActionCard> it = hand.iterator();
+		while(it.hasNext()){
+			ActionCard card = (ActionCard) it.next();
+			System.out.println("Carte "+hand.indexOf(card) +": "+ card);
+		}
+	}
 
 	public void ajouterCroyantPendantTour(Card carte){
 		if (carte instanceof Believer){
@@ -156,7 +166,7 @@ public abstract class Player extends Observer{
 	}
 
 	public void viderCroyantPendantTour(){
-		//		this.croyantDeposesPendantTour.re
+		//this.croyantDeposesPendantTour.re
 	}
 
 	public void retirerCarte(ActionCard carte){

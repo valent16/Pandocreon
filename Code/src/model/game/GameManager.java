@@ -203,8 +203,8 @@ public class GameManager {
 		
 		//players.size()>2
 		while(b){
-			System.out.println("Tour N�"+cpt);
 			players.get(start%players.size()).lancerDe();
+			System.out.println("Tour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
 			
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				players.get(i%players.size()).jouerTour();	

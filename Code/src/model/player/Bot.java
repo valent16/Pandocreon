@@ -1,5 +1,10 @@
 package model.player;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import model.cards.ActionCard;
+import model.cards.OriginCards.Believer;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
@@ -20,6 +25,7 @@ public class Bot extends Player{
 		incrementerPointActionWithDe();
 		strategy.jouer(this);
 	}
+	
 	
 	//recupere la strategie des Bots
 	public static Strategy getStrategy() {
