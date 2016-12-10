@@ -55,6 +55,9 @@ public class Main{
 		game.nouvellePartie();
 		
 		GameManager.getInstanceUniqueManager().startGame();
+		System.out.println(b1.getDivinity().getOrigine());
+		System.out.println(b2.getDivinity().getOrigine());
+		b1.jouerTour();
 	}
 
 

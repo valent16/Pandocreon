@@ -5,22 +5,29 @@ import java.util.HashMap;
 import model.EnumType.Cosmogonie;
 import model.player.Bot;
 
-/**Stratégie de jeu facile pour les bots*/
+/**Stratégie de jeu facile pour les bots
+ * Les choix se font au hasard*/
 public class EasyStrategy implements Strategy {
 
 	//FAIRE LA METHODE JOUER 
-	//TESTER LES TYPES DE CARTE DANS SA MAIN SI IL A DES CROYANTS
+			//TESTER LES TYPES DE CARTE DANS SA MAIN SI IL A DES CROYANTS
 
-	//- tant qu’il peut jouer, il joue l’ordre des cartes qu’il a 
-	//- pour la easyStrat privilégier la pose des croyants, et le récupération avec des guides
-	//- regarder le modele strategy
-	//- test des exceptions
-
+			//- tant qu’il peut jouer, il joue l’ordre des cartes qu’il a 
+			//- pour la easyStrat privilégier la pose des croyants, et le récupération avec des guides
+			//- regarder le modele strategy
+			//- test des exceptions
+	
+	//POUR LA EASY STRATEGIE FAIRE UN CHOIX RANDOM parmi les choix suivants:
+	//Suivre le code sur le site
+	
+	
+	
+    
 	/**garde le bot qui joue en memoir pour recuperer ses sdonnees (cartes, score etc..)*/
 	private Bot bot;
 
-	/**méthode pour recuperer le bot qui joue
-	 * 
+	/**
+	 * Methode pour recuperer le bot qui joue
 	 * @param bot le bot qui joue
 	 */
 	private void setBot(Bot bot) {
@@ -35,10 +42,62 @@ public class EasyStrategy implements Strategy {
 	public void jouer(Bot bot) {
 		this.setBot(bot);
 		HashMap<Cosmogonie, Integer> pointsAction = bot.getDicoPA();
-		//linkedlist getDICOPA avec un iterateur//////////////////////////////////////////////////////////////////////////////////
-		System.out.println("Point Action: (Jour: " + pointsAction.get(Cosmogonie.JOUR) + ") " + "(Nuit: " + pointsAction.get(Cosmogonie.NUIT) + ") "
-				+ "(Néant: " + pointsAction.get(Cosmogonie.NEANT) + ")");
+		System.out.println("les points du BOT "+ bot.getNom() +": "  
+			+ pointsAction.get(Cosmogonie.JOUR) +" Point Jour | "
+			+ pointsAction.get(Cosmogonie.NUIT) +" Point Nuit | " + 
+			+ pointsAction.get(Cosmogonie.NEANT) +" Point Néant"); 
 
+		
+		/*voir dans la classe Player les possibilités du joueur
+		faire un switchcase 
+		qui recupere un choix et qui effectue un test si le choix est possible exemple poser un croyant 
+		necessite d'en avoir donc si le test est a true on appelle la boonne fonction, sinon on rappelele la methode jouer*/
+		
+		//-defausserCartes
+		//-Sacrifier une carte
+		
+		//depart
+	    int action = (int) (Math.random() * 5) + 1;
+		System.out.println("action "+action);
+        switch (action){
+            case 0:
+                break;
+            case 1:	//jouer une carte
+            	System.out.println("action1");
+                //int cardInt = this.choisirCarte(bot.getHand().size());
+                //System.out.println("Carte a jouer : " + bot.getHand().get(cardInt));
+                //this.playCard(partie, bot.getHand().get(cardInt));
+                break;
+            
+            case 2: //poser un croyant
+            	System.out.println("action2");
+                break;
+            
+            case 3: //recuperer des croyants avec le guide spirituel
+            	
+            	System.out.println("action3");
+            	break;
+            
+            case 4: //defausser une ou plusieurs carte
+            	//si sa main est vide on rappelle la methode jouer
+                //this.defausserCartes(partie.getCartesDefaussees());
+            	System.out.println("action4");
+                break;
+            
+            case 5: //completer sa main jusqu'a 7
+                if(bot.getHand().size() < 7){
+                	//this.completerMain(partie.getPioche());
+                    //this.jouer(partie);
+                	System.out.println("action5");
+                }else{
+                    this.jouer(bot);
+                }
+                break;
+            default:
+                break;
+        }
+
+		
 		//this.seDefausserCartesEtCompleter(partie);
 		//this.choisirCarte(partie);
 		//if (this.sacrifice && this.laMain.getListeCroyantGuidee().size() != 0) {
@@ -46,12 +105,95 @@ public class EasyStrategy implements Strategy {
 		//}
 	}
 
-	@Override
-	public void choisirCarte() {
-		// TODO Auto-generated method stub
-		
+	private void choisirCarte() {
+		// TODO Auto-generated method stub	
+		System.out.println("chirsier une carte");
 	}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	@Override
+    public int choixDefausserCartes(JoueurVirtuel joueur, Defausse defausse) {
+        int choix = ((int) (Math.random()*2+1));
+        return choix;
+    }
 
+    // Strategie : les choix se font au hasard
+
+    @Override
+    public int[] choixCartesADefausser(JoueurVirtuel joueur) {
+        int nbCartesADefausser = ((int) (Math.random()*joueur.getMain().getMainCartesActions().size()+1));
+        int[] choixCartes = new int[nbCartesADefausser];
+        for (int i=0; i<choixCartes.length; i++) {
+            choixCartes[i] = ((int) (Math.random()*joueur.getMain().getMainCartesActions().size()+1));
+        }
+        return choixCartes;
+    }
+
+    @Override
+    public int choixAction() {
+        int choix = ((int) (Math.random()*4+1));
+        return choix;
+    }
+
+    public int choixCartesAction(JoueurVirtuel joueur) {
+        int choix = ((int) (Math.random()*joueur.getMain().getMainCartesActions().size()+1));
+        return choix;
+    }
+
+    @Override
+    public int choixPointAction() {
+        int choix = ((int) (Math.random()*3+1));
+        return choix;
+    }
+
+    @Override
+    public int choixContinuerJouerCarte(JoueurVirtuel joueur) {
+        int choix = ((int) (Math.random()*2+1));
+        return choix;
+    }
+
+    @Override
+    public int choixCarteChamp(JoueurVirtuel joueur) {
+        int nbCartesChamp = joueur.getChamp().getListeCartes().size();
+        int choixCarteSacrifice = ((int) (Math.random()*nbCartesChamp+1));
+        return choixCarteSacrifice;
+    }
+
+    @Override
+    public int choixJoueur(JoueurVirtuel joueur, Partie partie) {
+        int choixJoueur;
+        do {
+            choixJoueur = (int) (Math.random() * partie.getNbJoueur() + 1);
+        } while ((choixJoueur - 1) != partie.getListJoueur().indexOf(joueur));
+        return choixJoueur;
+    }
+    
+    @Override
+    public int choixGuide(JoueurVirtuel joueur) {
+        int choixGuide;
+        do {
+            choixGuide = (int) (Math.random() * joueur.getChamp().getListeCartes().size() + 1);
+        } while (!(joueur.getChamp().getListeCartes().get(choixGuide - 1) instanceof GuideSpirituel));
+        return choixGuide;
+    }
+    
+    @Override
+    public int choixCroyant(JoueurVirtuel joueur) {
+        int choixCroyant;
+        do {
+            choixCroyant = (int) (Math.random() * joueur.getChamp().getListeCartes().size() + 1);
+        } while (!(joueur.getChamp().getListeCartes().get(choixCroyant - 1) instanceof Croyant));
+        return choixCroyant;
+    }
+
+    @Override
+    public int choixOrigine() {
+        int choixOrigine;
+        choixOrigine = (int)(Math.random()*3)+1;
+        return choixOrigine;
+}
+    */
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//@Override
 	/*public void seDefausserCartesEtCompleter() {
 		JeuDeCartes jeuDeCartes=partie.getJeuDeCartes();

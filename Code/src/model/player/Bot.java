@@ -1,9 +1,5 @@
 package model.player;
 
-import java.util.HashMap;
-
-import model.EnumType.Cosmogonie;
-import model.game.De;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/

@@ -6,7 +6,7 @@ import model.pouvoir.Pouvoir;
 
 public class PouvoirApocalypse extends Pouvoir {
 	public PouvoirApocalypse() {
-		super("Réalise un grand bouleversement dans le jeu");
+		super("Rï¿½alise un grand bouleversement dans le jeu");
 	}
 	
 	@Override

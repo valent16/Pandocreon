@@ -6,5 +6,4 @@ import model.player.Bot;
 public interface Strategy {	
 	
 	public void jouer(Bot bot);
-	public void choisirCarte();
 }

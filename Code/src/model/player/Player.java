@@ -51,10 +51,6 @@ public abstract class Player extends Observer{
 	/**Carte divinte du joueur*/
 	private Divinity divinity;
 
-	/**Attribut representant la liste des joueurs*/
-	////////////////////////////////////////////Faire en sorte que cette liste soit créer en fonction du nombre de joueur définie par l'utilisateur*/
-	public final static String[] NOM = {"Joueur1","Joueur2","Joueur3","Joueur4","Joueur5","Joueur6","Joueur7","Joueur8","Joueur9","Joueur10"};
-
 	/**Constructeur public*/
 	public Player(String pseudo, int age){
 		this.setNom(pseudo);
@@ -67,7 +63,7 @@ public abstract class Player extends Observer{
 		}
 	}
 
-	//M�thode de jeu de tour qui se fait red�finir pour le joueur et le bot
+	//Methode de jeu de tour qui se fait red�finir pour le joueur et le bot
 	public abstract void jouerTour();
 
 
