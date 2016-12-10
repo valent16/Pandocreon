@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import model.EnumType.EnumDogme;
 import model.EnumType.EnumOrigineDivinite;
+import model.player.Player;
 
 //Represente une carte divinité
 public class Divinity extends Card implements Serializable{
@@ -25,7 +26,7 @@ public class Divinity extends Card implements Serializable{
 	}
 
 	@Override
-	public void utiliserPouvoir(String commande) {
+	public void utiliserPouvoir(String commande, Player joueur) {
 		// TODO Auto-generated method stub	
 	}
 	

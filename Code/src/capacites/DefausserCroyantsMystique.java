@@ -16,7 +16,7 @@ public class DefausserCroyantsMystique extends CapaciteSpeciale {
     public void effectuerCapaciteSpeciale(Player player, GameManager gameManager) {
         Iterator<ActionCard> it = gameManager.getCroyants().iterator();
         while (it.hasNext()) {
-        	si c'est un croyant on la defausse
+        	//si c'est un croyant on la defausse
         }
     }
 }

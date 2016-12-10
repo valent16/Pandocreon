@@ -3,6 +3,7 @@ package model.cards.OriginCards;
 import java.io.Serializable;
 
 import model.EnumType.Cosmogonie;
+import model.player.Player;
 
 public class ApocalypseWithOrigin extends ActionCardWithOrigin implements Serializable {
 
@@ -12,7 +13,7 @@ public class ApocalypseWithOrigin extends ActionCardWithOrigin implements Serial
 	}
 
 	@Override
-	public void utiliserPouvoir(String commande) {
+	public void utiliserPouvoir(String commande,Player joueur) {
 		// TODO Auto-generated method stub
 		
 	}

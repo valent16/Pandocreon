@@ -2,6 +2,7 @@ package model.cards.OriginCards;
 
 import java.io.Serializable;
 import model.EnumType.Cosmogonie;
+import model.player.Player;
 
 public class DeusExWithOrigin extends ActionCardWithOrigin implements Serializable{
 
@@ -11,7 +12,7 @@ public class DeusExWithOrigin extends ActionCardWithOrigin implements Serializab
 	}
 
 	@Override
-	public void utiliserPouvoir(String commande) {
+	public void utiliserPouvoir(String commande,Player joueur) {
 		// TODO Auto-generated method stub
 	}
 

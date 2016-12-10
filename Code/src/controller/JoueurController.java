@@ -43,17 +43,12 @@ public class JoueurController implements Observateur {
 	}
 	
 	public String jouerCarte(ActionCard carte){
-		
-		
-		
-		try{
-			
-			
+//		try{
 			
 			//joueur.JouerCarte(carte);
-		}catch(PAInsuffisantException e){
-			return e.getMessage();
-		}
+//		}catch(PAInsuffisantException e){
+//			return e.getMessage();
+//		}
 		return "l'action a été effectuée";
 	}
 

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import model.cards.ActionCard;
+import model.cards.Card;
 import model.cards.Divinity;
 import model.cards.OriginCards.Believer;
 import model.player.Player;
@@ -159,8 +160,12 @@ public class GameManager {
 		return pioche.pop();
 	}
 	
-	public void deposerCroyant(Believer carte){
-		croyants.add(carte);
+	public void deposerCroyant(Card carte){
+		if(carte instanceof Believer){
+			croyants.add((Believer) carte);
+		}else{
+			//lancement d'un exception si la carte n'est pas un croyant
+		}
 	}
 	
 	

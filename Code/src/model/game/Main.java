@@ -70,7 +70,7 @@ public class Main{
 		Player p1 = new Human("jean Yves", 12);
 		p1.incrementerPointAction(Cosmogonie.JOUR, 2);
 		System.out.println(p1.toString());
-		p1.decrementerPointAction(Cosmogonie.JOUR, 1);
+		//p1.decrementerPointAction(Cosmogonie.JOUR, 1);
 		System.out.println(p1.toString());
 	}
 }

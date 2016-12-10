@@ -53,12 +53,12 @@ public class VueGame {
 	public void jouerNouvellePartie(){
 		Scanner sc = new Scanner(System.in);
 		String choix="2";
-		System.out.println("Vous dï¿½sirez lancer un nouvelle partie");
+		System.out.println("Vous desirez lancer une nouvelle partie");
 		System.out.println("Combien de joueur souhaitez vous initialiser ?");
 		System.out.println("Cette partie peut contenir entre 2 et " + game.getNbJoueurMax());
 		do{
 			if (!choix.equals("2")){
-				System.out.println("vous avez fait une erreur lors de l'entrï¿½e de la valeur");
+				System.out.println("vous avez fait une erreur lors de l'entree de la valeur");
 			}
 			System.out.println("tapez 0 pour revenir au menu principal");
 			System.out.print("votre choix : ");
@@ -68,7 +68,7 @@ public class VueGame {
 		if (choix.equals("0")){
 			MenuPrincipal();
 		}else{
-			System.out.println("vous avez dï¿½cidï¿½ de crï¿½er "+choix+" joueurs");
+			System.out.println("vous avez decide de creer "+choix+" joueurs");
 			this.creationJoueurs(Integer.parseInt(choix));
 		}
 	}
@@ -83,7 +83,7 @@ public class VueGame {
 			String choix="3";
 			do{
 				if (!choix.equals("3")){
-					System.out.println("Vous avez fait un erreur lors de l'entrï¿½e de la valeur");
+					System.out.println("Vous avez fait un erreur lors de l'entree de la valeur");
 				}
 				System.out.println("Quel type de joueur souhaitez-vous ajouter ?");
 				System.out.println("1- IA");
@@ -113,7 +113,7 @@ public class VueGame {
 		System.out.println("veuillez renseigner l'age de la personne : ");
 		age = sc.nextLine();
 		while(!age.matches("[0-9]+")){
-			System.out.println("l'age entrï¿½ est invalide");
+			System.out.println("l'age entre est invalide");
 			age = sc.nextLine();
 		}
 		controllerJeu.CreationJoueur(nom, Integer.parseInt(age));
@@ -124,13 +124,13 @@ public class VueGame {
 		String nomStrat;
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Veuillez renseigner le niveau de difficultï¿½ de ce bot : ");
+		System.out.println("Veuillez renseigner le niveau de difficulte de ce bot : ");
 		System.out.println("1- facile");
 		System.out.println("2- medium");
 		System.out.println("3- difficile");
 		String choix = sc.nextLine();
 		while(!choix.matches("[0-9]+") && Integer.parseInt(choix)>3 && Integer.parseInt(choix)<1){
-			System.out.println("le choix de difficultï¿½ est invalide");
+			System.out.println("le choix de difficulte est invalide");
 		}
 		
 		switch(choix){
@@ -149,12 +149,12 @@ public class VueGame {
 		}
 		
 		controllerJeu.CreationBot(game.getBotName(index), nomStrat);
-		System.out.println("utilitaire de crï¿½ation de joueur");
+		System.out.println("utilitaire de creation de joueur");
 	}
 	
 	//méthode permettant le chargement d'une ancienne partie
 	public void chargerAnciennePartie(){
-		System.out.println("cette partie n'est pas encore implï¿½mentï¿½e");
+		System.out.println("cette partie n'est pas encore implementee");
 		this.MenuPrincipal();
 	}
 	

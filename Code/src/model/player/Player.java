@@ -14,6 +14,7 @@ import model.Observer;
 import model.EnumType.Cosmogonie;
 import model.EnumType.EnumOrigineDivinite;
 import model.cards.ActionCard;
+import model.cards.Card;
 import model.cards.Divinity;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
@@ -142,6 +143,30 @@ public abstract class Player extends Observer{
 		De.getInstanceDe().lancerDe();
 	}
 	
+	public void ajouterCroyantPendantTour(Card carte){
+		if (carte instanceof Believer){
+			this.croyantDeposesPendantTour.add((Believer)carte);
+		}else{
+			//Lancement d'un exception
+		}
+	}
+	
+	public void rattacherGuide(Card carte){
+		if(carte instanceof SpiritGuide){
+			this.guidesRattaches.add((SpiritGuide) carte);
+		}else{
+			//Lancement d'une exception
+		}
+	}
+	
+	public void viderCroyantPendantTour(){
+//		this.croyantDeposesPendantTour.re
+	}
+	
+	public void retirerCarte(ActionCard carte){
+		hand.remove(carte);
+	}
+	
 	public void defausserCartes(LinkedList<ActionCard> cartes){
 		hand.removeAll(cartes);
 		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
@@ -149,6 +174,7 @@ public abstract class Player extends Observer{
 	
 	public void defausserCarte(ActionCard carte){
 		hand.remove(carte);
+		GameManager.getInstanceUniqueManager().defausserCarte(carte);
 	}
 	
 	//Fonction permettant de compl�ter la main du joueur

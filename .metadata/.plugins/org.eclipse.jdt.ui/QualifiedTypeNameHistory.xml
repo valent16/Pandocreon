@@ -8,7 +8,6 @@
 <fullyQualifiedTypeName name="model.cards.CarteDogmatique"/>
 <fullyQualifiedTypeName name="model.cards.OriginCards.ActionCardWithOrigin"/>
 <fullyQualifiedTypeName name="model.EnumType.EnumDogme"/>
-<fullyQualifiedTypeName name="model.cards.OriginCards.SpiritGuide"/>
 <fullyQualifiedTypeName name="model.cards.OriginCards.DeusExWithOrigin"/>
 <fullyQualifiedTypeName name="model.cards.withoutOriginCards.DeusEx"/>
 <fullyQualifiedTypeName name="model.cards.withoutOriginCards.Apocalypse"/>
@@ -20,7 +19,6 @@
 <fullyQualifiedTypeName name="model.gestionDonnees.FakeSaver"/>
 <fullyQualifiedTypeName name="model.gestionDonnees.ParserXML"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="model.game.GameManager"/>
 <fullyQualifiedTypeName name="view.console.VueGame"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="controller.GameController"/>
@@ -52,12 +50,14 @@
 <fullyQualifiedTypeName name="model.exception.PAInsuffisantException"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="model.cards.Card"/>
-<fullyQualifiedTypeName name="model.player.Player"/>
 <fullyQualifiedTypeName name="model.cards.OriginCards.Believer"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="model.pouvoir.pouvoirCarte.DepotCroyant"/>
-<fullyQualifiedTypeName name="model.pouvoir.Pouvoir"/>
 <fullyQualifiedTypeName name="model.pouvoir.pouvoirCarte.ConversionCroyant"/>
 <fullyQualifiedTypeName name="model.pouvoir.pouvoirCarte.PouvoirApocalypse"/>
+<fullyQualifiedTypeName name="model.player.Player"/>
+<fullyQualifiedTypeName name="model.pouvoir.Pouvoir"/>
+<fullyQualifiedTypeName name="model.game.GameManager"/>
+<fullyQualifiedTypeName name="model.cards.Card"/>
+<fullyQualifiedTypeName name="model.cards.OriginCards.SpiritGuide"/>
 </qualifiedTypeNameHistroy>

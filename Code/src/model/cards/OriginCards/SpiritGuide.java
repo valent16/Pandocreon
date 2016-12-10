@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.EnumType.EnumDogme;
+import model.player.Player;
 import model.EnumType.Cosmogonie;
 
 /**Classe représentant une carte guide spirituel*/
@@ -21,7 +22,7 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 	}
 
 	@Override
-	public void utiliserPouvoir(String commande) {
+	public void utiliserPouvoir(String commande,Player joueur) {
 		// TODO Auto-generated method stub
 	}
 

@@ -3,6 +3,7 @@ package model.cards.withoutOriginCards;
 import java.io.Serializable;
 
 import model.cards.ActionCard;
+import model.player.Player;
 
 public class DeusEx extends ActionCard implements Serializable{
 
@@ -12,7 +13,7 @@ public class DeusEx extends ActionCard implements Serializable{
 	}
 
 	@Override
-	public void utiliserPouvoir(String commande) {
+	public void utiliserPouvoir(String commande, Player joueur) {
 		// TODO Auto-generated method stub
 		
 	}

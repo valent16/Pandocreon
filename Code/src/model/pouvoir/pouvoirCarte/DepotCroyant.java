@@ -1,6 +1,7 @@
 package model.pouvoir.pouvoirCarte;
 
 import model.cards.Card;
+import model.game.GameManager;
 import model.player.Player;
 import model.pouvoir.Pouvoir;
 
@@ -10,9 +11,9 @@ public class DepotCroyant extends Pouvoir{
 		super("Permet de déposer un coyant sur la table de jeu");
 	}
 	
-	
 	@Override
 	public void onAction(Card carte, Player joueur) {
-		// TODO Auto-generated method stub
+		GameManager.getInstanceUniqueManager().deposerCroyant(carte);
+		joueur.ajouterCroyantPendantTour(carte);
 	}
 }

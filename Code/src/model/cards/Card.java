@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.UUID;
 
+import model.player.Player;
 import model.pouvoir.Pouvoir;
 
 /**Classe abstraite qui represente n'importe quel carte*/
 public abstract class Card implements Serializable{
 	private UUID id = UUID.randomUUID();
 
-	private HashMap<String, Pouvoir> pouvoirs = new HashMap<String, Pouvoir>();
+	protected HashMap<String, Pouvoir> pouvoirs = new HashMap<String, Pouvoir>();
 	
 	/**nom du fichier de l'image de la carte*/
 	private String img;
@@ -40,7 +41,7 @@ public abstract class Card implements Serializable{
 		return this.id;
 	}
 	
-	public abstract void utiliserPouvoir(String commande);
+	public abstract void utiliserPouvoir(String commande, Player joueur);
 
 	
 	@Override
