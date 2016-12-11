@@ -6,7 +6,5 @@ import model.player.Bot;
 public interface Strategy {	
 	
 	public void setBot(Bot bot);
-	public void jouerCarte();
-	public void poserCroyant();
-	//TODO faire une fonction choisirJoueur voir sur internet
+	public void jouer(Bot bot);
 }
