@@ -1,5 +1,0 @@
-package model.pouvoir.pouvoirCarte;
-
-public class ConversionCarte extends Pouvoir {
-
-}

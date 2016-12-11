@@ -14,8 +14,8 @@ public class ApocalypseWithOrigin extends ActionCardWithOrigin implements Serial
 
 	@Override
 	public void utiliserPouvoir(String commande,Player joueur) throws Exception {
-		// TODO Auto-generated method stub
-		
+		pouvoirs.get(commande).onAction(this, joueur);
+		joueur.defausserCarte(this);
 	}
 
 }

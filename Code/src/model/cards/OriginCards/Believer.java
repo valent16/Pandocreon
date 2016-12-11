@@ -26,6 +26,9 @@ public class Believer extends CarteDogmatique implements Serializable{
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
 		//d�cr�mentation des points d'action du joueur
 		pouvoirs.get(commande).onAction(this, joueur);
+		
+		
+		//tester si le pouvoir utilisé est un sacrifice ou un dépot de croyant
 		joueur.retirerCarte(this);
 	}
 	

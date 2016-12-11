@@ -1,0 +1,11 @@
+package view.console;
+
+import model.player.Player;
+
+public class vueGameManager {
+	
+	public void afficherVictoireJoueur(Player joueur){
+		System.out.println("\n\n");
+		System.out.println("Bravo le joueur "+joueur.getNom()+" a gagne la partie");
+	}
+}

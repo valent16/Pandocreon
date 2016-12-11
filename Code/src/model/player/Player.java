@@ -147,6 +147,7 @@ public abstract class Player extends Observer{
 		while(itGuide.hasNext()){
 			guide = itGuide.next();
 			liste.add(guide);
+//			System.out.println("Nombre de croyant: "+guide.getCroyantsConvertis().size());
 			Iterator<Believer> itCroyant = guide.getCroyantsConvertis().iterator();
 			while(itCroyant.hasNext()){
 				liste.add(itCroyant.next());

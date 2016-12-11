@@ -263,6 +263,7 @@ public class ParserXML implements IDataLoad {
 //			                			System.out.println(apocalypse.toString());
 			                		}else{
 			                			ApocalypseWithOrigin apocalypse = new ApocalypseWithOrigin(orCA);
+			                			apocalypse.ajouterPouvoir("declencher apocalypse", pvApocalypse);
 			                			cartesAction.push(apocalypse);
 			                		}
 			                	}

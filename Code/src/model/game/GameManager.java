@@ -6,18 +6,27 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import controller.GameManagerController;
+import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumDogme;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
+import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
+import model.exception.ObservateurNotLinkedException;
 import model.player.Player;
+import view.IObservateurGameManager;
+import view.ObservateurJoueurReel;
+import view.console.VueGameManager;
 
 /**Classe qui gère tous les elements de la partie*/
-public class GameManager {
+public class GameManager implements IObservableGameManager {
 	
 	private final static int NB_CARTE_MAX_MAIN = 7;
+	
+	private IObservateurGameManager observateur = new GameManagerController(new VueGameManager());
 
 	private static volatile GameManager managerUnique;
 
@@ -185,26 +194,22 @@ public class GameManager {
 	public void deroulementTourJeu(){
 		int start = 1;
 		int cpt = 0;
-		boolean b = true;
-		
-		
-		//players.size()>2
-		while(b){
+		while(players.size()!=0){
 			afficherCroyantsCommun();
 			players.get(start%players.size()).lancerDe();
 			System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
 			
 			for (int i = start; i<start+this.getNbJoueur(); i++){
-				players.get(i%players.size()).jouerTour();	
-				System.out.println(players.get(i%players.size()).toString());
+				if (players.size() != 0){
+					System.out.println(players.get(i%players.size()).toString());
+					players.get(i%players.size()).jouerTour();
+				}
 			}
 			start = start+1;
-			start = start%players.size();
-			
-			cpt++;
-			if (cpt == 20){
-				b = false;
+			if (players.size() != 0){
+				start = start%players.size();
 			}
+			cpt++;
 		}
 	}
 
@@ -256,6 +261,64 @@ public class GameManager {
 			System.out.println(it.next());
 		}
 		System.out.println("-----------------------------------------------------");
+	}
+	
+	public void eliminationJoueurFaible(){
+		Player p;
+		Player joueurElimine = null;
+		boolean egalite = false;
+		Iterator<Player> itPlayer = players.iterator();
+		
+		while(itPlayer.hasNext()){
+			p = itPlayer.next();
+			if (joueurElimine == null){
+				joueurElimine =p;
+			}else{
+				if(joueurElimine.getScore() < p.getScore()){
+					p = joueurElimine;
+				}
+			}
+		}
+		
+		itPlayer = players.iterator();
+		while(itPlayer.hasNext()){
+			if(joueurElimine.getScore() == itPlayer.next().getScore()){
+				egalite = true;
+			}
+		}
+		if(!egalite){
+			notifyPlayerDefeat(joueurElimine);
+			this.players.remove(joueurElimine);
+		}
+	}
+	
+	public void determinerVainqueur(){
+		Player p;
+		Player joueurGagnant = null;
+		int cpt = 0;
+		Iterator<Player> itPlayer = players.iterator();
+		
+		while(itPlayer.hasNext()){
+			p = itPlayer.next();
+			if (joueurGagnant == null){
+				joueurGagnant =p;
+			}else{
+				if(joueurGagnant.getScore() < p.getScore()){
+					joueurGagnant = p;
+				}
+			}
+		}
+		System.out.println("joueur Gagnant:"+joueurGagnant.getNom());
+		itPlayer = players.iterator();
+		while(itPlayer.hasNext()){
+			if(joueurGagnant.getScore() == itPlayer.next().getScore()){
+				cpt++;
+			}
+		}
+		if(cpt == 1){
+			notifyPlayerVictory(joueurGagnant);
+			this.players.removeAll(this.players);
+		}
 	}
 
 	public LinkedList<Divinity> getDivinites() {
@@ -318,5 +381,15 @@ public class GameManager {
 		for (Player p : players){
 			System.out.println(p.toString());
 		}
+	}
+
+	@Override
+	public void notifyPlayerVictory(Player p) {
+		observateur.annoncerVictoireJoueur(p);
+	}
+
+	@Override
+	public void notifyPlayerDefeat(Player p) {
+		observateur.annoncerDefaitJoueur(p);
 	}
 }

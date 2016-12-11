@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="model.cards.Divinity"/>
-<fullyQualifiedTypeName name="model.gestionDonnees.DataManager"/>
-<fullyQualifiedTypeName name="model.gestionDonnees.IDataLoad"/>
-<fullyQualifiedTypeName name="model.gestionDonnees.IDataSave"/>
-<fullyQualifiedTypeName name="model.gestionDonnees.FakeSaver"/>
-<fullyQualifiedTypeName name="model.gestionDonnees.ParserXML"/>
-<fullyQualifiedTypeName name="view.console.VueGame"/>
 <fullyQualifiedTypeName name="controller.GameController"/>
 <fullyQualifiedTypeName name="model.game.Game"/>
 <fullyQualifiedTypeName name="model.strategy.Strategy"/>
@@ -27,7 +20,6 @@
 <fullyQualifiedTypeName name="java.io.ByteArrayInputStream"/>
 <fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
-<fullyQualifiedTypeName name="model.cards.ActionCard"/>
 <fullyQualifiedTypeName name="java.util.UUID"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
@@ -36,7 +28,6 @@
 <fullyQualifiedTypeName name="model.pouvoir.pouvoirCarte.PouvoirApocalypse"/>
 <fullyQualifiedTypeName name="model.cards.Card"/>
 <fullyQualifiedTypeName name="model.player.Human"/>
-<fullyQualifiedTypeName name="model.player.Player"/>
 <fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthSpinnerUI"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="view.ObservateurJoueurReel"/>
@@ -49,15 +40,24 @@
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="model.exception.PAInsuffisantException"/>
-<fullyQualifiedTypeName name="model.EnumType.EnumCosmogonie"/>
 <fullyQualifiedTypeName name="model.cards.OriginCards.Believer"/>
 <fullyQualifiedTypeName name="model.cards.OriginCards.ActionCardWithOrigin"/>
+<fullyQualifiedTypeName name="model.EnumType.EnumDogme"/>
+<fullyQualifiedTypeName name="model.exception.NoCroyantLinkedAtConversion"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.Iterator"/>
-<fullyQualifiedTypeName name="model.EnumType.EnumDogme"/>
-<fullyQualifiedTypeName name="model.game.GameManager"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="sun.security.provider.ConfigFile.Spi"/>
 <fullyQualifiedTypeName name="model.cards.OriginCards.SpiritGuide"/>
+<fullyQualifiedTypeName name="model.player.Player"/>
+<fullyQualifiedTypeName name="model.game.IObservableGameManager"/>
+<fullyQualifiedTypeName name="view.IObservateurGameManager"/>
+<fullyQualifiedTypeName name="controller.GameManagerController"/>
+<fullyQualifiedTypeName name="view.console.VueGameManager"/>
+<fullyQualifiedTypeName name="model.cards.OriginCards.ApocalypseWithOrigin"/>
+<fullyQualifiedTypeName name="model.cards.ActionCard"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="model.game.GameManager"/>
+<fullyQualifiedTypeName name="model.EnumType.EnumCosmogonie"/>
 </qualifiedTypeNameHistroy>

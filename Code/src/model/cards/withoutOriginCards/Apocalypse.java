@@ -16,11 +16,11 @@ public class Apocalypse extends ActionCard implements Serializable{
 
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
-		// TODO Auto-generated method stub
-		
+		pouvoirs.get(commande).onAction(this, joueur);
+		joueur.defausserCarte(this);
 	}
+	
 	//faire une methode du nom de apocalypse qui recupere le nombre de joueur et qui compte le nombre de croyants de chaque joueur
-
 	
 	@Override
 	public String toString() {

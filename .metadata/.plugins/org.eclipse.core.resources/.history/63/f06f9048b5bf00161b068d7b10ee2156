@@ -1,0 +1,35 @@
+package controller;
+
+import java.util.List;
+
+import model.EnumType.EnumCosmogonie;
+import model.cards.OriginCards.ActionCardWithOrigin;
+import model.cards.OriginCards.Believer;
+import model.cards.OriginCards.SpiritGuide;
+import model.exception.ObservateurNotLinkedException;
+import model.game.IObservableGameManager;
+import model.player.Player;
+import view.IObservateurGameManager;
+import view.ObservateurJoueurReel;
+
+public class GameManagerController implements IObservateurGameManager{
+
+	vueGameManager vue;
+	
+	
+	
+	
+	@Override
+	public void annoncerDefaitJoueur(Player joueur) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void annoncerVictoireJoueur(Player joueur) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+}
