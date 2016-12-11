@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,7 +17,6 @@ import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
-import sun.security.provider.ConfigFile.Spi;
 import view.Observateur;
 import view.ObservateurJoueurReel;
 import view.console.VueJoueurReel;
@@ -141,7 +142,7 @@ public class JoueurController implements ObservateurJoueurReel {
 		return true;
 	}
 
-	//Permet d'utiliser des cartes rattachées à un guide
+	//Permet d'utiliser des cartes rattachï¿½es ï¿½ un guide
 	public void utiliserCarteRattachee(ActionCard carte){
 		SpiritGuide guide;
 		if(carte instanceof Believer){

@@ -1,7 +1,6 @@
 package model.sacrifice;
 
 import java.util.Iterator;
-
 import model.cards.withoutOriginCards.Apocalypse;
 import model.game.GameManager;
 import model.player.Player;
@@ -11,7 +10,8 @@ public class SacrificeKillinstred extends Sacrifice{
 	// Sacrifice de la divinite Killinstred: peut obliger un joueur à poser une carte Apocalypse s'il en possède une
 
 	@Override
-	public void effectuerSacrifice(Player player, GameManager gameManager) {
+	public void effectuerSacrifice(Player player) {
+		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		Apocalypse apocalypse = null;
 		Iterator<Player> it = gameManager.getPlayers().iterator();
 		while(it.hasNext()) {// on parcout les joueurs
@@ -24,6 +24,10 @@ public class SacrificeKillinstred extends Sacrifice{
 			}
 			break;
 		}
-		// TODO appeller la methode apocalypse avec apocalypse.<nom_methdode()>
+		try {
+			new Apocalypse().utiliserPouvoir("declencher apocalypse", player);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

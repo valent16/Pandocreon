@@ -13,8 +13,7 @@ public class RandomStrategy implements Strategy{
 
 	@Override
 	public void setBot(Bot bot) {
-		// TODO Auto-generated method stub
-
+		this.bot = bot;
 	}
 
 	@Override

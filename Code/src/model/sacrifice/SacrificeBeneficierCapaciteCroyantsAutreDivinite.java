@@ -10,12 +10,12 @@ import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
 
+/**Permet de sacrifier un croyant appartenant a une divinite adverse*/
 public class SacrificeBeneficierCapaciteCroyantsAutreDivinite extends Sacrifice{
 
-	//Permet de scarifier u croyant appartenant a une divinite adverse
-
 	@Override
-	public void effectuerSacrifice(Player player, GameManager gameManager) {
+	public void effectuerSacrifice(Player player) {
+		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		int choixJoueur;
 		int choixCroyant;
 		Scanner sc = new Scanner(System.in);
@@ -46,7 +46,7 @@ public class SacrificeBeneficierCapaciteCroyantsAutreDivinite extends Sacrifice{
 		if (player instanceof Human) {
 			System.out.println("Les Croyants guidée de " + playerTarget.getNom() + ": ");
 
-			Iterator<ActionCard> it = gameManager.getCroyants().iterator();
+			Iterator<Believer> it = gameManager.getCroyants().iterator();
 			while (it.hasNext()) {
 				ActionCard card = it.next();
 				if (card instanceof Believer) {
@@ -70,15 +70,15 @@ public class SacrificeBeneficierCapaciteCroyantsAutreDivinite extends Sacrifice{
 
 		Believer croyantChoisie = (Believer) gameManager.getCroyants().get(choixCroyant);
 
-		croyantChoisie.sacrifier(player, gameManager); //TODO Appeller la methode sacrifice pour sacrifier le croyant
+		//croyantChoisie.sacrifier(player, gameManager); //TODO Appeller la methode sacrifice pour sacrifier le croyant
+	
+		//SpiritGuide carteGuide = (SpiritGuide) croyantChoisie.get; //TODO methode pour recuperer le guide d'un croyant
 
-		SpiritGuide carteGuide = (SpiritGuide) croyantChoisie.getSpiritGuide(); //TODO methode pour recuperer le guide d'un croyant
 
-
-		if (carteGuide.getCarteCroyantGuidé().isEmpty()) { //si la carte guide n'a plus de carte Croyant, il est défaussée
+		/*if (carteGuide..isEmpty()) { //si la carte guide n'a plus de carte Croyant, il est défaussée
 			gameManager.getDefausse().defausserCarte(carteGuide);
 			player.getGuides().remove(carteGuide);
-		}
+		}*/
 		System.out.println(player.getNom()+" a bénéficié la capacité d'une Croyant de "+playerTarget.getNom());
 	}
 }

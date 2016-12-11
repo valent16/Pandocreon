@@ -1,13 +1,9 @@
 ﻿package model.player;
 
 import java.util.Collections;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.swing.plaf.synth.SynthScrollBarUI;
-
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.OriginCards.ActionCardWithOrigin;
@@ -232,6 +228,13 @@ public class Bot extends Player{
 				return false;//sinon l'action ne peut etre faite	
 		}
 		return false;
+	}
+	
+	//Methode pour tester si le bot est dernier au score
+	public boolean isLast(){//TODO A FAIRE
+		//GameManager.getInstanceUniqueManager().get
+		this.getScore();
+		return true;
 	}
 
 	@Override

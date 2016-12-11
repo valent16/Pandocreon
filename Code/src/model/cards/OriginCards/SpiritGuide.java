@@ -34,7 +34,6 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 	public void utiliserPouvoir(String commande,Player joueur) throws Exception {
 		this.pouvoirs.get(commande).onAction(this, joueur);
 		joueur.retirerCarte(this);
-		// TODO Auto-generated method stub
 	}
 	
 	//permet de savoir si un croyant a au moins un dogme en commun avec le guide
@@ -50,7 +49,7 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 		return false;
 	}
 	
-	//Permet de déterminer si un guide possède un croyant donne
+	//Permet de dï¿½terminer si un guide possï¿½de un croyant donne
 	public boolean hasCroyant(Believer croyant){
 		if (croyantsConvertis.contains(croyant)){
 			return true;
@@ -70,7 +69,7 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 		croyantsConvertis.remove(croyant);
 	}
 	
-	//méthode permettant de convertir un croyant
+	//mï¿½thode permettant de convertir un croyant
 	public void convertirCroyant(Believer croyant){
 		croyantsConvertis.add(croyant);
 	}

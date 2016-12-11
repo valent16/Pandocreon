@@ -95,9 +95,9 @@ public class EasyStrategy implements Strategy {
 	}
 
 	@Override
-	//permet d'economiser ses points dnas notre cas il passe son tour
+	/**permet d'economiser ses points dans notre cas il passe son tour*/
 	public void economy() {
-		//bot.passerTour(); // TODO passerTour	
+		bot.piocher();
 	}
 }
 

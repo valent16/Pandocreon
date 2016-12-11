@@ -7,17 +7,17 @@ import model.cards.OriginCards.Believer;
 import model.game.GameManager;
 import model.player.Player;
 
+/**Sacrifice permettant d'utiliser le sacrifice de l'un des croyants présent sur la table*/
 public class SacrificeBeneficierCapaciteCroyantGuide extends Sacrifice{
 
-	// Permet de beneficier de la capacite speciale de l'un des croyants ou guides spirituels présent sur la table
-
 	@Override
-	public void effectuerSacrifice(Player player, GameManager gameManager) {
-		Iterator<ActionCard> it = gameManager.getCroyants().iterator();
+	public void effectuerSacrifice(Player player) {
+		GameManager gameManager = GameManager.getInstanceUniqueManager();
+		Iterator<Believer> it = gameManager.getCroyants().iterator();
 		System.out.println("Quelle cartes souhaitez-vous bénéficier la capacité");
 		while(it.hasNext()){
 			ActionCard card = it.next();
-			System.out.println("Carte "+ gameManager.getCroyants().indexOf(card) + card);	//affichage des cartes sur la table
+			System.out.println("Carte "+ gameManager.getCroyants().indexOf(card) + card);	//affichage des cartes sur la table avec un chiffre
 		}
 		
 		Scanner sc = new Scanner(System.in);
@@ -33,5 +33,6 @@ public class SacrificeBeneficierCapaciteCroyantGuide extends Sacrifice{
 		}else{
 			//((SpiritGuide) card ).getCapaciteSpeciale().effectuerCapaciteSpeciale(player, gameManager); //TODO Appeler le sacrifice de la carte spirit guide card
 		}
+		sc.close();
 	}
 }

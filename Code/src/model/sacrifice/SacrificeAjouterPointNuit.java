@@ -1,16 +1,13 @@
 package model.sacrifice;
 
 import model.EnumType.EnumCosmogonie;
-import model.game.GameManager;
 import model.player.Player;
 
-
+/**Donne un point d'action d'origine Nuit*/
 public class SacrificeAjouterPointNuit extends Sacrifice{
 
-    // Donne un point d'action d'origine Nuit
-
     @Override
-    public void effectuerSacrifice(Player player, GameManager gameManager) {
+    public void effectuerSacrifice(Player player) {
     	player.incrementerPointAction(EnumCosmogonie.NUIT, 1);
 
     }

@@ -1,7 +1,10 @@
 package model.game;
 
+import java.util.Iterator;
+
 import controller.JoueurController;
 import model.EnumType.EnumCosmogonie;
+import model.cards.ActionCard;
 import model.player.Bot;
 //import model.game.De.Face;
 import model.player.Human;
@@ -51,9 +54,8 @@ public class Main{
 		
 		game.nouvellePartie();	
 		GameManager.getInstanceUniqueManager().startGame();
-		System.out.println(b1.getDivinity().getOrigine());
-		System.out.println(b2.getDivinity().getOrigine());
-		
+		//System.out.println(b1.getDivinity().getOrigine());
+		//System.out.println(b2.getDivinity().getOrigine());
 	}
 
 

@@ -1,15 +1,13 @@
 package model.sacrifice;
 
 import model.EnumType.EnumCosmogonie;
-import model.game.GameManager;
 import model.player.Player;
 
+/**Donne un point d'action d'origine Neant*/
 public class SacrificeAjouterPointNeant extends Sacrifice{
-   
-    // Donne un point d'action d'origine Neant
     
     @Override
-    public void effectuerSacrifice(Player player, GameManager gameManager) {
+    public void effectuerSacrifice(Player player) {
     	player.incrementerPointAction(EnumCosmogonie.NEANT, 1);
 
     }

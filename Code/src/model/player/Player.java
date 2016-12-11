@@ -192,6 +192,10 @@ public abstract class Player extends Observer{
 		De.getInstanceDe().lancerDe();
 	}
 	
+	public void ajouterMain(ActionCard card){
+		this.hand.add(card);
+	}
+	
 	/**Methode qui permet d'afficher la main du joueur*/
 	public void afficherHand(){
 		Iterator<ActionCard> it = hand.iterator();

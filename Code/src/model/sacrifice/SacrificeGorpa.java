@@ -7,13 +7,14 @@ import model.EnumType.EnumCosmogonie;
 import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Player;
-
+/**Sacrifice de la divinite Gorpa : Recupere les points d'action d'une autre divinite en plus des siens. 
+ * L'autre divinite ne reçoit aucun point d'action ce tour-ci
+ */
 public class SacrificeGorpa extends Sacrifice{
 
-	// Sacrifice de la divinite Gorpa : Peut recuperer les points d'action d'une autre divinite en plus des siens. L'autre divinite ne reçoit aucun point d'action ce tour-ci
-
 	@Override
-	public void effectuerSacrifice(Player player, GameManager gameManager) {	
+	public void effectuerSacrifice(Player player) {	
+		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		System.out.println("À quel joueur voulez-vous absorber ces points d'actions ?");
 		Iterator<Player> it = gameManager.getPlayers().iterator();
 		while(it.hasNext()) {
@@ -35,7 +36,6 @@ public class SacrificeGorpa extends Sacrifice{
 			try {
 				playerTarget.decrementerPointAction(cosmogonie, pointActions);
 			} catch (PAInsuffisantException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
