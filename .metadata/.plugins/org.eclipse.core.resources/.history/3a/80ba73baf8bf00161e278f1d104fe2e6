@@ -54,7 +54,7 @@ public class ConversionCroyant extends Pouvoir {
 		}
 
 		GameManager.getInstanceUniqueManager().deposerCroyant(carte);
-		joueur.ajouterCroyant(carte);
+		//joueur.ajouterCroyant(carte);
 		joueur.retirerCarte(carte);
 		joueur.rattacherGuide(carte);
 	}

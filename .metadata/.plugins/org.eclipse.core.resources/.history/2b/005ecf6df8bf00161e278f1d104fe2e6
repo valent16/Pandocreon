@@ -15,7 +15,7 @@ import model.pouvoir.Pouvoir;
 public class ConversionCroyant extends Pouvoir {
 
 	public ConversionCroyant() {
-		super("Permet de convertir des croyants situes sur la table");
+		super("Permet de convertir des croyants situ�s sur la table");
 
 	}
 

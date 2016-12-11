@@ -281,7 +281,11 @@ public abstract class Player extends Observer{
 	//Methode appelee a chaque debut de tour pour attribuer les PA au joueur
 	protected void incrementerPointActionWithDe(){
 		if (divinity.getOrigine() == EnumOrigineDivinite.AUBE || divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE){
-			incrementerPointAction(De.getInstanceDe().getFace(),1);
+//			if(De.getInstanceDe().getFace() == EnumCosmogonie.NEANT){
+//				incrementerPointAction(EnumCosmogonie.NEANT, 1);
+//			}else{
+				incrementerPointAction(De.getInstanceDe().getFace(),1);
+//			}
 		}else{
 			if (De.getInstanceDe().getFace() == EnumCosmogonie.JOUR || De.getInstanceDe().getFace() == EnumCosmogonie.NUIT){
 				incrementerPointAction(De.getInstanceDe().getFace(), 2);
