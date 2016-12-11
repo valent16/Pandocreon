@@ -1,7 +1,6 @@
 package controller;
 import model.cards.ActionCard;
 import model.game.Game;
-import model.game.GameManager;
 import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
@@ -38,7 +37,6 @@ public class GameController {
 	//Permet la création d'un joueur à partir de paramètres
 	public void CreationJoueur(String nom, int age){
 		Human joueur = new Human(nom, age);
-		joueur.attacher(new JoueurController(joueur));
 		game.ajouterJoueurReel(joueur);
 	}
 	
@@ -61,13 +59,6 @@ public class GameController {
 		}
 		
 		Bot joueur = new Bot(nom, strat);
-	}
-	
-	public void lancerPartie(){
-//		game.initGame();
-		game.nouvellePartie();
-		GameManager.getInstanceUniqueManager().startGame();
-//		GameManager.getInstanceUniqueManager().afficherJoueur();
 	}
 	
 	

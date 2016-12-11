@@ -1,7 +1,6 @@
 package controller;
 import model.cards.ActionCard;
 import model.game.Game;
-import model.game.GameManager;
 import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
@@ -64,10 +63,7 @@ public class GameController {
 	}
 	
 	public void lancerPartie(){
-//		game.initGame();
-		game.nouvellePartie();
-		GameManager.getInstanceUniqueManager().startGame();
-//		GameManager.getInstanceUniqueManager().afficherJoueur();
+		
 	}
 	
 	

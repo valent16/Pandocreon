@@ -67,7 +67,7 @@ public class GameController {
 //		game.initGame();
 		game.nouvellePartie();
 		GameManager.getInstanceUniqueManager().startGame();
-//		GameManager.getInstanceUniqueManager().afficherJoueur();
+		GameManager.getInstanceUniqueManager().afficherJoueur();
 	}
 	
 	

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="controller.GameController"/>
 <fullyQualifiedTypeName name="model.game.Game"/>
 <fullyQualifiedTypeName name="model.strategy.Strategy"/>
 <fullyQualifiedTypeName name="model.strategy.HardStrategy"/>
@@ -13,7 +12,6 @@
 <fullyQualifiedTypeName name="view.Observateur"/>
 <fullyQualifiedTypeName name="model.Observer"/>
 <fullyQualifiedTypeName name="view.console.VueJoueur"/>
-<fullyQualifiedTypeName name="controller.JoueurController"/>
 <fullyQualifiedTypeName name="view.console.VueJoueurReel"/>
 <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
 <fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="java.util.Iterator"/>
 <fullyQualifiedTypeName name="model.game.GameManager"/>
 <fullyQualifiedTypeName name="model.EnumType.EnumCosmogonie"/>
+<fullyQualifiedTypeName name="controller.GameController"/>
+<fullyQualifiedTypeName name="controller.JoueurController"/>
 </qualifiedTypeNameHistroy>

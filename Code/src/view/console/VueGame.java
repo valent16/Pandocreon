@@ -65,15 +65,18 @@ public class VueGame {
 			choix = sc.nextLine();
 			System.out.println(Integer.parseInt(choix));
 		}while( !(choix.matches("[0-9]+") && (Integer.parseInt(choix) >= 2 && Integer.parseInt(choix) <= game.getNbJoueurMax())) && Integer.parseInt(choix)!=0 );
+		
+		
 		if (choix.equals("0")){
 			MenuPrincipal();
 		}else{
 			System.out.println("vous avez decide de creer "+choix+" joueurs");
 			this.creationJoueurs(Integer.parseInt(choix));
 		}
+		controllerJeu.lancerPartie();
 	}
 	
-	//Permet de cr�er un joueur
+	//Permet de creer un joueur
 	public void creationJoueurs(int nbJoueur){
 		//System.out.println("utilitaire de cr�ation de joueur");
 		Scanner sc = new Scanner(System.in);

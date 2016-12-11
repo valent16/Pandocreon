@@ -2,7 +2,6 @@ package model.game;
 
 import java.util.Iterator;
 
-import controller.GameController;
 import controller.JoueurController;
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
@@ -39,10 +38,7 @@ public class Main{
 				break;
 				
 			case 4:
-				Game game = new Game();
-				game.initGame();
-				GameController gc = new GameController();
-				gc.startGame();
+				
 				break;
 			default:
 				//ne rien mettre

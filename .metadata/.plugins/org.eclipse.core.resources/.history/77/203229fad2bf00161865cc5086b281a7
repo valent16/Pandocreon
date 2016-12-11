@@ -39,8 +39,6 @@ public class Main{
 				break;
 				
 			case 4:
-				Game game = new Game();
-				game.initGame();
 				GameController gc = new GameController();
 				gc.startGame();
 				break;
