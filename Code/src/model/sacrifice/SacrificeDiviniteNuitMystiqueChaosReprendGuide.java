@@ -1,6 +1,5 @@
-wpackage model.sacrifice;
+package model.sacrifice;
 
-import model.game.GameManager;
 import model.player.Player;
 
 public class SacrificeDiviniteNuitMystiqueChaosReprendGuide extends Sacrifice{
@@ -9,7 +8,7 @@ public class SacrificeDiviniteNuitMystiqueChaosReprendGuide extends Sacrifice{
 
 	@Override
 	public void effectuerSacrifice(Player player) {
-		GameManager gameManager = GameManager.getInstanceUniqueManager();
+		//GameManager gameManager = GameManager.getInstanceUniqueManager();
 		// TODO Auto-generated method stub
 		
 	}

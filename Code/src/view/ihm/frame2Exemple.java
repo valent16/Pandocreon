@@ -274,7 +274,7 @@ public class frame2Exemple extends JFrame{
 			D.setVisible(true);
 		}
 		if(source == Charger){
-			String S = JOptionPane.showInputDialog(null,"Entrez votre partie sous forme 11112222....(au min 20 chiffre 1-5)");
+			//TODO String S = JOptionPane.showInputDialog(null,"Entrez votre partie sous forme 11112222....(au min 20 chiffre 1-5)");
 			
 			/*if(S != null){ //Faire le chargement du jeu///////////////////////////////////////////////////////////////
 				Carte[] C = J.Chargerjeu(S);

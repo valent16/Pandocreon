@@ -7,18 +7,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import controller.GameManagerController;
-import model.EnumType.EnumCosmogonie;
-import model.EnumType.EnumDogme;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
-import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
-import model.exception.ObservateurNotLinkedException;
 import model.player.Player;
 import view.IObservateurGameManager;
-import view.ObservateurJoueurReel;
 import view.console.VueGameManager;
 
 /**Classe qui gère tous les elements de la partie*/
@@ -158,7 +153,7 @@ public class GameManager implements IObservableGameManager {
 		
 		Believer croyant;
 		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();
-		Iterator<EnumDogme> itDogme;
+		//Iterator<EnumDogme> itDogme;
 		
 		while(itCroyant.hasNext()){
 			croyant = itCroyant.next();

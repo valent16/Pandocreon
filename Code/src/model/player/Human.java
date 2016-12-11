@@ -7,7 +7,6 @@ import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.exception.ObservateurNotLinkedException;
-import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
 import view.ObservateurJoueurReel;
 

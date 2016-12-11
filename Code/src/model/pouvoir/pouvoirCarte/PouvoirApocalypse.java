@@ -1,7 +1,6 @@
 package model.pouvoir.pouvoirCarte;
 
 import model.EnumType.EnumCosmogonie;
-import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.OriginCards.ApocalypseWithOrigin;
 import model.exception.PAInsuffisantException;

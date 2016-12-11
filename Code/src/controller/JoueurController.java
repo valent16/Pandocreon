@@ -2,22 +2,17 @@ package controller;
 
 import java.util.ArrayList;
 
-
 import java.util.Iterator;
 import java.util.List;
 
 import model.EnumType.EnumCosmogonie;
-import model.EnumType.EnumDogme;
 import model.cards.ActionCard;
-import model.cards.Card;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
-import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
-import view.Observateur;
 import view.ObservateurJoueurReel;
 import view.console.VueJoueurReel;
 

@@ -1,14 +1,12 @@
 package model.sacrifice;
 
 import java.util.Iterator;
+
 import java.util.LinkedList;
 import java.util.Scanner;
 
 import model.EnumType.EnumCosmogonie;
-import model.EnumType.EnumOrigineDivinite;
 import model.cards.ActionCard;
-import model.cards.OriginCards.ActionCardWithOrigin;
-import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.CarteDogmatique;
 import model.cards.OriginCards.SpiritGuide;
 import model.game.GameManager;
@@ -21,6 +19,7 @@ public class SacrificeAnnuleCapaciteActionJourNeant extends Sacrifice {
 	@Override
 	public void effectuerSacrifice(Player player) {
 		GameManager gameManager = GameManager.getInstanceUniqueManager();
+		Scanner sc = new Scanner(System.in);
 		LinkedList<Player> possiblePlayers = new LinkedList<Player>();//joueur dont on peut defausser la carte
 		Iterator<Player> it = gameManager.getPlayers().iterator();
 		while (it.hasNext()) { //pour chaque joueur
@@ -43,15 +42,14 @@ public class SacrificeAnnuleCapaciteActionJourNeant extends Sacrifice {
 			int choixJoueur;
 			if (player instanceof Human) {
 				System.out.println("À quel joueur voulez-vous detruire une GuideSpirituel? " + possiblePlayers);
-				Scanner sc = new Scanner(System.in);
 				choixJoueur = sc.nextInt();
 				while (!possiblePlayers.contains(choixJoueur)) {
 					System.out.println("Le choix impossible. Veuillez choisir un autre!");
 					choixJoueur = sc.nextInt();
 				}
-			} else {
+			} /*else {
 				do {
-					choixJoueur = (Bot) player).getStrategie().choixJoueur(Bot) joueur, partie); //TODO la methode choixJoueur
+				//TODO choixJoueur = (Bot) player.getStrategie().choixJoueur((Bot) joueur, partie); //TODO la methode choixJoueur
 				} while (!possiblePlayers.contains(choixJoueur));
 			}
 
@@ -72,10 +70,10 @@ public class SacrificeAnnuleCapaciteActionJourNeant extends Sacrifice {
 						spiritGuide.supprimerCroyant(believer);
 					}
 					break;
-				}
-			}
-			System.out.println(player.getNom() + " a detruit une Guide Spirituel d'origine Nuit ou Neant de " + playerTarget.getNom());
+				}*/
+			sc.close();
 		}
+		//System.out.println(player.getNom() + " a detruit une Guide Spirituel d'origine Nuit ou Neant de " + playerTarget.getNom());
+		
 	}
-
 }

@@ -1,10 +1,9 @@
 package controller;
-import model.cards.ActionCard;
+
 import model.game.Game;
 import model.game.GameManager;
 import model.player.Bot;
 import model.player.Human;
-import model.player.Player;
 import model.strategy.EasyStrategy;
 import model.strategy.HardStrategy;
 import model.strategy.MediumStrategy;
@@ -35,14 +34,14 @@ public class GameController {
 	}
 	
 	
-	//Permet la création d'un joueur à partir de paramètres
+	//Permet la crï¿½ation d'un joueur ï¿½ partir de paramï¿½tres
 	public void CreationJoueur(String nom, int age){
 		Human joueur = new Human(nom, age);
 		joueur.attacher(new JoueurController(joueur));
 		game.ajouterJoueurReel(joueur);
 	}
 	
-	//Permet la création d'un bot à partir de paramètres
+	//Permet la crï¿½ation d'un bot ï¿½ partir de paramï¿½tres
 	public void CreationBot(String nom, String nomStrat){
 		Strategy strat;
 		

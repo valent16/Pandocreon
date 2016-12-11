@@ -6,6 +6,8 @@ import model.player.Player;
 
 public class DeusExWithOrigin extends ActionCardWithOrigin implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
 	public DeusExWithOrigin(String nom, EnumCosmogonie origine) {
 		super(nom, origine);
 		// TODO Auto-generated constructor stub

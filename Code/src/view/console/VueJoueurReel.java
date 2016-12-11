@@ -1,15 +1,10 @@
 package view.console;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
 
 import controller.JoueurController;
 import model.EnumType.EnumCosmogonie;
@@ -20,7 +15,6 @@ import model.cards.OriginCards.SpiritGuide;
 import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
-import model.pouvoir.Pouvoir;
 
 public class VueJoueurReel {
 
@@ -46,7 +40,7 @@ public class VueJoueurReel {
 			System.out.println(itCroyant.next().toString());
 		}
 		System.out.println("\n");
-		System.out.println("liste des guides sur possédés par le joueur");
+		System.out.println("liste des guides sur possï¿½dï¿½s par le joueur");
 		while(itGuide.hasNext()){
 			System.out.println(itGuide.next().toString());
 		}
@@ -90,19 +84,20 @@ public class VueJoueurReel {
 		default:
 			//lancement exception
 		}
+		sc.close();
 	}
 	
 	public void defausserCartes(){
-		LinkedList<ActionCard> cartesToDelete = new LinkedList<ActionCard>();
+		//LinkedList<ActionCard> cartesToDelete = new LinkedList<ActionCard>();
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("liste des cartes pouvant etre défaussees:");
+		System.out.println("liste des cartes pouvant etre dï¿½faussees:");
 		List<ActionCard> listeAAfficher = joueur.getHand();
 
-//		afficherListeCarte(listeAAfficher);
-//		System.out.println("veuillez renseigner la carte ï¿½ dï¿½fausser en renseignant son numï¿½ro:");
-//		System.out.println("taper \"end\" si votre sï¿½lection de carte ï¿½ supprimer est terminï¿½e");
-//		System.out.print("votre choix: ");
+		//TODO afficherListeCarte(listeAAfficher);
+		//TODO System.out.println("veuillez renseigner la carte ï¿½ dï¿½fausser en renseignant son numï¿½ro:");
+		//TODO System.out.println("taper \"end\" si votre sï¿½lection de carte ï¿½ supprimer est terminï¿½e");
+		//TODO System.out.print("votre choix: ");
 
 		String choix = "";
 		
@@ -110,7 +105,7 @@ public class VueJoueurReel {
 			listeAAfficher = joueur.getHand();
 			afficherListeCarte(listeAAfficher);
 			System.out.println("veuillez renseigner la carte a defausser en renseignant son numero:");
-			System.out.println("taper \"end\" si votre selection de carte à supprimer est terminee");
+			System.out.println("taper \"end\" si votre selection de carte ï¿½ supprimer est terminee");
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 			
@@ -127,10 +122,10 @@ public class VueJoueurReel {
 				controller.supprimerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 			}
 		}
+		sc.close();
 		
-		
-		//lister les cartes
-		//faire un check si le joueur a bien des cartes
+		//TODO lister les cartes
+		//TODO faire un check si le joueur a bien des cartes
 	}
 	
 	
@@ -155,13 +150,13 @@ public class VueJoueurReel {
 				System.out.println(i+"- "+listeAAfficher.get(i).toString());
 			}
 			System.out.println("\n");
-			System.out.println("liste des guides et cartes rattachées à vos guides, vous ne pouvez que sacrifier ces cartes");
+			System.out.println("liste des guides et cartes rattachï¿½es ï¿½ vos guides, vous ne pouvez que sacrifier ces cartes");
 			for (int i=0; i< listeCarteRattaches.size(); i++){
 				System.out.println(i+listeAAfficher.size()+"- "+listeCarteRattaches.get(i).toString());
 			}
 			
 //			afficherListeCarte(listeAAfficher);
-			System.out.println("veuillez renseigner la carte à utiliser en renseignant son numero:");
+			System.out.println("veuillez renseigner la carte ï¿½ utiliser en renseignant son numero:");
 			System.out.println("taper \"end\" si vous avez fini d'utiliser des cartes");
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
@@ -171,7 +166,7 @@ public class VueJoueurReel {
 			while(!(choix.matches("[0-9]+") && listeAAfficher.size()+listeCarteRattaches.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))){
 				System.out.println("\n");
 				afficherListeCarte(listeAAfficher);
-				System.out.println("votre choix est invalide, veuillez le renseigner à nouveau.");
+				System.out.println("votre choix est invalide, veuillez le renseigner ï¿½ nouveau.");
 				System.out.println("votre choix: ");
 				choix = sc.nextLine();
 			}
@@ -184,14 +179,13 @@ public class VueJoueurReel {
 				//controller.jouerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 				//controller.supprimerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 			}
+			sc.close();
 		}
-		
-		
-		//lister les cartes
-		//faire un check si le joueur a bien des cartes
+		//TODO lister les cartes
+		//TODO faire un check si le joueur a bien des cartes
 	}
 	
-	//Fonction permettant de définir l'action a faire avec une carte Action
+	//Fonction permettant de dï¿½finir l'action a faire avec une carte Action
 	public void choisirPouvoirCarteMain(ActionCard carte){
 		//Set<String> listeCommande =  ( carte.getPouvoirs().keySet();
 		Object[] listeCommande = carte.getPouvoirs().keySet().toArray();
@@ -216,9 +210,10 @@ public class VueJoueurReel {
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
+		sc.close();
 	}
 	
-	//Permet la sélection d'une cible
+	//Permet la sï¿½lection d'une cible
 	public String selectTarget(){
 		Scanner sc = new Scanner(System.in);
 		int cpt = 0;
@@ -234,7 +229,9 @@ public class VueJoueurReel {
 			}
 		}
 		System.out.print("votre choix: ");
-		return sc.nextLine();
+		String choix = sc.nextLine();
+		sc.close();
+		return choix;
 	}
 	
 	
@@ -246,14 +243,14 @@ public class VueJoueurReel {
 			if (choix != null){
 				System.out.println("erreur lors de votre choix");
 			}
-			System.out.println("liste des origines pouvant être sélectionnées: ");
+			System.out.println("liste des origines pouvant ï¿½tre sï¿½lectionnï¿½es: ");
 			for(int i = 0; i<listeOrigine.size(); i++){
 				System.out.println(i+": "+listeOrigine.get(i));
 			}
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 		}while(!controller.checkChoiceOrigine(listeOrigine, choix));
-
+		sc.close();
 		return listeOrigine.get(Integer.parseInt(choix));
 	}
 
@@ -266,7 +263,7 @@ public class VueJoueurReel {
 		
 		
 		while(guide.getNbMaxCroyant()>croyantSelected.size() && Integer.parseInt(choix) != croyantsAPresenter.size()){
-			System.out.println("liste des croyants pouvant être ajoutés au guide:");
+			System.out.println("liste des croyants pouvant ï¿½tre ajoutï¿½s au guide:");
 			for (int i = 0; i<croyantsAPresenter.size(); i++){
 				System.out.println(i+" :"+croyantsAPresenter.get(i).toString());
 			}
@@ -285,9 +282,10 @@ public class VueJoueurReel {
 				croyantSelected.add(croyantsAPresenter.get(Integer.parseInt(choix)));
 				croyantsAPresenter.remove(croyantsAPresenter.get(Integer.parseInt(choix)));
 			}
+			sc.close();
 		}
 		
-//		guide.convertirCroyant(croyantsAPresenter.get(Integer.parseInt(choix)));
+		// TODO guide.convertirCroyant(croyantsAPresenter.get(Integer.parseInt(choix)));
 		return croyantSelected;	
 	}
 }

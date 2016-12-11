@@ -83,7 +83,7 @@ public class EasyStrategy implements Strategy {
 		}
 		System.out.println();///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
-
+	
 	@Override
 	//depot de croyant
 	public void depotCroyant() {

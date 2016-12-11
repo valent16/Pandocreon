@@ -1,11 +1,9 @@
 package model.sacrifice;
 
 import java.util.Iterator;
+
 import java.util.Scanner;
 
-import model.cards.ActionCard;
-import model.cards.OriginCards.Believer;
-import model.cards.OriginCards.SpiritGuide;
 import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
@@ -16,8 +14,8 @@ public class SacrificeBeneficierCapaciteCroyantsAutreDivinite extends Sacrifice{
 	@Override
 	public void effectuerSacrifice(Player player) {
 		GameManager gameManager = GameManager.getInstanceUniqueManager();
-		int choixJoueur;
-		int choixCroyant;
+		int choixJoueur = 0;
+		//int choixCroyant = 0;
 		Scanner sc = new Scanner(System.in);
 		if (player instanceof Human) { //si le joueur est un humain 
 			System.out.println("A quel joueur appartient le croyant que vous avez envie de sacrifier ?");
@@ -34,15 +32,16 @@ public class SacrificeBeneficierCapaciteCroyantsAutreDivinite extends Sacrifice{
 			}
 			if(gameManager.getCroyants().isEmpty()) { //si il n'y aucun croyant sur la table
 				System.out.println("La table est vide");
-				return ;
+				sc.close();
+				return;
 			}
-		}else {
+		}else{
 			do {
-				choixJoueur = ((Bot) player).getStrategy().choixJoueur((Bot) player, gameManager); 
+				//TODO choixJoueur = ((Bot) player).getStrategy().choixJoueur((Bot) player, gameManager);
 			} while (gameManager.getCroyants().isEmpty());
 		}
 
-		Player playerTarget = gameManager.getPlayers().get(choixJoueur);
+		/*Player playerTarget = gameManager.getPlayers().get(choixJoueur);
 		if (player instanceof Human) {
 			System.out.println("Les Croyants guidée de " + playerTarget.getNom() + ": ");
 
@@ -64,11 +63,11 @@ public class SacrificeBeneficierCapaciteCroyantsAutreDivinite extends Sacrifice{
 				choixCroyant = sc.nextInt();
 			}
 		} else {
-			choixCroyant = ((Bot) player).getStrategie().choixCroyant((Bot) player);
+			//TODO choixCroyant = ((Bot) player).getStrategie().choixCroyant((Bot) player);
 
-		}
+		}*/
 
-		Believer croyantChoisie = (Believer) gameManager.getCroyants().get(choixCroyant);
+		//TODO Believer croyantChoisie = (Believer) gameManager.getCroyants().get(choixCroyant);
 
 		//croyantChoisie.sacrifier(player, gameManager); //TODO Appeller la methode sacrifice pour sacrifier le croyant
 	
@@ -78,7 +77,8 @@ public class SacrificeBeneficierCapaciteCroyantsAutreDivinite extends Sacrifice{
 		/*if (carteGuide..isEmpty()) { //si la carte guide n'a plus de carte Croyant, il est défaussée
 			gameManager.getDefausse().defausserCarte(carteGuide);
 			player.getGuides().remove(carteGuide);
-		}*/
-		System.out.println(player.getNom()+" a bénéficié la capacité d'une Croyant de "+playerTarget.getNom());
+		}
+		System.out.println(player.getNom()+" a bénéficié la capacité d'une Croyant de "+playerTarget.getNom());*/
+		sc.close();
 	}
 }

@@ -7,6 +7,8 @@ import model.player.Player;
 
 public class ApocalypseWithOrigin extends ActionCardWithOrigin implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	public ApocalypseWithOrigin( EnumCosmogonie origine) {
 		super("Apocalypse", origine);
 		// TODO Auto-generated constructor stub

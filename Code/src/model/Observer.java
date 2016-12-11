@@ -3,7 +3,6 @@ package model;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import model.player.Player;
 import view.Observateur;
 
 public abstract class Observer {

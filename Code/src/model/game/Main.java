@@ -1,13 +1,10 @@
 package model.game;
 
-import java.util.Iterator;
 
 import controller.GameController;
 import controller.JoueurController;
 import model.EnumType.EnumCosmogonie;
-import model.cards.ActionCard;
 import model.player.Bot;
-//import model.game.De.Face;
 import model.player.Human;
 import model.player.Player;
 import model.strategy.EasyStrategy;

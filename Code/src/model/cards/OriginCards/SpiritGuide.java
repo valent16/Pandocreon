@@ -14,6 +14,8 @@ import model.EnumType.EnumCosmogonie;
 /**Classe représentant une carte guide spirituel*/
 public class SpiritGuide extends CarteDogmatique implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	private int pointPriere;
 	
 	private int nbCarteCroyant;

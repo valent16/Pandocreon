@@ -11,6 +11,8 @@ import model.EnumType.EnumCosmogonie;
 /**Classe représentant une carte croyant*/
 public class Believer extends CarteDogmatique implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	private int nbPrieres;
 	
 	public Believer(String nom, EnumCosmogonie origine, ArrayList<EnumDogme> dogmes, int nbPrieres, String sacrifice) {

@@ -10,6 +10,8 @@ import model.player.Player;
 //Represente une carte divinité
 public class Divinity extends Card implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
 	private String description;
 	
 	private ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();

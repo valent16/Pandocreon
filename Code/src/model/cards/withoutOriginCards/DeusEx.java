@@ -7,6 +7,8 @@ import model.player.Player;
 
 public class DeusEx extends ActionCard implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
 	public DeusEx(String nom) {
 		super(nom);
 		// TODO Auto-generated constructor stub

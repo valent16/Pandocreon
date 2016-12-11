@@ -11,6 +11,9 @@ import model.pouvoir.Pouvoir;
 
 /**Classe abstraite qui represente n'importe quel carte*/
 public abstract class Card implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	private UUID id = UUID.randomUUID();
 
 	protected HashMap<String, Pouvoir> pouvoirs = new HashMap<String, Pouvoir>();

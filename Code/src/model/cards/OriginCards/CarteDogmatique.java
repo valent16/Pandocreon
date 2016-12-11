@@ -11,6 +11,8 @@ import model.EnumType.EnumDogme;
 
 public abstract class CarteDogmatique extends ActionCardWithOrigin implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
 	private ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
 	
 	private String sacrifice;
