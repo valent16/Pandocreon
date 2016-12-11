@@ -1,6 +1,13 @@
 package model.strategy;
 
+import java.util.List;
+
+import model.EnumType.EnumCosmogonie;
+import model.cards.OriginCards.ActionCardWithOrigin;
+import model.cards.OriginCards.Believer;
+import model.cards.OriginCards.SpiritGuide;
 import model.player.Bot;
+import model.player.Player;
 
 /**Stratégie de jeu difficile pour les bots*/
 public class HardStrategy implements Strategy {
@@ -33,5 +40,23 @@ public class HardStrategy implements Strategy {
 			//piocher
 		//else
 			//bot.passerTour(); // TODO passerTour	
+	}
+
+	@Override
+	public Player pickTarget() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Believer> pickCroyant(SpiritGuide carte) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
