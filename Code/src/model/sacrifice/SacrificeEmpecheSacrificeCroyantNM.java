@@ -31,7 +31,7 @@ public class SacrificeEmpecheSacrificeCroyantNM extends Sacrifice {
 
 		for (Player p : gameManager.getPlayers()) {
 			if (p.getDivinity().getDogmes().contains(EnumDogme.NATURE) || p.getDivinity().getDogmes().contains(EnumDogme.MYSTIQUE)) {
-				p.setDroitSacrifierCroyant(false); //TODO Trouver une solution a ça 
+				//TODO Trouver une solution a ça p.setDroitSacrifierCroyant(false); 
 			}
 		}
 	}

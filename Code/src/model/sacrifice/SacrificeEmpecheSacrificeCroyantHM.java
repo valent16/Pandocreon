@@ -1,10 +1,10 @@
 package model.sacrifice;
 
 import java.util.Iterator;
+
 import java.util.LinkedList;
 
 import model.EnumType.EnumDogme;
-import model.EnumType.EnumOrigineDivinite;
 import model.game.GameManager;
 import model.player.Player;
 
@@ -32,7 +32,7 @@ public class SacrificeEmpecheSacrificeCroyantHM extends Sacrifice{
 
 		for (Player p : gameManager.getPlayers()) {
 			if (p.getDivinity().getDogmes().contains(EnumDogme.HUMAIN) || p.getDivinity().getDogmes().contains(EnumDogme.MYSTIQUE)) {
-				p.setDroitSacrifierCroyant(false); //TODO Trouver une solution a ça 
+				//TODO Trouver une solution a ça  p.setDroitSacrifierCroyant(false); 
 			}
 		}
 	}
