@@ -8,7 +8,6 @@ import model.player.Player;
 import model.pouvoir.Pouvoir;
 
 public class DepotCroyant extends Pouvoir{
-
 	public DepotCroyant() {
 		super("Permet de deposer un coyant sur la table de jeu");
 	}

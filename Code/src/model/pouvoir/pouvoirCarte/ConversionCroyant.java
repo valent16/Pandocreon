@@ -1,8 +1,13 @@
 package model.pouvoir.pouvoirCarte;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
 import model.cards.OriginCards.SpiritGuide;
+import model.cards.OriginCards.Believer;
+import model.exception.NoCroyantLinkedAtConversion;
 import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Player;
@@ -24,9 +29,16 @@ public class ConversionCroyant extends Pouvoir {
 				throw new PAInsuffisantException("le joueur n'a pas assez de PA pour utiliser cette carte");
 			}
 		}else{
+			List<Believer> croyants = joueur.pickCroyant((SpiritGuide) carte);
+			if (croyants.size() == 0){
+				throw new NoCroyantLinkedAtConversion("Aucun croyant n'ont été lié au guide");
+			}
 			joueur.decrementerPointAction(((SpiritGuide) carte).getOrigine(), 1);
 		}
 		GameManager.getInstanceUniqueManager().deposerCroyant(carte);
-		joueur.ajouterCroyant(carte);
+
+		joueur.ajouterCroyantPendantTour(carte);
+		joueur.retirerCarte(carte);
+		joueur.rattacherGuide(carte);
 	}
 }

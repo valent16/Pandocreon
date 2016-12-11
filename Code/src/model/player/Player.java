@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -36,9 +37,6 @@ public abstract class Player extends Observer{
 	/**chaine de caractere representant le nom du joueur*/
 	private String pseudo;
 
-	/**Entier representant le nombre de croyant que possede le joueur*/
-	protected int score;
-
 	private int age;
 
 	/**Liste representant la main d'un joueur*/ 
@@ -69,7 +67,19 @@ public abstract class Player extends Observer{
 	//Methode de jeu de tour qui se fait red�finir pour le joueur et le bot
 	public abstract void jouerTour();
 
-
+	public SpiritGuide getGuideWithCroyant(Believer croyant){
+		Iterator<SpiritGuide> itGuide = guidesRattaches.iterator();
+		SpiritGuide guide;
+		while(itGuide.hasNext()){
+			guide = itGuide.next();
+			if (guide.hasCroyant(croyant)){
+				return guide;
+			}
+		}
+		return null;
+	}
+	
+	
 	public List<Believer> getCroyantDeposesPendantTour(){
 		return Collections.unmodifiableList(croyantDeposesPendantTour);
 	}
@@ -79,6 +89,15 @@ public abstract class Player extends Observer{
 		//carte.utiliserPouvoir(commande, this);
 		//hand.remove(carte);
 	}
+	
+	public void jouerCarteRattachee(ActionCard carte){
+		if(carte instanceof SpiritGuide){
+			
+		}else{
+			
+		}
+	}
+	
 
 	/**Methode piocher*/
 	public void piocher(){
@@ -120,8 +139,34 @@ public abstract class Player extends Observer{
 	public void setNom(String pseudo){
 		this.pseudo = pseudo;
 	}
+	
+	public List<ActionCard> getListCardGuide(){
+		ArrayList<ActionCard> liste =  new ArrayList<ActionCard>();
+		Iterator<SpiritGuide> itGuide = guidesRattaches.iterator();
+		SpiritGuide guide;
+		while(itGuide.hasNext()){
+			guide = itGuide.next();
+			liste.add(guide);
+			Iterator<Believer> itCroyant = guide.getCroyantsConvertis().iterator();
+			while(itCroyant.hasNext()){
+				liste.add(itCroyant.next());
+			}
+		}
+		return liste;
+	}
+	
 	/**Getter du score du joueur*/
 	public int getScore() {
+		int score = 0	;
+		Iterator<SpiritGuide> itGuides = guidesRattaches.iterator();
+		SpiritGuide guide;
+		while(itGuides.hasNext()){
+			guide = itGuides.next();
+			Iterator<Believer> itCroyant = guide.getCroyantsConvertis().iterator();
+			while(itCroyant.hasNext()){
+				score = score + itCroyant.next().getNbPrieres();
+			}
+		}
 		return score;
 	}
 
@@ -181,8 +226,12 @@ public abstract class Player extends Observer{
 		//this.croyantDeposesPendantTour.re
 	}
 
-	public void retirerCarte(ActionCard carte){
-		hand.remove(carte);
+	public void retirerCarte(Card carte){
+		if (carte instanceof ActionCard){
+			hand.remove((ActionCard)carte);
+		}else{
+			//lancement Exception
+		}
 	}
 
 	public void defausserCartes(LinkedList<ActionCard> cartes){
@@ -193,6 +242,11 @@ public abstract class Player extends Observer{
 	public void defausserCarte(ActionCard carte){
 		hand.remove(carte);
 		GameManager.getInstanceUniqueManager().defausserCarte(carte);
+	}
+	
+	public void defausserGuideRattache(SpiritGuide guide){
+		guidesRattaches.remove(guide);
+		GameManager.getInstanceUniqueManager().defausserCarte(guide);
 	}
 
 	//Fonction permettant de compl�ter la main du joueur
@@ -208,7 +262,8 @@ public abstract class Player extends Observer{
 
 	//Methode qui permet d'incrementer les pointsd'action du joueur du nombre de points indiqué
 	public void incrementerPointAction(EnumCosmogonie typePA, int nbPA){
-		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
+		dicoPA.put(typePA, dicoPA.get(typePA) + nbPA);
+//		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
 	}
 
 	public void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException{
@@ -222,13 +277,13 @@ public abstract class Player extends Observer{
 	protected void incrementerPointActionWithDe(){
 		if (divinity.getOrigine() == EnumOrigineDivinite.AUBE || divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE){
 			if(De.getInstanceDe().getFace() == EnumCosmogonie.NEANT){
-				incrementerPointAction(EnumCosmogonie.NEANT, dicoPA.get(EnumCosmogonie.NEANT) +1);
+				incrementerPointAction(EnumCosmogonie.NEANT, 1);
 			}else{
-				incrementerPointAction(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +1);
+				incrementerPointAction(De.getInstanceDe().getFace(),1);
 			}
 		}else{
 			if (De.getInstanceDe().getFace() == EnumCosmogonie.JOUR || De.getInstanceDe().getFace() == EnumCosmogonie.NUIT){
-				incrementerPointAction(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +2);
+				incrementerPointAction(De.getInstanceDe().getFace(), 2);
 			}
 		}
 	}	

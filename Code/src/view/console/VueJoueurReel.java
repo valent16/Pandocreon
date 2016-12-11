@@ -37,15 +37,21 @@ public class VueJoueurReel {
 	public void passageTour(){
 		List<ActionCard> cartes;
 		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();
-		
+		Iterator<SpiritGuide> itGuide = joueur.getGuides().iterator();
+		System.out.println("\n\n");
 		System.out.println("Joueur "+joueur.getNom()+", c'est a votre tour");
 		System.out.println("PA: "+joueur.getDicoPA().toString());
 		System.out.println("liste des croyants sur la table");
 		while(itCroyant.hasNext()){
 			System.out.println(itCroyant.next().toString());
 		}
-		
 		System.out.println("\n");
+		System.out.println("liste des guides sur possédés par le joueur");
+		while(itGuide.hasNext()){
+			System.out.println(itGuide.next().toString());
+		}
+		System.out.println("\n");
+		
 		cartes = joueur.getHand();
 		//liste des cartes
 		for (Card c : cartes){
@@ -139,11 +145,22 @@ public class VueJoueurReel {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("liste des cartes pouvant etre jouees:");
 		List<ActionCard> listeAAfficher = joueur.getHand();
+		List<ActionCard> listeCarteRattaches = joueur.getListCardGuide();
 		String choix = "";
 		
-		while(!(choix.equals("end") || listeAAfficher.size() == 0)){
+		while(!(choix.equals("end") || (listeAAfficher.size() == 0 && listeCarteRattaches.size() == 0))){
 			listeAAfficher = joueur.getHand();
-			afficherListeCarte(listeAAfficher);
+			listeCarteRattaches = joueur.getListCardGuide();
+			for (int i=0; i< listeAAfficher.size(); i++){
+				System.out.println(i+"- "+listeAAfficher.get(i).toString());
+			}
+			System.out.println("\n");
+			System.out.println("liste des guides et cartes rattachées à vos guides, vous ne pouvez que sacrifier ces cartes");
+			for (int i=0; i< listeCarteRattaches.size(); i++){
+				System.out.println(i+listeAAfficher.size()+"- "+listeCarteRattaches.get(i).toString());
+			}
+			
+//			afficherListeCarte(listeAAfficher);
 			System.out.println("veuillez renseigner la carte à utiliser en renseignant son numero:");
 			System.out.println("taper \"end\" si vous avez fini d'utiliser des cartes");
 			System.out.print("votre choix: ");
@@ -151,7 +168,7 @@ public class VueJoueurReel {
 			
 //			if (!(choix.matches("[0-9]+") && listeAAfficher.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))))			
 //			while((!choix.matches("[0-9]+") || (listeAAfficher.size() > Integer.parseInt(choix)) || Integer.parseInt(choix) >= 0 ) && !choix.equals("end")){
-			while(!(choix.matches("[0-9]+") && listeAAfficher.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))){
+			while(!(choix.matches("[0-9]+") && listeAAfficher.size()+listeCarteRattaches.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))){
 				System.out.println("\n");
 				afficherListeCarte(listeAAfficher);
 				System.out.println("votre choix est invalide, veuillez le renseigner à nouveau.");
@@ -159,7 +176,11 @@ public class VueJoueurReel {
 				choix = sc.nextLine();
 			}
 			if (!choix.equals("end")){
-				this.choisirPouvoirCarte(listeAAfficher.get(Integer.parseInt(choix)));
+				if (Integer.parseInt(choix) >= listeAAfficher.size()){
+					controller.utiliserCarteRattachee(listeCarteRattaches.get((Integer.parseInt(choix)-listeAAfficher.size())));
+				}else{
+					this.choisirPouvoirCarteMain(listeAAfficher.get(Integer.parseInt(choix)));
+				}
 				//controller.jouerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 				//controller.supprimerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 			}
@@ -171,15 +192,13 @@ public class VueJoueurReel {
 	}
 	
 	//Fonction permettant de définir l'action a faire avec une carte Action
-	public void choisirPouvoirCarte(ActionCard carte){
+	public void choisirPouvoirCarteMain(ActionCard carte){
 		//Set<String> listeCommande =  ( carte.getPouvoirs().keySet();
 		Object[] listeCommande = carte.getPouvoirs().keySet().toArray();
 		
 		Scanner sc = new Scanner(System.in);
 		String choix = null;
-//		commande
 		System.out.println("quelle action souhaitez vous effectuer avec la carte ?");
-		
 		do{
 			if (choix != null){
 				System.out.println("choix invalide");
@@ -187,6 +206,7 @@ public class VueJoueurReel {
 			for (int i = 0; i<listeCommande.length; i++ ){
 				System.out.println(i+" :"+listeCommande[i].toString());
 			}
+			
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 		}while(!controller.checkChoiceAction(carte, choix));
@@ -256,8 +276,9 @@ public class VueJoueurReel {
 				if (choix != null){
 					System.out.println("erreur lors de votre choix");
 				}
+				System.out.print("votre choix: ");
 				choix = sc.nextLine();
-			}while(controller.checkGeneralChoice(choix, croyantsAPresenter.size()));
+			}while(!controller.checkGeneralChoice(choix, croyantsAPresenter.size()));
 			
 			if (Integer.parseInt(choix)!=croyantsAPresenter.size()){
 				croyantSelected.add(croyantsAPresenter.get(Integer.parseInt(choix)));
@@ -266,9 +287,6 @@ public class VueJoueurReel {
 		}
 		
 //		guide.convertirCroyant(croyantsAPresenter.get(Integer.parseInt(choix)));
-		
-		
-		
 		return croyantSelected;	
 	}
 }

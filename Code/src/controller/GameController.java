@@ -1,4 +1,5 @@
 package controller;
+import model.cards.ActionCard;
 import model.game.Game;
 import model.player.Bot;
 import model.player.Human;
@@ -31,6 +32,7 @@ public class GameController {
 		}
 		return false;
 	}
+	
 	
 	//Permet la création d'un joueur à partir de paramètres
 	public void CreationJoueur(String nom, int age){

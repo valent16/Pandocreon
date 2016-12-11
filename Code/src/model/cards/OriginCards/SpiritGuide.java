@@ -3,7 +3,9 @@ package model.cards.OriginCards;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import model.EnumType.EnumDogme;
 import model.player.Player;
@@ -24,11 +26,18 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 		this.nbCarteCroyant = nbCarteCroyant;
 	}
 
+	public List<Believer> getCroyantsConvertis(){
+		return Collections.unmodifiableList(croyantsConvertis);
+	}
+	
 	@Override
 	public void utiliserPouvoir(String commande,Player joueur) throws Exception {
+		this.pouvoirs.get(commande).onAction(this, joueur);
+		joueur.retirerCarte(this);
 		// TODO Auto-generated method stub
 	}
 	
+	//permet de savoir si un croyant a au moins un dogme en commun avec le guide
 	public boolean isCroyantCompatible(Believer croyant){
 		Iterator<EnumDogme> itDogmeCroyant = croyant.getDogmes().iterator();
 		EnumDogme d;
@@ -39,6 +48,26 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 			}
 		}
 		return false;
+	}
+	
+	//Permet de déterminer si un guide possède un croyant donne
+	public boolean hasCroyant(Believer croyant){
+		if (croyantsConvertis.contains(croyant)){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean hasNoCroyant(){
+		if (croyantsConvertis.size() == 0){
+			return true;
+		}
+		return false;
+	}
+	
+	//permet de supprimer un croyant d'un guide
+	public void supprimerCroyant(Believer croyant){
+		croyantsConvertis.remove(croyant);
 	}
 	
 	//méthode permettant de convertir un croyant
