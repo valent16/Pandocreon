@@ -25,7 +25,6 @@ public class SacrificeLlewella extends Sacrifice {
         try {
 			new Apocalypse().utiliserPouvoir("declencher apocalypse", player);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
