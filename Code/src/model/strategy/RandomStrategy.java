@@ -1,16 +1,16 @@
 package model.strategy;
 
-import java.util.HashMap;
 import java.util.List;
 
 import model.EnumType.EnumCosmogonie;
+import model.cards.ActionCard;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.player.Bot;
 import model.player.Player;
 
-//Une strategie random avec un switch case
+/**Une strategie random avec un switch case*/
 public class RandomStrategy implements Strategy{
 
 	/**garde le bot qui joue en memoire pour recuperer ses donnees (cartes, score etc..)*/
@@ -43,7 +43,7 @@ public class RandomStrategy implements Strategy{
 		switch (action){
 		case 1: //jouer une carte random et active son pouvoir
 			if(bot.getHand().size() != 0){	//si le bot possede des cartes
-				bot.jouerCarteRandom();
+				this.jouerCarteRandom();
 				System.out.println("action2");
 			}else{//sinon on rappelle la methode pour jouer
 				jouer(bot); 
@@ -61,11 +61,11 @@ public class RandomStrategy implements Strategy{
 			break;
 
 		case 3: //recuperer des croyants avec le guide spirituel
-
 			System.out.println("recuperer des croyants avec le guide spirituel");
 			break;
 
-		case 4: //defausser une ou plusieurs carte
+		case 4: 
+			//defausser une ou plusieurs carte
 			//TODO faire un random entre 1 et 2 si c'est 1 c'est un random d'un carte random qu'on defausse si c'est 2 c'est un random d'un nombre de carte random qui permet de faire une boucle pour defauusser pluisuer cartes
 			//si sa main est vide on rappelle la methode jouer
 			//this.defausserCartes(partie.getCartesDefaussees());
@@ -90,6 +90,34 @@ public class RandomStrategy implements Strategy{
 			break;
 		}
 	}
+	
+	/**Methode qui permet de jouer une carte Random utiliser pour la strategie Random et Easy*/
+	private void jouerCarteRandom(){
+		int indexCard = (int) (Math.random() * bot.getNbCartes())+1;
+		ActionCard card = bot.getHand().get(indexCard);
+		System.out.println("Le bot "+ bot.getNom()+" active le pouvoir de la carte "+ bot.getHand().get(indexCard));
+		System.out.println("Il faut appeller la bonne methode LA CARTE A ACTIVER LE POUVOIR "+ bot.getHand().get(indexCard));
+		System.out.println(card.getPouvoirs());
+	}
+	
+	@Override
+	public void depotCroyant() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void convertirCroyants() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void lancerApocalypse() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	@Override
 	//permet d'economiser ses points dans notre cas il pioche
@@ -99,7 +127,6 @@ public class RandomStrategy implements Strategy{
 
 	@Override
 	public Player pickTarget() {
-		
 		// TODO Auto-generated method stub
 		//prendre un joueur de maniere random
 		return null;

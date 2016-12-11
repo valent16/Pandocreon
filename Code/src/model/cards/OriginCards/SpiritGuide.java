@@ -49,7 +49,7 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 		return false;
 	}
 	
-	//Permet de d�terminer si un guide poss�de un croyant donne
+	//Permet de determiner si un guide poss�de un croyant donne
 	public boolean hasCroyant(Believer croyant){
 		if (croyantsConvertis.contains(croyant)){
 			return true;
@@ -69,7 +69,7 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 		croyantsConvertis.remove(croyant);
 	}
 	
-	//m�thode permettant de convertir un croyant
+	//methode permettant de convertir un croyant
 	public void convertirCroyant(Believer croyant){
 		croyantsConvertis.add(croyant);
 	}

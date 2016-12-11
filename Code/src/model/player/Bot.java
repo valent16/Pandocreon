@@ -1,5 +1,7 @@
 ﻿package model.player;
 
+import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -10,9 +12,8 @@ import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
-import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
-import model.pouvoir.pouvoirCarte.DepotCroyant;
+import model.game.GameManager;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
@@ -21,7 +22,7 @@ public class Bot extends Player{
 
 	/**recupere la stratégie choisi au départ pour tous les bots*/
 	private static Strategy strategy;
-	
+
 	/**Constructeur de joueur qui est appelé pour créer un ordinateur*/
 	public Bot(String pseudo, Strategy strat) {
 		super(pseudo, AGE_BOT);
@@ -177,43 +178,20 @@ public class Bot extends Player{
 		System.out.println("se defausse de la carte "+ card);
 	}
 
-	/**Methode qui permet de jouer une carte Random utiliser pour la strategie Random et Easy*/
-	public void jouerCarteRandom(){
-		int indexCard = (int) (Math.random() * this.getNbCartes())+1;
-		ActionCard card = this.getHand().get(indexCard);
-		System.out.println("Le bot "+ this.getNom()+" active le pouvoir de la carte "+ this.getHand().get(indexCard));
-		System.out.println("Il faut appeller la bonne methode LA CARTE A ACTIVER LE POUVOIR "+ this.getHand().get(indexCard));
-		System.out.println(card.getPouvoirs());
-		//card.utiliserPouvoir(commande, joueur); //TODO activer le pouvoir de la carte
-	}
-
 	/**permet au bot de deposer un croyant de sa main a la table
 	retourne true si il peut poser un coryant sinon false*/
-	public void DepotCroyant(){
-		LinkedList<Believer> liste = getBelievers(); //recupere tous le croyants
-		Iterator<Believer> it = liste.iterator();
-		//recupere le premier croyant posable
-		while(it.hasNext()){ 
-			Believer believer = it.next();
-			if(pointsOrigineSuffisants(believer)){	//test si le bot a suffisamment de point
-				System.out.println("le bot a "+this.getDicoPA().get(believer.getOrigine())+" points "+ believer.getOrigine());
-				try{
-					//new DepotCroyant().onAction(believer, this);//Ca sa marche
-					believer.utiliserPouvoir("deposer Croyant", new DepotCroyant());
-					/////////////////////////Exemple avec APOCALYPSE: new Apocalypse().utiliserPouvoir("declencher apocalypse", player);
-				} catch (PAInsuffisantException e) {
-					this.jouerTour();
-					e.printStackTrace();
-				} catch (Exception e) {}
-				System.out.println("le bot "+ this.getNom() +" a posé le croyant "+ believer);
-				break;
-			}
-
-			//si il a pas pu poser de croyants il economise ses points
-			else{
-				strategy.economy();
-			}
-		}
+	public void depotCroyant(){
+		strategy.depotCroyant();
+	}
+	
+	//permet de convertir des croyants avec le guide donne en parametre
+	public void convertirCroyants(){
+		strategy.convertirCroyants();
+	}
+	
+	//permet au bot de lancer une apocalypse
+	public void lancerApocalypse(){
+		strategy.lancerApocalypse();
 	}
 
 	//verifie si le nombre de point est suffisant pour effectuer l'action voulu sur la carte en parametre
@@ -233,14 +211,28 @@ public class Bot extends Player{
 	}
 
 	//Methode pour tester si le bot est dernier au score
-	public boolean isLast(){//TODO A FAIRE
-		//GameManager.getInstanceUniqueManager().get
-		this.getScore();
-		return true;
+	public boolean isLast(){
+		int place = 1;
+		ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
+		Iterator<Player> it = players.iterator();
+		while(it.hasNext()){
+			if(this.getScore() >= it.next().getScore()){
+				place++;
+			}
+		}
+		if(place == GameManager.getInstanceUniqueManager().getNbJoueur()){
+			System.out.println("la place du joueur = "+ place);
+			System.out.println("le nombre de joueur = "+ GameManager.getInstanceUniqueManager().getNbJoueur());
+			return true;
+		}
+		else{
+			System.out.println("la place du joueur = "+ place);
+			System.out.println("le nombre de joueur = "+ GameManager.getInstanceUniqueManager().getNbJoueur());
+			return false;
+		}
 	}
 
 	@Override
-
 	//permet de choisir un joueur au besoin
 	public Player pickTarget() throws TargetSelectionException {
 		return strategy.pickTarget();
