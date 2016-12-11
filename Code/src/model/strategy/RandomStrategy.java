@@ -1,5 +1,8 @@
 package model.strategy;
 
+import java.util.HashMap;
+
+import model.EnumType.EnumCosmogonie;
 import model.player.Bot;
 
 //Une strategie random avec un switch case
@@ -29,8 +32,6 @@ public class RandomStrategy implements Strategy{
 		- piocher
 		- lancer le pouvoir d'une carte random
 		 */
-
-		//CA COMMENCE COMME CA 
 
 		//depart
 		int action = (int) (Math.random() * 5) + 1;
@@ -84,5 +85,11 @@ public class RandomStrategy implements Strategy{
 		default:
 			break;
 		}
+	}
+
+	@Override
+	//permet d'economiser ses points dnas notre cas il passe son tour
+	public void economy(){
+		//bot.passerTour(); // TODO passerTour	
 	}
 }

@@ -16,7 +16,7 @@ import model.pouvoir.Pouvoir;
 public class ConversionCroyant extends Pouvoir {
 
 	public ConversionCroyant() {
-		super("Permet de convertir des croyants situés sur la table");
+		super("Permet de convertir des croyants situï¿½s sur la table");
 		
 	}
 
@@ -36,6 +36,7 @@ public class ConversionCroyant extends Pouvoir {
 			joueur.decrementerPointAction(((SpiritGuide) carte).getOrigine(), 1);
 		}
 		GameManager.getInstanceUniqueManager().deposerCroyant(carte);
+
 		joueur.ajouterCroyantPendantTour(carte);
 		joueur.retirerCarte(carte);
 		joueur.rattacherGuide(carte);

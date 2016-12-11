@@ -1,17 +1,22 @@
 ﻿package model.player;
 
 import java.util.Collections;
-import java.util.HashMap;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthScrollBarUI;
+
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
+import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
+import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
+import model.pouvoir.pouvoirCarte.DepotCroyant;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
@@ -28,32 +33,20 @@ public class Bot extends Player{
 		strategy.setBot(this); //donne les parametres du bot a la stratégie
 	}
 
-	/**Methode qui fait jouer les bots avec la difficulté choisie*/
-	public void jouerTour(){
-		incrementerPointActionWithDe();
-		HashMap<EnumCosmogonie, Integer> pointsAction = this.getDicoPA();
-		System.out.println("les points du BOT "+ this.getNom() +": "  
-			+ pointsAction.get(EnumCosmogonie.JOUR) +" Point Jour | "
-			+ pointsAction.get(EnumCosmogonie.NUIT) +" Point Nuit | " + 
-			+ pointsAction.get(EnumCosmogonie.NEANT) +" Point Néant"); 
-		
-
-		//depart
-		int action = (int) (Math.random() * 5) + 1;
-		System.out.println("LACTION "+action);
-		switch (action){
-		case 1: //jouer une carte random et active son pouvoir
-			if(this.getHand().size() != 0){	//si le bot possede des cartes
-				strategy.jouerCarte();
-				System.out.println("action2");
-			}else{//sinon on rappelle la methode pour jouer
-				jouerTour(); 
-		strategy.jouer(this);
+	//permet de setup le niveau des bots
+	private void setStrategy(Strategy strategy) {
+		Bot.strategy = strategy;
 	}
 
 	//recupere la strategie des Bots
 	public static Strategy getStrategy() {
 		return strategy;
+	}
+
+	/**Methode qui fait jouer les bots avec la difficulté choisie*/
+	public void jouerTour(){	
+		incrementerPointActionWithDe();
+		strategy.jouer(this);
 	}
 
 	//Tests si le bot possede des croyants dans sa main
@@ -94,8 +87,8 @@ public class Bot extends Player{
 
 	//recupere une carte croyant de la main du bot de maniere Random
 	public Believer getBeliever(){
-		List<ActionCard> liste = getHand();
-		Collections.shuffle(liste);
+		LinkedList<ActionCard> liste = getHand();
+		Collections.shuffle(liste); //pour obtenir le croyant de maniere random
 		Iterator<ActionCard> it = liste.iterator();
 		Believer believer = null;
 		while(it.hasNext()){
@@ -107,10 +100,10 @@ public class Bot extends Player{
 		return believer;
 	}
 
-	//recupere tous un guide spirit de la main du bot de maniere Random
+	//recupere un guide spirit de la main du bot de maniere Random
 	public SpiritGuide getSpiritGuide(){
 		List<ActionCard> liste = getHand();
-		Collections.shuffle(liste);
+		Collections.shuffle(liste); //pour obtenir le guide spirit de maniere random
 		Iterator<ActionCard> it = liste.iterator();
 		SpiritGuide spiritGuide = null;
 		while(it.hasNext()){
@@ -122,10 +115,10 @@ public class Bot extends Player{
 		return spiritGuide;
 	}
 
-	//recupere une apocalypse de la main du bot
+	//recupere une apocalypse de la main du bot de maniere random
 	public Apocalypse getApocalypse(){
 		List<ActionCard> liste = getHand();
-		Collections.shuffle(liste);
+		Collections.shuffle(liste); //pour obtenir l'apocalypse de maniere random
 		Iterator<ActionCard> it = liste.iterator();
 		Apocalypse apocalypse = null;
 		while(it.hasNext()){
@@ -137,9 +130,47 @@ public class Bot extends Player{
 		return apocalypse;
 	}
 
-	//permet de setup le niveau des bots
-	private void setStrategy(Strategy strategy) {
-		Bot.strategy = strategy;
+	//recupere tous les croyants de la main du bot
+	public LinkedList<Believer> getBelievers(){
+		LinkedList<ActionCard> liste = getHand();
+		Iterator<ActionCard> it = liste.iterator();
+		LinkedList<Believer> believers = new LinkedList<Believer>();
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof Believer){ //on retourne le premier croyant de la liste
+				believers.add((Believer) card);
+			}
+		}
+		return believers;
+	}
+
+	//recupere tous les guide spirit de la main du bot
+	public LinkedList<SpiritGuide> getSpiritGuides(){
+		List<ActionCard> liste = getHand();
+		Iterator<ActionCard> it = liste.iterator();
+		LinkedList<SpiritGuide> spiritGuides = new LinkedList<SpiritGuide>();
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof SpiritGuide){ //on retourne le premier SpiritGuide de la liste
+				spiritGuides.add((SpiritGuide) card);
+			}
+		}
+		return spiritGuides;
+	}
+
+	//recupere toutes les apocalypses de la main du bot
+	public LinkedList<Apocalypse> getApocalypses(){
+		List<ActionCard> liste = getHand();
+		Collections.shuffle(liste);
+		Iterator<ActionCard> it = liste.iterator();
+		LinkedList<Apocalypse> apocalypses = new LinkedList<Apocalypse>();
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof Apocalypse){ //on retourne la premiere apocalypse croyant de la liste
+				apocalypses.add((Apocalypse) card);
+			}
+		}
+		return apocalypses;
 	}
 
 	//Methode qui permet au bot de se defausser d'une carte de maniere random utiliser pour la strategie Random et Easy
@@ -150,24 +181,80 @@ public class Bot extends Player{
 		System.out.println("se defausse de la carte "+ card);
 	}
 
-	//Methode qui permet de jouer une carte Random utiliser pour la strategie Random et Easy
+	/**Methode qui permet de jouer une carte Random utiliser pour la strategie Random et Easy*/
 	public void jouerCarteRandom(){
 		int indexCard = (int) (Math.random() * this.getNbCartes())+1;
 		ActionCard card = this.getHand().get(indexCard);
 		System.out.println("Le bot "+ this.getNom()+" active le pouvoir de la carte "+ this.getHand().get(indexCard));
 		System.out.println("Il faut appeller la bonne methode LA CARTE A ACTIVER LE POUVOIR "+ this.getHand().get(indexCard));
+		System.out.println(card.getPouvoirs());
 		//card.utiliserPouvoir(commande, joueur); //TODO activer le pouvoir de la carte
 	}
 
-	@Override
-	public String toString() {
-		return super.toString();
-		//return "Bot [strategy=" +" getStrategy()=" + getStrategy() + "]"+super.toString();
+	/**permet au bot de deposer un croyant de sa main a la table
+	retourne true si il peut poser un coryant sinon false*/
+	public void DepotCroyant(){
+		LinkedList<Believer> liste = getBelievers(); //recupere tous le croyants
+		Iterator<Believer> it = liste.iterator();
+		//recupere le premier croyant posable
+		while(it.hasNext()){ 
+			Believer believer = it.next();
+			if(pointsOrigineSuffisants(believer)){	//test si le bot a suffisamment de point
+				System.out.println("le bot a "+this.getDicoPA().get(believer.getOrigine())+" points "+ believer.getOrigine());
+				try{
+					new DepotCroyant().onAction(believer, this);
+				} catch (PAInsuffisantException e) {
+					this.jouerTour();
+					e.printStackTrace();
+				} catch (Exception e) {}
+				System.out.println("le bot "+ this.getNom() +" a posé le croyant "+ believer);
+				break;
+			}
+			
+			//si il a pas pu poser de croyants il economise ses points
+			else{
+				strategy.economy();
+			}
+		}
+	}
+
+	//verifie si le nombre de point est suffisant pour effectuer l'action voulu sur la carte en parametre
+	public boolean pointsOrigineSuffisants(ActionCardWithOrigin card){
+		EnumCosmogonie cosmogonie = card.getOrigine();
+		if(this.getDicoPA().get(cosmogonie) >= 1)
+			return true;
+		else if(cosmogonie == EnumCosmogonie.NEANT){//pour convertir les points NEANT en Cosmogonie
+			if(this.getDicoPA().get(EnumCosmogonie.JOUR) >= 2)//si on 2 points jour ca passe 
+				return true;
+			else if(this.getDicoPA().get(EnumCosmogonie.NUIT) >= 2)//si on a 2 point nuit ca passe aussi
+				return true;
+			else
+				return false;//sinon l'action ne peut etre faite	
+		}
+		return false;
 	}
 
 	@Override
 	public Player pickTarget() throws TargetSelectionException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Believer> pickCroyant(SpiritGuide carte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+		//return "Bot [strategy=" +" getStrategy()=" + getStrategy() + "]"+super.toString();
 	}
 }

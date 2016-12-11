@@ -1,7 +1,5 @@
 package model.game;
 
-import controller.GameController;
-
 import controller.JoueurController;
 import model.EnumType.EnumCosmogonie;
 import model.player.Bot;
@@ -9,14 +7,13 @@ import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
 import model.strategy.EasyStrategy;
-import model.strategy.MediumStrategy;
 
 /**Classe de lancement du programme*/
 public class Main{
 	
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
-		int valeur = 1;
+		int valeur = 3;
 		//1: lancement du jeu
 		//2: test sur la classe joueur
 		
@@ -52,12 +49,11 @@ public class Main{
 		game.ajouterBot(b1);
 		game.ajouterBot(b2);
 		
-		game.nouvellePartie();
-		
+		game.nouvellePartie();	
 		GameManager.getInstanceUniqueManager().startGame();
 		System.out.println(b1.getDivinity().getOrigine());
 		System.out.println(b2.getDivinity().getOrigine());
-		b1.jouerTour();
+		
 	}
 
 

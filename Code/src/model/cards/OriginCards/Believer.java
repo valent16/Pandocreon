@@ -1,4 +1,4 @@
-package model.cards.OriginCards;
+﻿package model.cards.OriginCards;
 
 import java.io.Serializable;
 
@@ -31,6 +31,6 @@ public class Believer extends CarteDogmatique implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Believer [nbPrieres=" + nbPrieres + "]"+ super.toString();
-	}	
+		return "Believer nom=" + nom + "[nbPrieres=" + nbPrieres + "]"+ super.toString();
+	}
 }
