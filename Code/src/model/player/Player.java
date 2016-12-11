@@ -97,7 +97,6 @@ public abstract class Player extends Observer{
 			
 		}
 	}
-	
 
 	/**Methode piocher*/
 	public void piocher(){
@@ -158,7 +157,7 @@ public abstract class Player extends Observer{
 	
 	/**Getter du score du joueur*/
 	public int getScore() {
-		int score = 0	;
+		int score = 0;
 		Iterator<SpiritGuide> itGuides = guidesRattaches.iterator();
 		SpiritGuide guide;
 		while(itGuides.hasNext()){

@@ -201,7 +201,7 @@ public class GameManager implements IObservableGameManager {
 			
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){
-					System.out.println(players.get(i%players.size()).toString());
+					//System.out.println(players.get(i%players.size()).toString());
 					players.get(i%players.size()).jouerTour();
 				}
 			}

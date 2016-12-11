@@ -32,32 +32,33 @@ public class EasyStrategy implements Strategy {
 	//Methode de jeu
 	public void jouer(Bot b){
 		this.setBot(b); //Passage des données du bot
-		System.out.println("Le nombre de croyants est de " +GameManager.getInstanceUniqueManager().getCroyants().size());
+		System.out.println(bot.getNom() + " " +bot.getDivinity().getOrigine());//////////////////////////////////////////////////////////////////
+		System.out.println("voici les points du bot " + bot.getNom() + " " + bot.getDicoPA());/////////////////////////
+		System.out.println("Le nombre de croyants sur la table est de " +GameManager.getInstanceUniqueManager().getCroyants().size());///////////////////////
 		bot.afficherHand();
-		//System.out.println(bot.getHand());
+		System.out.println("SCORE "+bot.getScore());
 
 		if(GameManager.getInstanceUniqueManager().getCroyants().size() != 0){//si il y a deja des croyants sur la table
-			//si il a des guide spirit on recupere nos croyants
-			if(bot.hasSpiritGuide()){	
-				bot.convertirCroyants();
-				System.out.println("le bot a recuperer avec son guide spirit un croyant"); 
+			if(bot.hasSpiritGuide()){	//si il a des guidez spirituels on recupere nos croyants
+				this.convertirCroyants();
+				System.out.println("le bot a recuperer avec son guide spirit un croyant"); /////////////////////////:
+				System.out.println("SCORE "+bot.getScore());
 
 			}else{
 				//si on a un croyant on le poser sur la table
 				if(bot.hasBelievers()){ 
-					bot.depotCroyant();
+					this.depotCroyant();
+					System.out.println("voici les points du bot " + bot.getNom() + " " + bot.getDicoPA());////////////////////////////////
 
-					//bot.getBeliever(). //TODO appeller le pouvoir pour poser la carte sur la table
 
-					//sinon si on a une apocalypse on la lance
 					//TODO: SI il est pas dernier on peut la lancer faire la methode lancer Apocalypse dans bot qui retourne un booleen
 				}else if(bot.hasApocalypse()){ // si le bot a une apocalypse il la lance
-					bot.lancerApocalypse();
+					this.lancerApocalypse();
 					System.out.println("a lancer une apocalypse");
 
 				}else if(bot.getNbCartes() == 0){//si le bot n'a plus de cartes il pioche
 					bot.piocher();
-					System.out.println("pioche");
+					System.out.println("1pioche");
 				}
 			}
 
@@ -65,30 +66,35 @@ public class EasyStrategy implements Strategy {
 
 			if(bot.hasBelievers()){//s'il a des croyants il essaye d'en poser
 				bot.depotCroyant();
-
+				System.out.println("voici les points du bot " + bot.getNom() + " " + bot.getDicoPA());////////////////////////////////////////
 			}else{//sinon
-				if(bot.hasApocalypse()){ //sinon si on a une apocalypse on la lance
-					//bot.getApocalypse(). //TODO appeller le pouvoir pour poser la carte sur la table
+				if(bot.hasApocalypse()){ //sinon si on lance une apocalypse
+					this.lancerApocalypse();
 					System.out.println("a lancer une apocalypse");
 
-				}else if(bot.getNbCartes() == 0){//si le bot n'a plus de cartes il pioche
-					System.out.println("pioche");
+				}else if(bot.getNbCartes() < 7){//si le bot n'a plus de cartes il pioche
+					System.out.println(bot.getNom() +" pioche");
 					bot.piocher();
-
+				}else{
+					bot.defausserCarte(bot.getHand().get(0));//il se defausse de sa premiere carte
+					System.out.println(bot.getNom() +" s'est defausser de 7 cartes");
 				}
 			}
 		}
+		System.out.println();///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 
 	@Override
+	//depot de croyant
 	public void depotCroyant() {
 		LinkedList<Believer> liste = bot.getBelievers(); //recupere tous le croyants
 		Iterator<Believer> it = liste.iterator();
-		//recupere le premier croyant posable
-		while(it.hasNext()){ 
+
+		while(it.hasNext()){ //recupere le premier croyant posable
 			Believer believer = it.next();
 			if(bot.pointsOrigineSuffisants(believer)){	//test si le bot a suffisamment de point
-				System.out.println("le bot a "+ bot.getDicoPA().get(believer.getOrigine())+" points "+ believer.getOrigine());
+				System.out.println("les points suffisants resultat "+ bot.pointsOrigineSuffisants(believer));/////////////////////////////////////////////////
+				System.out.println("le bot "+ bot.getNom()+ " a " + bot.getDicoPA().get(believer.getOrigine())+" points "+ believer.getOrigine()); ////////////////////:
 				try{
 					believer.utiliserPouvoir("deposer Croyant", bot);
 				} catch (PAInsuffisantException e) {
@@ -98,37 +104,40 @@ public class EasyStrategy implements Strategy {
 				System.out.println("le bot "+ bot.getNom() +" a posé le croyant "+ believer);
 				break;
 			}
-
-			//si il a pas pu poser de croyants il economise ses points
-			else{
-				this.economy();
-			}
 		}
-
 	}
 
 	@Override
+	//conversion de croyant
 	public void convertirCroyants() {
-		System.out.println("LES GUIDES du bot " + bot.getNom()+ " " +bot.getGuides());
-		SpiritGuide guide = bot.getGuides().get(0); //recupere un guide
-		Believer believer = bot.pickCroyant(guide).get(0); //recupere le croyant a convertir
-		try {
-			guide.convertirCroyant(believer);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		System.out.println(bot.getGuides().get(0).getCroyantsConvertis());
+		System.out.println("LES GUIDES du bot " + bot.getNom()+ " " + bot.getSpiritGuide());
+		SpiritGuide guide = bot.getSpiritGuides().get(0); //recupere un guide
+		System.out.println("guide recuperer est le guide "+ guide);////////////////////////////////////////////////////////////
+		LinkedList<Believer> believers = (LinkedList<Believer>) bot.pickCroyant(guide); //recupere le plus de croyant possible
+		Iterator<Believer> it = believers.iterator();
+		while(it.hasNext()){ //pour chaque croyant
+			Believer believer = it.next();
+			try {
+				guide.convertirCroyant(believer); //on les convertit au guide
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
+		System.out.println(guide.getCroyantsConvertis());
 	}
 
 	@Override
+	//lancement d'une apocalypse
 	public void lancerApocalypse() {
-		if(bot.isLast()){
+		if(!bot.isLast()){
 			try {
 				new Apocalypse().utiliserPouvoir("declencher apocalypse", bot);
+				System.out.println("apocalypse Lancer");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else{
+			this.economy();
 		}
 	}
 
@@ -146,27 +155,33 @@ public class EasyStrategy implements Strategy {
 		else 
 			return null;
 	}
-	
+
 	@Override
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public List<Believer> pickCroyant(SpiritGuide guide) {
-		List<Believer> believer = new LinkedList<Believer>();
+		List<Believer> believers = new LinkedList<Believer>(); //la liste a recuperer a la fin
 		LinkedList<Believer> liste = GameManager.getInstanceUniqueManager().getCroyants();
-		int limite = 0; //limite de carte croyant a convertire
+		int limiteCroyant = 0; //limite de carte croyant a convertire
 		Iterator<Believer> it = liste.iterator();
-		while(it.hasNext() && limite < guide.getNbMaxCroyant()){ //tant qu'il y a des croyants sur la table
+		while(it.hasNext() && limiteCroyant < guide.getNbMaxCroyant()){ //tant qu'il y a des croyants sur la table
 			Believer b = it.next();
 			if(guide.isCroyantCompatible(b)){
-				believer.add(b);	
+				believers.add(b);	
 			}
-			return believer;
 		}
-		System.out.println("Aucun croyant sur la table ne peuvent etre converti");
+		System.out.println(believers.size());
+		if(believers.size() !=0){
+			return believers;
+		}else{
+			bot.piocher();
+		}
+
+		System.out.println("Aucun croyant sur la table ne peuvent etre converti");//////////////////////////////////////////////
 		return null;
 	}
 

@@ -197,8 +197,9 @@ public class Bot extends Player{
 	//verifie si le nombre de point est suffisant pour effectuer l'action voulu sur la carte en parametre
 	public boolean pointsOrigineSuffisants(ActionCardWithOrigin card){
 		EnumCosmogonie cosmogonie = card.getOrigine();
-		if(this.getDicoPA().get(cosmogonie) >= 1)
+		if(this.getDicoPA().get(cosmogonie) >= 1){
 			return true;
+		}
 		else if(cosmogonie == EnumCosmogonie.NEANT){//pour convertir les points NEANT en Cosmogonie
 			if(this.getDicoPA().get(EnumCosmogonie.JOUR) >= 2)//si on 2 points jour ca passe 
 				return true;
