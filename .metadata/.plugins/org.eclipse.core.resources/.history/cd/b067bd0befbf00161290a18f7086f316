@@ -1,0 +1,18 @@
+package model.pouvoir.sacrificeCarte;
+
+import model.EnumType.EnumCosmogonie;
+import model.game.GameManager;
+import model.player.Player;
+import model.sacrifice.Sacrifice;
+
+/**Donne un point d'action d'origine Jour*/
+public class SacrificeAjouterPointJour extends Pouvoir{
+    // Donne un point d'action d'origine Jour
+    
+    @Override
+    public void effectuerSacrifice(Card carte, Player player){
+    	player.incrementerPointAction(EnumCosmogonie.JOUR, 1);
+
+    }
+
+}

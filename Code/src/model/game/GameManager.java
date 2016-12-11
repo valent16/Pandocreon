@@ -153,7 +153,7 @@ public class GameManager implements IObservableGameManager {
 		
 		Believer croyant;
 		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();
-		//Iterator<EnumDogme> itDogme;
+		//TODO Iterator<EnumDogme> itDogme;
 		
 		while(itCroyant.hasNext()){
 			croyant = itCroyant.next();
@@ -192,11 +192,11 @@ public class GameManager implements IObservableGameManager {
 		while(players.size()!=0){
 			
 			players.get(start%players.size()).lancerDe();
-			System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
+			//System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
 			
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){
-					//System.out.println(players.get(i%players.size()).toString());
+//					System.out.println(players.get(i%players.size()).toString());
 					players.get(i%players.size()).jouerTour();
 				}
 			}

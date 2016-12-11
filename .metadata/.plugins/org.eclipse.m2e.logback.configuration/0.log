@@ -120,3 +120,17 @@
 2016-12-11 19:53:26,267 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started @609855ms
 2016-12-11 19:57:16,891 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@74744607{HTTP/1.1,[http/1.1]}{127.0.0.1:0}
 2016-12-11 19:57:16,908 [Stop Help Server] INFO  o.e.j.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@47afcec2{/help,null,UNAVAILABLE}
+2016-12-11 21:41:12,967 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2016-12-11 21:51:35,188 [Start Help Server] INFO  org.eclipse.jetty.util.log - Logging initialized @1375860ms
+2016-12-11 21:51:35,329 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-9.3.9.v20160517
+2016-12-11 21:51:35,409 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@5e94cc28{/help,null,AVAILABLE}
+2016-12-11 21:51:35,436 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@6857ab2e{HTTP/1.1,[http/1.1]}{127.0.0.1:51931}
+2016-12-11 21:51:35,437 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started @1376109ms
+2016-12-11 23:58:26,239 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@6857ab2e{HTTP/1.1,[http/1.1]}{127.0.0.1:0}
+2016-12-11 23:58:26,296 [Stop Help Server] INFO  o.e.j.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@5e94cc28{/help,null,UNAVAILABLE}
+2016-12-12 00:08:15,827 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2016-12-12 00:08:23,767 [Start Help Server] INFO  org.eclipse.jetty.util.log - Logging initialized @22698ms
+2016-12-12 00:08:24,233 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-9.3.9.v20160517
+2016-12-12 00:08:24,474 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@5ae6f71{/help,null,AVAILABLE}
+2016-12-12 00:08:24,498 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@1d31e522{HTTP/1.1,[http/1.1]}{127.0.0.1:52572}
+2016-12-12 00:08:24,498 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started @23429ms

@@ -17,7 +17,6 @@ import model.player.Human;
 import model.player.Player;
 
 public class VueJoueurReel {
-
 	Human joueur;
 	
 	JoueurController controller;
@@ -33,7 +32,7 @@ public class VueJoueurReel {
 		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();
 		Iterator<SpiritGuide> itGuide = joueur.getGuides().iterator();
 		System.out.println("\n\n");
-		System.out.println("Joueur "+joueur.getNom()+", c'est a votre tour");
+		System.out.println("Joueur "+joueur.getNom()+", c'est a votre tour  --  score: "+joueur.getScore() );
 		System.out.println("PA: "+joueur.getDicoPA().toString());
 		System.out.println("liste des croyants sur la table");
 		while(itCroyant.hasNext()){

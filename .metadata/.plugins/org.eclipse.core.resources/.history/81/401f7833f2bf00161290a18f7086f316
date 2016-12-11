@@ -1,0 +1,16 @@
+package model.pouvoir.sacrificeCarte;
+
+import model.EnumType.EnumCosmogonie;
+import model.cards.Card;
+import model.player.Player;
+
+public class NotImplementedSacrifice extends Pouvoir {
+	public SacrificeAjouterPointNuit() {
+		super("sacrifice");
+	}
+	
+	@Override
+	public void onAction(Card carte, Player joueur) throws Exception {
+		joueur.incrementerPointAction(EnumCosmogonie.NUIT, 1);
+	}
+}

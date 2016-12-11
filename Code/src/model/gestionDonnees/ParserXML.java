@@ -31,17 +31,33 @@ import model.pouvoir.Pouvoir;
 import model.pouvoir.pouvoirCarte.ConversionCroyant;
 import model.pouvoir.pouvoirCarte.DepotCroyant;
 import model.pouvoir.pouvoirCarte.PouvoirApocalypse;
+import model.pouvoir.sacrificeCarte.NotImplementedSacrifice;
+import model.pouvoir.sacrificeCarte.SacrificeAjouterPointJour;
+import model.pouvoir.sacrificeCarte.SacrificeAjouterPointNeant;
+import model.pouvoir.sacrificeCarte.SacrificeAjouterPointNuit;
 
 public class ParserXML implements IDataLoad {
-
-	private LinkedList<ActionCard> cartesAction = new LinkedList<ActionCard>();
 	
-	private LinkedList<Divinity> divinites = new LinkedList<Divinity>();
+	private static HashMap<String, Pouvoir> listeSacrifice = new HashMap<String, Pouvoir>();
 	
-	public ParserXML() {
+	
+	/*
+		"SacrificeAjouterPointJour", new SacrificeAjouterPointJour() 
+		"SacrificeAjouterPointNuit", new SacrificeAjouterPointNuit()
+		"SacrificeAjouterPointNeant", new SacrificeAjouterPointNeant()
+	*/
+	
+	public ParserXML(){
+		listeSacrifice.put("SacrificeAjouterPointJour", new SacrificeAjouterPointJour() );
+		listeSacrifice.put("SacrificeAjouterPointNuit", new SacrificeAjouterPointNuit());
+		listeSacrifice.put("SacrificeAjouterPointNeant", new SacrificeAjouterPointNeant());
+		listeSacrifice.put("NotImplemented", new NotImplementedSacrifice());
 		parserFichier();
 	}
 	
+	private LinkedList<ActionCard> cartesAction = new LinkedList<ActionCard>();
+	
+	private LinkedList<Divinity> divinites = new LinkedList<Divinity>();
 	
 	@Override
 	public LinkedList<ActionCard> chargerCartes() {
@@ -118,7 +134,7 @@ public class ParserXML implements IDataLoad {
 		return null;
 	}
 	
-	//Permet de d'obtenir à partir d'un dogme en chaine de caract�re sa correspondance en 
+	//Permet de d'obtenir à partir d'un dogme en chaine de caractere sa correspondance en 
 	//EnumDogme
 	private EnumDogme convertDogmeFromString(String dogme){
 		switch(dogme){
@@ -142,7 +158,7 @@ public class ParserXML implements IDataLoad {
 		}
 	}
 	
-	//Permet de d'obtenir � partir d'une origine en chaine de caract�re sa correspondance en 
+	//Permet de d'obtenir � partir d'une origine en chaine de caractere sa correspondance en 
 	//EnumOrigneDivinite
 	private EnumOrigineDivinite convertOrigineDiviniteFromString(String origine){
 		switch(origine){
@@ -160,7 +176,7 @@ public class ParserXML implements IDataLoad {
 		}
 	}
 	
-	//Permet de d'obtenir � partir d'une origine en chaine de caract�re sa correspondance en 
+	//Permet de d'obtenir � partir d'une origine en chaine de caractere sa correspondance en 
 	//EnumOrigineCA
 	private EnumCosmogonie convertOrigineCAFromString(String origine){
 		switch(origine){
@@ -179,12 +195,16 @@ public class ParserXML implements IDataLoad {
 	
 	public void parserFichier(){
 //		System.out.println("debut du parse de fichier");
+		String pouvoir;
+		
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		HashMap<String,Integer > mapNbCroyants = new HashMap<String,Integer >();
 		mapNbCroyants.put("nbr_un", 1);
 		mapNbCroyants.put("nbr_deux", 2);
 		mapNbCroyants.put("nbr_trois", 3);
 		mapNbCroyants.put("nbr_quatre", 4);
+		
+		
 		
 		try{
 			final DocumentBuilder builder = factory.newDocumentBuilder();
@@ -198,14 +218,12 @@ public class ParserXML implements IDataLoad {
 				    final Element deck =  (Element) racineNoeuds.item(i);
 				    final NodeList cartes = deck.getElementsByTagName("card");
 				    final int nbCartes = cartes.getLength();
-				    
-				    
+				
 				    Pouvoir pvCroyant = new DepotCroyant();
 				    Pouvoir pvGuide = new ConversionCroyant();
 				    Pouvoir pvApocalypse = new PouvoirApocalypse();
 				    
-				    
-				    // cas ou la balise carte est trouv�e
+				    // cas ou la balise carte est trouvee
 				    if (nbCartes != 0){
 				    	for(int j = 0; j<nbCartes; j++) {
 			                final Element carte = (Element) cartes.item(j);
@@ -217,10 +235,22 @@ public class ParserXML implements IDataLoad {
 			                		EnumOrigineDivinite orDIv = recupOrigineCarteDiv(carte.getAttribute("template"));
 			                		dogmesCarte = getDogmeDiv(carte.getAttribute("template".trim()));
 			                		Divinity divinite = new Divinity(lstr[0].trim(), dogmesCarte, lstr[3].trim(), orDIv);
+			                		pouvoir = carte.getAttribute("sacrifice");
+			                		if (pouvoir == ""){
+			                			pouvoir = "NotImplemented";
+			                		}
+			                		divinite.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
+		          
 			                		divinites.push(divinite);
 //			                		System.out.println(divinite.toString());
 			                	}else if(type.equals("croyants") || type.equals("guides")){
 			                		dogmesCarte = getDogmeCA(carte.getAttribute("template".trim()));
+			                		pouvoir = carte.getAttribute("sacrifice");
+			                		if (pouvoir == ""){
+			                			pouvoir = "NotImplemented";
+			                		}
+			                		
+//			                		System.out.println("--"+pouvoir+"--");
 			                		EnumCosmogonie orCA = recupOrigineCarte(carte.getAttribute("template"));
 			                		NodeList image = carte.getElementsByTagName("image");
 			                		int nbImage = image.getLength();
@@ -233,25 +263,31 @@ public class ParserXML implements IDataLoad {
 			                			
 			                			Believer croyant = new Believer(lstr[0].trim(), orCA, dogmesCarte, valeurCroyant, lstr[3].trim());
 			                			croyant.ajouterPouvoir("deposer Croyant", pvCroyant);
+			                			croyant.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
 			                			cartesAction.push(croyant);
 //			                			System.out.println(croyant.toString());
 			                		}else{
-			                			
 			                			SpiritGuide guide = new SpiritGuide(lstr[0].trim(), orCA, dogmesCarte, valeurCroyant, lstr[3].trim());
 			                			guide.ajouterPouvoir("convertir Croyant", pvGuide);
+			                			guide.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
 //			                			System.out.println(guide.toString());
 			                			cartesAction.push(guide);
 			                		}
-			                		
 			                	}else if (type.equals("deusex")){
+			                		pouvoir = carte.getAttribute("sacrifice");
+			                		if (pouvoir == ""){
+			                			pouvoir = "NotImplemented";
+			                		}
 			                		EnumCosmogonie orCA = recupOrigineCarte(carte.getAttribute("template"));
 			                		if (orCA == null){
 			                			DeusEx deusEx = new DeusEx(lstr[0].trim());
 			                			cartesAction.push(deusEx);
+			                			deusEx.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
 //			                			System.out.println(deusEx.toString());
 			                		}else{
 			                			DeusExWithOrigin deusExOrigine = new DeusExWithOrigin(lstr[0].trim(), orCA);
 			                			cartesAction.push(deusExOrigine);
+			                			deusExOrigine.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
 //			                			System.out.println(deusExOrigine.toString());
 			                		}
 			                	}else if (type.equals("apocalypses")){

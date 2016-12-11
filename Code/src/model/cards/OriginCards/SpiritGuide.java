@@ -1,4 +1,4 @@
-package model.cards.OriginCards;
+﻿package model.cards.OriginCards;
 
 import java.io.Serializable;
 
@@ -51,7 +51,7 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 		return false;
 	}
 	
-	//Permet de determiner si un guide poss�de un croyant donne
+	//Permet de determiner si un guide possede un croyant donne
 	public boolean hasCroyant(Believer croyant){
 		if (croyantsConvertis.contains(croyant)){
 			return true;

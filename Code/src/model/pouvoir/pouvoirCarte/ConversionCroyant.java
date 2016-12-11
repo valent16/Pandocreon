@@ -34,16 +34,16 @@ public class ConversionCroyant extends Pouvoir {
 		}else{
 
 			origine = ((SpiritGuide) carte).getOrigine();
-
+			
 			List<Believer> croyants = joueur.pickCroyant((SpiritGuide) carte);
 			if (croyants.size() == 0){
-				throw new NoCroyantLinkedAtConversion("Aucun croyant n'ont �t� li� au guide");
+				throw new NoCroyantLinkedAtConversion("Aucun croyant n'ont ete lie au guide");
 			}
 			joueur.decrementerPointAction(((SpiritGuide) carte).getOrigine(), 1);
 		}
 		List<Believer> croyants = joueur.pickCroyant((SpiritGuide) carte);
 		if (croyants.size() == 0){
-			throw new NoCroyantLinkedAtConversion("Aucun croyant n'ont �t� li� au guide");
+			throw new NoCroyantLinkedAtConversion("Aucun croyant n'ont ete lie au guide");
 		}
 		joueur.decrementerPointAction(origine, PAaUtiliser);
 

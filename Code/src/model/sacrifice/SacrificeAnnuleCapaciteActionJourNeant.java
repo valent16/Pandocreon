@@ -1,7 +1,6 @@
 package model.sacrifice;
 
 import java.util.Iterator;
-
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -49,7 +48,7 @@ public class SacrificeAnnuleCapaciteActionJourNeant extends Sacrifice {
 				}
 			} /*else {
 				do {
-				//TODO choixJoueur = (Bot) player.getStrategie().choixJoueur((Bot) joueur, partie); //TODO la methode choixJoueur
+					choixJoueur = ((Bot) player).getStrategie().choixJoueur(Bot) joueur, partie); //TODO la methode choixJoueur
 				} while (!possiblePlayers.contains(choixJoueur));
 			}
 
@@ -70,10 +69,11 @@ public class SacrificeAnnuleCapaciteActionJourNeant extends Sacrifice {
 						spiritGuide.supprimerCroyant(believer);
 					}
 					break;
-				}*/
+				}
+			}*/
+			//System.out.println(player.getNom() + " a detruit une Guide Spirituel d'origine Nuit ou Neant de " + playerTarget.getNom());
 			sc.close();
 		}
-		//System.out.println(player.getNom() + " a detruit une Guide Spirituel d'origine Nuit ou Neant de " + playerTarget.getNom());
-		
 	}
+
 }

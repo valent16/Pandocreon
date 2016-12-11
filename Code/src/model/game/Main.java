@@ -14,7 +14,8 @@ public class Main{
 	
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
-		int valeur = 3;
+
+		int valeur = 1;
 		//1: lancement du jeu
 		//2: test sur la classe joueur
 		
