@@ -40,5 +40,6 @@ public class SacrificeGorpa extends Sacrifice{
 			}
 		}
 		System.out.println("Vous n'avez pas le droit de recevoir des points d'action");
+		sc.close();
 	}
 }   

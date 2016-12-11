@@ -1,12 +1,12 @@
 package model.sacrifice;
 
-import model.game.GameManager;
 import model.player.Player;
 
+/**Sacrifice qui permet de piocher deux cartes au hasard dans la main d'un autre joueur*/
 public class SacrificePiocherDeuxCartes extends Sacrifice {
 
-    // Vous piochez deux cartes au hasard dans la main d'une autre divinite
     @Override
-    public void effectuerSacrifice(Player player, GameManager gameManager) {
+    public void effectuerSacrifice(Player player) {
+    	//TODO a faire
     }
 }

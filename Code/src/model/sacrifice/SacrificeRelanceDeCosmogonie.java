@@ -4,13 +4,12 @@ import model.EnumType.EnumCosmogonie;
 import model.game.De;
 import model.game.GameManager;
 import model.player.Player;
-
+/**Sacrifice qui relance le de de Cosmogonie. Le tour se finit normalement sous la nouvelle influence*/
 public class SacrificeRelanceDeCosmogonie extends Sacrifice{
 
-	// Relancez le de de Cosmogonie. Le tour se finit normalement sous la nouvelle influence
-
 	@Override
-	public void effectuerSacrifice(Player player, GameManager gameManager) {
+	public void effectuerSacrifice(Player player) {
+		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		De de = De.getInstanceDe();
 		de.lancerDe();
 		 

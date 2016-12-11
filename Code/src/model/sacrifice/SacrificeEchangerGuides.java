@@ -1,6 +1,5 @@
 package model.sacrifice;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
 import model.EnumType.EnumCosmogonie;
@@ -36,7 +35,7 @@ public class SacrificeEchangerGuides extends Sacrifice {
 						Iterator<Believer> believers = spiritGuide.getCroyantsConvertis().iterator();
 						while(believers.hasNext()){ //defausser tous les cartes Croyants attachées
 							Believer believer = believers.next();
-							gameManager.defausserCarte((ActionCard) believers);
+							gameManager.defausserCarte((ActionCard) believer);
 						}
 						break;
 					}

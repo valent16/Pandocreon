@@ -5,9 +5,8 @@ import model.cards.withoutOriginCards.Apocalypse;
 import model.game.GameManager;
 import model.player.Player;
 
-public class SacrificeKillinstred extends Sacrifice{
-
-	// Sacrifice de la divinite Killinstred: peut obliger un joueur à poser une carte Apocalypse s'il en possède une
+/**Sacrifice de la divinite Killinstred: peut obliger un joueur à poser une carte Apocalypse s'il en possède une*/
+public class SacrificeKillinstred extends Sacrifice{ 
 
 	@Override
 	public void effectuerSacrifice(Player player) {
@@ -25,7 +24,7 @@ public class SacrificeKillinstred extends Sacrifice{
 			break;
 		}
 		try {
-			new Apocalypse().utiliserPouvoir("declencher apocalypse", player);
+			apocalypse.utiliserPouvoir("declencher apocalypse", player);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

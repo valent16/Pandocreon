@@ -1,6 +1,5 @@
 package model.sacrifice;
 
-import model.game.GameManager;
 import model.player.Player;
 
 //Classe mere des sacrifices

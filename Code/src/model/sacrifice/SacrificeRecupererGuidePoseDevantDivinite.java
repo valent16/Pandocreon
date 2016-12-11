@@ -1,14 +1,15 @@
 package model.sacrifice;
 
-import model.game.GameManager;
 import model.player.Player;
 
+/**Sacrifice qui recupere un guide spirituel ennemi avec ses croyants*/
 public class SacrificeRecupererGuidePoseDevantDivinite extends Sacrifice{
 
-    // Vous recuperez un des guides spirituels poses devant une autre divinite et le placez devant vous avec les croyants qui y sont attaches
+    // Vous recuperez 
 
     @Override
-    public void effectuerSacrifice(Player player, GameManager gameManager) {
+    public void effectuerSacrifice(Player player) {
+    	//TODO A faire
     }
     
 }

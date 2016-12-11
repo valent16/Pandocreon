@@ -1,13 +1,11 @@
 package model.sacrifice;
 
-import model.game.GameManager;
 import model.player.Player;
-
+/**Sacrifice qui permet de prendre trois cartes dans la main d'un autre joueur et de les placer dans notre main*/
 public class SacrificePrendreTroisCartes extends Sacrifice{
 
-    // Prenez trois cartes dans la main d'un autre joueur et incluez-les à votre main
-
     @Override
-    public void effectuerSacrifice(Player player, GameManager gameManager) {
+    public void effectuerSacrifice(Player player){
+    	//TODO a faire
     }
 }

@@ -7,11 +7,12 @@ import model.cards.OriginCards.Believer;
 import model.game.GameManager;
 import model.player.Player;
 
-//le Sacrifice de la divinite PuiTara qui consiste a detruire toutes les cartes croyants au centre de la table d'origine jour
+/**le Sacrifice de la divinite PuiTara qui consiste a detruire toutes les cartes croyants au centre de la table d'origine jour*/
 public class SacrificePuiTara extends Sacrifice{
 
 	@Override
-	public void effectuerSacrifice(Player player, GameManager gameManager) {
+	public void effectuerSacrifice(Player player) {
+		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		Iterator<Believer> it = gameManager.getCroyants().iterator();
 		while (it.hasNext()) {
 			Believer believer = it.next();

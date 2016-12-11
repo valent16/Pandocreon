@@ -6,12 +6,12 @@ import model.cards.withoutOriginCards.Apocalypse;
 import model.game.GameManager;
 import model.player.Player;
 
-public class SacrificeLlewella extends Sacrifice {
-
-    // Sacrifice de la divinite Llewella : Peut obliger un joueur à poser une carte Apocalypse s'il en possede une
+/**Sacrifice de la divinite Llewella : Peut obliger un joueur à poser une carte Apocalypse s'il en possede une*/
+public class SacrificeLlewella extends Sacrifice { 
     
     @Override
-    public void effectuerSacrifice(Player player, GameManager gameManager) {
+    public void effectuerSacrifice(Player player) {
+    	GameManager gameManager = GameManager.getInstanceUniqueManager();
         Apocalypse apocalypse;
         Iterator<Player> it = gameManager.getPlayers().iterator();
         while(it.hasNext()) {
@@ -21,9 +21,13 @@ public class SacrificeLlewella extends Sacrifice {
                     break;
                 }
             }
-            break;
         }
-        // TODO appeller la methode apocalypse avec apocalypse.<nom_methdode()>
+        try {
+			new Apocalypse().utiliserPouvoir("declencher apocalypse", player);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
 }

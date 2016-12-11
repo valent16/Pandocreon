@@ -1,7 +1,17 @@
 package model.strategy;
 
+import java.util.List;
+import java.util.Set;
+
+import model.EnumType.EnumCosmogonie;
+import model.cards.OriginCards.ActionCardWithOrigin;
+import model.cards.OriginCards.Believer;
+import model.cards.OriginCards.SpiritGuide;
 import model.game.GameManager;
 import model.player.Bot;
+import model.player.Bot.Return;
+import model.pouvoir.pouvoirCarte.ConversionCroyant;
+import model.player.Player;
 
 /**Stratégie de jeu facile pour les bots
  * Les choix se font au hasard*/
@@ -29,16 +39,17 @@ public class EasyStrategy implements Strategy {
 		if(GameManager.getInstanceUniqueManager().getCroyants().size() != 0){//si il y a deja des croyants sur la table
 			//si il a des guide spirit on recupere nos croyants
 			if(bot.hasSpiritGuide()){	
-				System.out.println("le bot a recuperer avec son guide spirit un"); 
-				//bot.getSpiritGuide(). //TODO appeler le pouvoir recuperer des croyants pour un guide spirituel
+				System.out.println("le bot a recuperer avec son guide spirit un croyant"); 
+				bot.getGuides().get(0).ajouterPouvoir("convertir Croyant", new ConversionCroyant());  //TODO a verifier si ca marche
+				System.out.println(bot.getGuides().get(0).getCroyantsConvertis());
 
 			}else{
 				//si on a un croyant on le poser sur la table
 				if(bot.hasBelievers()){ 
-					bot.DepotCroyant();
-					
+					bot.DepotCroyant();  //TODO a verifier si ca marche
+
 					//bot.getBeliever(). //TODO appeller le pouvoir pour poser la carte sur la table
-					
+
 					//sinon si on a une apocalypse on la lance
 					//TODO: SI il est pas dernier on peut la lancer faire l amethode lancer Apocalypse dans bot qui retourne un booleen
 				}else if(bot.hasApocalypse()){ 
@@ -95,12 +106,42 @@ public class EasyStrategy implements Strategy {
 	}
 
 	@Override
-	/**permet d'economiser ses points dans notre cas il passe son tour*/
+	/**permet d'economiser ses points dans notre cas il pioche son tour*/
 	public void economy() {
 		bot.piocher();
 	}
+
+
+	@Override
+	public ActionCard pickCard (LinkedList<ActionCard> cards) {
+		if(cards.size() > 0){
+			int nb = (int) (Math.random() * (cards.size()-1));
+			return cards.get(nb);
+		}else return null;
+	}
+
+	@Override
+	public Player pickTarget() {
+		Iterator<Players> it = GameManager.getInstanceUniqueManager().getPlayers().iterator();
+		if(it.hasNext()) return it.next();
+		else return null;
+	}
+
+	@Override
+	public Player pickTarget() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Believer> pickCroyant(SpiritGuide carte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
-
-
-
-

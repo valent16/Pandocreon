@@ -1,14 +1,13 @@
 package model.sacrifice;
 
-import model.game.GameManager;
 import model.player.Player;
 
+/**Sacrifice qui permet de sacrifier 2 cartes croyants d'une autre divinite*/
 public class SacrificeSacrifierDeuxCroyantsDivinite extends Sacrifice{
-
-    // Sacrifiez 2 cartes croyants d'une autre divinite. Les capacites speciales ne sont pas jouees
     
     @Override
     public void effectuerSacrifice(Player player) {
+    	//TODO A faire
     }
     
 }

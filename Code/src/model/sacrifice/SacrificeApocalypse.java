@@ -3,6 +3,7 @@ package model.sacrifice;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import model.cards.withoutOriginCards.Apocalypse;
 import model.game.GameManager;
 import model.player.Player;
 
@@ -38,7 +39,11 @@ public class SacrificeApocalypse extends Sacrifice {
             }
             if (joueurPlusFortePuissance.size()<2) {
                 System.out.println("Le joueur "+joueurPlusFortePuissance.get(0).getNom()+" gagne la partie!");
-                //gameManager.setEnCours(false); //TODO: appeler la methode qui arrete la partie
+                try {
+					new Apocalypse().utiliserPouvoir("declencher apocalypse", player);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
             }
         }
     }

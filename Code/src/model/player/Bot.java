@@ -21,7 +21,7 @@ public class Bot extends Player{
 
 	/**recupere la stratégie choisi au départ pour tous les bots*/
 	private static Strategy strategy;
-
+	
 	/**Constructeur de joueur qui est appelé pour créer un ordinateur*/
 	public Bot(String pseudo, Strategy strat) {
 		super(pseudo, AGE_BOT);
@@ -198,7 +198,9 @@ public class Bot extends Player{
 			if(pointsOrigineSuffisants(believer)){	//test si le bot a suffisamment de point
 				System.out.println("le bot a "+this.getDicoPA().get(believer.getOrigine())+" points "+ believer.getOrigine());
 				try{
-					new DepotCroyant().onAction(believer, this);
+					//new DepotCroyant().onAction(believer, this);//Ca sa marche
+					believer.utiliserPouvoir("deposer Croyant", new DepotCroyant());
+					/////////////////////////Exemple avec APOCALYPSE: new Apocalypse().utiliserPouvoir("declencher apocalypse", player);
 				} catch (PAInsuffisantException e) {
 					this.jouerTour();
 					e.printStackTrace();
@@ -206,7 +208,7 @@ public class Bot extends Player{
 				System.out.println("le bot "+ this.getNom() +" a posé le croyant "+ believer);
 				break;
 			}
-			
+
 			//si il a pas pu poser de croyants il economise ses points
 			else{
 				strategy.economy();
@@ -229,7 +231,7 @@ public class Bot extends Player{
 		}
 		return false;
 	}
-	
+
 	//Methode pour tester si le bot est dernier au score
 	public boolean isLast(){//TODO A FAIRE
 		//GameManager.getInstanceUniqueManager().get
@@ -238,21 +240,22 @@ public class Bot extends Player{
 	}
 
 	@Override
+
+	//permet de choisir un joueur au besoin
 	public Player pickTarget() throws TargetSelectionException {
-		// TODO Auto-generated method stub
-		return null;
+		return strategy.pickTarget();
 	}
 
 	@Override
+	//permet de savoir si on prend un point de neant ou deux points jour ou 2 points nuit pour une carte Neant
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
-		// TODO Auto-generated method stub
-		return null;
+		return strategy.pickOrigine(carte);
 	}
 
 	@Override
+	//permet de recuperer des croyants
 	public List<Believer> pickCroyant(SpiritGuide carte) {
-		// TODO Auto-generated method stub
-		return null;
+		return strategy.pickCroyant(carte);
 	}
 
 	@Override

@@ -7,6 +7,6 @@ public class SacrificeDetruireGuideJourNeant extends Sacrifice {
 
     @Override
     public void effectuerSacrifice(Player player){
-    	
+    	//TODO a faire
     }
 }

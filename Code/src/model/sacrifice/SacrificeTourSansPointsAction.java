@@ -13,7 +13,7 @@ public class SacrificeTourSansPointsAction extends Sacrifice {
 		GameManager gameManager = GameManager.getInstanceUniqueManager();
         Iterator<Player> it = gameManager.getPlayers().iterator();
         while(it.hasNext()){
-            Player p = it.next();
+           // Player p = it.next();
            // p.setDroitRecevoirPointAction(false); //TODO a autoriser de recevoir des points d'action
         }
     }

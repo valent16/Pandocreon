@@ -7,9 +7,8 @@ import model.EnumType.EnumDogme;
 import model.game.GameManager;
 import model.player.Player;
 
+/**Sacrifice qui empeche une divinité possédant le dogme Humain ou Symboles de sacrifier un de ses guides spirituels durant ce tour*/
 public class SacrificeEmpecheSacrificeGuideHS extends Sacrifice {
-
-	// Empeche une divinité possédant le dogme Humain ou Symboles de sacrifier un de ses guides spirituels durant ce tour
 
 	@Override
 	public void effectuerSacrifice(Player player) {

@@ -1,14 +1,12 @@
 package model.sacrifice;
 
-import model.game.GameManager;
 import model.player.Player;
 
+/**Sacrifice qui impose le sacrifice d'un guide spirituel d'un autre joueur qui choisit la carte*/
 public class SacrificeImposeSacrificeGuideAutreJoueur extends Sacrifice{
 
-    // Impose le sacrifice d'un guide spirituel d'un autre joueur qui choisit la carte. La capacite speciale du sacrifice est jouée
-
 	@Override
-	public void effectuerSacrifice(Player player, GameManager gameManager) {
+	public void effectuerSacrifice(Player player) {
 		// TODO Auto-generated method stub
 		
 	}

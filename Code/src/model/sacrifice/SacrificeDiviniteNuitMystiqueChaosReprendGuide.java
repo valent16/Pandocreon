@@ -1,4 +1,4 @@
-package model.sacrifice;
+wpackage model.sacrifice;
 
 import model.game.GameManager;
 import model.player.Player;

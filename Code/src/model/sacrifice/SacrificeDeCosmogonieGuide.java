@@ -11,14 +11,11 @@ import model.game.De;
 import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
-
+/** Sacrificie qui choisi un des guides spirituels d'un autre joueur et l'un des votres. Lancez le dé de cosmogonie.
+ * Si le de tombe sur jour ,le guide adverse est sacrifié, 
+ * Sinon si le de tomber sur Nuit le votre est sacrifie, 
+ * Sinon rien ne se passe*/
 public class SacrificeDeCosmogonieGuide extends Sacrifice {
-
-	//Choisissez un des guides spirituels d'un autre joueur et l'un des votres. Lancez le dé de cosmogonie. 
-	//Si le de tombe sur jour ,le guide adverse est sacrifié, 
-	//Sinon si le de tomber sur Nuit le votre est sacrifie, 
-	//Sinon rien ne se passe
-
 
 	@Override
 	public void effectuerSacrifice(Player player) {

@@ -1,9 +1,14 @@
 package model.strategy;
 
 import java.util.HashMap;
+import java.util.List;
 
 import model.EnumType.EnumCosmogonie;
+import model.cards.OriginCards.ActionCardWithOrigin;
+import model.cards.OriginCards.Believer;
+import model.cards.OriginCards.SpiritGuide;
 import model.player.Bot;
+import model.player.Player;
 
 //Une strategie random avec un switch case
 public class RandomStrategy implements Strategy{
@@ -87,8 +92,28 @@ public class RandomStrategy implements Strategy{
 	}
 
 	@Override
-	//permet d'economiser ses points dnas notre cas il passe son tour
+	//permet d'economiser ses points dans notre cas il pioche
 	public void economy(){
-		//bot.passerTour(); // TODO passerTour	
+		bot.piocher();	
+	}
+
+	@Override
+	public Player pickTarget() {
+		
+		// TODO Auto-generated method stub
+		//prendre un joueur de maniere random
+		return null;
+	}
+
+	@Override
+	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
+		// TODO si on a le choix entre neant et jour ou nuit prendre 1pt neant sinon prendre 2pt JOUR sinon prendre 2pt NUIT sinon rien
+		return null;
+	}
+
+	@Override
+	public List<Believer> pickCroyant(SpiritGuide carte) {
+		// TODO recup les croyants sur la table prnedre un random regarder ses dogmes si il sont compabtles recuepr le croyant et 
+		return null;
 	}
 }

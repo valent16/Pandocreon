@@ -7,8 +7,8 @@ import model.EnumType.EnumDogme;
 import model.game.GameManager;
 import model.player.Player;
 
+/**Sacrifice qui empeche une divinité possédant le dogme Nature ou Mystique de sacrifier une de ses cartes de Croyants durant ce tour*/
 public class SacrificeEmpecheSacrificeCroyantNM extends Sacrifice {
-	// Empeche une divinité possédant le dogme Nature ou Mystique de sacrifier une de ses cartes de Croyants durant ce tour
 
 	@Override
 	public void effectuerSacrifice(Player player) {

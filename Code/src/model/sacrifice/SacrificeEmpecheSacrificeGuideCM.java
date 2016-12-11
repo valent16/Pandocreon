@@ -7,7 +7,7 @@ import model.EnumType.EnumDogme;
 import model.game.GameManager;
 import model.player.Player;
 
-/**Sacrifice qui empeche une divinité possédant le dogme Chaos ou Mystique de sacrifier un de ses guides spirituels durant ce tour*/
+/**Sacrifice qui empeche une divinité possedant le dogme Chaos ou Mystique de sacrifier un de ses guides spirituels durant ce tour*/
 public class SacrificeEmpecheSacrificeGuideCM extends Sacrifice{
 
 	@Override

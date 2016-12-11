@@ -14,11 +14,11 @@ public class SacrificePoserDeFace extends Sacrifice{
     
     public void effectuerSacrifice(Player player, GameManager gameManager) {
         System.out.println("Quel face du dé souhaitez-vous? 1:JOUR  2:NUIT  3:NEANT");
-        Scanner input = new Scanner(System.in);
-        int choixFace = input.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int choixFace = sc.nextInt();
         while(choixFace>3 || choixFace<1){
             System.out.println("Le nombre non validé.Veuillez choisir entre [1,2,3]");
-            choixFace = input.nextInt();
+            choixFace = sc.nextInt();
         }
         switch(choixFace){
             case 1:
@@ -31,5 +31,6 @@ public class SacrificePoserDeFace extends Sacrifice{
             	De.getInstanceDe().setFace(EnumCosmogonie.NEANT);
                 break;
         }
+        sc.close();
     }  
 }
