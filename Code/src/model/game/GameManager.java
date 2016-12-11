@@ -195,7 +195,7 @@ public class GameManager implements IObservableGameManager {
 		int start = 1;
 		int cpt = 0;
 		while(players.size()!=0){
-			afficherCroyantsCommun();
+			
 			players.get(start%players.size()).lancerDe();
 			//System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
 			
@@ -210,6 +210,9 @@ public class GameManager implements IObservableGameManager {
 				start = start%players.size();
 			}
 			cpt++;
+			System.out.println();
+			afficherCroyantsCommun();
+			System.out.println();
 		}
 	}
 

@@ -14,6 +14,9 @@ public interface Strategy {
 	
 	public void setBot(Bot bot);
 	public void jouer(Bot bot);
+	public void depotCroyant();
+	public void convertirCroyants();
+	public void lancerApocalypse();
 	public void economy();
 	public Player pickTarget();
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte);

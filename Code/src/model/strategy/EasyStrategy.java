@@ -1,20 +1,21 @@
 package model.strategy;
 
+import java.util.Iterator;
+
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import model.EnumType.EnumCosmogonie;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
+import model.cards.withoutOriginCards.Apocalypse;
+import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Bot;
-import model.player.Bot.Return;
-import model.pouvoir.pouvoirCarte.ConversionCroyant;
 import model.player.Player;
 
-/**Stratégie de jeu facile pour les bots
- * Les choix se font au hasard*/
+/**Stratégie de jeu facile pour les bots, les choix sont très simples*/
 public class EasyStrategy implements Strategy {
 
 	/**garde le bot qui joue en memoir pour recuperer ses sdonnees (cartes, score etc..)*/
@@ -31,54 +32,39 @@ public class EasyStrategy implements Strategy {
 	//Methode de jeu
 	public void jouer(Bot b){
 		this.setBot(b); //Passage des données du bot
-		System.out.println(bot.getNom());
-		bot.afficherHand();
-		System.out.println(bot.getDicoPA());
 		System.out.println("Le nombre de croyants est de " +GameManager.getInstanceUniqueManager().getCroyants().size());
+		bot.afficherHand();
+		//System.out.println(bot.getHand());
 
 		if(GameManager.getInstanceUniqueManager().getCroyants().size() != 0){//si il y a deja des croyants sur la table
 			//si il a des guide spirit on recupere nos croyants
 			if(bot.hasSpiritGuide()){	
+				bot.convertirCroyants();
 				System.out.println("le bot a recuperer avec son guide spirit un croyant"); 
-				bot.getGuides().get(0).ajouterPouvoir("convertir Croyant", new ConversionCroyant());  //TODO a verifier si ca marche
-				System.out.println(bot.getGuides().get(0).getCroyantsConvertis());
 
 			}else{
 				//si on a un croyant on le poser sur la table
 				if(bot.hasBelievers()){ 
-					bot.DepotCroyant();  //TODO a verifier si ca marche
+					bot.depotCroyant();
 
 					//bot.getBeliever(). //TODO appeller le pouvoir pour poser la carte sur la table
 
 					//sinon si on a une apocalypse on la lance
-					//TODO: SI il est pas dernier on peut la lancer faire l amethode lancer Apocalypse dans bot qui retourne un booleen
-				}else if(bot.hasApocalypse()){ 
-					//bot.getApocalypse(). //TODO appeller le pouvoir pour poser la carte sur la table
+					//TODO: SI il est pas dernier on peut la lancer faire la methode lancer Apocalypse dans bot qui retourne un booleen
+				}else if(bot.hasApocalypse()){ // si le bot a une apocalypse il la lance
+					bot.lancerApocalypse();
 					System.out.println("a lancer une apocalypse");
 
-					//si le bot n'a plus de cartes il pioche
-				}else if(bot.getNbCartes() == 0){
-					System.out.println("a lancer une apocalypse");
-					System.out.println("pioche");
+				}else if(bot.getNbCartes() == 0){//si le bot n'a plus de cartes il pioche
 					bot.piocher();
-
-				}else if(bot.getNbCartes() > 0){
-					int choix = (int) (Math.random() * 2)+1;
-					System.out.println(choix);
-					switch(choix){
-					case 1: //soit jouer une carte de maniere random en activant sa capacite
-						bot.jouerCarteRandom();
-						break;
-					case 2: // soit de se defausser d'une carte de maniere random
-						bot.defausserRandom();
-						break;
-					}
+					System.out.println("pioche");
 				}
 			}
 
 		}else{//si le bot n'a pas posé de croyant
-			if(bot.hasBelievers()){//s'il il a des croyants il essaye d'en poser
-				bot.DepotCroyant();
+
+			if(bot.hasBelievers()){//s'il a des croyants il essaye d'en poser
+				bot.depotCroyant();
 
 			}else{//sinon
 				if(bot.hasApocalypse()){ //sinon si on a une apocalypse on la lance
@@ -89,18 +75,59 @@ public class EasyStrategy implements Strategy {
 					System.out.println("pioche");
 					bot.piocher();
 
-				}else if(bot.getNbCartes() > 0){
-					int choix = (int) (Math.random() * 2)+1;
-					System.out.println(choix);
-					switch(choix){
-					case 1: //soit jouer une carte de maniere random en activant sa capacite
-						bot.jouerCarteRandom();
-						break;
-					case 2: // soit de se defausser d'une carte de maniere random
-						bot.defausserRandom();
-						break;
-					}
 				}
+			}
+		}
+	}
+
+	@Override
+	public void depotCroyant() {
+		LinkedList<Believer> liste = bot.getBelievers(); //recupere tous le croyants
+		Iterator<Believer> it = liste.iterator();
+		//recupere le premier croyant posable
+		while(it.hasNext()){ 
+			Believer believer = it.next();
+			if(bot.pointsOrigineSuffisants(believer)){	//test si le bot a suffisamment de point
+				System.out.println("le bot a "+ bot.getDicoPA().get(believer.getOrigine())+" points "+ believer.getOrigine());
+				try{
+					believer.utiliserPouvoir("deposer Croyant", bot);
+				} catch (PAInsuffisantException e) {
+					bot.jouerTour();
+					e.printStackTrace();
+				} catch (Exception e) {}
+				System.out.println("le bot "+ bot.getNom() +" a posé le croyant "+ believer);
+				break;
+			}
+
+			//si il a pas pu poser de croyants il economise ses points
+			else{
+				this.economy();
+			}
+		}
+
+	}
+
+	@Override
+	public void convertirCroyants() {
+		System.out.println("LES GUIDES du bot " + bot.getNom()+ " " +bot.getGuides());
+		SpiritGuide guide = bot.getGuides().get(0); //recupere un guide
+		Believer believer = bot.pickCroyant(guide).get(0); //recupere le croyant a convertir
+		try {
+			guide.convertirCroyant(believer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		System.out.println(bot.getGuides().get(0).getCroyantsConvertis());
+	}
+
+	@Override
+	public void lancerApocalypse() {
+		if(bot.isLast()){
+			try {
+				new Apocalypse().utiliserPouvoir("declencher apocalypse", bot);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
@@ -111,37 +138,37 @@ public class EasyStrategy implements Strategy {
 		bot.piocher();
 	}
 
-
-	@Override
-	public ActionCard pickCard (LinkedList<ActionCard> cards) {
-		if(cards.size() > 0){
-			int nb = (int) (Math.random() * (cards.size()-1));
-			return cards.get(nb);
-		}else return null;
-	}
-
 	@Override
 	public Player pickTarget() {
-		Iterator<Players> it = GameManager.getInstanceUniqueManager().getPlayers().iterator();
-		if(it.hasNext()) return it.next();
-		else return null;
+		Iterator<Player> it = GameManager.getInstanceUniqueManager().getPlayers().iterator();
+		if(it.hasNext()) 
+			return it.next(); //retourne le test
+		else 
+			return null;
 	}
-
-	@Override
-	public Player pickTarget() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
-	public List<Believer> pickCroyant(SpiritGuide carte) {
-		// TODO Auto-generated method stub
+	public List<Believer> pickCroyant(SpiritGuide guide) {
+		List<Believer> believer = new LinkedList<Believer>();
+		LinkedList<Believer> liste = GameManager.getInstanceUniqueManager().getCroyants();
+		int limite = 0; //limite de carte croyant a convertire
+		Iterator<Believer> it = liste.iterator();
+		while(it.hasNext() && limite < guide.getNbMaxCroyant()){ //tant qu'il y a des croyants sur la table
+			Believer b = it.next();
+			if(guide.isCroyantCompatible(b)){
+				believer.add(b);	
+			}
+			return believer;
+		}
+		System.out.println("Aucun croyant sur la table ne peuvent etre converti");
 		return null;
 	}
+
+
 }

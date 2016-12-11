@@ -59,4 +59,22 @@ public class HardStrategy implements Strategy {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void depotCroyant() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void convertirCroyants() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void lancerApocalypse() {
+		// TODO Auto-generated method stub
+		
+	}
 }

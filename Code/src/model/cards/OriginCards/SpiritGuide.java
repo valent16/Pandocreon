@@ -1,4 +1,4 @@
-package model.cards.OriginCards;
+﻿package model.cards.OriginCards;
 
 import java.io.Serializable;
 
