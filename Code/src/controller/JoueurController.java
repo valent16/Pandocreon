@@ -15,6 +15,7 @@ import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
+import sun.security.provider.ConfigFile.Spi;
 import view.Observateur;
 import view.ObservateurJoueurReel;
 import view.console.VueJoueurReel;
@@ -88,7 +89,6 @@ public class JoueurController implements ObservateurJoueurReel {
 		
 		vueJoueur.selectOrigine(listePA);
 		
-		
 		return null;
 	}
 
@@ -141,5 +141,35 @@ public class JoueurController implements ObservateurJoueurReel {
 		return true;
 	}
 
-	
+	//Permet d'utiliser des cartes rattachées à un guide
+	public void utiliserCarteRattachee(ActionCard carte){
+		SpiritGuide guide;
+		if(carte instanceof Believer){
+			//utiliser le sacrifice du croyant
+			Iterator<SpiritGuide> itGuide = joueur.getGuides().iterator();
+			while(itGuide.hasNext()){
+				guide = itGuide.next();
+				if (guide.hasCroyant((Believer) carte)){
+					guide.supprimerCroyant((Believer) carte);
+					if (guide.hasNoCroyant()){
+						joueur.defausserGuideRattache(guide);
+					}
+				}
+			}
+			
+		}else{
+			//utiliser le sacrifice du guide
+			guide = (SpiritGuide) carte;
+			Iterator<Believer> itCroyant = guide.getCroyantsConvertis().iterator();
+			Believer croyant;
+			while(itCroyant.hasNext()){
+				croyant = itCroyant.next();
+				GameManager.getInstanceUniqueManager().deposerCroyant(croyant);
+				guide.supprimerCroyant(croyant);
+			}
+			System.out.println("coucou");
+			joueur.defausserGuideRattache(guide);
+		}
+		//sacrifierCarte
+	}
 }

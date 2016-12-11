@@ -200,7 +200,7 @@ public class GameManager {
 			start = start%players.size();
 			
 			cpt++;
-			if (cpt == 4){
+			if (cpt == 20){
 				b = false;
 			}
 		}

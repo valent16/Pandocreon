@@ -18,17 +18,19 @@ public class Believer extends CarteDogmatique implements Serializable{
 		this.nbPrieres = nbPrieres;
 	}
 
+	public int getNbPrieres(){
+		return nbPrieres;
+	}
+	
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
 		//d�cr�mentation des points d'action du joueur
 		pouvoirs.get(commande).onAction(this, joueur);
 		joueur.retirerCarte(this);
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Believer [nbPrieres=" + nbPrieres + "]"+ super.toString();
-	}
-
-	
+	}	
 }
