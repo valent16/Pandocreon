@@ -49,12 +49,11 @@ public class Main{
 		game.ajouterBot(b1);
 		game.ajouterBot(b2);
 		
-		game.nouvellePartie();
-		
+		game.nouvellePartie();	
 		GameManager.getInstanceUniqueManager().startGame();
 		System.out.println(b1.getDivinity().getOrigine());
 		System.out.println(b2.getDivinity().getOrigine());
-		b1.jouerTour();
+		
 	}
 
 

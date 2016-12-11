@@ -86,4 +86,10 @@ public class RandomStrategy implements Strategy{
 			break;
 		}
 	}
+
+	@Override
+	//permet d'economiser ses points dnas notre cas il passe son tour
+	public void economy(){
+		//bot.passerTour(); // TODO passerTour	
+	}
 }

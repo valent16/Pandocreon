@@ -7,4 +7,5 @@ public interface Strategy {
 	
 	public void setBot(Bot bot);
 	public void jouer(Bot bot);
+	public void economy();
 }
