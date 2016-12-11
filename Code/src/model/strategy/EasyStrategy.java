@@ -33,6 +33,7 @@ public class EasyStrategy implements Strategy {
 			}else{
 				if(bot.hasBelievers()){ //si on a un croyant on le poser sur la table
 					//bot.getBeliever(). //TODO appeller le pouvoir pour poser la carte sur la table
+					bot.getBeliever().utiliserPouvoir(commande, joueur);
 					System.out.println("a posé un croyant");
 				}else if(bot.hasApocalypse()){ //sinon si on a une apocalypse on la lance
 					//bot.getApocalypse(). //TODO appeller le pouvoir pour poser la carte sur la table

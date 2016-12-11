@@ -1,7 +1,5 @@
 package model.game;
 
-import controller.GameController;
-
 import controller.JoueurController;
 import model.EnumType.Cosmogonie;
 import model.player.Bot;
@@ -9,14 +7,13 @@ import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
 import model.strategy.EasyStrategy;
-import model.strategy.MediumStrategy;
 
 /**Classe de lancement du programme*/
 public class Main{
 	
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
-		int valeur = 1;
+		int valeur = 3;
 		//1: lancement du jeu
 		//2: test sur la classe joueur
 		
