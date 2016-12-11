@@ -38,26 +38,26 @@ public class Human extends Player implements IObservableHumain{
 		}
 	}
 	
-	//Permet de notifier la vue pour que le joueur puisse sélectionner la une cible
+	//Permet de notifier la vue pour que le joueur puisse sï¿½lectionner la une cible
 	public Player notifySelectPlayer() throws ObservateurNotLinkedException{
 		if (observateur == null){
-			throw new ObservateurNotLinkedException("un observateur n'est pas lié à un joueur humain");
+			throw new ObservateurNotLinkedException("un observateur n'est pas liï¿½ ï¿½ un joueur humain");
 		}
 		return observateur.selectTarget();
 	}
 	
-	//Permet de notifier la vue pour faire démarrer le tour du joueur
+	//Permet de notifier la vue pour faire dï¿½marrer le tour du joueur
 	public void notifyStartTour() throws ObservateurNotLinkedException{
 		if (observateur == null){
-			throw new ObservateurNotLinkedException("un observateur n'est pas lié à un joueur humain");
+			throw new ObservateurNotLinkedException("un observateur n'est pas liï¿½ ï¿½ un joueur humain");
 		}
 		observateur.startTourJoueur();
 	}
 	
-	//Permet de notifier la vue pour que le joueur puisse sélectionner les croyants à convertir
+	//Permet de notifier la vue pour que le joueur puisse sï¿½lectionner les croyants ï¿½ convertir
 	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException{
 		if (observateur == null){
-			throw new ObservateurNotLinkedException("un observateur n'est pas lié à un joueur humain");
+			throw new ObservateurNotLinkedException("un observateur n'est pas lie a un joueur humain");
 		}
 		return observateur.selectCroyant(guideSpirituel);
 	}
@@ -75,7 +75,7 @@ public class Human extends Player implements IObservableHumain{
 	@Override
 	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException{
 		if (observateur == null){
-			throw new ObservateurNotLinkedException("un observateur n'est pas lié à un joueur humain");
+			throw new ObservateurNotLinkedException("un observateur n'est pas liï¿½ ï¿½ un joueur humain");
 		}
 		return observateur.selectOrigine(carte);
 	}

@@ -7,13 +7,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.EnumType.EnumCosmogonie;
+import model.EnumType.EnumOrigineDivinite;
 import model.cards.ActionCard;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
+import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
 import model.game.GameManager;
+import model.pouvoir.pouvoirCarte.DepotCroyant;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
@@ -79,7 +82,7 @@ public class Bot extends Player{
 
 	//recupere une carte croyant de la main du bot de maniere Random
 	public Believer getBeliever(){
-		LinkedList<ActionCard> liste = (LinkedList<ActionCard>) getHand();
+		LinkedList<ActionCard> liste = getHand();
 		Collections.shuffle(liste);
 		Iterator<ActionCard> it = liste.iterator();
 		Believer believer = null;
@@ -122,6 +125,48 @@ public class Bot extends Player{
 		return apocalypse;
 	}
 
+	//recupere le nombre de Believers
+	public int nombreBelievers(){
+		LinkedList<ActionCard> liste = getHand();
+		Iterator<ActionCard> it = liste.iterator();
+		int nbBeliever = 0;
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof SpiritGuide){ //on compte le nombre de croyant dans la main du bot
+				nbBeliever++;
+			}
+		}
+		return nbBeliever;
+	}
+
+	//recuper le nombre de guideSPirit
+	public int nombreGuideSpirit(){
+		LinkedList<ActionCard> liste = getHand();
+		Iterator<ActionCard> it = liste.iterator();
+		int nbGuideSpirit = 0;
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof SpiritGuide){ //on compte le nombre de croyant dans la main du bot
+				nbGuideSpirit++;
+			}
+		}
+		return nbGuideSpirit;
+	}
+
+	//recupere le nombre d'apocalypse
+	public int nombreApocalypse(){
+		LinkedList<ActionCard> liste = getHand();
+		Iterator<ActionCard> it = liste.iterator();
+		int nbApocalypse = 0;
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof Apocalypse){ //on compte le nombre de croyant dans la main du bot
+				nbApocalypse++;
+			}
+		}
+		return nbApocalypse;
+	}
+
 	//permet de setup le niveau des bots
 	private void setStrategy(Strategy strategy) {
 		Bot.strategy = strategy;
@@ -145,12 +190,28 @@ public class Bot extends Player{
 		//card.utiliserPouvoir(commande, joueur); //TODO activer le pouvoir de la carte
 	}
 	
+	
+	
+
 	//permet au bot de deposer un croyant de sa main a la table
-	public void DepotCroyant(){
+	//retourne true si il peut poser un coryant sinon false
+	public boolean DepotCroyant(){
+		//int nbBeliever = this.nombreBelievers();
+		LinkedList<ActionCard> liste = getHand(); //on duplique la main
 		Believer believer = this.getBeliever();//recupere le croyant
-		GameManager.getInstanceUniqueManager().deposerCroyant(believer);
-		this.ajouterCroyant(believer);
+		EnumCosmogonie cosmogonie = believer.getOrigine();
+		if(this.getDicoPA().get(cosmogonie) >= 1){	//test si le bot a suffisamment de point
+			System.out.println("le bot a "+this.getDicoPA().get(cosmogonie)+" points");
+			try{
+				new DepotCroyant().onAction(believer, this);
+			} catch (PAInsuffisantException e) {
+				this.jouerTour();
+				e.printStackTrace();
+			} catch (Exception e) {}
+		}
 		System.out.println("le bot "+ this.getNom() +" a posé le croyant "+ believer);
+		return true;
+		
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package model.strategy;
 import model.cards.OriginCards.Believer;
 import model.game.GameManager;
 import model.player.Bot;
+import model.pouvoir.pouvoirCarte.DepotCroyant;
 
 /**Stratégie de jeu facile pour les bots
  * Les choix se font au hasard*/
@@ -25,22 +26,20 @@ public class EasyStrategy implements Strategy {
 		System.out.println(bot.getNom());
 		bot.afficherHand();
 		System.out.println("Le nombre de croyants est de " +GameManager.getInstanceUniqueManager().getCroyants().size());
-		System.out.print("ACTION DU BOT: "+ bot.getNom() + " ");
 		if(GameManager.getInstanceUniqueManager().getCroyants().size() != 0){//si il y a deja des croyants sur la table
 			
 			//si il a des guide spirit on recupere nos croyants
 			if(bot.hasSpiritGuide()){	
-				System.out.println("a recuperer avec son guide spirit un"); 
+				System.out.println("le bot a recuperer avec son guide spirit un"); 
 				//bot.getSpiritGuide(). //TODO appeler le pouvoir recuperer des croyants pour un guide spirituel
 			
 			}else{
 				//si on a un croyant on le poser sur la table
 				if(bot.hasBelievers()){ 
-					Believer believer = bot.getBeliever(); //on recupere le croyant a deposer
-					GameManager.getInstanceUniqueManager().deposerCroyant(believer);
-					bot.ajouterCroyant(believer);
+					//bot.DepotCroyant();
+					
 					//bot.getBeliever(). //TODO appeller le pouvoir pour poser la carte sur la table
-					System.out.println("a posé un croyant");
+					
 				
 				//sinon si on a une apocalypse on la lance
 				}else if(bot.hasApocalypse()){ 
