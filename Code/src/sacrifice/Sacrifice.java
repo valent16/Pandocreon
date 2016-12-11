@@ -11,4 +11,7 @@ public abstract class Sacrifice {
     
     /* TODO Trouver un moyen de lier les capacités avec les cartes peut être avec des id.*/
     
+    public String getText(){
+    	return this.getClass().getSimpleName().toString();
+    }
 }
