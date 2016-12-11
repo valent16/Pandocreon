@@ -11,5 +11,5 @@ public abstract class Pouvoir {
 		this.description = description;
 	}
 	
-	public abstract void onAction(Card carte, Player joueur);
+	public abstract void onAction(Card carte, Player joueur) throws Exception;
 }

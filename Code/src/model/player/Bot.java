@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.OriginCards.Believer;
 import model.exception.TargetSelectionException;
@@ -27,11 +27,11 @@ public class Bot extends Player{
 	/**Methode qui fait jouer les bots avec la difficulté choisie*/
 	public void jouerTour(){
 		incrementerPointActionWithDe();
-		HashMap<Cosmogonie, Integer> pointsAction = this.getDicoPA();
+		HashMap<EnumCosmogonie, Integer> pointsAction = this.getDicoPA();
 		System.out.println("les points du BOT "+ this.getNom() +": "  
-			+ pointsAction.get(Cosmogonie.JOUR) +" Point Jour | "
-			+ pointsAction.get(Cosmogonie.NUIT) +" Point Nuit | " + 
-			+ pointsAction.get(Cosmogonie.NEANT) +" Point Néant"); 
+			+ pointsAction.get(EnumCosmogonie.JOUR) +" Point Jour | "
+			+ pointsAction.get(EnumCosmogonie.NUIT) +" Point Nuit | " + 
+			+ pointsAction.get(EnumCosmogonie.NEANT) +" Point Néant"); 
 		
 
 		//depart

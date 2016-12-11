@@ -43,7 +43,7 @@ public abstract class Card implements Serializable{
 		return this.id;
 	}
 	
-	public abstract void utiliserPouvoir(String commande, Player joueur);
+	public abstract void utiliserPouvoir(String commande, Player joueur) throws Exception;
 
 	
 	public Map<String, Pouvoir>  getPouvoirs(){

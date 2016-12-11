@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
+import model.EnumType.EnumDogme;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
 import model.cards.OriginCards.Believer;
+import model.cards.OriginCards.SpiritGuide;
 import model.player.Player;
 
 /**Classe qui gère tous les elements de la partie*/
@@ -23,7 +26,7 @@ public class GameManager {
 	private LinkedList<ActionCard> defausse = new LinkedList<ActionCard>();
 
 	/**Représente les cartes croyants sur la table*/
-	private LinkedList<ActionCard> croyants = new LinkedList<ActionCard>();
+	private LinkedList<Believer> croyants = new LinkedList<Believer>();
 
 	private LinkedList<Divinity> listDivinites = new LinkedList<Divinity>();
 
@@ -140,6 +143,24 @@ public class GameManager {
 	public void ajouterJoueur(Player joueur){
 		players.add(joueur);
 	}
+	
+	public List<Believer> getCroyantCompatibles(SpiritGuide guide){
+		ArrayList<Believer> croyantsAPresenter = new ArrayList<Believer>();
+		
+		Believer croyant;
+		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();
+		Iterator<EnumDogme> itDogme;
+		
+		while(itCroyant.hasNext()){
+			croyant = itCroyant.next();
+			if (guide.isCroyantCompatible(croyant)){
+				croyantsAPresenter.add(croyant);
+			}
+		}
+		
+		return croyantsAPresenter;
+	}
+	
 
 	//Permet de réaliser l'initialisation des jeux
 	public void intialisationDesJeux(){
@@ -162,7 +183,7 @@ public class GameManager {
 
 	//Tour de jeu
 	public void deroulementTourJeu(){
-		int start = 5;
+		int start = 1;
 		int cpt = 0;
 		boolean b = true;
 		
@@ -261,11 +282,11 @@ public class GameManager {
 		this.players = players;
 	}
 	
-	public LinkedList<ActionCard> getCroyants() {
+	public LinkedList<Believer> getCroyants() {
 		return croyants;
 	}
 
-	public void setCroyants(LinkedList<ActionCard> croyants) {
+	public void setCroyants(LinkedList<Believer> croyants) {
 		this.croyants = croyants;
 	}
 	

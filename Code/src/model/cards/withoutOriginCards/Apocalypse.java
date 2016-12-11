@@ -15,7 +15,7 @@ public class Apocalypse extends ActionCard implements Serializable{
 	}
 
 	@Override
-	public void utiliserPouvoir(String commande, Player joueur) {
+	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

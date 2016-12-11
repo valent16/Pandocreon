@@ -1,10 +1,16 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import model.EnumType.EnumCosmogonie;
+import model.EnumType.EnumDogme;
 import model.cards.ActionCard;
 import model.cards.Card;
+import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
+import model.cards.OriginCards.SpiritGuide;
 import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Human;
@@ -45,14 +51,6 @@ public class JoueurController implements ObservateurJoueurReel {
 		while (!checkChoiceAction(carte, choix)){
 			
 		}
-		
-		
-		//		try{
-			
-			//joueur.JouerCarte(carte);
-//		}catch(PAInsuffisantException e){
-//			return e.getMessage();
-//		}
 		return "l'action a ete effectuee";
 	}
 
@@ -70,12 +68,27 @@ public class JoueurController implements ObservateurJoueurReel {
 		}
 		return GameManager.getInstanceUniqueManager().getJoueurAtIndex(index);
 	}
-	
-	
 
 	@Override
-	public List<Believer> selectCroyant() {
-		// TODO Auto-generated method stub
+	public List<Believer> selectCroyant(SpiritGuide carte) {
+		return vueJoueur.selectCroyant(carte);
+	}
+	
+	@Override
+	public EnumCosmogonie selectOrigine(ActionCardWithOrigin card) {
+		ArrayList<EnumCosmogonie> listePA = new ArrayList<EnumCosmogonie>();
+		
+		if(joueur.getDicoPA().get(EnumCosmogonie.NEANT) >= 1 ){
+			listePA.add(EnumCosmogonie.NEANT);
+		}if(joueur.getDicoPA().get(EnumCosmogonie.JOUR) >= 1 ){
+			listePA.add(EnumCosmogonie.JOUR);
+		}if(joueur.getDicoPA().get(EnumCosmogonie.NUIT) >= 1 ){
+			listePA.add(EnumCosmogonie.NUIT);
+		}
+		
+		vueJoueur.selectOrigine(listePA);
+		
+		
 		return null;
 	}
 
@@ -106,6 +119,27 @@ public class JoueurController implements ObservateurJoueurReel {
 			return false;
 		}
 		return true;
-		
 	}
+	
+	public boolean checkChoiceOrigine(List<EnumCosmogonie> listeOrigine, String choix){
+		if (!choix.matches("[0-9]+")){
+			return false;
+		}
+		if (Integer.parseInt(choix) >= listeOrigine.size()){
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkGeneralChoice(String choix, int valMax){
+		if (!choix.matches("[0-9]+")){
+			return false;
+		}
+		if (Integer.parseInt(choix) > valMax){
+			return false;
+		}
+		return true;
+	}
+
+	
 }

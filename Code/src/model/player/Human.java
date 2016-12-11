@@ -2,9 +2,12 @@ package model.player;
 
 import java.util.List;
 
+import model.EnumType.EnumCosmogonie;
+import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.exception.ObservateurNotLinkedException;
+import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
 import view.ObservateurJoueurReel;
 
@@ -56,7 +59,7 @@ public class Human extends Player implements IObservableHumain{
 		if (observateur == null){
 			throw new ObservateurNotLinkedException("un observateur n'est pas lié à un joueur humain");
 		}
-		return observateur.selectCroyant();
+		return observateur.selectCroyant(guideSpirituel);
 	}
 	
 	@Override
@@ -70,9 +73,35 @@ public class Human extends Player implements IObservableHumain{
 	}
 	
 	@Override
+	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException{
+		if (observateur == null){
+			throw new ObservateurNotLinkedException("un observateur n'est pas lié à un joueur humain");
+		}
+		return observateur.selectOrigine(carte);
+	}
+	
+	@Override
+	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
+		try{
+			return notifySelectOriginePA(carte);
+		}catch(ObservateurNotLinkedException e){
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
+	
+	@Override
+	public List<Believer> pickCroyant(SpiritGuide carte) {
+		try{
+			return notifySelectCroyant(carte);
+		}catch(ObservateurNotLinkedException e){
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
+	
+	@Override
 	public String toString() {
 		return super.toString();
-	}
-
-	
+	}	
 }

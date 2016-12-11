@@ -3,7 +3,7 @@ package model.game;
 import controller.GameController;
 
 import controller.JoueurController;
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 import model.player.Bot;
 //import model.game.De.Face;
 import model.player.Human;
@@ -69,8 +69,8 @@ public class Main{
 		joueur1.attacher(new JoueurController(joueur1));
 		Human joueur2 = new Human("David", 20);
 		joueur2.attacher(new JoueurController(joueur2));
-		Human joueur3 = new Human("Lucas", 20);
-		joueur3.attacher(new JoueurController(joueur3));
+//		Human joueur3 = new Human("Lucas", 20);
+//		joueur3.attacher(new JoueurController(joueur3));
 //		Bot IA1 = new Bot("henry", new EasyStrategy());
 //		Bot IA2 = new Bot("jean jacque", new MediumStrategy());
 //		
@@ -79,7 +79,7 @@ public class Main{
 
 		game.ajouterJoueurReel(joueur1);
 		game.ajouterJoueurReel(joueur2);
-		game.ajouterJoueurReel(joueur3);
+//		game.ajouterJoueurReel(joueur3);
 		
 		game.nouvellePartie();
 		GameManager.getInstanceUniqueManager().startGame();
@@ -90,7 +90,7 @@ public class Main{
 	
 	public static void testJoueur(){
 		Player p1 = new Human("jean Yves", 12);
-		p1.incrementerPointAction(Cosmogonie.JOUR, 2);
+		p1.incrementerPointAction(EnumCosmogonie.JOUR, 2);
 		System.out.println(p1.toString());
 		//p1.decrementerPointAction(Cosmogonie.JOUR, 1);
 		System.out.println(p1.toString());

@@ -1,6 +1,6 @@
 package capacites;
 
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 import model.game.GameManager;
 import model.player.Player;
 
@@ -11,7 +11,7 @@ public class AjouterPointJour extends CapaciteSpeciale {
     
     @Override
     public void effectuerCapaciteSpeciale(Player player, GameManager gameManager){
-    	player.incrementerPointAction(Cosmogonie.JOUR, 1);
+    	player.incrementerPointAction(EnumCosmogonie.JOUR, 1);
     }
 
 }
