@@ -3,10 +3,11 @@ package model.cards.OriginCards;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import model.EnumType.EnumDogme;
 import model.player.Player;
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 
 /**Classe reprÃ©sentant une carte guide spirituel*/
 public class SpiritGuide extends CarteDogmatique implements Serializable{
@@ -15,15 +16,38 @@ public class SpiritGuide extends CarteDogmatique implements Serializable{
 	
 	private int nbCarteCroyant;
 	
-	public SpiritGuide(String nom, Cosmogonie origine, ArrayList<EnumDogme> dogmes, int nbCarteCroyant, String sacrifice) {
+	private ArrayList<Believer> croyantsConvertis = new ArrayList<Believer>();
+	
+	public SpiritGuide(String nom, EnumCosmogonie origine, ArrayList<EnumDogme> dogmes, int nbCarteCroyant, String sacrifice) {
 		super(nom, origine, dogmes, sacrifice);
 		this.pointPriere = 0;
 		this.nbCarteCroyant = nbCarteCroyant;
 	}
 
 	@Override
-	public void utiliserPouvoir(String commande,Player joueur) {
+	public void utiliserPouvoir(String commande,Player joueur) throws Exception {
 		// TODO Auto-generated method stub
+	}
+	
+	public boolean isCroyantCompatible(Believer croyant){
+		Iterator<EnumDogme> itDogmeCroyant = croyant.getDogmes().iterator();
+		EnumDogme d;
+		while(itDogmeCroyant.hasNext()){
+			d = itDogmeCroyant.next();
+			if (this.getDogmes().contains(d)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//méthode permettant de convertir un croyant
+	public void convertirCroyant(Believer croyant){
+		croyantsConvertis.add(croyant);
+	}
+	
+	public int getNbMaxCroyant(){
+		return nbCarteCroyant;
 	}
 
 	@Override

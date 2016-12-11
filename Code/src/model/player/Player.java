@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Observer;
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumOrigineDivinite;
 import model.cards.ActionCard;
 import model.cards.Card;
@@ -45,7 +45,7 @@ public abstract class Player extends Observer{
 	protected LinkedList<ActionCard> hand = new LinkedList<ActionCard>();
 
 	/**Dictionnaire contenant les points d'action du joueur*/
-	private HashMap<Cosmogonie, Integer> dicoPA = new HashMap<Cosmogonie, Integer>();
+	private HashMap<EnumCosmogonie, Integer> dicoPA = new HashMap<EnumCosmogonie, Integer>();
 
 	private LinkedList<Believer> croyantDeposesPendantTour = new LinkedList<Believer>();
 
@@ -60,7 +60,7 @@ public abstract class Player extends Observer{
 		this.setAge(age);
 
 		//Permet l'initialisation du dictionnaire de points d'action du joueur
-		Cosmogonie valuesEnumPointAction[] = Cosmogonie.values();
+		EnumCosmogonie valuesEnumPointAction[] = EnumCosmogonie.values();
 		for (int i = 0; i< valuesEnumPointAction.length; i++) {
 			dicoPA.put(valuesEnumPointAction[i], 0);
 		}
@@ -70,6 +70,10 @@ public abstract class Player extends Observer{
 	public abstract void jouerTour();
 
 
+	public List<Believer> getCroyantDeposesPendantTour(){
+		return Collections.unmodifiableList(croyantDeposesPendantTour);
+	}
+	
 	/** Le joueur joue une carte et donc on l'enleve de sa main*/
 	public void JouerCarte(ActionCard carte) {
 		//carte.utiliserPouvoir(commande, this);
@@ -152,6 +156,10 @@ public abstract class Player extends Observer{
 	}
 	
 	public abstract Player pickTarget() throws TargetSelectionException;
+	
+	public abstract EnumCosmogonie pickOrigine(ActionCardWithOrigin carte);
+	
+	public abstract List<Believer> pickCroyant(SpiritGuide carte);
 
 	public void ajouterCroyantPendantTour(Card carte){
 		if (carte instanceof Believer){
@@ -189,7 +197,7 @@ public abstract class Player extends Observer{
 
 	//Fonction permettant de compl�ter la main du joueur
 	public void piocherCartes(){
-		while (hand.size() <= NB_CARTE_MAX){
+		while (hand.size() < NB_CARTE_MAX){
 			hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
 		}
 	}
@@ -199,11 +207,11 @@ public abstract class Player extends Observer{
 	}
 
 	//Methode qui permet d'incrementer les pointsd'action du joueur du nombre de points indiqué
-	public void incrementerPointAction(Cosmogonie typePA, int nbPA){
+	public void incrementerPointAction(EnumCosmogonie typePA, int nbPA){
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
 	}
 
-	public void decrementerPointAction(Cosmogonie typePA, int nbPA) throws PAInsuffisantException{
+	public void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException{
 		if ((dicoPA.get(typePA) - nbPA) < 0){
 			throw new PAInsuffisantException("Pas assez de point d'action "+dicoPA.get(typePA));
 		}
@@ -213,13 +221,13 @@ public abstract class Player extends Observer{
 	//Methode appelee a chaque debut de tour pour attribuer les PA au joueur
 	protected void incrementerPointActionWithDe(){
 		if (divinity.getOrigine() == EnumOrigineDivinite.AUBE || divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE){
-			if(De.getInstanceDe().getFace() == Cosmogonie.NEANT){
-				incrementerPointAction(Cosmogonie.NEANT, dicoPA.get(Cosmogonie.NEANT) +1);
+			if(De.getInstanceDe().getFace() == EnumCosmogonie.NEANT){
+				incrementerPointAction(EnumCosmogonie.NEANT, dicoPA.get(EnumCosmogonie.NEANT) +1);
 			}else{
 				incrementerPointAction(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +1);
 			}
 		}else{
-			if (De.getInstanceDe().getFace() == Cosmogonie.JOUR || De.getInstanceDe().getFace() == Cosmogonie.NUIT){
+			if (De.getInstanceDe().getFace() == EnumCosmogonie.JOUR || De.getInstanceDe().getFace() == EnumCosmogonie.NUIT){
 				incrementerPointAction(De.getInstanceDe().getFace(), dicoPA.get(De.getInstanceDe().getFace()) +2);
 			}
 		}
@@ -229,7 +237,7 @@ public abstract class Player extends Observer{
 	 * Methode qui permet de recuperer les points d'cations d'un joueur
 	 * @return dicoPA, les points d'action JOUR, NUIT, NEANT du joueur
 	 */
-	public HashMap<Cosmogonie, Integer> getDicoPA(){
+	public HashMap<EnumCosmogonie, Integer> getDicoPA(){
 		return dicoPA;
 	}
 
@@ -240,11 +248,6 @@ public abstract class Player extends Observer{
 	@Override
 	public String toString() {
 		return "Player [pseudo=" + pseudo +", dicoPA="+ dicoPA;
-
-		/*
-		return "Player [pseudo=" + pseudo + ", score=" + score + ", age=" + age + ", hand=" + hand + ", dicoPA="
-				+ dicoPA + ", divinity=" + divinity + "]";
-		 */
 	}
 }
 

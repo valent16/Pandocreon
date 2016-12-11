@@ -1,6 +1,6 @@
 package sacrifice;
 
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 import model.game.De;
 import model.game.GameManager;
 import model.player.Player;
@@ -20,10 +20,10 @@ public class SacrificeRelanceDeCosmogonie extends Sacrifice{
 			for(Player p: gameManager.getPlayers()){
 				switch(p.getDivinity().getOrigine()){//recupere l'origine de sa divinité
 				case JOUR :
-					p.incrementerPointAction(Cosmogonie.JOUR, 2);
+					p.incrementerPointAction(EnumCosmogonie.JOUR, 2);
 					break;
 				case AUBE:
-					p.incrementerPointAction(Cosmogonie.JOUR, 1);
+					p.incrementerPointAction(EnumCosmogonie.JOUR, 1);
 					break;
 				default:
 					break;
@@ -34,10 +34,10 @@ public class SacrificeRelanceDeCosmogonie extends Sacrifice{
 			for(Player p: gameManager.getPlayers()){
 				switch(p.getDivinity().getOrigine()){
 				case NUIT:	
-					p.incrementerPointAction(Cosmogonie.NUIT, 2);
+					p.incrementerPointAction(EnumCosmogonie.NUIT, 2);
 					break;
 				case CREPUSCULE:
-					p.incrementerPointAction(Cosmogonie.JOUR, 1);
+					p.incrementerPointAction(EnumCosmogonie.JOUR, 1);
 					break;
 				default:
 					break;
@@ -47,7 +47,7 @@ public class SacrificeRelanceDeCosmogonie extends Sacrifice{
 		case NEANT:
 			for(Player p : gameManager.getPlayers()) {
 				if ("AUBE".equals(p.getDivinity().getOrigine()) || "NEANT".equals(p.getDivinity().getOrigine()) )
-					p.incrementerPointAction(Cosmogonie.NEANT, 1);
+					p.incrementerPointAction(EnumCosmogonie.NEANT, 1);
 			}
 			break;
 		default:

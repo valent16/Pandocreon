@@ -1,0 +1,26 @@
+package model.player;
+
+import java.util.List;
+
+import model.cards.OriginCards.Believer;
+import model.cards.OriginCards.SpiritGuide;
+import model.exception.ObservateurNotLinkedException;
+import view.ObservateurJoueurReel;
+
+public interface IObservableHumain {
+	
+	public void attacher(ObservateurJoueurReel o);
+	
+	public void detacher(ObservateurJoueurReel o);
+	
+	//Permet de notifier la vue pour que le joueur puisse sélectionner la une cible
+	public Player notifySelectPlayer() throws ObservateurNotLinkedException;
+	
+	//Permet de notifier la vue pour faire démarrer le tour du joueur
+	public void notifyStartTour() throws ObservateurNotLinkedException;
+	
+	public void notifySelectOriginePA(Believer croyant) throws ObservateurNotLinkedException;
+	
+	//Permet de notifier la vue pour que le joueur puisse sélectionner les croyants à convertir
+	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException;
+}

@@ -3,7 +3,7 @@ package model.cards.OriginCards;
 import java.io.Serializable;
 
 
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 
 public abstract class ActionCardWithOrigin extends ActionCard implements Serializable {
@@ -12,18 +12,18 @@ public abstract class ActionCardWithOrigin extends ActionCard implements Seriali
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Cosmogonie origine;
+	private EnumCosmogonie origine;
 	
-	public Cosmogonie getOrigine() {
+	public EnumCosmogonie getOrigine() {
 		return origine;
 	}
 
-	public ActionCardWithOrigin(String nom, Cosmogonie origine) {
+	public ActionCardWithOrigin(String nom, EnumCosmogonie origine) {
 		super(nom);
 		this.setOrigine(origine);
 	}
 	
-	private void setOrigine(Cosmogonie origine) {
+	private void setOrigine(EnumCosmogonie origine) {
 		this.origine = origine;
 	}
 

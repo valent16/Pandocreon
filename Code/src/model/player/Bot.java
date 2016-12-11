@@ -1,4 +1,4 @@
-package model.player;
+﻿package model.player;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
@@ -31,6 +31,23 @@ public class Bot extends Player{
 	/**Methode qui fait jouer les bots avec la difficulté choisie*/
 	public void jouerTour(){
 		incrementerPointActionWithDe();
+		HashMap<EnumCosmogonie, Integer> pointsAction = this.getDicoPA();
+		System.out.println("les points du BOT "+ this.getNom() +": "  
+			+ pointsAction.get(EnumCosmogonie.JOUR) +" Point Jour | "
+			+ pointsAction.get(EnumCosmogonie.NUIT) +" Point Nuit | " + 
+			+ pointsAction.get(EnumCosmogonie.NEANT) +" Point Néant"); 
+		
+
+		//depart
+		int action = (int) (Math.random() * 5) + 1;
+		System.out.println("LACTION "+action);
+		switch (action){
+		case 1: //jouer une carte random et active son pouvoir
+			if(this.getHand().size() != 0){	//si le bot possede des cartes
+				strategy.jouerCarte();
+				System.out.println("action2");
+			}else{//sinon on rappelle la methode pour jouer
+				jouerTour(); 
 		strategy.jouer(this);
 	}
 

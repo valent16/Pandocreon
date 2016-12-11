@@ -2,7 +2,7 @@ package sacrifice;
 
 import java.util.Iterator;
 
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 import model.cards.OriginCards.SpiritGuide;
 import model.game.GameManager;
 import model.player.Player;
@@ -18,7 +18,7 @@ public class SacrificeGwenghelen extends Sacrifice{
 		while (it.hasNext()) {
 			nbSpiritGuide++;
 		}
-		player.incrementerPointAction(Cosmogonie.NEANT, nbSpiritGuide);
+		player.incrementerPointAction(EnumCosmogonie.NEANT, nbSpiritGuide);
 		System.out.println("Vous avez récupéré "+nbSpiritGuide+" points d'Action supplémentaires d'origine Neant");
 	} 
 }

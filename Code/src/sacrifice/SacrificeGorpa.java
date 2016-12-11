@@ -3,7 +3,7 @@ package sacrifice;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Player;
@@ -29,7 +29,7 @@ public class SacrificeGorpa extends Sacrifice{
 		Player playerTarget = gameManager.getPlayers().get(choixJoueur);
 
 		///boucle pour abosrber les points
-		for(Cosmogonie cosmogonie : Cosmogonie.values()){
+		for(EnumCosmogonie cosmogonie : EnumCosmogonie.values()){
 			int pointActions = playerTarget.getDicoPA().get(cosmogonie);
 			player.incrementerPointAction(cosmogonie, pointActions);
 			try {

@@ -1,8 +1,9 @@
-package sacrifice;
+﻿package sacrifice;
 
 import java.util.Scanner;
 
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
+
 import model.cards.Sacrifice;
 import model.game.De;
 import model.game.GameManager;
@@ -21,13 +22,13 @@ public class SacrificePoserDeFace extends Sacrifice{
         }
         switch(choixFace){
             case 1:
-                De.getInstanceDe().setFace(Cosmogonie.JOUR);
+                De.getInstanceDe().setFace(EnumCosmogonie.JOUR);
                 break;
             case 2:
-            	De.getInstanceDe().setFace(Cosmogonie.NUIT);
+            	De.getInstanceDe().setFace(EnumCosmogonie.NUIT);
                 break;
             case 3:
-            	De.getInstanceDe().setFace(Cosmogonie.NEANT);
+            	De.getInstanceDe().setFace(EnumCosmogonie.NEANT);
                 break;
         }
     }  

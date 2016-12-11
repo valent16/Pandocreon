@@ -1,9 +1,11 @@
 package model.cards.OriginCards;
 
-import model.EnumType.Cosmogonie;
+import model.EnumType.EnumCosmogonie;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import model.EnumType.EnumDogme;
 
@@ -15,7 +17,7 @@ public abstract class CarteDogmatique extends ActionCardWithOrigin implements Se
 	
 //	private String nomTypeCarte;
 	
-	public CarteDogmatique(String nom, Cosmogonie origine, ArrayList<EnumDogme> dogmes, String sacrifice) {
+	public CarteDogmatique(String nom, EnumCosmogonie origine, ArrayList<EnumDogme> dogmes, String sacrifice) {
 		super(nom, origine);
 		//faire une deepCopy
 		this.dogmes = dogmes;
@@ -23,8 +25,16 @@ public abstract class CarteDogmatique extends ActionCardWithOrigin implements Se
 		this.sacrifice = sacrifice;
 	}
 
+	public List<EnumDogme> getDogmes(){
+		return Collections.unmodifiableList(dogmes);
+	}
+	
+	public boolean containsDogme(EnumDogme dogme){
+		return dogmes.contains(dogme);
+	}
+	
 	@Override
 	public String toString() {
-		return "CarteDogmatique [dogmes=" + dogmes + ", nom=" + nom + ", sacrifice="+sacrifice+"]";
+		return "CarteDogmatique [ origine="+getOrigine() +"  dogmes=" + dogmes + ", nom=" + nom + ", sacrifice="+sacrifice+"]";
 	}
 }

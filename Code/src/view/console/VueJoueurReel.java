@@ -1,5 +1,6 @@
 package view.console;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -11,8 +12,11 @@ import java.util.Set;
 import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import controller.JoueurController;
+import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.Card;
+import model.cards.OriginCards.Believer;
+import model.cards.OriginCards.SpiritGuide;
 import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
@@ -32,7 +36,15 @@ public class VueJoueurReel {
 	//affichage lorsqu'il s'agit du dï¿½but du tour du joueur
 	public void passageTour(){
 		List<ActionCard> cartes;
+		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();
+		
 		System.out.println("Joueur "+joueur.getNom()+", c'est a votre tour");
+		System.out.println("PA: "+joueur.getDicoPA().toString());
+		System.out.println("liste des croyants sur la table");
+		while(itCroyant.hasNext()){
+			System.out.println(itCroyant.next().toString());
+		}
+		
 		System.out.println("\n");
 		cartes = joueur.getHand();
 		//liste des cartes
@@ -49,10 +61,11 @@ public class VueJoueurReel {
 		System.out.println("1- Vous defausser d'une partie de vos cartes");
 		System.out.println("2- Completer votre main");
 		System.out.println("3- Jouer des cartes");
+		System.out.println("4- Passer mon tour");
 		System.out.print("votre choix: ");
 		String choix = sc.nextLine();
 		
-		while(!choix.matches("[0-9]+") && Integer.parseInt(choix)>3 && Integer.parseInt(choix)<1){
+		while(!choix.matches("[0-9]+") && Integer.parseInt(choix)>4 && Integer.parseInt(choix)<1){
 			System.out.println("le choix de vos operations est invalide");
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
@@ -174,14 +187,14 @@ public class VueJoueurReel {
 			for (int i = 0; i<listeCommande.length; i++ ){
 				System.out.println(i+" :"+listeCommande[i].toString());
 			}
-			System.out.println("votre choix: ");
+			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 		}while(!controller.checkChoiceAction(carte, choix));
-		
-//		for (int i = 0; i < listeCommande.length; i++){
-//			
-//		}
-		
+		try{
+			carte.utiliserPouvoir(listeCommande[Integer.parseInt(choix)].toString(), joueur);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	//Permet la sélection d'une cible
@@ -201,5 +214,61 @@ public class VueJoueurReel {
 		}
 		System.out.print("votre choix: ");
 		return sc.nextLine();
+	}
+	
+	
+	public EnumCosmogonie selectOrigine(List<EnumCosmogonie> listeOrigine){
+		Scanner sc = new Scanner(System.in);
+		String choix = null;
+		
+		do{
+			if (choix != null){
+				System.out.println("erreur lors de votre choix");
+			}
+			System.out.println("liste des origines pouvant être sélectionnées: ");
+			for(int i = 0; i<listeOrigine.size(); i++){
+				System.out.println(i+": "+listeOrigine.get(i));
+			}
+			System.out.print("votre choix: ");
+			choix = sc.nextLine();
+		}while(!controller.checkChoiceOrigine(listeOrigine, choix));
+
+		return listeOrigine.get(Integer.parseInt(choix));
+	}
+
+	public ArrayList<Believer> selectCroyant(SpiritGuide guide) {
+		List<Believer> croyantsAPresenter = GameManager.getInstanceUniqueManager().getCroyantCompatibles(guide);
+		Scanner sc = new Scanner(System.in);
+		
+		ArrayList<Believer> croyantSelected = new ArrayList<>();
+		String choix="0";
+		
+		
+		while(guide.getNbMaxCroyant()>croyantSelected.size() && Integer.parseInt(choix) != croyantsAPresenter.size()){
+			System.out.println("liste des croyants pouvant être ajoutés au guide:");
+			for (int i = 0; i<croyantsAPresenter.size(); i++){
+				System.out.println(i+" :"+croyantsAPresenter.get(i).toString());
+			}
+			System.out.println(croyantsAPresenter.size()+": arreter conversions");
+		    choix=null;
+			
+			do{
+				if (choix != null){
+					System.out.println("erreur lors de votre choix");
+				}
+				choix = sc.nextLine();
+			}while(controller.checkGeneralChoice(choix, croyantsAPresenter.size()));
+			
+			if (Integer.parseInt(choix)!=croyantsAPresenter.size()){
+				croyantSelected.add(croyantsAPresenter.get(Integer.parseInt(choix)));
+				croyantsAPresenter.remove(croyantsAPresenter.get(Integer.parseInt(choix)));
+			}
+		}
+		
+//		guide.convertirCroyant(croyantsAPresenter.get(Integer.parseInt(choix)));
+		
+		
+		
+		return croyantSelected;	
 	}
 }
