@@ -1,9 +1,7 @@
 package model.strategy;
 
-import model.cards.OriginCards.Believer;
 import model.game.GameManager;
 import model.player.Bot;
-import model.pouvoir.pouvoirCarte.DepotCroyant;
 
 /**Stratégie de jeu facile pour les bots
  * Les choix se font au hasard*/
@@ -20,7 +18,7 @@ public class EasyStrategy implements Strategy {
 		this.bot = bot;
 	}
 
-	//methode de jeu
+	//Methode de jeu
 	public void jouer(Bot b){
 		this.setBot(b); //Passage des données du bot
 		System.out.println(bot.getNom());
@@ -37,12 +35,12 @@ public class EasyStrategy implements Strategy {
 			}else{
 				//si on a un croyant on le poser sur la table
 				if(bot.hasBelievers()){ 
-					//bot.DepotCroyant();
-
+					bot.DepotCroyant();
+					
 					//bot.getBeliever(). //TODO appeller le pouvoir pour poser la carte sur la table
-
-
+					
 					//sinon si on a une apocalypse on la lance
+					//TODO: SI il est pas dernier on peut la lancer faire l amethode lancer Apocalypse dans bot qui retourne un booleen
 				}else if(bot.hasApocalypse()){ 
 					//bot.getApocalypse(). //TODO appeller le pouvoir pour poser la carte sur la table
 					System.out.println("a lancer une apocalypse");

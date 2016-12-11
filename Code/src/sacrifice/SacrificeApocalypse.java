@@ -7,9 +7,7 @@ import model.game.GameManager;
 import model.player.Player;
 
 /**Sacrifice equivalent a la capacite d'une apocalypse*/
-public class SacrificeBouleversementDivin extends Sacrifice {
-
-    // Equivalent à la pose d'une carte Apocalypse
+public class SacrificeApocalypse extends Sacrifice {
     
     @Override
     public void effectuerSacrifice(Player player, GameManager gameManager) {

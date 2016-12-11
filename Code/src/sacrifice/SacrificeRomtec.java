@@ -9,7 +9,7 @@ public class SacrificeRomtec extends Sacrifice{
     
     @Override
     public void effectuerSacrifice(Player player, GameManager gameManager) {
-        
+        //TODO A FAIRE
     }
     
 }
