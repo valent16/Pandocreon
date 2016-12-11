@@ -187,8 +187,10 @@ public class GameManager {
 		int cpt = 0;
 		boolean b = true;
 		
+		
 		//players.size()>2
 		while(b){
+			afficherCroyantsCommun();
 			players.get(start%players.size()).lancerDe();
 			System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
 			
@@ -244,6 +246,16 @@ public class GameManager {
 			}
 		}
 		return index;
+	}
+	
+	public void afficherCroyantsCommun(){
+		Iterator<Believer> it = getCroyants().iterator();
+		System.out.println("-----------------------------------------------------");
+		System.out.println("les croyants sur la table");
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
+		System.out.println("-----------------------------------------------------");
 	}
 
 	public LinkedList<Divinity> getDivinites() {

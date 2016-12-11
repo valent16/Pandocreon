@@ -1,6 +1,5 @@
 package model.strategy;
 
-import model.cards.ActionCard;
 import model.cards.OriginCards.Believer;
 import model.game.GameManager;
 import model.player.Bot;
@@ -25,21 +24,31 @@ public class EasyStrategy implements Strategy {
 		this.setBot(b); //Passage des données du bot
 		System.out.println(bot.getNom());
 		bot.afficherHand();
+		System.out.println("Le nombre de croyants est de " +GameManager.getInstanceUniqueManager().getCroyants().size());
 		System.out.print("ACTION DU BOT: "+ bot.getNom() + " ");
 		if(GameManager.getInstanceUniqueManager().getCroyants().size() != 0){//si il y a deja des croyants sur la table
-			if(bot.hasSpiritGuide()){//si il a des guidespirit on recupere nos croyants
+			
+			//si il a des guide spirit on recupere nos croyants
+			if(bot.hasSpiritGuide()){	
+				System.out.println("a recuperer avec son guide spirit un"); 
 				//bot.getSpiritGuide(). //TODO appeler le pouvoir recuperer des croyants pour un guide spirituel
-				System.out.println("a recuperer avec son guide spirit un");
+			
 			}else{
-				if(bot.hasBelievers()){ //si on a un croyant on le poser sur la table
+				//si on a un croyant on le poser sur la table
+				if(bot.hasBelievers()){ 
+					Believer believer = bot.getBeliever(); //on recupere le croyant a deposer
+					GameManager.getInstanceUniqueManager().deposerCroyant(believer);
+					bot.ajouterCroyant(believer);
 					//bot.getBeliever(). //TODO appeller le pouvoir pour poser la carte sur la table
-					bot.getBeliever().utiliserPouvoir(commande, joueur);
 					System.out.println("a posé un croyant");
-				}else if(bot.hasApocalypse()){ //sinon si on a une apocalypse on la lance
+				
+				//sinon si on a une apocalypse on la lance
+				}else if(bot.hasApocalypse()){ 
 					//bot.getApocalypse(). //TODO appeller le pouvoir pour poser la carte sur la table
 					System.out.println("a lancer une apocalypse");
 
-				}else if(bot.getNbCartes() == 0){//si le bot n'a plus de cartes il pioche
+					//si le bot n'a plus de cartes il pioche
+				}else if(bot.getNbCartes() == 0){
 					System.out.println("a lancer une apocalypse");
 					System.out.println("pioche");
 					bot.piocher();
@@ -60,8 +69,7 @@ public class EasyStrategy implements Strategy {
 			
 		}else{//si le bot n'a pas posé de croyant
 			if(bot.hasBelievers()){//s'il il a des croyants il essaye d'en poser
-				//bot.getBeliever().  //TODO appeller le pouvoir pour poser la carte sur la table
-				System.out.println("a posé un croyant");
+				bot.DepotCroyant();
 			}else{//sinon
 				if(bot.hasApocalypse()){ //sinon si on a une apocalypse on la lance
 					//bot.getApocalypse(). //TODO appeller le pouvoir pour poser la carte sur la table

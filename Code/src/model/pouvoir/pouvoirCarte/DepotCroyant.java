@@ -10,7 +10,7 @@ import model.pouvoir.Pouvoir;
 public class DepotCroyant extends Pouvoir{
 
 	public DepotCroyant() {
-		super("Permet de déposer un coyant sur la table de jeu");
+		super("Permet de deposer un coyant sur la table de jeu");
 	}
 	
 	@Override
@@ -25,6 +25,6 @@ public class DepotCroyant extends Pouvoir{
 			joueur.decrementerPointAction(((Believer) carte).getOrigine(), 1);
 		}
 		GameManager.getInstanceUniqueManager().deposerCroyant(carte);
-		joueur.ajouterCroyantPendantTour(carte);
+		joueur.ajouterCroyant(carte);
 	}
 }

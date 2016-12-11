@@ -107,9 +107,9 @@ public abstract class Player extends Observer{
 
 
 	//Permet de renvoyer une liste 
-	public List<ActionCard> getHand(){ 
+	public LinkedList<ActionCard> getHand(){ 
 		//		return Collections.unmodifiableList((LinkedList<ActionCard>) deepClone(hand));
-		return Collections.unmodifiableList(hand);
+		return hand;
 	}
 
 	/**Getter du pseudo*/
@@ -161,7 +161,7 @@ public abstract class Player extends Observer{
 	
 	public abstract List<Believer> pickCroyant(SpiritGuide carte);
 
-	public void ajouterCroyantPendantTour(Card carte){
+	public void ajouterCroyant(Card carte){
 		if (carte instanceof Believer){
 			this.croyantDeposesPendantTour.add((Believer)carte);
 		}else{

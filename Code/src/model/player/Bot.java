@@ -8,10 +8,12 @@ import java.util.List;
 
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
+import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.exception.TargetSelectionException;
+import model.game.GameManager;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
@@ -29,25 +31,8 @@ public class Bot extends Player{
 	}
 
 	/**Methode qui fait jouer les bots avec la difficulté choisie*/
-	public void jouerTour(){
+	public void jouerTour(){	
 		incrementerPointActionWithDe();
-		HashMap<EnumCosmogonie, Integer> pointsAction = this.getDicoPA();
-		System.out.println("les points du BOT "+ this.getNom() +": "  
-			+ pointsAction.get(EnumCosmogonie.JOUR) +" Point Jour | "
-			+ pointsAction.get(EnumCosmogonie.NUIT) +" Point Nuit | " + 
-			+ pointsAction.get(EnumCosmogonie.NEANT) +" Point Néant"); 
-		
-
-		//depart
-		int action = (int) (Math.random() * 5) + 1;
-		System.out.println("LACTION "+action);
-		switch (action){
-		case 1: //jouer une carte random et active son pouvoir
-			if(this.getHand().size() != 0){	//si le bot possede des cartes
-				strategy.jouerCarte();
-				System.out.println("action2");
-			}else{//sinon on rappelle la methode pour jouer
-				jouerTour(); 
 		strategy.jouer(this);
 	}
 
@@ -94,7 +79,7 @@ public class Bot extends Player{
 
 	//recupere une carte croyant de la main du bot de maniere Random
 	public Believer getBeliever(){
-		List<ActionCard> liste = getHand();
+		LinkedList<ActionCard> liste = (LinkedList<ActionCard>) getHand();
 		Collections.shuffle(liste);
 		Iterator<ActionCard> it = liste.iterator();
 		Believer believer = null;
@@ -156,18 +141,39 @@ public class Bot extends Player{
 		ActionCard card = this.getHand().get(indexCard);
 		System.out.println("Le bot "+ this.getNom()+" active le pouvoir de la carte "+ this.getHand().get(indexCard));
 		System.out.println("Il faut appeller la bonne methode LA CARTE A ACTIVER LE POUVOIR "+ this.getHand().get(indexCard));
+		System.out.println(card.getPouvoirs());
 		//card.utiliserPouvoir(commande, joueur); //TODO activer le pouvoir de la carte
 	}
-
-	@Override
-	public String toString() {
-		return super.toString();
-		//return "Bot [strategy=" +" getStrategy()=" + getStrategy() + "]"+super.toString();
+	
+	//permet au bot de deposer un croyant de sa main a la table
+	public void DepotCroyant(){
+		Believer believer = this.getBeliever();//recupere le croyant
+		GameManager.getInstanceUniqueManager().deposerCroyant(believer);
+		this.ajouterCroyant(believer);
+		System.out.println("le bot "+ this.getNom() +" a posé le croyant "+ believer);
 	}
 
 	@Override
 	public Player pickTarget() throws TargetSelectionException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Believer> pickCroyant(SpiritGuide carte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+		//return "Bot [strategy=" +" getStrategy()=" + getStrategy() + "]"+super.toString();
 	}
 }
