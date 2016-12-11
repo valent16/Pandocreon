@@ -1,0 +1,20 @@
+package model.pouvoir.sacrificeCarte;
+
+import model.EnumType.EnumCosmogonie;
+import model.player.Player;
+import model.sacrifice.Sacrifice;
+
+/**Donne un point d'action d'origine Neant*/
+public class SacrificeAjouterPointNeant extends Pouvoir{
+    
+	public SacrificeAjouterPointNeant() {
+		super("sacrifice");
+	}
+	
+    @Override
+    public void effectuerSacrifice(Player player) {
+    	player.incrementerPointAction(EnumCosmogonie.NEANT, 1);
+
+    }
+
+}

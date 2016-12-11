@@ -197,11 +197,11 @@ public class GameManager implements IObservableGameManager {
 		while(players.size()!=0){
 			afficherCroyantsCommun();
 			players.get(start%players.size()).lancerDe();
-			System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
+			//System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
 			
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){
-					System.out.println(players.get(i%players.size()).toString());
+//					System.out.println(players.get(i%players.size()).toString());
 					players.get(i%players.size()).jouerTour();
 				}
 			}

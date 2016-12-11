@@ -23,7 +23,6 @@ import model.player.Player;
 import model.pouvoir.Pouvoir;
 
 public class VueJoueurReel {
-
 	Human joueur;
 	
 	JoueurController controller;

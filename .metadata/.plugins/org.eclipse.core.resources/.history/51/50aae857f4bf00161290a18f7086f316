@@ -240,7 +240,8 @@ public class ParserXML implements IDataLoad {
 			                			pouvoir = "NotImplemented";
 			                		}
 			                		divinite.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
-		          
+		                			
+			                		
 			                		divinites.push(divinite);
 //			                		System.out.println(divinite.toString());
 			                	}else if(type.equals("croyants") || type.equals("guides")){
@@ -267,27 +268,24 @@ public class ParserXML implements IDataLoad {
 			                			cartesAction.push(croyant);
 //			                			System.out.println(croyant.toString());
 			                		}else{
+			                			
 			                			SpiritGuide guide = new SpiritGuide(lstr[0].trim(), orCA, dogmesCarte, valeurCroyant, lstr[3].trim());
 			                			guide.ajouterPouvoir("convertir Croyant", pvGuide);
-			                			guide.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
 //			                			System.out.println(guide.toString());
 			                			cartesAction.push(guide);
 			                		}
+			                		
+			                		
+			                		
 			                	}else if (type.equals("deusex")){
-			                		pouvoir = carte.getAttribute("sacrifice");
-			                		if (pouvoir == ""){
-			                			pouvoir = "NotImplemented";
-			                		}
 			                		EnumCosmogonie orCA = recupOrigineCarte(carte.getAttribute("template"));
 			                		if (orCA == null){
 			                			DeusEx deusEx = new DeusEx(lstr[0].trim());
 			                			cartesAction.push(deusEx);
-			                			deusEx.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
 //			                			System.out.println(deusEx.toString());
 			                		}else{
 			                			DeusExWithOrigin deusExOrigine = new DeusExWithOrigin(lstr[0].trim(), orCA);
 			                			cartesAction.push(deusExOrigine);
-			                			deusExOrigine.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
 //			                			System.out.println(deusExOrigine.toString());
 			                		}
 			                	}else if (type.equals("apocalypses")){

@@ -51,7 +51,7 @@ public class SacrificeAnnuleCapaciteActionJourNeant extends Sacrifice {
 				}
 			} else {
 				do {
-					choixJoueur = ((Bot) player).getStrategie().choixJoueur(Bot) joueur, partie); //TODO la methode choixJoueur
+					choixJoueur = (Bot) player).getStrategie().choixJoueur(Bot) joueur, partie); //TODO la methode choixJoueur
 				} while (!possiblePlayers.contains(choixJoueur));
 			}
 
