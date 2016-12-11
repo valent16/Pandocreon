@@ -33,4 +33,13 @@ public class MediumStrategy implements Strategy {
 		bot.afficherHand();
 		System.out.print("ACTION DU BOT: "+ bot.getNom() + " ");
 	}
+
+	@Override
+	//permet d'economiser ses points dans notre cas il pioche si il a moins de 7 cartes sinon il passe son tour
+	public void economy() {
+		//if(getHand < 7)
+			//piocher
+		//else
+			//bot.passerTour(); // TODO passerTour	
+	}
 }

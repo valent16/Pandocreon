@@ -181,7 +181,7 @@ public class Bot extends Player{
 		System.out.println("se defausse de la carte "+ card);
 	}
 
-	//Methode qui permet de jouer une carte Random utiliser pour la strategie Random et Easy
+	/**Methode qui permet de jouer une carte Random utiliser pour la strategie Random et Easy*/
 	public void jouerCarteRandom(){
 		int indexCard = (int) (Math.random() * this.getNbCartes())+1;
 		ActionCard card = this.getHand().get(indexCard);
@@ -191,8 +191,8 @@ public class Bot extends Player{
 		//card.utiliserPouvoir(commande, joueur); //TODO activer le pouvoir de la carte
 	}
 
-	//permet au bot de deposer un croyant de sa main a la table
-	//retourne true si il peut poser un coryant sinon false
+	/**permet au bot de deposer un croyant de sa main a la table
+	retourne true si il peut poser un coryant sinon false*/
 	public void DepotCroyant(){
 		LinkedList<Believer> liste = getBelievers(); //recupere tous le croyants
 		Iterator<Believer> it = liste.iterator();
@@ -210,12 +210,12 @@ public class Bot extends Player{
 				System.out.println("le bot "+ this.getNom() +" a posé le croyant "+ believer);
 				break;
 			}
-			else{//si il a pas pu poser de croyants il economise se points
+			
+			//si il a pas pu poser de croyants il economise ses points
+			else{
 				strategy.economy();
 			}
 		}
-	
-		
 	}
 
 	//verifie si le nombre de point est suffisant pour effectuer l'action voulu sur la carte en parametre
