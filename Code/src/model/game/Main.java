@@ -2,6 +2,7 @@ package model.game;
 
 import java.util.Iterator;
 
+import controller.GameController;
 import controller.JoueurController;
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
@@ -16,7 +17,7 @@ public class Main{
 	
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
-		int valeur = 1;
+		int valeur = 4;
 		//1: lancement du jeu
 		//2: test sur la classe joueur
 		
@@ -35,6 +36,13 @@ public class Main{
 				break;
 			case 3:
 				testBot();
+				break;
+				
+			case 4:
+				Game game = new Game();
+				game.initGame();
+				GameController gc = new GameController();
+				gc.startGame();
 				break;
 			default:
 				//ne rien mettre
