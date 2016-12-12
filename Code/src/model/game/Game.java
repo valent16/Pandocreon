@@ -28,7 +28,7 @@ public class Game {
 	private ArrayList<Player> players = new ArrayList<Player>();
 
 	/**Attribut qui reprÃ©sente la liste de cartes actions*/
-	private LinkedList<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
+	public LinkedList<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
 
 	/**Attribut  qui reprÃ©sente la liste de divinitÃ©s*/
 	private LinkedList<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
@@ -57,7 +57,7 @@ public class Game {
 	}
 	
 
-	//méthode permettant de consulter le nombre actuel de joueurs dans la partie
+	//mï¿½thode permettant de consulter le nombre actuel de joueurs dans la partie
 
 	/** Getter qui permet de recuperer le nombre de joueur
 	 * @return le nombre de joueur
@@ -66,7 +66,7 @@ public class Game {
 		return players.size();
 	}
 	
-	//Méthodes permettant d'attribuer un nom à un bot à partir d'un index
+	//Mï¿½thodes permettant d'attribuer un nom ï¿½ un bot ï¿½ partir d'un index
 	public String getBotName(int index){
 		index = index%BOT_NAME.length;
 		return BOT_NAME[index];
