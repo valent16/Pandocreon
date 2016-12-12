@@ -15,7 +15,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 1;
+		int valeur = 3;
 		//1: lancement du jeu
 		//2: test sur la classe joueur
 		
@@ -77,7 +77,7 @@ public class Main{
 //		joueur3.attacher(new JoueurController(joueur3));
 //		Bot IA1 = new Bot("henry", new EasyStrategy());
 //		Bot IA2 = new Bot("jean jacque", new MediumStrategy());
-//		
+//
 //		game.ajouterBot(IA1);
 //		game.ajouterBot(IA2);
 
@@ -87,7 +87,6 @@ public class Main{
 		
 		game.nouvellePartie();
 		GameManager.getInstanceUniqueManager().startGame();
-		
 		GameManager.getInstanceUniqueManager().afficherJoueur();
 	}
 	

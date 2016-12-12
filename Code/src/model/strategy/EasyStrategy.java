@@ -11,6 +11,7 @@ import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.exception.PAInsuffisantException;
+import model.game.Game;
 import model.game.GameManager;
 import model.player.Bot;
 import model.player.Player;
@@ -31,6 +32,7 @@ public class EasyStrategy implements Strategy {
 
 	//Methode de jeu
 	public void jouer(Bot b){
+		//System.out.println("pioche" + GameManager.getInstanceUniqueManager().pioche);
 		this.setBot(b); //Passage des données du bot
 		System.out.println(bot.getNom() + " " +bot.getDivinity().getOrigine());//////////////////////////////////////////////////////////////////
 		System.out.println("voici les points du bot " + bot.getNom() + " " + bot.getDicoPA());/////////////////////////
@@ -122,9 +124,9 @@ public class EasyStrategy implements Strategy {
 	public void convertirCroyants() {
 		System.out.println("LES GUIDES du bot " + bot.getNom()+ " " + bot.getSpiritGuide());
 		SpiritGuide guide = bot.getSpiritGuides().get(0); //recupere un guide
-		System.out.println("guide recuperer est le guide "+ guide);////////////////////////////////////////////////////////////
+		//System.out.println("guide recuperer est le guide "+ guide);//////////////////////////////
 		LinkedList<Believer> believers = (LinkedList<Believer>) bot.pickCroyant(guide); //recupere le plus de croyant possible
-		if(!believers.equals(null)){
+		if(believers != null){
 			Iterator<Believer> it = believers.iterator();
 			while(it.hasNext()){ //pour chaque croyant
 				Believer believer = it.next();
@@ -162,6 +164,7 @@ public class EasyStrategy implements Strategy {
 	/**permet d'economiser ses points dans notre cas il pioche son tour*/
 	public void economy() {
 		bot.piocher();
+		System.out.println("Le bot pioche");
 	}
 
 	@Override
