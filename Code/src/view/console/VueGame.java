@@ -123,34 +123,34 @@ public class VueGame {
 	
 	//Permet de cr�er un bot
 	public void creationBot(int index){
-		String nomStrat;
-		Scanner sc = new Scanner(System.in);
+//		String nomStrat;
+//		Scanner sc = new Scanner(System.in);
+//		
+//		System.out.println("Veuillez renseigner le niveau de difficulte de ce bot : ");
+//		System.out.println("1- facile");
+//		System.out.println("2- medium");
+//		System.out.println("3- difficile");
+//		String choix = sc.nextLine();
+//		while(!choix.matches("[0-9]+") && Integer.parseInt(choix)>3 && Integer.parseInt(choix)<1){
+//			System.out.println("le choix de difficulte est invalide");
+//		}
+//		
+//		switch(choix){
+//		case "1":
+//			nomStrat = "facile";
+//			break;
+//		case "2": 
+//			nomStrat = "medium";
+//			break;
+//		case "3":
+//			nomStrat = "difficile";
+//			break;
+//		default:
+//			//Lancement Exception
+//			nomStrat = "";
+//		}
 		
-		System.out.println("Veuillez renseigner le niveau de difficulte de ce bot : ");
-		System.out.println("1- facile");
-		System.out.println("2- medium");
-		System.out.println("3- difficile");
-		String choix = sc.nextLine();
-		while(!choix.matches("[0-9]+") && Integer.parseInt(choix)>3 && Integer.parseInt(choix)<1){
-			System.out.println("le choix de difficulte est invalide");
-		}
-		
-		switch(choix){
-		case "1":
-			nomStrat = "facile";
-			break;
-		case "2": 
-			nomStrat = "medium";
-			break;
-		case "3":
-			nomStrat = "difficile";
-			break;
-		default:
-			//Lancement Exception
-			nomStrat = "";
-		}
-		
-		controllerJeu.CreationBot(game.getBotName(index), nomStrat);
+		controllerJeu.CreationBot(game.getBotName(index), "facile");
 		System.out.println("utilitaire de creation de joueur");
 	}
 	
