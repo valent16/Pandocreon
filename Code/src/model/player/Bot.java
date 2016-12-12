@@ -122,7 +122,7 @@ public class Bot extends Player{
 		ActionCard apocalypse = null;
 		while(it.hasNext()){
 			ActionCard card = it.next(); 
-			if(card instanceof Apocalypse || card instanceof Apocalypse){ //on retourne la premiere apocalypse croyant de la liste
+			if(card instanceof ApocalypseWithOrigin || card instanceof Apocalypse){ //on retourne la premiere apocalypse croyant de la liste
 				apocalypse = (ActionCard) card;
 			}
 		}

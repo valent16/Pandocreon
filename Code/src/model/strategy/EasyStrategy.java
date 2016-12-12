@@ -18,7 +18,7 @@ import model.player.Player;
 /**Stratégie de jeu facile pour les bots, les choix sont très simples*/
 public class EasyStrategy implements Strategy {
 
-	/**garde le bot qui joue en memoir pour recuperer ses sdonnees (cartes, score etc..)*/
+	/**garde le bot qui joue en memoire pour recuperer ses sdonnees (cartes, score etc..)*/
 	private Bot bot;
 
 	/**
