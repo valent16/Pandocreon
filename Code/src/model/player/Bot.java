@@ -76,6 +76,7 @@ public class Bot extends Player{
 		while(it.hasNext()){
 			ActionCard card = it.next();
 			if (card instanceof Apocalypse){
+				System.out.println("YOU HAVE AN APOCALYPSE");
 				return true;
 			}
 		}

@@ -11,7 +11,6 @@ import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.exception.PAInsuffisantException;
-import model.game.Game;
 import model.game.GameManager;
 import model.player.Bot;
 import model.player.Player;
@@ -36,14 +35,17 @@ public class EasyStrategy implements Strategy {
 		this.setBot(b); //Passage des données du bot
 		System.out.println(bot.getNom() + " " +bot.getDivinity().getOrigine());//////////////////////////////////////////////////////////////////
 		System.out.println("voici les points du bot " + bot.getNom() + " " + bot.getDicoPA());/////////////////////////
-		System.out.println("Le nombre de croyants sur la table est de " +GameManager.getInstanceUniqueManager().getCroyants().size());///////////////////////
-		bot.afficherHand();
+		//bot.afficherHand();
 		System.out.println("Les guides rattachés "+ bot.getGuideRattache());
-		System.out.println("SCORE "+bot.getScore());
+		System.out.println("score de "+ bot.getNom() + " " +bot.getScore());
 
-		
-		lancerApocalypse();
-		
+		try {
+			new Apocalypse().utiliserPouvoir("declencher apocalypse", bot);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		if(GameManager.getInstanceUniqueManager().getCroyants().size() != 0){//si il y a deja des croyants sur la table
 			if(bot.hasApocalypse()){
 				System.out.println("Apocalypse");//////////////////////////////////////////////////////
@@ -52,7 +54,6 @@ public class EasyStrategy implements Strategy {
 			if(bot.hasSpiritGuide()){	//si il a des guide spirituels on recupere nos croyants
 				this.convertirCroyants();
 				System.out.println("le bot a recuperer avec son guide spirit un croyant"); /////////////////////////:
-				System.out.println("SCORE "+bot.getScore());
 
 			}else{
 				//si on a un croyant on le poser sur la table
@@ -60,24 +61,20 @@ public class EasyStrategy implements Strategy {
 					this.depotCroyant();
 					System.out.println("voici les points du bot " + bot.getNom() + " " + bot.getDicoPA());////////////////////////////////
 
-
-					//TODO: SI il est pas dernier on peut la lancer faire la methode lancer Apocalypse dans bot qui retourne un booleen
-				}else if(bot.hasApocalypse()){ // si le bot a une apocalypse il la lance
-					this.lancerApocalypse();
-					System.out.println("a lancer une apocalypse");
+				}else if(bot.hasApocalypse()){//lance une apocalypse
+					this.lancerApocalypse(); //TODO: SI il est pas dernier on peut la lancer faire la methode lancer Apocalypse dans bot qui retourne un booleen
 
 				}else if(bot.getNbCartes() == 0){//si le bot n'a plus de cartes il pioche
 					bot.piocher();
-					System.out.println("1pioche");
 				}
 			}
 
 		}else{//si le bot n'a pas posé de croyant
 
-			
+
 			if(bot.hasBelievers()){//s'il a des croyants il essaye d'en poser
 				bot.depotCroyant();
-				System.out.println("voici les points du bot " + bot.getNom() + " " + bot.getDicoPA());////////////////////////////////////////
+
 			}else{//sinon
 				if(bot.hasApocalypse()){ //sinon si on lance une apocalypse
 					System.out.println("Apocalypse");/////////////////////////////////////////////////////////
@@ -87,13 +84,13 @@ public class EasyStrategy implements Strategy {
 				}else if(bot.getNbCartes() < 7){//si le bot n'a plus de cartes il pioche
 					System.out.println(bot.getNom() +" pioche");
 					bot.piocher();
+				
 				}else{
 					bot.defausserCarte(bot.getHand().get(0));//il se defausse de sa premiere carte
 					System.out.println(bot.getNom() +" s'est defausser de 7 cartes");
 				}
 			}
 		}
-		System.out.println();///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 
 	@Override
@@ -132,8 +129,7 @@ public class EasyStrategy implements Strategy {
 				Believer believer = it.next();
 				try {
 					guide.convertirCroyant(believer); //on les convertit au guide
-					bot.getGuideRattache().add(guide);
-					bot.getScore();
+					bot.getGuideRattache().add(guide); //on rattache ce guide au joueur
 				} catch (Exception e) {
 					e.printStackTrace();
 				} 
