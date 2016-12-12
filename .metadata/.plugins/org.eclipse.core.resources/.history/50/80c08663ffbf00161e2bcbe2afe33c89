@@ -32,23 +32,28 @@ public class ConversionCroyant extends Pouvoir {
 				throw new PAInsuffisantException("le joueur n'a pas assez de PA pour utiliser cette carte");
 			}
 		}else{
+
 			origine = ((SpiritGuide) carte).getOrigine();
+			
+			List<Believer> croyants = joueur.pickCroyant((SpiritGuide) carte);
+			if (croyants.size() == 0){
+				throw new NoCroyantLinkedAtConversion("Aucun croyant n'ont ete lie au guide");
+			}
+			joueur.decrementerPointAction(((SpiritGuide) carte).getOrigine(), 1);
 		}
-		
 		List<Believer> croyants = joueur.pickCroyant((SpiritGuide) carte);
-		System.out.println(croyants.size());
 		if (croyants.size() == 0){
 			throw new NoCroyantLinkedAtConversion("Aucun croyant n'ont ete lie au guide");
 		}
 		joueur.decrementerPointAction(origine, PAaUtiliser);
-		Believer c;
+
 		Iterator<Believer> itCroyant = croyants.iterator();
 		while(itCroyant.hasNext()){
-			c = itCroyant.next();
-			GameManager.getInstanceUniqueManager().retirerCroyant(c);
-			((SpiritGuide) carte).convertirCroyant(c);
+			((SpiritGuide) carte).convertirCroyant(itCroyant.next());
 		}
 
+		GameManager.getInstanceUniqueManager().deposerCroyant(carte);
+		joueur.ajouterCroyant(carte);
 		joueur.retirerCarte(carte);
 		joueur.rattacherGuide(carte);
 	}
