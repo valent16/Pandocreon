@@ -47,7 +47,7 @@ public abstract class Player extends Observer{
 
 	private LinkedList<Believer> croyantDeposesPendantTour = new LinkedList<Believer>();
 
-	protected LinkedList<SpiritGuide> guidesRattaches = new LinkedList<SpiritGuide>();
+	private LinkedList<SpiritGuide> guidesRattaches = new LinkedList<SpiritGuide>();
 
 	/**Carte divinte du joueur*/
 	private Divinity divinity;
@@ -122,13 +122,11 @@ public abstract class Player extends Observer{
 			return null;
 		}
 	}
-	
-	public LinkedList<SpiritGuide> getGuideRattache(){
-		return guidesRattaches;
-	}
+
 
 	//Permet de renvoyer une liste 
 	public LinkedList<ActionCard> getHand(){ 
+		//		return Collections.unmodifiableList((LinkedList<ActionCard>) deepClone(hand));
 		return hand;
 	}
 

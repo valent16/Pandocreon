@@ -36,7 +36,6 @@ public class ConversionCroyant extends Pouvoir {
 		}
 		
 		List<Believer> croyants = joueur.pickCroyant((SpiritGuide) carte);
-		System.out.println(croyants.size());
 		if (croyants.size() == 0){
 			throw new NoCroyantLinkedAtConversion("Aucun croyant n'ont ete lie au guide");
 		}
@@ -49,6 +48,9 @@ public class ConversionCroyant extends Pouvoir {
 			((SpiritGuide) carte).convertirCroyant(c);
 		}
 
+		//GameManager.getInstanceUniqueManager().deposerCroyant(carte);
+//		GameManager
+		//joueur.ajouterCroyant(carte);
 		joueur.retirerCarte(carte);
 		joueur.rattacherGuide(carte);
 	}

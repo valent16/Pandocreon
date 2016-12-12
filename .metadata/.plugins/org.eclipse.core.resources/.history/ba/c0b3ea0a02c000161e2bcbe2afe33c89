@@ -49,6 +49,9 @@ public class ConversionCroyant extends Pouvoir {
 			((SpiritGuide) carte).convertirCroyant(c);
 		}
 
+		//GameManager.getInstanceUniqueManager().deposerCroyant(carte);
+//		GameManager
+		//joueur.ajouterCroyant(carte);
 		joueur.retirerCarte(carte);
 		joueur.rattacherGuide(carte);
 	}

@@ -83,7 +83,6 @@ public class VueJoueurReel {
 		default:
 			//lancement exception
 		}
-		sc.close();
 	}
 	
 	public void defausserCartes(){
@@ -121,7 +120,6 @@ public class VueJoueurReel {
 				controller.supprimerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 			}
 		}
-		sc.close();
 		
 		//TODO lister les cartes
 		//TODO faire un check si le joueur a bien des cartes
@@ -178,7 +176,6 @@ public class VueJoueurReel {
 				//controller.jouerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 				//controller.supprimerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 			}
-			sc.close();
 		}
 		//TODO lister les cartes
 		//TODO faire un check si le joueur a bien des cartes
@@ -209,7 +206,6 @@ public class VueJoueurReel {
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
-		sc.close();
 	}
 	
 	//Permet la s�lection d'une cible
@@ -229,7 +225,6 @@ public class VueJoueurReel {
 		}
 		System.out.print("votre choix: ");
 		String choix = sc.nextLine();
-		sc.close();
 		return choix;
 	}
 	
@@ -249,7 +244,7 @@ public class VueJoueurReel {
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 		}while(!controller.checkChoiceOrigine(listeOrigine, choix));
-		sc.close();
+
 		return listeOrigine.get(Integer.parseInt(choix));
 	}
 
@@ -281,7 +276,6 @@ public class VueJoueurReel {
 				croyantSelected.add(croyantsAPresenter.get(Integer.parseInt(choix)));
 				croyantsAPresenter.remove(croyantsAPresenter.get(Integer.parseInt(choix)));
 			}
-			sc.close();
 		}
 		
 		// TODO guide.convertirCroyant(croyantsAPresenter.get(Integer.parseInt(choix)));
