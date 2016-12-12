@@ -6,10 +6,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.EnumType.EnumCosmogonie;
+import model.cards.ActionCard;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
-import model.cards.withoutOriginCards.Apocalypse;
 import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Bot;
@@ -38,13 +38,6 @@ public class EasyStrategy implements Strategy {
 		//bot.afficherHand();
 		System.out.println("Les guides rattachés "+ bot.getGuideRattache());
 		System.out.println("score de "+ bot.getNom() + " " +bot.getScore());
-
-		try {
-			new Apocalypse().utiliserPouvoir("declencher apocalypse", bot);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		if(GameManager.getInstanceUniqueManager().getCroyants().size() != 0){//si il y a deja des croyants sur la table
 			if(bot.hasApocalypse()){
@@ -146,7 +139,8 @@ public class EasyStrategy implements Strategy {
 	public void lancerApocalypse() {
 		if(!bot.isLast()){
 			try {
-				new Apocalypse().utiliserPouvoir("declencher apocalypse", bot);
+				ActionCard card = bot.getApocalypse(); //on recupere une apocalypse de maniere random
+				card.utiliserPouvoir("declencher apocalypse", bot);
 				System.out.println("apocalypse Lancer");
 			} catch (Exception e) {
 				e.printStackTrace();

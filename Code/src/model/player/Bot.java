@@ -115,15 +115,15 @@ public class Bot extends Player{
 	}
 
 	//recupere une apocalypse de la main du bot de maniere random
-	public Apocalypse getApocalypse(){
+	public ActionCard getApocalypse(){
 		List<ActionCard> liste = getHand();
 		Collections.shuffle(liste); //pour obtenir l'apocalypse de maniere random
 		Iterator<ActionCard> it = liste.iterator();
-		Apocalypse apocalypse = null;
+		ActionCard apocalypse = null;
 		while(it.hasNext()){
 			ActionCard card = it.next(); 
-			if(card instanceof Apocalypse){ //on retourne la premiere apocalypse croyant de la liste
-				apocalypse = (Apocalypse) card;
+			if(card instanceof Apocalypse || card instanceof Apocalypse){ //on retourne la premiere apocalypse croyant de la liste
+				apocalypse = (ActionCard) card;
 			}
 		}
 		return apocalypse;
