@@ -46,7 +46,6 @@ public class VueGame {
 		default:
 			break;
 		}
-		sc.close();
 	}
 	
 	//m�thode permettant de jouer une nouvelle partie
@@ -74,7 +73,6 @@ public class VueGame {
 			this.creationJoueurs(Integer.parseInt(choix));
 		}
 		controllerJeu.lancerPartie();
-		sc.close();
 	}
 	
 	//Permet de creer un joueur
@@ -104,7 +102,6 @@ public class VueGame {
 				creationBot(i);
 			}
 		}
-		sc.close();
 	}
 	
 	//Permet de cr�er un joueur humain
@@ -122,7 +119,6 @@ public class VueGame {
 			age = sc.nextLine();
 		}
 		controllerJeu.CreationJoueur(nom, Integer.parseInt(age));
-		sc.close();
 	}
 	
 	//Permet de cr�er un bot
@@ -156,7 +152,6 @@ public class VueGame {
 		
 		controllerJeu.CreationBot(game.getBotName(index), nomStrat);
 		System.out.println("utilitaire de creation de joueur");
-		sc.close();
 	}
 	
 	//m�thode permettant le chargement d'une ancienne partie

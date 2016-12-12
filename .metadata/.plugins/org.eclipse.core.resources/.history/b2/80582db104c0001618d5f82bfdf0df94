@@ -9,7 +9,6 @@ import java.util.List;
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.OriginCards.ActionCardWithOrigin;
-import model.cards.OriginCards.ApocalypseWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
@@ -76,7 +75,7 @@ public class Bot extends Player{
 		Iterator<ActionCard> it = getHand().iterator();
 		while(it.hasNext()){
 			ActionCard card = it.next();
-			if (card instanceof Apocalypse || card instanceof ApocalypseWithOrigin){
+			if (card instanceof Apocalypse){
 				System.out.println("YOU HAVE AN APOCALYPSE");
 				return true;
 			}

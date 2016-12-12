@@ -47,10 +47,8 @@
 <fullyQualifiedTypeName name="view.IObservateurGameManager"/>
 <fullyQualifiedTypeName name="controller.GameManagerController"/>
 <fullyQualifiedTypeName name="view.console.VueGameManager"/>
-<fullyQualifiedTypeName name="model.cards.OriginCards.ApocalypseWithOrigin"/>
 <fullyQualifiedTypeName name="model.cards.ActionCard"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
-<fullyQualifiedTypeName name="model.game.GameManager"/>
 <fullyQualifiedTypeName name="model.EnumType.EnumCosmogonie"/>
 <fullyQualifiedTypeName name="controller.GameController"/>
 <fullyQualifiedTypeName name="controller.JoueurController"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="model.pouvoir.sacrificeCarte.SacrificeAjouterPointNeant"/>
 <fullyQualifiedTypeName name="model.pouvoir.Pouvoir"/>
 <fullyQualifiedTypeName name="model.pouvoir.sacrificeCarte.NotImplementedSacrifice"/>
+<fullyQualifiedTypeName name="model.game.GameManager"/>
+<fullyQualifiedTypeName name="model.cards.OriginCards.ApocalypseWithOrigin"/>
 </qualifiedTypeNameHistroy>
