@@ -127,7 +127,6 @@ public class EasyStrategy implements Strategy {
 					e.printStackTrace();
 				} 
 			}
-			System.out.println(guide.getCroyantsConvertis());
 		}else{
 			this.economy();
 		}
@@ -181,10 +180,9 @@ public class EasyStrategy implements Strategy {
 		while(it.hasNext() && limiteCroyant < guide.getNbMaxCroyant()){ //tant qu'il y a des croyants sur la table
 			Believer b = it.next();
 			if(guide.isCroyantCompatible(b)){
-				believers.add(b);	
+				believers.add(b);
 			}
 		}
-		System.out.println(believers.size());
 		if(believers.size() !=0){
 			return believers;
 		}else{

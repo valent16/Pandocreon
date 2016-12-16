@@ -15,7 +15,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 4;
+		int valeur = 3;
 		//1: lancement du jeu
 		//2: test sur la classe joueur
 		
@@ -66,8 +66,6 @@ public class Main{
 		
 		game.nouvellePartie();	
 		GameManager.getInstanceUniqueManager().startGame();
-		//System.out.println(b1.getDivinity().getOrigine());
-		//System.out.println(b2.getDivinity().getOrigine());
 	}
 
 

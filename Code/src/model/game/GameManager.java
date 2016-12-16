@@ -206,7 +206,7 @@ public class GameManager implements IObservableGameManager {
 			}
 			cpt++;
 			System.out.println();
-			afficherCroyantsCommun();
+			afficherCroyants();
 			System.out.println();
 		}
 	}
@@ -251,7 +251,8 @@ public class GameManager implements IObservableGameManager {
 		return index;
 	}
 	
-	public void afficherCroyantsCommun(){
+	/**Methode qui affiche les croyants en commun sur la table a chaque tour*/
+	public void afficherCroyants(){
 		Iterator<Believer> it = getCroyants().iterator();
 		System.out.println("-----------------------------------------------------");
 		System.out.println("les croyants sur la table");

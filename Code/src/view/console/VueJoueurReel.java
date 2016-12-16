@@ -91,7 +91,7 @@ public class VueJoueurReel {
 
 		System.out.println("liste des cartes pouvant etre d�faussees:");
 		List<ActionCard> listeAAfficher = joueur.getHand();
-
+		
 		//TODO afficherListeCarte(listeAAfficher);
 		//TODO System.out.println("veuillez renseigner la carte � d�fausser en renseignant son num�ro:");
 		//TODO System.out.println("taper \"end\" si votre s�lection de carte � supprimer est termin�e");
