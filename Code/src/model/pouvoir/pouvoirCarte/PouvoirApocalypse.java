@@ -14,7 +14,7 @@ public class PouvoirApocalypse extends Pouvoir {
 	}
 	
 	@Override
-	public void onAction(Card carte, Player joueur) throws Exception {
+	public void onAction(Card carte, Player joueur) throws PAInsuffisantException {
 
 		if (carte instanceof ApocalypseWithOrigin){
 			if (((ApocalypseWithOrigin) carte).getOrigine() == EnumCosmogonie.NEANT){

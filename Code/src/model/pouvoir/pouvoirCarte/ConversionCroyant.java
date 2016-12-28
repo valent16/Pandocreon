@@ -19,7 +19,7 @@ public class ConversionCroyant extends Pouvoir {
 	}
 
 	@Override
-	public void onAction(Card carte, Player joueur) throws Exception {
+	public void onAction(Card carte, Player joueur) throws PAInsuffisantException, NoCroyantLinkedAtConversion{
 		int PAaUtiliser = 1;
 		EnumCosmogonie origine;
 		if(((SpiritGuide) carte).getOrigine() == EnumCosmogonie.NEANT){

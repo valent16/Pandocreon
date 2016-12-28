@@ -13,7 +13,7 @@ public class DepotCroyant extends Pouvoir{
 	}
 	
 	@Override
-	public void onAction(Card carte, Player joueur) throws Exception{
+	public void onAction(Card carte, Player joueur) throws PAInsuffisantException{
 		if(((Believer) carte).getOrigine() == EnumCosmogonie.NEANT){
 			if (joueur.getDicoPA().get(EnumCosmogonie.NEANT)>= 1 ||joueur.getDicoPA().get(EnumCosmogonie.NUIT)>= 2 ||joueur.getDicoPA().get(EnumCosmogonie.JOUR)>= 2 ){
 				joueur.pickOrigine((Believer) carte);
