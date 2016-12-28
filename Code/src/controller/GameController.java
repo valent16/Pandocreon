@@ -56,10 +56,11 @@ public class GameController {
 			strat = new HardStrategy();
 		default:
 			//Lancement Exception
-			strat = new EasyStrategy();
+			strat = new MediumStrategy();
 		}
 		
-		Bot joueur = new Bot(nom, strat);
+		Bot bot = new Bot(nom, strat);
+		game.ajouterBot(bot);
 	}
 	
 	public void lancerPartie(){

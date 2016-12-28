@@ -49,12 +49,10 @@ public class MediumStrategy implements Strategy {
 	/*Le bot essaye de convertir des croyants sinon il essaye de les deposer*/
 	public void convertirCroyants(){
 		if(bot.hasSpiritGuide()){	//si il a des guide spirituels on recupere nos croyants
-			System.out.println("il a un guide");
 			LinkedList<Believer> possibleBelievers = GameManager.getInstanceUniqueManager().getCroyants();
 			System.out.println("aa"+possibleBelievers.size());
 			if(possibleBelievers.size() != 0){//si des croyants sont potentiellement convertibles
 				SpiritGuide guide = bot.getSpiritGuides().get(0); //recupere un guide
-				System.out.println("guide"+ guide);
 				if(bot.pointsOrigineSuffisants(guide)){
 					try{
 						guide.utiliserPouvoir("convertir Croyant", bot);
@@ -82,18 +80,13 @@ public class MediumStrategy implements Strategy {
 		if(bot.hasBelievers()){ //si on a un croyant on le poser sur la table
 			LinkedList<Believer> liste = bot.getBelievers(); //recupere tous le croyants
 			Iterator<Believer> it = liste.iterator();
-			System.out.println("salut0");
 			while(it.hasNext()){ //recupere le premier croyant posable
 				Believer believer = it.next();
 				System.out.println("salut1");
 				if(bot.pointsOrigineSuffisants(believer)){	//test si le bot a suffisamment de point
-					System.out.println("salut2");
-					System.out.println(believer);
 					try{
 						believer.utiliserPouvoir("deposer Croyant", bot);
-						System.out.println("salut2.5");
 					} catch (Exception e) {
-						System.out.println("salut3");
 						this.economy();
 						e.printStackTrace();
 					}
