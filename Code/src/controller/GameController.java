@@ -60,7 +60,7 @@ public class GameController {
 		}
 		
 		Bot bot = new Bot(nom, strat);
-		game.ajouterBot(bot);
+		game.ajouterBot(bot);//TODO voir si c'est comme ca qu'on ajoute le bot
 	}
 	
 	public void lancerPartie(){

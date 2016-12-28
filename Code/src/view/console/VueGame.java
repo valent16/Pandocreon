@@ -150,7 +150,7 @@ public class VueGame {
 //			nomStrat = "";
 //		}
 		
-		controllerJeu.CreationBot(game.getBotName(index), "facile");
+		controllerJeu.CreationBot(game.getBotName(index), "medium");//TODO on utilise la strategie medium
 		System.out.println("utilitaire de creation de joueur");
 	}
 	
