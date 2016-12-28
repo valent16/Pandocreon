@@ -41,7 +41,7 @@ public class GameController {
 		game.ajouterJoueurReel(joueur);
 	}
 	
-	//Permet la cr�ation d'un bot � partir de param�tres
+	//Permet la creation d'un bot a partir de parametres
 	public void CreationBot(String nom, String nomStrat){
 		Strategy strat;
 		

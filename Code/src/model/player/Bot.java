@@ -214,26 +214,7 @@ public class Bot extends Player{
 
 	//Methode pour tester si le bot est dernier au score
 	public boolean isLast(){
-		/*int place = 0;
-		ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
-		Iterator<Player> it = players.iterator();
-		while(it.hasNext()){
-
-			if(this.getScore() >= it.next().getScore()){
-				place++;
-			}
-		}
-		if(place == GameManager.getInstanceUniqueManager().getNbJoueur()){
-			System.out.println("la place du joueur = "+ place);
-			System.out.println("le nombre de joueur = "+ GameManager.getInstanceUniqueManager().getNbJoueur());
-			return true;
-		}
-		else{
-			System.out.println("la place du joueur = "+ place);
-			System.out.println("le nombre de joueur = "+ GameManager.getInstanceUniqueManager().getNbJoueur());
-			return false;
-		}*/
-
+		//TODO a faire en sorte que cette methode marche faire une hasmap avec les bot et le score et utiliser une methode sort pour les tries
 		Player p;
 		Player joueurDernier = null;
 		ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();

@@ -7,7 +7,6 @@ import model.EnumType.EnumCosmogonie;
 import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
-import model.strategy.EasyStrategy;
 import model.strategy.MediumStrategy;
 
 /**Classe de lancement du programme*/

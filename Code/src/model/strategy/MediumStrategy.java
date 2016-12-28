@@ -69,7 +69,7 @@ public class MediumStrategy implements Strategy {
 			}else{//on essaye donc de deposer des croyants
 				this.depotCroyant();
 			}
-			
+
 		}else{//on essaye donc de deposer des croyants
 			this.depotCroyant();
 		}
@@ -104,9 +104,14 @@ public class MediumStrategy implements Strategy {
 	/*cette phase test le nombre de carte du bot et agit en fonction*/
 	@Override
 	public void economy(){
-		//TODO si son nombre de carte est a 0 on pioche 
-		//TODO si il est a 7 on passe etc
-		//bot.defausserRandom();
+		if(bot.getNbCartes() < 7){//si le bot n'a plus de cartes il pioche
+			System.out.println(bot.getNom() +" pioche");
+			bot.piocher();
+
+		}else{
+			bot.defausserCarte(bot.getHand().get(0));//il se defausse de sa premiere carte
+			System.out.println(bot.getNom() +" s'est defausser de 7 cartes");
+		}
 	}
 
 	@Override
