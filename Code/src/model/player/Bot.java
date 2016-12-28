@@ -77,7 +77,6 @@ public class Bot extends Player{
 		while(it.hasNext()){
 			ActionCard card = it.next();
 			if (card instanceof Apocalypse || card instanceof ApocalypseWithOrigin){
-				System.out.println("YOU HAVE AN APOCALYPSE");
 				return true;
 			}
 		}
@@ -185,12 +184,12 @@ public class Bot extends Player{
 	public void depotCroyant(){
 		strategy.depotCroyant();
 	}
-	
+
 	//permet de convertir des croyants avec le guide donne en parametre
 	public void convertirCroyants(){
 		strategy.convertirCroyants();
 	}
-	
+
 	//permet au bot de lancer une apocalypse
 	public void lancerApocalypse(){
 		strategy.lancerApocalypse();
@@ -215,10 +214,11 @@ public class Bot extends Player{
 
 	//Methode pour tester si le bot est dernier au score
 	public boolean isLast(){
-		int place = 1;
+		/*int place = 0;
 		ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
 		Iterator<Player> it = players.iterator();
 		while(it.hasNext()){
+
 			if(this.getScore() >= it.next().getScore()){
 				place++;
 			}
@@ -232,8 +232,37 @@ public class Bot extends Player{
 			System.out.println("la place du joueur = "+ place);
 			System.out.println("le nombre de joueur = "+ GameManager.getInstanceUniqueManager().getNbJoueur());
 			return false;
+		}*/
+
+		Player p;
+		Player joueurDernier = null;
+		ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
+
+		players.remove(this);
+		System.out.println("///////////////////");
+		System.out.println(players);
+		System.out.println("///////////////////");
+		Iterator<Player> itPlayer = players.iterator();
+
+		while(itPlayer.hasNext()){
+			p = itPlayer.next();
+			if (joueurDernier == null){
+				joueurDernier = p;
+			}else{
+				if(joueurDernier.getScore() < p.getScore()){
+					System.out.println("score du joueur " + p+" est "+p.getScore());
+					joueurDernier = p;
+				}
+			}
+			if(joueurDernier==this){
+				System.out.println(joueurDernier.getNom()+" est dernier");///////////////////////////////////////////////////////////////
+				return true;
+			}
 		}
+		System.out.println(joueurDernier.getNom()+" est dernier");////////////////////////////////////////////////////////////////////
+		return false;
 	}
+
 
 	@Override
 	//permet de choisir un joueur au besoin

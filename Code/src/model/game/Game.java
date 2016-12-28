@@ -27,10 +27,10 @@ public class Game {
 	/**Attribut qui contient la liste des joueurs et des bots dans la partie*/
 	private ArrayList<Player> players = new ArrayList<Player>();
 
-	/**Attribut qui représente la liste de cartes actions*/
+	/**Attribut qui représente la liste de cartes actions du jeu*/
 	public LinkedList<ActionCard> listeCartesAction = new LinkedList<ActionCard>();
 
-	/**Attribut  qui représente la liste de divinités*/
+	/**Attribut  qui représente la liste de divinités du jeu*/
 	private LinkedList<Divinity> listeCartesDivinites = new LinkedList<Divinity>();
 
 	DataManager dataManager;

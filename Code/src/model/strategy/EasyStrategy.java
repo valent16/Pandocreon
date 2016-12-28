@@ -17,6 +17,16 @@ import model.player.Player;
 
 /**Stratégie de jeu facile pour les bots, les choix sont très simples*/
 public class EasyStrategy implements Strategy {
+	
+	//il regarde son score s'il est devant les autres joueurs il lance des sacrifices et le spouvoir de sa divinite:
+		// dans l'ordre sa fiat:
+		//- test sil apocalypse si il a la il l'active
+		//-sinon test si deus EX si il a il l'active 
+		//- test croyant si il a, il la sacrifie
+		//- si divinite il la sacrifie 
+		//- si aucune carte il pioche
+		//par contre si il est derriere
+		//reprendre la startegie easy a savoir poser des criyants et les recuperers quand on peut
 
 	/**garde le bot qui joue en memoire pour recuperer ses sdonnees (cartes, score etc..)*/
 	private Bot bot;

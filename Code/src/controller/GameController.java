@@ -34,7 +34,7 @@ public class GameController {
 	}
 	
 	
-	//Permet la cr�ation d'un joueur � partir de param�tres
+	//Permet la creation d'un joueur a partir de parametres
 	public void CreationJoueur(String nom, int age){
 		Human joueur = new Human(nom, age);
 		joueur.attacher(new JoueurController(joueur));

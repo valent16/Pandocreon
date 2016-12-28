@@ -104,7 +104,7 @@ public class VueGame {
 		}
 	}
 	
-	//Permet de cr�er un joueur humain
+	//Permet de creer un joueur humain
 	public void creationHumain(){
 		String nom;
 		String age;
@@ -121,7 +121,7 @@ public class VueGame {
 		controllerJeu.CreationJoueur(nom, Integer.parseInt(age));
 	}
 	
-	//Permet de cr�er un bot
+	//Permet de creer un bot
 	public void creationBot(int index){
 //		String nomStrat;
 //		Scanner sc = new Scanner(System.in);

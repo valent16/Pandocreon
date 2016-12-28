@@ -189,8 +189,9 @@ public class GameManager implements IObservableGameManager {
 	public void deroulementTourJeu(){
 		int start = 1;
 		int cpt = 0;
-		while(players.size()!=0){
-			System.out.println("TOUR ="+ cpt++);
+		//while(players.size()!=0){
+		while(cpt<=4){
+			System.out.println("TOUR = "+ cpt);
 			players.get(start%players.size()).lancerDe();
 			//System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
 			
@@ -300,7 +301,7 @@ public class GameManager implements IObservableGameManager {
 		while(itPlayer.hasNext()){
 			p = itPlayer.next();
 			if (joueurGagnant == null){
-				joueurGagnant =p;
+				joueurGagnant = p;
 			}else{
 				if(joueurGagnant.getScore() < p.getScore()){
 					joueurGagnant = p;

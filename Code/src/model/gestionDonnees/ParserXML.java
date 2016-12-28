@@ -52,6 +52,7 @@ public class ParserXML implements IDataLoad {
 		listeSacrifice.put("SacrificeAjouterPointNuit", new SacrificeAjouterPointNuit());
 		listeSacrifice.put("SacrificeAjouterPointNeant", new SacrificeAjouterPointNeant());
 		listeSacrifice.put("NotImplemented", new NotImplementedSacrifice());
+		//TODO ajouter les autres sacrifices
 		parserFichier();
 	}
 	
@@ -158,7 +159,7 @@ public class ParserXML implements IDataLoad {
 		}
 	}
 	
-	//Permet de d'obtenir � partir d'une origine en chaine de caractere sa correspondance en 
+	//Permet de d'obtenir a partir d'une origine en chaine de caractere sa correspondance en 
 	//EnumOrigneDivinite
 	private EnumOrigineDivinite convertOrigineDiviniteFromString(String origine){
 		switch(origine){
@@ -208,12 +209,12 @@ public class ParserXML implements IDataLoad {
 		
 		try{
 			final DocumentBuilder builder = factory.newDocumentBuilder();
-			final Document document=(Document) builder.parse(new File("cartes.xml"));
+			final Document document= (Document) builder.parse(new File("cartes.xml"));
 			final Element racine = document.getDocumentElement();
 			final NodeList racineNoeuds = racine.getChildNodes();
 			final int nbRacineNoeuds = racineNoeuds.getLength();
 			
-			for (int i = 0; i<nbRacineNoeuds; i++) {
+			for (int i = 0; i < nbRacineNoeuds; i++) {
 				if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				    final Element deck =  (Element) racineNoeuds.item(i);
 				    final NodeList cartes = deck.getElementsByTagName("card");

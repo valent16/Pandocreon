@@ -8,6 +8,7 @@ import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
 import model.strategy.EasyStrategy;
+import model.strategy.MediumStrategy;
 
 /**Classe de lancement du programme*/
 public class Main{
@@ -52,17 +53,17 @@ public class Main{
 		Game game = new Game();
 		game.initGame();
 		
-		Bot b1 = new Bot("bot1", new EasyStrategy());
-		Bot b2 = new Bot("bot2", new EasyStrategy());
-		Bot b3 = new Bot("bot2", new EasyStrategy());
+		Bot b1 = new Bot("bot1", new MediumStrategy());
+		Bot b2 = new Bot("bot2", new MediumStrategy());
+		/*Bot b3 = new Bot("bot2", new EasyStrategy());
 		Bot b4 = new Bot("bot2", new EasyStrategy());
-		Bot b5 = new Bot("bot2", new EasyStrategy());
+		Bot b5 = new Bot("bot2", new EasyStrategy());*/
 		
 		game.ajouterBot(b1);
 		game.ajouterBot(b2);
-		game.ajouterBot(b3);
+		/*game.ajouterBot(b3);
 		game.ajouterBot(b4);
-		game.ajouterBot(b5);
+		game.ajouterBot(b5);*/
 		
 		game.nouvellePartie();	
 		GameManager.getInstanceUniqueManager().startGame();
