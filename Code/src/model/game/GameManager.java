@@ -316,6 +316,7 @@ public class GameManager implements IObservableGameManager {
 			}
 		}
 		if(cpt == 1){
+			System.out.println("sssssssssssssssssssssssssssssss");//////////////////////////////////////////////////////////////////////;
 			notifyPlayerVictory(joueurGagnant);
 			this.players.removeAll(this.players);
 		}
