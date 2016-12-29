@@ -316,7 +316,7 @@ public class GameManager implements IObservableGameManager {
 			}
 		}
 		if(cpt == 1){
-			System.out.println("sssssssssssssssssssssssssssssss");//////////////////////////////////////////////////////////////////////;
+			//TODO tester quand il y a un bot d'annoncer la victoire
 			notifyPlayerVictory(joueurGagnant);
 			this.players.removeAll(this.players);
 		}

@@ -111,7 +111,6 @@ public class MediumStrategy implements Strategy {
 	/*cette phase test le nombre de carte du bot et agit en fonction*/
 	@Override
 	public void economy(){
-		System.out.println("nombre de cartes " + bot.getNbCartes() );///////////////////////////////////////////////////////////////////
 		if(bot.getNbCartes() < 7){//si le bot n'a plus de cartes il pioche
 			System.out.println(bot.getNom() +" pioche");
 			bot.piocher();
@@ -125,7 +124,8 @@ public class MediumStrategy implements Strategy {
 	@Override
 	//lancement d'une apocalypse
 	public void lancerApocalypse(){
-		//TODO il ne doit pas la lancer des le premier tour
+		//if(GameManager.getInstanceUniqueManager()MediumStrategy.) //TODO il ne doit pas la lancer des le premier tour//faire un attribu int tour et un getter pour recuperer le tour de la partie
+		
 		ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
 		if(!bot.isLast()){//on test si il est dernier
 			if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
