@@ -34,8 +34,6 @@ public class MediumStrategy implements Strategy {
 		this.setBot(b); //Passage des données du bot
 		bot.afficherHand();
 		System.out.println("score de "+ bot.getNom() + " " +bot.getScore());
-		System.out.println("voici les points du bot " + bot.getNom() + " " + bot.getDicoPA());///////////////////////////////
-
 		if(bot.hasApocalypse()){
 			System.out.println("il a une apocalypse");
 			this.lancerApocalypse();
@@ -57,22 +55,18 @@ public class MediumStrategy implements Strategy {
 					System.out.println("il a assez de points");
 					try{
 						guide.utiliserPouvoir("convertir Croyant", bot);
-						System.out.println("le bot a recuperer avec "+ guide + " le croyant "+ guide.getCroyantsConvertis()); /////////////////////////:
 					}catch (Exception e) {
 						this.depotCroyant();
 					}
 				}else{
-					System.out.println("pas assez de point donc on essaye de poser un croyant");//////////////////////////////////////////////////////:
 					this.depotCroyant();
 				}
 
 			}else{//on essaye donc de deposer des croyants
-				System.out.println("pas de croyant sur la table, il fait un depot");////////////////////////////////////////
 				this.depotCroyant();
 			}
 
 		}else{//on essaye donc de deposer des croyants
-			System.out.println("pas de guide, il fait un depot");/////////////////////////////////////////////////////////
 			this.depotCroyant();
 		}
 	}
@@ -82,7 +76,6 @@ public class MediumStrategy implements Strategy {
 	public void depotCroyant(){
 		if(bot.hasBelievers()){
 			LinkedList<Believer> liste = bot.getBelievers();
-			System.out.println("Coucou le depot");/////////////////////////////////////////////////////////////////////////////////////////////
 			Iterator<Believer> it = liste.iterator();
 			while(it.hasNext()){ //recupere le premier croyant posable
 				Believer believer = it.next();
@@ -93,7 +86,6 @@ public class MediumStrategy implements Strategy {
 						believer.utiliserPouvoir("deposer Croyant", bot);
 						break;
 					} catch (Exception e) {
-						System.out.println("pas de croyant dans sa main, il fait autre chose");////////////////////////////////////////
 						this.economy();
 						e.printStackTrace();
 					}
@@ -101,7 +93,6 @@ public class MediumStrategy implements Strategy {
 					System.out.println("pas assez de points pour ce croyant");
 				}
 			}
-			System.out.println("voici les points du bot après le depot " + bot.getNom() + " " + bot.getDicoPA());///////////////////////////////
 		}else{
 			System.out.println("autres");
 			this.economy();
@@ -129,20 +120,16 @@ public class MediumStrategy implements Strategy {
 		ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
 		if(!bot.isLast()){//on test si il est dernier
 			if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
-				System.out.println("il a assez de point");////////////////////////////////////////////////////////////////////////////
 				try {
 					apocalypse.utiliserPouvoir("declencher apocalypse", bot);
-					//TODO voir si on doit arreter la partie de nous meme
-					System.out.println("apocalypse Lancer");/////////////////////////////////////////////////////////////////////////////
+					//TODO voir si on doit arreter la partie de nous meme ou si dans les methodes et classe apocalypse on l'arrete automatiquement
 				} catch (PAInsuffisantException e) {
-					this.convertirCroyants(); //on relance la phase de conversion de croyant
+					this.convertirCroyants();
 				} catch (Exception e) {}
 			}else{
-				System.out.println("il n'a pas les points requis");///////////////////////////////////////////////////////////////
 				this.convertirCroyants();
 			}
 		}else{
-			System.out.println("ce bot est dernier il n'a pas d'interet de la lancer");////////////////////////////////////////////////////////////////////////
 			this.convertirCroyants();	
 		}
 	}
@@ -158,7 +145,7 @@ public class MediumStrategy implements Strategy {
 
 	@Override
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
-		// TODO Auto-generated method stub
+		// Remplacer les test de bot.points origines suffisant si on a les points jours ou neant on prend cela sinon on utilise les neants
 		return null;
 	}
 
@@ -179,7 +166,6 @@ public class MediumStrategy implements Strategy {
 		}else{
 			bot.piocher();
 		}
-		System.out.println("Aucun croyant sur la table ne peuvent etre converti");/////////////////////////////////////////////
 		return null;
 	}
 }

@@ -48,7 +48,7 @@ public class Human extends Player implements IObservableHumain{
 	//Permet de notifier la vue pour faire d�marrer le tour du joueur
 	public void notifyStartTour() throws ObservateurNotLinkedException{
 		if (observateur == null){
-			throw new ObservateurNotLinkedException("un observateur n'est pas li� � un joueur humain");
+			throw new ObservateurNotLinkedException("un observateur n'est pas lie a un joueur humain");
 		}
 		observateur.startTourJoueur();
 	}
