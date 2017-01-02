@@ -19,8 +19,6 @@ public class Main{
 	public static void main(String[] args) {	
 
 		int valeur = 5;
-		//1: lancement du jeu
-		//2: test sur la classe joueur
 
 		switch(valeur){
 		case 1:
