@@ -1,16 +1,24 @@
 package fenetre;
 
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JLabel;
 
 public class FenetrePrincipale {
 
 	private JFrame fenetre;
+	private JButton buttonImage;
 
 	/**
 	 * Launch the application.
@@ -71,6 +79,24 @@ public class FenetrePrincipale {
 		
 		JLabel label1 = new JLabel("A faire");
 		CenterPanel.add(label1);
+		
+		
+		//Image i = new Image("./Brewalen.png");
+		ImageIcon image = new ImageIcon("./Brewalen.png");
+		buttonImage = new JButton(image);
+		buttonImage.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Action a effectuer dessus");
+				buttonImage.repaint();
+				
+			}
+		});
+		SouthPanel.add(buttonImage);
+		
+		//TODO un label pour le nom du joueur dans le southPanel
+		//TODO creer quelqes caret en mode bouton pour voir si ca marche dans le southPanel avec un listenr qui active la carte
 	}
 
 }
