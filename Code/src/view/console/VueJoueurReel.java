@@ -93,8 +93,8 @@ public class VueJoueurReel {
 		List<ActionCard> listeAAfficher = joueur.getHand();
 		
 		//TODO afficherListeCarte(listeAAfficher);
-		//TODO System.out.println("veuillez renseigner la carte � d�fausser en renseignant son num�ro:");
-		//TODO System.out.println("taper \"end\" si votre s�lection de carte � supprimer est termin�e");
+		//TODO System.out.println("veuillez renseigner la carte a defausser en renseignant son numero:");
+		//TODO System.out.println("taper \"end\" si votre selection de carte a supprimer est terminee");
 		//TODO System.out.print("votre choix: ");
 
 		String choix = "";

@@ -73,8 +73,7 @@ public class ParserXML implements IDataLoad {
 
 	@Override
 	public void chargerPartie() {
-		// TODO Auto-generated method stub
-		
+		//TODO methode a develloper
 	}
 	
 	private String recupTypeCarte(String type){

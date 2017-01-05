@@ -11,13 +11,11 @@ public class DeusEx extends ActionCard implements Serializable{
 
 	public DeusEx(String nom) {
 		super(nom);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
-		// TODO Auto-generated method stub
-		
+		// TODO Appeller le pouvoir des DEUS EX
 	}
 
 	@Override

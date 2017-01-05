@@ -18,7 +18,7 @@ import model.player.Player;
 /**Stratégie de jeu moyenne pour les bots*/
 public class MediumStrategy implements Strategy {
 
-	/**garde le bot qui joue en memoire pour recuperer ses donnees (cartes, score etc..)*/
+	/**Attribut correspondant au bot qui joue*/
 	private Bot bot;
 
 	/**
@@ -29,7 +29,9 @@ public class MediumStrategy implements Strategy {
 		this.bot = bot;
 	}
 
-	/**Methode de jeu*/
+	/**Methode permettant au bot de jouer sa strategie Medium
+	 * @param b correspond au bot qui joue
+	 */
 	public void jouer(Bot b){
 		this.setBot(b); //Passage des données du bot
 		bot.afficherHand();
@@ -45,7 +47,7 @@ public class MediumStrategy implements Strategy {
 	}
 
 	@Override
-	/*Le bot essaye de convertir des croyants sinon il essaye de les deposer*/
+	/*Methode permettant au bot de convertir des croyants sinon il essaye de les deposer*/
 	public void convertirCroyants(){
 		if(bot.hasSpiritGuide()){	//si il a des guide spirituels on recupere nos croyants
 			LinkedList<Believer> possibleBelievers = GameManager.getInstanceUniqueManager().getCroyants();
@@ -72,7 +74,7 @@ public class MediumStrategy implements Strategy {
 	}
 
 	@Override
-	/*test dans l'ordre de deposer des croyants sinon on lance la phase pour tester le nombre de carte et agir en consequence*/
+	/*Methode permettant au bot de deposer des croyants sinon on lance la phase pour tester le nombre de carte et agir en consequence*/
 	public void depotCroyant(){
 		if(bot.hasBelievers()){
 			LinkedList<Believer> liste = bot.getBelievers();
@@ -99,7 +101,7 @@ public class MediumStrategy implements Strategy {
 		}
 	}
 
-	/*cette phase test le nombre de carte du bot et agit en fonction*/
+	/*Methode permettant au bot d'economiser ses points et donc de piocher ou de se defauuser dependant du nombre de cartes qu'il possede*/
 	@Override
 	public void economy(){
 		if(bot.getNbCartes() < 7){//si le bot n'a plus de cartes il pioche
@@ -113,25 +115,29 @@ public class MediumStrategy implements Strategy {
 	}
 
 	@Override
-	//lancement d'une apocalypse
+	/**Methode permettant au bot de lancer une apocalypse*/
 	public void lancerApocalypse(){
-		//if(GameManager.getInstanceUniqueManager()MediumStrategy.) //TODO il ne doit pas la lancer des le premier tour//faire un attribu int tour et un getter pour recuperer le tour de la partie
-		
-		ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
-		if(!bot.isLast()){//on test si il est dernier
-			if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
-				try {
-					apocalypse.utiliserPouvoir("declencher apocalypse", bot);
-					//TODO voir si on doit arreter la partie de nous meme ou si dans les methodes et classe apocalypse on l'arrete automatiquement
-				} catch (PAInsuffisantException e) {
+		if(GameManager.getInstanceUniqueManager().getNumeroTour() < 5){//Si on est dans les 5 premiers tour de jeu on ne lance pas d'apocalypse
+
+			ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
+			if(!bot.isLast()){//on test si il est dernier
+				if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
+					try {
+						apocalypse.utiliserPouvoir("declencher apocalypse", bot);
+						//TODO voir si on doit arreter la partie de nous meme ou si dans les methodes et classe apocalypse on l'arrete automatiquement
+					} catch (PAInsuffisantException e) {
+						this.convertirCroyants();
+					} catch (Exception e) {}
+				}else{
 					this.convertirCroyants();
-				} catch (Exception e) {}
+				}
 			}else{
-				this.convertirCroyants();
+				this.convertirCroyants();	
 			}
 		}else{
-			this.convertirCroyants();	
+			this.convertirCroyants();
 		}
+
 	}
 
 	@Override
@@ -161,11 +167,10 @@ public class MediumStrategy implements Strategy {
 				believers.add(b);
 			}
 		}
-		if(believers.size() !=0){
+		if(believers.size() !=0)
 			return believers;
-		}else{
+		else
 			bot.piocher();
-		}
 		return null;
 	}
 }

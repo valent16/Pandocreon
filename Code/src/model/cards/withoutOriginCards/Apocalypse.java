@@ -11,7 +11,6 @@ public class Apocalypse extends ActionCard implements Serializable{
 
 	public Apocalypse() {
 		super("Apocalypse");
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -20,7 +19,7 @@ public class Apocalypse extends ActionCard implements Serializable{
 		joueur.defausserCarte(this);
 	}
 	
-	//faire une methode du nom de apocalypse qui recupere le nombre de joueur et qui compte le nombre de croyants de chaque joueur
+	//TODO faire une methode du nom de apocalypse qui recupere le nombre de joueur et qui compte le nombre de croyants de chaque joueur
 	
 	@Override
 	public String toString() {

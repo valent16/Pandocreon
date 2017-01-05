@@ -40,7 +40,8 @@ public class GameManager implements IObservableGameManager {
 
 	private Player joueurActif;
 	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**Attribut correspondant au nombre de tour*/
+	private int nombreTour = 0;
 	
 	/**
 	 * Méthode qui permet d'avoir une seule insatance du gestionnaire de partie
@@ -152,9 +153,7 @@ public class GameManager implements IObservableGameManager {
 		ArrayList<Believer> croyantsAPresenter = new ArrayList<Believer>();
 		
 		Believer croyant;
-		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();
-		//TODO Iterator<EnumDogme> itDogme;
-		
+		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();		
 		while(itCroyant.hasNext()){
 			croyant = itCroyant.next();
 			if (guide.isCroyantCompatible(croyant)){
@@ -188,10 +187,9 @@ public class GameManager implements IObservableGameManager {
 	//Tour de jeu
 	public void deroulementTourJeu(){
 		int start = 1;
-		int cpt = 0;
 		while(players.size()!=0){
 			players.get(start%players.size()).lancerDe();
-			System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
+			System.out.println("\nTour Numero "+ nombreTour + " le de est sur la face "+ De.getInstanceDe().getFace());
 			
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){
@@ -202,7 +200,7 @@ public class GameManager implements IObservableGameManager {
 			if (players.size() != 0){
 				start = start%players.size();
 			}
-			cpt++;
+			nombreTour++;
 			System.out.println();
 			afficherCroyants();
 			System.out.println();
@@ -369,6 +367,13 @@ public class GameManager implements IObservableGameManager {
 	
 	public Player getJoueurAtIndex(int index){
 		return players.get(index);
+	}
+	
+	/**Getter pour connaitre le nombre de tour de la partie
+	 * @return le nombre du tour actuel
+	 */
+	public int getNumeroTour() {
+		return nombreTour;
 	}
 
 	

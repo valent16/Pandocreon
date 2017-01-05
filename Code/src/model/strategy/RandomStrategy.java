@@ -13,7 +13,7 @@ import model.player.Player;
 /**Une strategie random avec un switch case*/
 public class RandomStrategy implements Strategy{
 
-	/**garde le bot qui joue en memoire pour recuperer ses donnees (cartes, score etc..)*/
+	/**Attribut correspondant au bot qui joue*/
 	private Bot bot;
 
 	@Override
@@ -27,17 +27,7 @@ public class RandomStrategy implements Strategy{
 		System.out.println(bot.getNom());
 		bot.afficherHand();
 		System.out.print("ACTION DU BOT: "+ bot.getNom() + " ");
-
-		//TODO Faire un switch case pour les actions suivante: 
-		/*- poser des craoynats
-		- recup des croyants
-		- lancer un apocalupser
-		- se defausser
-		- piocher
-		- lancer le pouvoir d'une carte random
-		 */
-
-		//depart
+		
 		int action = (int) (Math.random() * 5) + 1;
 		System.out.println("LACTION "+action);
 		switch (action){
@@ -102,25 +92,19 @@ public class RandomStrategy implements Strategy{
 	
 	@Override
 	public void depotCroyant() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void convertirCroyants() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void lancerApocalypse() {
-		// TODO Auto-generated method stub
 		
 	}
 
 
 	@Override
-	//permet d'economiser ses points dans notre cas il pioche
 	public void economy(){
 		bot.piocher();	
 	}

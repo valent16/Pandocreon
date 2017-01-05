@@ -18,16 +18,12 @@ public class GameManagerController implements IObservateurGameManager{
 	}
 	
 	@Override
-	/**Methode permettant d'annoncer a la vue la defaite d'un joueur*/
 	public void annoncerDefaitJoueur(Player joueur) {
-		// TODO Auto-generated method stub
 		vue.afficherElimintation(joueur);
 	}
 
 	@Override
-	/**Methode permettant d'annoncer a la vue la victoire d'un joueur*/
 	public void annoncerVictoireJoueur(Player joueur) {
-		// TODO Auto-generated method stub
 		vue.afficherVictoireJoueur(joueur);
 	}
 
