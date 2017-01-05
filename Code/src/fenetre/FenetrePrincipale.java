@@ -107,7 +107,7 @@ public class FenetrePrincipale {
 
 		SouthPanel.add(buttonImage);
 		//TODO un label pour le nom du joueur dans le southPanel
-		//TODO creer quelqes caret en mode bouton pour voir si ca marche dans le southPanel avec un listenr qui active la carte
+		//TODO creer quelques carte en mode bouton pour voir si ca marche dans le southPanel avec un listenr qui active la carte
 	}
 	
 	//Class qui permet d'ajouter le background

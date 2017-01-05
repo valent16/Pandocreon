@@ -1,24 +1,31 @@
-package model.sacrifice;
+package model.pouvoir.sacrificeCarte;
 
 import java.util.Iterator;
+
 import java.util.Scanner;
 
 import model.EnumType.EnumCosmogonie;
+import model.cards.Card;
 import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Player;
+import model.pouvoir.Pouvoir;
 /**Sacrifice de la divinite Gorpa : Recupere les points d'action d'une autre divinite en plus des siens. 
  * L'autre divinite ne reçoit aucun point d'action ce tour-ci
  */
-public class SacrificeGorpa extends Sacrifice{
+public class SacrificeGorpa extends Pouvoir{
+	
+	public SacrificeGorpa() {
+		super("sacrifice");
+	}
 
 	@Override
-	public void effectuerSacrifice(Player player) {	
+	public void onAction(Card carte, Player joueur) throws Exception {
 		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		System.out.println("À quel joueur voulez-vous absorber ces points d'actions ?");
 		Iterator<Player> it = gameManager.getPlayers().iterator();
 		while(it.hasNext()) {
-			System.out.println((gameManager.getPlayers().indexOf(it.next())+" "+ player.getNom()));
+			System.out.println((gameManager.getPlayers().indexOf(it.next())+" "+ joueur.getNom()));
 		}
 		Scanner sc = new Scanner(System.in);
 		int choixJoueur = sc.nextInt();
@@ -32,7 +39,7 @@ public class SacrificeGorpa extends Sacrifice{
 		///boucle pour abosrber les points
 		for(EnumCosmogonie cosmogonie : EnumCosmogonie.values()){
 			int pointActions = playerTarget.getDicoPA().get(cosmogonie);
-			player.incrementerPointAction(cosmogonie, pointActions);
+			joueur.incrementerPointAction(cosmogonie, pointActions);
 			try {
 				playerTarget.decrementerPointAction(cosmogonie, pointActions);
 			} catch (PAInsuffisantException e) {
@@ -41,5 +48,6 @@ public class SacrificeGorpa extends Sacrifice{
 		}
 		System.out.println("Vous n'avez pas le droit de recevoir des points d'action");
 		sc.close();
+		
 	}
 }   

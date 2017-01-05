@@ -14,7 +14,7 @@ public class DeusExWithOrigin extends ActionCardWithOrigin implements Serializab
 
 	@Override
 	public void utiliserPouvoir(String commande,Player joueur) throws Exception{
-		// TODO  a voir si il faut developper la methode
+		//TODO pas eu le temps de developper cette methode
 	}
 
 	@Override

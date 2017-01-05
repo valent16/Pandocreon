@@ -1,19 +1,26 @@
-package model.sacrifice;
+package model.pouvoir.sacrificeCarte;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 
+import model.cards.Card;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.game.GameManager;
 import model.player.Player;
+import model.pouvoir.Pouvoir;
 
 /**Sacrifice equivalent a la capacite d'une apocalypse*/
-public class SacrificeApocalypse extends Sacrifice {
-    
-    @Override
-    public void effectuerSacrifice(Player player){
-    	GameManager gameManager = GameManager.getInstanceUniqueManager();
-       
+public class SacrificeApocalypse extends Pouvoir{
+	
+	public SacrificeApocalypse() {
+		super("sacrifice");
+	}
+	
+	@Override
+	public void onAction(Card carte, Player joueur) throws Exception {
+		GameManager gameManager = GameManager.getInstanceUniqueManager();
+	       
     	if (gameManager.getPlayers().size()>=4){
             ArrayList<Player> joueurPlusFaiblePuissance = new ArrayList<Player>();
             int minPriere = gameManager.getPlayers().get(0).getScore();
@@ -40,12 +47,13 @@ public class SacrificeApocalypse extends Sacrifice {
             if (joueurPlusFortePuissance.size()<2) {
                 System.out.println("Le joueur "+joueurPlusFortePuissance.get(0).getNom()+" gagne la partie!");
                 try {
-					new Apocalypse().utiliserPouvoir("declencher apocalypse", player);
+					new Apocalypse().utiliserPouvoir("declencher apocalypse", joueur);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
             }
         }
-    }
+		
+	}
     
 }

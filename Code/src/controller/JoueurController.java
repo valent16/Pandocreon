@@ -36,7 +36,7 @@ public class JoueurController implements ObservateurJoueurReel {
 
 	/**Methode permettant au joueur de jouer hors de son tour*/
 	public void jouerCarteHorsTour(){
-		//TODO MEthode a ecrire
+		//TODO pas eu le temps de developper cette methode
 	}
 
 	/**Methode permettant au joueur de completer sa main*/

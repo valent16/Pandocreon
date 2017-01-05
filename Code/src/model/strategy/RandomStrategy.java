@@ -50,15 +50,11 @@ public class RandomStrategy implements Strategy{
 			}
 			break;
 
-		case 3: //recuperer des croyants avec le guide spirituel
+		case 3:
 			System.out.println("recuperer des croyants avec le guide spirituel");
 			break;
 
 		case 4: 
-			//defausser une ou plusieurs carte
-			//TODO faire un random entre 1 et 2 si c'est 1 c'est un random d'un carte random qu'on defausse si c'est 2 c'est un random d'un nombre de carte random qui permet de faire une boucle pour defauusser pluisuer cartes
-			//si sa main est vide on rappelle la methode jouer
-			//this.defausserCartes(partie.getCartesDefaussees());
 			System.out.println("defausser une ou plusieurs carte de maniere Random");
 			break;
 
@@ -111,14 +107,13 @@ public class RandomStrategy implements Strategy{
 
 	@Override
 	public Player pickTarget() {
-		// TODO Auto-generated method stub
 		//prendre un joueur de maniere random
 		return null;
 	}
 
 	@Override
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
-		// TODO si on a le choix entre neant et jour ou nuit prendre 1pt neant sinon prendre 2pt JOUR sinon prendre 2pt NUIT sinon rien
+		//si on a le choix entre neant et jour ou nuit prendre 1pt neant sinon prendre 2pt JOUR sinon prendre 2pt NUIT sinon rien
 		return null;
 	}
 

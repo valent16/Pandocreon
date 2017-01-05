@@ -1,17 +1,23 @@
-package model.sacrifice;
+package model.pouvoir.sacrificeCarte;
 
 import java.util.Iterator;
 
 import model.EnumType.EnumCosmogonie;
+import model.cards.Card;
 import model.cards.OriginCards.Believer;
 import model.game.GameManager;
 import model.player.Player;
+import model.pouvoir.Pouvoir;
 
 /**le Sacrifice de la divinite PuiTara qui consiste a detruire toutes les cartes croyants au centre de la table d'origine jour*/
-public class SacrificePuiTara extends Sacrifice{
+public class SacrificePuiTara extends Pouvoir{
+
+	public SacrificePuiTara() {
+		super("sacrifice");
+	}
 
 	@Override
-	public void effectuerSacrifice(Player player) {
+	public void onAction(Card carte, Player joueur) throws Exception {
 		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		Iterator<Believer> it = gameManager.getCroyants().iterator();
 		while (it.hasNext()) {
@@ -21,6 +27,6 @@ public class SacrificePuiTara extends Sacrifice{
 				gameManager.defausserCarte(believer); //on la defausse
 			}
 		}
-		System.out.println(player.getNom()+" a détruit toutes les cartes croyants au centre de la table d'origine Jour");
+		System.out.println(joueur.getNom()+" a détruit toutes les cartes croyants au centre de la table d'origine Jour");	
 	}
 }

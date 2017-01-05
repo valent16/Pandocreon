@@ -153,7 +153,7 @@ public class GameManager implements IObservableGameManager {
 		ArrayList<Believer> croyantsAPresenter = new ArrayList<Believer>();
 		
 		Believer croyant;
-		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();		
+		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();	
 		while(itCroyant.hasNext()){
 			croyant = itCroyant.next();
 			if (guide.isCroyantCompatible(croyant)){

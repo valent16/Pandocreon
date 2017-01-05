@@ -1,18 +1,24 @@
-package model.sacrifice;
+package model.pouvoir.sacrificeCarte;
 
 import java.util.Iterator;
 
 import model.EnumType.EnumDogme;
+import model.cards.Card;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.CarteDogmatique;
 import model.game.GameManager;
 import model.player.Player;
+import model.pouvoir.Pouvoir;
 
 /** Sacrifice qui defausse tous les croyants ayant le dogme Mystique actuellement au centre de la table*/
-public class SacrificeDefausserCroyantsMystique extends Sacrifice{
+public class SacrificeDefausserCroyantsMystique extends Pouvoir{
+
+	public SacrificeDefausserCroyantsMystique() {
+		super("sacrifice");	
+	}
 
 	@Override
-	public void effectuerSacrifice(Player player) {
+	public void onAction(Card carte, Player joueur) throws Exception {
 		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		Iterator<Believer> it = gameManager.getCroyants().iterator();
 		while (it.hasNext()) {
@@ -21,6 +27,6 @@ public class SacrificeDefausserCroyantsMystique extends Sacrifice{
 				gameManager.defausserCarte(dogmaticCard); //defausse la carte
 			}
 		}
-		System.out.println(player.getNom()+" a défaussé tous les Croyants ayant le Dogme Mystique au centre de la table.");
+		System.out.println(joueur.getNom()+" a défaussé tous les Croyants ayant le Dogme Mystique au centre de la table.");
 	}
 }
