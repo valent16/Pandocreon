@@ -1,9 +1,10 @@
 package model.strategy;
 
+import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.OriginCards.ActionCardWithOrigin;
@@ -118,11 +119,18 @@ public class MediumStrategy implements Strategy {
 	/**Methode permettant au bot de lancer une apocalypse*/
 	public void lancerApocalypse(){
 		if(GameManager.getInstanceUniqueManager().getNumeroTour() > 5){//Si on est dans les 5 premiers tour de jeu on ne lance pas d'apocalypse
-
+			ArrayList<Player> test = GameManager.getInstanceUniqueManager().getPlayers();
+			System.out.println(test.size());
 			ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
 			if(!bot.isLast()){//on test si il est dernier
 				if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
 					try {
+						System.out.println("Score des joueurs");
+						
+						Iterator<Player> it = test.iterator();
+						while(it.hasNext()){
+							System.out.println("score du "+ it.next().getNom() +" = "+ it.next().getScore());
+						}
 						apocalypse.utiliserPouvoir("declencher apocalypse", bot);
 						//TODO voir si on doit arreter la partie de nous meme ou si dans les methodes et classe apocalypse on l'arrete automatiquement
 					} catch (PAInsuffisantException e) {

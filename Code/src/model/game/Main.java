@@ -71,11 +71,13 @@ public class Main{
 		Bot b2 = new Bot("bot2", new MediumStrategy());
 		Bot b3 = new Bot("bot3", new MediumStrategy());
 		Bot b4 = new Bot("bot4", new MediumStrategy());
+		Bot b5 = new Bot("bot5", new MediumStrategy());
 
 		game.ajouterBot(b1);
 		game.ajouterBot(b2);
 		game.ajouterBot(b3);
 		game.ajouterBot(b4);
+		game.ajouterBot(b5);
 
 		game.nouvellePartie();	
 		GameManager.getInstanceUniqueManager().startGame();
