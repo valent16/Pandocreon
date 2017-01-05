@@ -7,6 +7,6 @@ public class SacrificePiocherDeuxCartes extends Sacrifice {
 
     @Override
     public void effectuerSacrifice(Player player) {
-    	//TODO a faire
+    	//Faire piocher 2 cartes
     }
 }

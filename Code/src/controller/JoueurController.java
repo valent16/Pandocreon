@@ -68,9 +68,6 @@ public class JoueurController implements ObservateurJoueurReel {
 	}
 
 	@Override
-	/**Methode permettant au joueur par sa vue de choisir un autre joueur au besoin lors d'une action
-	 * @return le joueur choisi par le joueur 
-	 */
 	public Player selectTarget() {
 		String answer;
 		int index;
@@ -86,17 +83,11 @@ public class JoueurController implements ObservateurJoueurReel {
 	}
 
 	@Override
-	/**Methode permettant au joueur par sa vue de choisir les croyants a convertir grace a un guide
-	 * @param carte le guide spirituel utilise pour convertir les croyants
-	 */
 	public List<Believer> selectCroyant(SpiritGuide carte) {
 		return vueJoueur.selectCroyant(carte);
 	}
 
 	@Override
-	/**Methode permettant au joueur par sa vue de verifier si c'est points d'origine sont suffisnat pour utiliser la carte
-	 * @param card le carte action que le joueur s'apprete a utilise
-	 */
 	public EnumCosmogonie selectOrigine(ActionCardWithOrigin card) {
 		ArrayList<EnumCosmogonie> listePA = new ArrayList<EnumCosmogonie>();
 
@@ -113,7 +104,6 @@ public class JoueurController implements ObservateurJoueurReel {
 	}
 
 	@Override
-	/**Methode permettant au joueur par sa vue de demarrer son tour de jeu*/
 	public void startTourJoueur() {
 		vueJoueur.passageTour();
 		vueJoueur.jouerTour();	

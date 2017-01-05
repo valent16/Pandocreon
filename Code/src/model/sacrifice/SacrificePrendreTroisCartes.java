@@ -6,6 +6,6 @@ public class SacrificePrendreTroisCartes extends Sacrifice{
 
     @Override
     public void effectuerSacrifice(Player player){
-    	//TODO a faire
+    	//recuperer 3 cartes
     }
 }

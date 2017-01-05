@@ -18,11 +18,11 @@ public interface IObservableHumain {
 	//Permet de notifier la vue pour que le joueur puisse selectionner une cible
 	public Player notifySelectPlayer() throws ObservateurNotLinkedException;
 	
-	//Permet de notifier la vue pour faire d�marrer le tour du joueur
+	//Permet de notifier la vue pour faire demarrer le tour du joueur
 	public void notifyStartTour() throws ObservateurNotLinkedException;
 	
 	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException;
 	
-	//Permet de notifier la vue pour que le joueur puisse s�lectionner les croyants � convertir
+	//Permet de notifier la vue pour que le joueur puisse selectionner les croyants a convertir
 	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException;
 }

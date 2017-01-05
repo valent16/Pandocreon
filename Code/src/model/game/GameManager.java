@@ -189,15 +189,12 @@ public class GameManager implements IObservableGameManager {
 	public void deroulementTourJeu(){
 		int start = 1;
 		int cpt = 0;
-		while(players.size()!=0){//TODO A remettre au lieu de 10 tours
-		//while(cpt<10){
-			System.out.println("TOUR = "+ cpt);
+		while(players.size()!=0){
 			players.get(start%players.size()).lancerDe();
-			//System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
+			System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
 			
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){
-//					System.out.println(players.get(i%players.size()).toString());
 					players.get(i%players.size()).jouerTour();
 				}
 			}

@@ -7,7 +7,7 @@ public class SacrificeRetourGuideMainDivinite extends Sacrifice{
 
 	@Override
     public void effectuerSacrifice(Player player) {
-		//TODO a faire
+		//Faire revenir son guide dans sa main et les croyants au centre de la table
     }
 
 }
