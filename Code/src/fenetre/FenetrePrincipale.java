@@ -2,6 +2,7 @@ package fenetre;
 
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -56,35 +57,32 @@ public class FenetrePrincipale {
 	 */
 	private void initialize() {
 		fenetre = new JFrame();
-		ImageIcon bg = new ImageIcon("images/")
-		fenetre.getContentPane().setI
+		fenetre.setContentPane(new ImagePanel(new ImageIcon("images/background2.jpg").getImage()));
+		//Image bg = new Image();
+		//fenetre.setIconImage(bg);
 		fenetre.setTitle("Pandocreon Divinae");
 		fenetre.setBounds(100, 100, 450, 300);
+		fenetre.setSize(800, 600);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		NorthPanel = new JPanel();
-		NorthPanel.setBackground(Color.GRAY);
 		fenetre.getContentPane().add(NorthPanel, BorderLayout.NORTH);
-
-		WestPanel = new JPanel();
-		WestPanel.setBackground(Color.GRAY);
-		fenetre.getContentPane().add(WestPanel, BorderLayout.WEST);
-
+		
 		SouthPanel = new JPanel();
-		SouthPanel.setBackground(Color.GRAY);
 		fenetre.getContentPane().add(SouthPanel, BorderLayout.SOUTH);
 
+		WestPanel = new JPanel();
+		fenetre.getContentPane().add(WestPanel, BorderLayout.WEST);
+	
+
 		EastPanel = new JPanel();
-		EastPanel.setBackground(Color.GRAY);
 		fenetre.getContentPane().add(EastPanel, BorderLayout.EAST);
 
-		CenterPanel = new JPanel();
-
-		CenterPanel.setBackground(Color.GRAY);
+		CenterPanel = new JPanel(new BorderLayout());
 		fenetre.getContentPane().add(CenterPanel, BorderLayout.CENTER);
 
 		label1 = new JLabel("A faire");
-		CenterPanel.add(label1);
+		NorthPanel.add(label1);
 
 
 		//Image i = new Image("./Brewalen.png");
@@ -96,14 +94,31 @@ public class FenetrePrincipale {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Action a effectuer dessus");
 				SouthPanel.setBackground(Color.black);
-				SouthPanel.add
+				//SouthPanel.add
 				SouthPanel.repaint(); ///on met a jour le panel avec cette methode
+				SouthPanel.revalidate();//il faut le revalider pour refaire des actions dessus
 
 			}
 		});
-		SouthPanel.add(buttonImage);
 
+		SouthPanel.add(buttonImage);
 		//TODO un label pour le nom du joueur dans le southPanel
 		//TODO creer quelqes caret en mode bouton pour voir si ca marche dans le southPanel avec un listenr qui active la carte
+	}
+	
+	//Class qui permet d'ajouter le background
+	public class ImagePanel extends JPanel {
+		 
+	    private static final long serialVersionUID = 1L;
+	 
+	    private Image img;
+	     
+	    public ImagePanel(Image img){
+	        this.img = img;
+	    }
+	     
+	    public void paintComponent(Graphics g) {
+	        g.drawImage(img, 0, 0, null);
+	    }
 	}
 }
