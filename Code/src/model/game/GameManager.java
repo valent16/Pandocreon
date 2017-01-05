@@ -41,7 +41,7 @@ public class GameManager implements IObservableGameManager {
 	private Player joueurActif;
 	
 	/**Attribut correspondant au nombre de tour*/
-	private int nombreTour = 0;
+	private int nombreTour = 1;
 	
 	/**
 	 * Méthode qui permet d'avoir une seule insatance du gestionnaire de partie
@@ -64,19 +64,15 @@ public class GameManager implements IObservableGameManager {
 		this.pioche = cartesAction;
 	}
 	
-	//Methode de demarrage de la partie
+	/**Methode permettant de demarrer la partie*/
 	public void startGame() {
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
 		this.deroulementTourJeu();
 	}
-	
-	//M�thode permettant de m�langer les cartes divinit�s
-
 
 	/**Méthode permettant de mélanger les cartes divintés*/	
-
 	public void melangerDivinites(){
 		Collections.shuffle(listDivinites);
 	}
@@ -283,6 +279,7 @@ public class GameManager implements IObservableGameManager {
 		}
 		if(!egalite){
 			notifyPlayerDefeat(joueurElimine);
+			System.out.println("le joueur "+ joueurElimine.getNom()+" est elimine");
 			this.players.remove(joueurElimine);
 		}
 	}

@@ -36,6 +36,9 @@ public class MediumStrategy implements Strategy {
 	public void jouer(Bot b){
 		this.setBot(b); //Passage des données du bot
 		bot.afficherHand();
+		System.out.println("\n\n////////////////////////////////////APPELLE DE LA METHODE isLAST");//////////////////////////////////////////////////////////
+		bot.isLast();////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		System.out.println("\n\n////////////////////////////////////");///////////////////////////////////////////////////////////////////////////////////////
 		System.out.println("score de "+ bot.getNom() + " " +bot.getScore());
 		if(bot.hasApocalypse()){
 			System.out.println("il a une apocalypse");
@@ -124,9 +127,7 @@ public class MediumStrategy implements Strategy {
 			ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
 			if(!bot.isLast()){//on test si il est dernier
 				if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
-					try {
-						System.out.println("Score des joueurs");
-						
+					try {					
 						Iterator<Player> it = test.iterator();
 						while(it.hasNext()){
 							System.out.println("score du "+ it.next().getNom() +" = "+ it.next().getScore());

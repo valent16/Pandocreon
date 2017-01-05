@@ -8,7 +8,10 @@ import model.game.GameManager;
 import model.player.Player;
 import model.pouvoir.Pouvoir;
 
+/**Classe qui possede le pouvoir de declencher une apocalyps*/
 public class PouvoirApocalypse extends Pouvoir {
+	
+	/**Constructeur*/
 	public PouvoirApocalypse() {
 		super("Realise un grand bouleversement dans le jeu");
 	}

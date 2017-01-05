@@ -26,12 +26,12 @@ public class VueJoueurReel {
 		this.joueur = j;
 	}
 	
-	//affichage lorsqu'il s'agit du d�but du tour du joueur
+	//affichage lorsqu'il s'agit du debut du tour du joueur
 	public void passageTour(){
 		List<ActionCard> cartes;
 		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();
 		Iterator<SpiritGuide> itGuide = joueur.getGuides().iterator();
-		System.out.println("\n\n");
+		System.out.println("\n");
 		System.out.println("Joueur "+joueur.getNom()+", c'est a votre tour  --  score: "+joueur.getScore() );
 		System.out.println("PA: "+joueur.getDicoPA().toString());
 		System.out.println("liste des croyants sur la table");
@@ -39,7 +39,7 @@ public class VueJoueurReel {
 			System.out.println(itCroyant.next().toString());
 		}
 		System.out.println("\n");
-		System.out.println("liste des guides sur poss�d�s par le joueur");
+		System.out.println("liste des guides sur possedes par le joueur");
 		while(itGuide.hasNext()){
 			System.out.println(itGuide.next().toString());
 		}
@@ -50,7 +50,6 @@ public class VueJoueurReel {
 		for (Card c : cartes){
 			System.out.println(c.toString());
 		}
-		System.out.println("\n");
 	}
 	
 	
@@ -89,7 +88,7 @@ public class VueJoueurReel {
 		//LinkedList<ActionCard> cartesToDelete = new LinkedList<ActionCard>();
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("liste des cartes pouvant etre d�faussees:");
+		System.out.println("liste des cartes pouvant etre defaussees:");
 		List<ActionCard> listeAAfficher = joueur.getHand();
 		
 		//TODO afficherListeCarte(listeAAfficher);
@@ -103,7 +102,7 @@ public class VueJoueurReel {
 			listeAAfficher = joueur.getHand();
 			afficherListeCarte(listeAAfficher);
 			System.out.println("veuillez renseigner la carte a defausser en renseignant son numero:");
-			System.out.println("taper \"end\" si votre selection de carte � supprimer est terminee");
+			System.out.println("taper \"end\" si votre selection de carte a supprimer est terminee");
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 			
@@ -153,7 +152,7 @@ public class VueJoueurReel {
 			}
 			
 //			afficherListeCarte(listeAAfficher);
-			System.out.println("veuillez renseigner la carte � utiliser en renseignant son numero:");
+			System.out.println("veuillez renseigner la carte a utiliser en renseignant son numero:");
 			System.out.println("taper \"end\" si vous avez fini d'utiliser des cartes");
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
@@ -163,7 +162,7 @@ public class VueJoueurReel {
 			while(!(choix.matches("[0-9]+") && listeAAfficher.size()+listeCarteRattaches.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))){
 				System.out.println("\n");
 				afficherListeCarte(listeAAfficher);
-				System.out.println("votre choix est invalide, veuillez le renseigner � nouveau.");
+				System.out.println("votre choix est invalide, veuillez le renseigner a nouveau.");
 				System.out.println("votre choix: ");
 				choix = sc.nextLine();
 			}
@@ -181,7 +180,7 @@ public class VueJoueurReel {
 		//TODO faire un check si le joueur a bien des cartes
 	}
 	
-	//Fonction permettant de d�finir l'action a faire avec une carte Action
+	//Fonction permettant de definir l'action a faire avec une carte Action
 	public void choisirPouvoirCarteMain(ActionCard carte){
 		//Set<String> listeCommande =  ( carte.getPouvoirs().keySet();
 		Object[] listeCommande = carte.getPouvoirs().keySet().toArray();

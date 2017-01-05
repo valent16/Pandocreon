@@ -218,8 +218,14 @@ public class Bot extends Player{
 		Player p;
 		Player joueurDernier = null;
 		ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
+		
+		System.out.println("Affichage des Scores des joueurs");
+		Iterator<Player> test = players.iterator();
+		while(test.hasNext()){
+			p = test.next();
+			System.out.println("le joueur " + p.getNom() +" a un score de "+ p.getScore());
+		}
 
-		players.remove(this);
 		System.out.println("///////////////////");
 		System.out.println(players);
 		System.out.println("///////////////////");
@@ -236,6 +242,7 @@ public class Bot extends Player{
 				}
 			}
 			if(joueurDernier==this){
+				players.remove(this);////////////////////////////:CEST ICI QUON SUPPRIME LE BOT//voir si on fait pas dans la methode lancer apocalypse du de la strategy un remove du joueur en appelant la methode elimination joueurfaibel du gameManager 
 				System.out.println(joueurDernier.getNom()+" est dernier");///////////////////////////////////////////////////////////////
 				return true;
 			}
