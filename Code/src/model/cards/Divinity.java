@@ -7,18 +7,26 @@ import model.EnumType.EnumDogme;
 import model.EnumType.EnumOrigineDivinite;
 import model.player.Player;
 
-//Represente une carte divinité
+/**Classe representant une carte Divinite*/
 public class Divinity extends Card implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	/**Attribut representant la description de la carte*/
 	private String description;
 	
+	/**Attribut representant les dogmes de la carte*/
 	private ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
 	
+	/**Attribut representant l'origine de la carte*/
 	private EnumOrigineDivinite origine;
 
-	/**Création d'une carte divinité*/
+	/**Constructeur d'une carte divinité
+	 * @param nom le nom de la divinite
+	 * @param dogmes les dogmes de la divinite
+	 * @param description la description de la carte
+	 * @param origine l'origine de la divinite
+	 */
 	public Divinity(String nom, ArrayList<EnumDogme> dogmes, String description, EnumOrigineDivinite origine) {
 		super(nom);
 		//faire une deep copy 
@@ -29,13 +37,19 @@ public class Divinity extends Card implements Serializable{
 
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
+		//TODO pas eu le temps de developper cette methode
 	}
 	
-	
+	/**Getter pour recuperer l'origine de la divinite
+	 * @return l'origine de la divinite
+	 */
 	public EnumOrigineDivinite getOrigine(){
 		return origine;
 	}
 	
+	/**Getter pour recuperer les dogmes de la divinite
+	 * @return les dogmes de la divinite
+	 */
 	public ArrayList<EnumDogme> getDogmes(){
 		return dogmes;
 	}

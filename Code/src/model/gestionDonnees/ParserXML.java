@@ -48,9 +48,7 @@ public class ParserXML implements IDataLoad {
 		listeSacrifice.put("SacrificePuiTara", new SacrificePuiTara());
 		listeSacrifice.put("SacrificeRelanceDeCosmogonie", new SacrificeRelanceDeCosmogonie());
 		listeSacrifice.put("SacrificeRetourGuideMainDivinite", new SacrificeRetourGuideMainDivinite());
-		listeSacrifice.put("SacrificeYarstur", new SacrificeYarstur());
-		
-		//TODO ajouter les autres sacrifices
+		listeSacrifice.put("SacrificeYarstur", new SacrificeYarstur());		
 		parserFichier();
 	}
 

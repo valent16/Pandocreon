@@ -117,7 +117,7 @@ public class MediumStrategy implements Strategy {
 	@Override
 	/**Methode permettant au bot de lancer une apocalypse*/
 	public void lancerApocalypse(){
-		if(GameManager.getInstanceUniqueManager().getNumeroTour() < 5){//Si on est dans les 5 premiers tour de jeu on ne lance pas d'apocalypse
+		if(GameManager.getInstanceUniqueManager().getNumeroTour() > 5){//Si on est dans les 5 premiers tour de jeu on ne lance pas d'apocalypse
 
 			ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
 			if(!bot.isLast()){//on test si il est dernier
