@@ -1,7 +1,6 @@
 ﻿package model.cards.OriginCards;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 
 import model.EnumType.EnumDogme;
@@ -26,7 +25,7 @@ public class Believer extends CarteDogmatique implements Serializable{
 	
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
-		//d�cr�mentation des points d'action du joueur
+		//decrementation des points d'action du joueur
 		pouvoirs.get(commande).onAction(this, joueur);
 		
 		

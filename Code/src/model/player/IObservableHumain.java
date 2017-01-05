@@ -15,14 +15,14 @@ public interface IObservableHumain {
 	
 	public void detacher(ObservateurJoueurReel o);
 	
-	//Permet de notifier la vue pour que le joueur puisse sélectionner une cible
+	//Permet de notifier la vue pour que le joueur puisse selectionner une cible
 	public Player notifySelectPlayer() throws ObservateurNotLinkedException;
 	
-	//Permet de notifier la vue pour faire démarrer le tour du joueur
+	//Permet de notifier la vue pour faire dï¿½marrer le tour du joueur
 	public void notifyStartTour() throws ObservateurNotLinkedException;
 	
 	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException;
 	
-	//Permet de notifier la vue pour que le joueur puisse sélectionner les croyants à convertir
+	//Permet de notifier la vue pour que le joueur puisse sï¿½lectionner les croyants ï¿½ convertir
 	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException;
 }
