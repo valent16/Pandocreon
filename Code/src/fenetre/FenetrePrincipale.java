@@ -3,6 +3,7 @@ package fenetre;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 
 import javax.swing.JLabel;
 
@@ -20,7 +24,7 @@ public class FenetrePrincipale {
 	private JFrame fenetre;
 	private JButton buttonImage;
 	private JPanel EastPanel, SouthPanel, WestPanel, NorthPanel, CenterPanel;
-	private JLabel label1;
+	private JLabel label1, labelCentrale;
 
 	/**
 	 * Launch the application.
@@ -58,6 +62,8 @@ public class FenetrePrincipale {
 	private void initialize() {
 		fenetre = new JFrame();
 		fenetre.setContentPane(new ImagePanel(new ImageIcon("images/background2.jpg").getImage()));
+		fenetre.getContentPane().setLayout(new BorderLayout());
+			
 		//Image bg = new Image();
 		//fenetre.setIconImage(bg);
 		fenetre.setTitle("Pandocreon Divinae");
@@ -65,21 +71,23 @@ public class FenetrePrincipale {
 		fenetre.setSize(800, 600);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		NorthPanel = new JPanel();
+		NorthPanel = new JPanel(new BorderLayout());
 		fenetre.getContentPane().add(NorthPanel, BorderLayout.NORTH);
 		
-		SouthPanel = new JPanel();
+		SouthPanel = new JPanel(new BorderLayout());
 		fenetre.getContentPane().add(SouthPanel, BorderLayout.SOUTH);
 
-		WestPanel = new JPanel();
+		WestPanel = new JPanel(new BorderLayout());
 		fenetre.getContentPane().add(WestPanel, BorderLayout.WEST);
 	
-
-		EastPanel = new JPanel();
+		EastPanel = new JPanel(new BorderLayout());
 		fenetre.getContentPane().add(EastPanel, BorderLayout.EAST);
 
 		CenterPanel = new JPanel(new BorderLayout());
 		fenetre.getContentPane().add(CenterPanel, BorderLayout.CENTER);
+		
+		labelCentrale = new JLabel("Table de JEU");
+		CenterPanel.add(labelCentrale, BorderLayout.CENTER);
 
 		label1 = new JLabel("A faire");
 		NorthPanel.add(label1);
