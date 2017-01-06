@@ -1,17 +1,23 @@
-package model.sacrifice;
+package model.pouvoir.sacrificeCarte;
 
 import java.util.Iterator;
 
 import model.EnumType.EnumCosmogonie;
+import model.cards.Card;
 import model.cards.OriginCards.Believer;
 import model.game.GameManager;
 import model.player.Player;
+import model.pouvoir.Pouvoir;
 
 /**Sacrifice de la divinite Yarstur : Detruit toutes les cartes de Croyants au centre de la table d'origine Neant*/
-public class SacrificeYarstur extends Sacrifice {
+public class SacrificeYarstur extends Pouvoir{
+
+	public SacrificeYarstur() {
+		super("sacrifice");
+	}
 
 	@Override
-	public void effectuerSacrifice(Player player) {
+	public void onAction(Card carte, Player joueur) throws Exception {
 		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		Iterator<Believer> it = gameManager.getCroyants().iterator();
 		while (it.hasNext()) {
@@ -21,6 +27,7 @@ public class SacrificeYarstur extends Sacrifice {
 				gameManager.defausserCarte(believer);
 			}
 		}
-		System.out.println(player.getNom()+" a détruit toutes les cartes croyants d'origine Neant");
+		System.out.println(joueur.getNom()+" a détruit toutes les cartes croyants d'origine Neant");
+
 	}
 }

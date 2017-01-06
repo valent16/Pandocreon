@@ -1,18 +1,25 @@
-package model.sacrifice;
+package model.pouvoir.sacrificeCarte;
 
 import java.util.Iterator;
 
+
 import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumDogme;
+import model.cards.Card;
 import model.cards.OriginCards.Believer;
 import model.game.GameManager;
 import model.player.Player;
+import model.pouvoir.Pouvoir;
 
 /**Tous les croyants d'origine NUIT ou NEANT et d'ayant le dogme Nature, actuellement sur la table sont defausses. Les capacites speciales ne sont pas jouees*/
-public class SacrificeDefausserCroyantsNuitNeantNature extends Sacrifice{
+public class SacrificeDefausserCroyantsNuitNeantNature extends Pouvoir{
+
+	public SacrificeDefausserCroyantsNuitNeantNature() {
+		super("sacrifice");
+	}
 
 	@Override
-	public void effectuerSacrifice(Player player) {
+	public void onAction(Card carte, Player joueur) throws Exception {
 		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		Iterator<Believer> it = gameManager.getCroyants().iterator();
 		while(it.hasNext()){
@@ -26,5 +33,4 @@ public class SacrificeDefausserCroyantsNuitNeantNature extends Sacrifice{
 		}
 		System.out.println("Vous avez defausser les cartes Croyants d'origine Nuit ou Néant et ayant le Dogme Nature ");
 	}
-	
 }

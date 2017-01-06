@@ -40,7 +40,8 @@ public class GameManager implements IObservableGameManager {
 
 	private Player joueurActif;
 	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**Attribut correspondant au nombre de tour*/
+	private int nombreTour = 1;
 	
 	/**
 	 * Méthode qui permet d'avoir une seule insatance du gestionnaire de partie
@@ -63,19 +64,15 @@ public class GameManager implements IObservableGameManager {
 		this.pioche = cartesAction;
 	}
 	
-	//Methode de demarrage de la partie
+	/**Methode permettant de demarrer la partie*/
 	public void startGame() {
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
 		this.deroulementTourJeu();
 	}
-	
-	//M�thode permettant de m�langer les cartes divinit�s
-
 
 	/**Méthode permettant de mélanger les cartes divintés*/	
-
 	public void melangerDivinites(){
 		Collections.shuffle(listDivinites);
 	}
@@ -152,9 +149,7 @@ public class GameManager implements IObservableGameManager {
 		ArrayList<Believer> croyantsAPresenter = new ArrayList<Believer>();
 		
 		Believer croyant;
-		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();
-		//TODO Iterator<EnumDogme> itDogme;
-		
+		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();	
 		while(itCroyant.hasNext()){
 			croyant = itCroyant.next();
 			if (guide.isCroyantCompatible(croyant)){
@@ -188,16 +183,12 @@ public class GameManager implements IObservableGameManager {
 	//Tour de jeu
 	public void deroulementTourJeu(){
 		int start = 1;
-		int cpt = 0;
-		//while(players.size()!=0){//TODO A remettre au lieu de 10 tours
-		while(cpt<10){
-			System.out.println("TOUR = "+ cpt);
+		while(players.size()!=0){
 			players.get(start%players.size()).lancerDe();
-			//System.out.println("\nTour Numero "+cpt+ " le de est sur la face "+ De.getInstanceDe().getFace());
+			System.out.println("\nTour Numero "+ nombreTour + " le de est sur la face "+ De.getInstanceDe().getFace());
 			
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){
-//					System.out.println(players.get(i%players.size()).toString());
 					players.get(i%players.size()).jouerTour();
 				}
 			}
@@ -205,7 +196,7 @@ public class GameManager implements IObservableGameManager {
 			if (players.size() != 0){
 				start = start%players.size();
 			}
-			cpt++;
+			nombreTour++;
 			System.out.println();
 			afficherCroyants();
 			System.out.println();
@@ -288,6 +279,7 @@ public class GameManager implements IObservableGameManager {
 		}
 		if(!egalite){
 			notifyPlayerDefeat(joueurElimine);
+			System.out.println("le joueur "+ joueurElimine.getNom()+" est elimine");
 			this.players.remove(joueurElimine);
 		}
 	}
@@ -372,6 +364,13 @@ public class GameManager implements IObservableGameManager {
 	
 	public Player getJoueurAtIndex(int index){
 		return players.get(index);
+	}
+	
+	/**Getter pour connaitre le nombre de tour de la partie
+	 * @return le nombre du tour actuel
+	 */
+	public int getNumeroTour() {
+		return nombreTour;
 	}
 
 	

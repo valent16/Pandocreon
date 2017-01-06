@@ -13,7 +13,7 @@ import model.player.Player;
 /**Une strategie random avec un switch case*/
 public class RandomStrategy implements Strategy{
 
-	/**garde le bot qui joue en memoire pour recuperer ses donnees (cartes, score etc..)*/
+	/**Attribut correspondant au bot qui joue*/
 	private Bot bot;
 
 	@Override
@@ -27,17 +27,7 @@ public class RandomStrategy implements Strategy{
 		System.out.println(bot.getNom());
 		bot.afficherHand();
 		System.out.print("ACTION DU BOT: "+ bot.getNom() + " ");
-
-		//TODO Faire un switch case pour les actions suivante: 
-		/*- poser des craoynats
-		- recup des croyants
-		- lancer un apocalupser
-		- se defausser
-		- piocher
-		- lancer le pouvoir d'une carte random
-		 */
-
-		//depart
+		
 		int action = (int) (Math.random() * 5) + 1;
 		System.out.println("LACTION "+action);
 		switch (action){
@@ -60,15 +50,11 @@ public class RandomStrategy implements Strategy{
 			}
 			break;
 
-		case 3: //recuperer des croyants avec le guide spirituel
+		case 3:
 			System.out.println("recuperer des croyants avec le guide spirituel");
 			break;
 
 		case 4: 
-			//defausser une ou plusieurs carte
-			//TODO faire un random entre 1 et 2 si c'est 1 c'est un random d'un carte random qu'on defausse si c'est 2 c'est un random d'un nombre de carte random qui permet de faire une boucle pour defauusser pluisuer cartes
-			//si sa main est vide on rappelle la methode jouer
-			//this.defausserCartes(partie.getCartesDefaussees());
 			System.out.println("defausser une ou plusieurs carte de maniere Random");
 			break;
 
@@ -102,39 +88,32 @@ public class RandomStrategy implements Strategy{
 	
 	@Override
 	public void depotCroyant() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void convertirCroyants() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void lancerApocalypse() {
-		// TODO Auto-generated method stub
 		
 	}
 
 
 	@Override
-	//permet d'economiser ses points dans notre cas il pioche
 	public void economy(){
 		bot.piocher();	
 	}
 
 	@Override
 	public Player pickTarget() {
-		// TODO Auto-generated method stub
 		//prendre un joueur de maniere random
 		return null;
 	}
 
 	@Override
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
-		// TODO si on a le choix entre neant et jour ou nuit prendre 1pt neant sinon prendre 2pt JOUR sinon prendre 2pt NUIT sinon rien
+		//si on a le choix entre neant et jour ou nuit prendre 1pt neant sinon prendre 2pt JOUR sinon prendre 2pt NUIT sinon rien
 		return null;
 	}
 

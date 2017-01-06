@@ -3,7 +3,6 @@ package fenetre;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,9 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
 
 import javax.swing.JLabel;
 
@@ -111,7 +107,7 @@ public class FenetrePrincipale {
 
 		SouthPanel.add(buttonImage);
 		//TODO un label pour le nom du joueur dans le southPanel
-		//TODO creer quelqes caret en mode bouton pour voir si ca marche dans le southPanel avec un listenr qui active la carte
+		//TODO creer quelques carte en mode bouton pour voir si ca marche dans le southPanel avec un listenr qui active la carte
 	}
 	
 	//Class qui permet d'ajouter le background

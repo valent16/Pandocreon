@@ -1,14 +1,21 @@
-package model.sacrifice;
+package model.pouvoir.sacrificeCarte;
 
 import model.EnumType.EnumCosmogonie;
+import model.cards.Card;
 import model.game.De;
 import model.game.GameManager;
 import model.player.Player;
+import model.pouvoir.Pouvoir;
+
 /**Sacrifice qui relance le de de Cosmogonie. Le tour se finit normalement sous la nouvelle influence*/
-public class SacrificeRelanceDeCosmogonie extends Sacrifice{
+public class SacrificeRelanceDeCosmogonie extends Pouvoir{
+
+	public SacrificeRelanceDeCosmogonie() {
+		super("sacrifice");
+	}
 
 	@Override
-	public void effectuerSacrifice(Player player) {
+	public void onAction(Card carte, Player joueur) throws Exception {
 		GameManager gameManager = GameManager.getInstanceUniqueManager();
 		De de = De.getInstanceDe();
 		de.lancerDe();
@@ -52,6 +59,7 @@ public class SacrificeRelanceDeCosmogonie extends Sacrifice{
 		default:
 			break;
 		}
+		
 	}
 
 }

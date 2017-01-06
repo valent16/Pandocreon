@@ -10,12 +10,11 @@ public class DeusExWithOrigin extends ActionCardWithOrigin implements Serializab
 
 	public DeusExWithOrigin(String nom, EnumCosmogonie origine) {
 		super(nom, origine);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void utiliserPouvoir(String commande,Player joueur) throws Exception{
-		// TODO Auto-generated method stub
+		//TODO pas eu le temps de developper cette methode
 	}
 
 	@Override

@@ -4,7 +4,6 @@ import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
 import model.player.Player;
 import model.pouvoir.Pouvoir;
-import model.sacrifice.Sacrifice;
 
 /**Donne un point d'action d'origine Neant*/
 public class SacrificeAjouterPointNeant extends Pouvoir{

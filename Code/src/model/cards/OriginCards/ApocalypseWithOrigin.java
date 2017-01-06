@@ -11,7 +11,6 @@ public class ApocalypseWithOrigin extends ActionCardWithOrigin implements Serial
 
 	public ApocalypseWithOrigin( EnumCosmogonie origine) {
 		super("Apocalypse", origine);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

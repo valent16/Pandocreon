@@ -21,8 +21,7 @@ public class HardStrategy implements Strategy {
 	 */
 	@Override
 	public void setBot(Bot bot) {
-		// TODO Auto-generated method stub
-		
+		this.bot = bot;
 	}
 
 	@Override
@@ -36,45 +35,36 @@ public class HardStrategy implements Strategy {
 	@Override
 	//permet d'economiser ses points dans notre cas il pioche si il a moins de 7 cartes sinon il passe son tour
 	public void economy() {
-		//if(getHand < 7)
-			//piocher
-		//else
-			//bot.passerTour(); // TODO passerTour	
+			
 	}
 
 	@Override
 	public Player pickTarget() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Believer> pickCroyant(SpiritGuide carte) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void depotCroyant() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void convertirCroyants() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void lancerApocalypse() {
-		// TODO Auto-generated method stub
 		
 	}
 }
