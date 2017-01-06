@@ -11,6 +11,7 @@ import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
 import model.strategy.MediumStrategy;
+import view.ihm.TableJeu;
 
 /**Classe de lancement du programme*/
 public class Main{
@@ -18,7 +19,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 3;
+		int valeur = 5;
 
 		switch(valeur){
 		case 1:
@@ -49,7 +50,7 @@ public class Main{
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						FenetrePrincipale window = new FenetrePrincipale();
+						TableJeu window = new TableJeu();
 						window.getFenetre().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
