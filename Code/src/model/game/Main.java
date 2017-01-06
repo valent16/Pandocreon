@@ -11,6 +11,7 @@ import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
 import model.strategy.MediumStrategy;
+import view.ihm.TableJeu;
 
 /**Classe de lancement du programme*/
 public class Main{
@@ -18,7 +19,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 5;
+		int valeur = 6;
 
 		switch(valeur){
 		case 1:
@@ -56,7 +57,10 @@ public class Main{
 					}
 				}
 			});
-
+		
+		case 6:
+			TableJeu t = new TableJeu();
+			
 		default:
 			//ne rien mettre
 		}
