@@ -9,28 +9,40 @@ import java.util.List;
 
 import model.EnumType.EnumDogme;
 
+/**Classe Abstraite representant une carte avec des Dogmes et une origine*/ 
 public abstract class CarteDogmatique extends ActionCardWithOrigin implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	/**Attribut listant les dogmes*/
 	private ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
 	
+	/**Attribut decrivant le sacrifice*/
 	private String sacrifice;
-	
-//	private String nomTypeCarte;
-	
+		
+	/**Constructeur
+	 * @param nom le nom de la carte
+	 * @param origine l'origine de la carte
+	 * @param dogmes les dogmes de la carte
+	 * @param sacrifice la description du scrifice de la carte
+	 */
 	public CarteDogmatique(String nom, EnumCosmogonie origine, ArrayList<EnumDogme> dogmes, String sacrifice) {
 		super(nom, origine);
-		//faire une deepCopy
 		this.dogmes = dogmes;
-//		this.nomTypeCarte = nomTypeCarte;
 		this.sacrifice = sacrifice;
 	}
 
+	/**Getter des Dogmes 
+	 * @return les dogmes de la carte
+	 */
 	public List<EnumDogme> getDogmes(){
 		return Collections.unmodifiableList(dogmes);
 	}
 	
+	/**Methode verifiant si la carte contient un dogme specifique
+	 * @param dogme le dogme a tester
+	 * @return true si la carte possede le dogme demander sinon false
+	 */
 	public boolean containsDogme(EnumDogme dogme){
 		return dogmes.contains(dogme);
 	}

@@ -4,11 +4,12 @@ import java.io.Serializable;
 
 import model.cards.ActionCard;
 import model.player.Player;
-
+/**Clase Apocalypse sans origine*/
 public class Apocalypse extends ActionCard implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	/**Constructeur*/
 	public Apocalypse() {
 		super("Apocalypse");
 	}

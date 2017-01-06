@@ -11,26 +11,34 @@ import model.EnumType.EnumCosmogonie;
 public class Believer extends CarteDogmatique implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+
+	/**Attribut representant le nombre de point que rapporte le croyant*/
 	private int nbPrieres;
 	
+	/**Constructeur
+	 * @param nom le nom du croyant
+	 * @param origine l'origine du croyant
+	 * @param dogmes les dogmes du croyant
+	 * @param nbPrieres le nombre de prieres du croyant
+	 * @param sacrifice la description du sacrifice du croyant
+	 */
 	public Believer(String nom, EnumCosmogonie origine, ArrayList<EnumDogme> dogmes, int nbPrieres, String sacrifice) {
 		super(nom, origine, dogmes, sacrifice);
 		this.nbPrieres = nbPrieres;
 	}
 
+	/**Getter nombre de priere
+	 * @return le nombre de prieres du croyant
+	 */
 	public int getNbPrieres(){
 		return nbPrieres;
 	}
 	
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
-		//decrementation des points d'action du joueur
-		pouvoirs.get(commande).onAction(this, joueur);
+		pouvoirs.get(commande).onAction(this, joueur);//decrementation des points d'action du joueur
 		
-		
-		//tester si le pouvoir utilisé est un sacrifice ou un dépot de croyant
-		joueur.retirerCarte(this);
+		joueur.retirerCarte(this); //decrementation des points d'action du joueur
 	}
 	
 	@Override

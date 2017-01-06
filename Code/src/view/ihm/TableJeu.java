@@ -42,7 +42,6 @@ public class TableJeu {
 		panelGauche.setLayout(new BoxLayout(panelGauche, BoxLayout.Y_AXIS));
 		
 		
-		
 		JPanel panelJoueur = new JPanel();
 		panelJoueur.setLayout(new BoxLayout(panelJoueur, BoxLayout.X_AXIS));
 		//panelJoueur.setBackground(Color.BLACK);
