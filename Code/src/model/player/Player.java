@@ -28,43 +28,44 @@ import model.game.GameManager;
 
 /**Classe qui représente un joueur*/
 public abstract class Player extends Observer{
-	//A voir si chaque joueur a un tableau de Points d'action
-	// ou si on fait un tableau pour chaque type de point d'action
-	//ou un seul tableau de taille 3 avec en indice 0 les points de jour, indice 1 les points de nuit, indice 2 les points de neant, 
 
 	public static final int NB_CARTE_MAX = 7;
 
-	/**chaine de caractere representant le nom du joueur*/
+	/**Attribut representant le nom du joueur*/
 	private String pseudo;
 
+	/**Attribut representant l'age du joueur*/
 	private int age;
 
-	/**Liste representant la main d'un joueur*/ 
+	/**Attribut representant la main d'un joueur*/ 
 	protected LinkedList<ActionCard> hand = new LinkedList<ActionCard>();
 
-	/**Dictionnaire contenant les points d'action du joueur*/
+	/**Attribut representant les points d'actions du joueur*/
 	private HashMap<EnumCosmogonie, Integer> dicoPA = new HashMap<EnumCosmogonie, Integer>();
 
+	/**Attribut representant les croyants deposes pendant le tour de jeu*/
 	private LinkedList<Believer> croyantDeposesPendantTour = new LinkedList<Believer>();
 
+	/**Attribut representant les guides du joueur*/
 	protected LinkedList<SpiritGuide> guidesRattaches = new LinkedList<SpiritGuide>();
 
-	/**Carte divinte du joueur*/
+	/**Attribut representant la divinite du joueur*/
 	private Divinity divinity;
 
-	/**Constructeur public*/
+	/**Constructeur
+	 * @param pseudo le nom du joueur 
+	 * @param age l'age du joueur
+	 */
 	public Player(String pseudo, int age){
 		this.setNom(pseudo);
 		this.setAge(age);
-
-		//Permet l'initialisation du dictionnaire de points d'action du joueur
-		EnumCosmogonie valuesEnumPointAction[] = EnumCosmogonie.values();
+		EnumCosmogonie valuesEnumPointAction[] = EnumCosmogonie.values();//Permet l'initialisation du dictionnaire de points d'action du joueur
 		for (int i = 0; i< valuesEnumPointAction.length; i++) {
 			dicoPA.put(valuesEnumPointAction[i], 0);
 		}
 	}
 
-	//Methode de jeu de tour qui se fait red�finir pour le joueur et le bot
+	//Methode de jeu de tour qui se fait redefinir pour le joueur et le bot
 	public abstract void jouerTour();
 
 	public SpiritGuide getGuideWithCroyant(Believer croyant){
@@ -148,7 +149,6 @@ public abstract class Player extends Observer{
 		while(itGuide.hasNext()){
 			guide = itGuide.next();
 			liste.add(guide);
-//			System.out.println("Nombre de croyant: "+guide.getCroyantsConvertis().size());
 			Iterator<Believer> itCroyant = guide.getCroyantsConvertis().iterator();
 			while(itCroyant.hasNext()){
 				liste.add(itCroyant.next());
@@ -215,16 +215,12 @@ public abstract class Player extends Observer{
 	public void ajouterCroyant(Card carte){
 		if (carte instanceof Believer){
 			this.croyantDeposesPendantTour.add((Believer)carte);
-		}else{
-			//Lancement d'un exception
 		}
 	}
 
 	public void rattacherGuide(Card carte){
 		if(carte instanceof SpiritGuide){
 			this.guidesRattaches.add((SpiritGuide) carte);
-		}else{
-			//Lancement d'une exception
 		}
 	}
 
@@ -235,8 +231,6 @@ public abstract class Player extends Observer{
 	public void retirerCarte(Card carte){
 		if (carte instanceof ActionCard){
 			hand.remove((ActionCard)carte);
-		}else{
-			//lancement Exception
 		}
 	}
 
@@ -255,7 +249,7 @@ public abstract class Player extends Observer{
 		GameManager.getInstanceUniqueManager().defausserCarte(guide);
 	}
 
-	//Fonction permettant de compl�ter la main du joueur
+	//Fonction permettant de completer la main du joueur
 	public void piocherCartes(){
 		while (hand.size() < NB_CARTE_MAX){
 			hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
@@ -269,7 +263,6 @@ public abstract class Player extends Observer{
 	//Methode qui permet d'incrementer les pointsd'action du joueur du nombre de points indiqué
 	public void incrementerPointAction(EnumCosmogonie typePA, int nbPA){
 		dicoPA.put(typePA, dicoPA.get(typePA) + nbPA);
-//		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) + nbPA);
 	}
 
 	public void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException{

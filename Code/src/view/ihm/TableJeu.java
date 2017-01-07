@@ -1,28 +1,20 @@
 package view.ihm;
 
-import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -31,7 +23,7 @@ import java.awt.FlowLayout;
 
 public class TableJeu {
 	
-	JFrame frame = new JFrame();
+	private JFrame frame = new JFrame();
 	
 	public TableJeu(){
 		initialize();
@@ -200,6 +192,7 @@ public class TableJeu {
 		panelPointsAction.add(panelLabelPA);
 		panelPointsAction.add(grillePoints);
 		
+<<<<<<< HEAD
 		//-----------------------------//
 		
 
@@ -207,6 +200,10 @@ public class TableJeu {
 //		JPanel panelJoueur = new JPanel();
 //		panelJoueur.setLayout(new BoxLayout(panelJoueur, BoxLayout.X_AXIS));
 //		panelJoueur.setPreferredSize(new Dimension(200,200));
+
+		JPanel panelJoueur = new JPanel();
+		panelJoueur.setLayout(new BoxLayout(panelJoueur, BoxLayout.X_AXIS));
+
 		//panelJoueur.setBackground(Color.BLACK);
 		
 		
@@ -214,6 +211,7 @@ public class TableJeu {
 //		labelArea.setEditable(false);
 //		labelArea.setLineWrap(true);
 		
+
 //		JPanel panelTableJeu = new JPanel();
 //		panelTableJeu.setLayout(new BoxLayout(panelTableJeu, BoxLayout.X_AXIS));	
 //	
@@ -233,6 +231,60 @@ public class TableJeu {
 //		panelCarterattache.add(initializeExampleCard());
 //		
 //		JLabel labelGuidesJoueur = new JLabel("cartes déposées:");
+
+		JPanel panelTableJeu = new JPanel();
+		panelTableJeu.setLayout(new BoxLayout(panelTableJeu, BoxLayout.X_AXIS));	
+		
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
+		panelTableJeu.add(initializeExampleCard());
+		
+		JPanel panelCarteMain = new JPanel();
+		panelCarteMain.setLayout(new BoxLayout(panelCarteMain, BoxLayout.X_AXIS));
+		panelCarteMain.setAutoscrolls(true);
+		
+		panelCarteMain.add(initializeExampleCard());
+		
+		JPanel panelCarterattache = new JPanel();
+		panelCarterattache.setLayout(new BoxLayout(panelCarterattache, BoxLayout.X_AXIS));
+		
+		panelCarterattache.add(initializeExampleCard());
+		panelCarterattache.add(initializeExampleCard());
+		
+		JLabel labelGuidesJoueur = new JLabel("cartes dï¿½posï¿½es:");
+
 //		labelGuidesJoueur.setVerticalAlignment(SwingConstants.LEFT);
 //		labelGuidesJoueur.setAlignmentX(Component.LEFT_ALIGNMENT);
 //		labelGuidesJoueur.setVerticalAlignment(SwingConstants.LEFT);
@@ -416,6 +468,10 @@ public class TableJeu {
 		
 //		buttonImage = new JButton(image);
 //		buttonImage.addActionListener(new ActionListener() {
+	}
+	
+	public JFrame getFenetre(){
+		return frame;
 	}
 }
 

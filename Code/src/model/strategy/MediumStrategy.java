@@ -125,7 +125,7 @@ public class MediumStrategy implements Strategy {
 			ArrayList<Player> test = GameManager.getInstanceUniqueManager().getPlayers();
 			System.out.println(test.size());
 			ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
-			if(!bot.isLast()){//on test si il est dernier
+			if(!bot.isLast()){//on test s'il est dernier
 				if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
 					try {					
 						Iterator<Player> it = test.iterator();
