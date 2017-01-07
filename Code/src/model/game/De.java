@@ -3,16 +3,19 @@ package model.game;
 import model.EnumType.EnumCosmogonie;
 
 public class De {
-	/*un singleton pour avoir un unique dé*/
+	
+	/*Attribut representant un singleton pour avoir un unique dé*/
 	private volatile static De de;
+	
+	/**Attribut representant la face du de*/
 	private EnumCosmogonie face;
 	
-	private De(){
+	/**Constructeur*/
+	private De(){}
 
-	}
-
-	/**Méthode qui permet d'avoir qu'une seule instance de Dé
-	 * @return de*/
+	/**Méthode permetttant d'avoir qu'une seule instance de Dé
+	 * @return de le De de la classe
+	 */
 	public static synchronized De getInstanceDe(){
 		if (de == null){
 			synchronized (De.class){ //pour gerer le multi-thread
@@ -23,8 +26,7 @@ public class De {
 		return de;
 	}
 
-	/**méthode qui lance de maniere random un Dé pour obtenir une face
-	 * @return */
+	/**Méthode permettant de lancer de maniere random un Dé pour obtenir une face*/
 	public void lancerDe(){
 		int random = (int) (Math.random() * 3 + 1);
 		if(random == 1){
@@ -38,25 +40,17 @@ public class De {
 		}
 	}
 
-	/**méthode qui permet de récuperer l'origine sur lequel le dé est retombé*/
+	/**Getter origine sur lequel le dé est retombé
+	 * @return la face du De
+	 */
 	public EnumCosmogonie getFace(){
 		return face;
 	}
 	
+	/**Setter origne du de
+	 * @param face la nouvelle face du De
+	 */
 	public void setFace(EnumCosmogonie face){
 		this.face = face;
-	}
-
-	//TEST
-	public static void main(String[] args){
-		//test du singleton
-		getInstanceDe();
-		System.out.println(de.hashCode());
-
-		//test d'un lancer de dé
-		for (int i = 0; i < 5; i++) {
-			de.lancerDe();
-			System.out.println(de.getFace());
-		}
 	}
 }

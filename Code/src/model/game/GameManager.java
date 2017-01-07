@@ -18,33 +18,40 @@ import view.console.VueGameManager;
 
 /**Classe qui gère tous les elements de la partie*/
 public class GameManager implements IObservableGameManager {
-	
+
 	private final static int NB_CARTE_MAX_MAIN = 7;
-	
+
+	/**Attribut representant le controller qui observe la victoire ou la defaite des joueurs*/
 	private IObservateurGameManager observateur = new GameManagerController(new VueGameManager());
 
+	/**Attribut representant le gestionnaire de partie*/
 	private static volatile GameManager managerUnique;
 
+	/**Attribut representant la pioche de la partie*/
 	private LinkedList<ActionCard> pioche = new LinkedList<ActionCard>();
 
+	/**Attribut representant les cartes defaussees de la partie*/
 	private LinkedList<ActionCard> defausse = new LinkedList<ActionCard>();
 
-	/**Représente les cartes croyants sur la table*/
+	/** /**Attribut representant les cartes croyants sur la table*/
 	private LinkedList<Believer> croyants = new LinkedList<Believer>();
 
+	/**Attribut representant les cartes divinites de la partie*/
 	private LinkedList<Divinity> listDivinites = new LinkedList<Divinity>();
 
+	/**Attribut representant les joueurs de la partie*/
 	private ArrayList<Player> players = new ArrayList<Player>();
 
+	/**Attribut representant le joueur qui comence le tour*/
 	private Player joueurDebutTour;
 
+	/**Attribut representant le joueur qui joue pendant le tour*/
 	private Player joueurActif;
-	
-	/**Attribut correspondant au nombre de tour*/
+
+	/**Attribut representant le nombre de tour*/
 	private int nombreTour = 1;
-	
-	/**
-	 * Méthode qui permet d'avoir une seule insatance du gestionnaire de partie
+
+	/** Methode permettant d'avoir une seule instance du gestionnaire de partie
 	 * @return le gestionnaire de partie
 	 */
 	public static GameManager getInstanceUniqueManager(){
@@ -57,14 +64,14 @@ public class GameManager implements IObservableGameManager {
 		}
 		return managerUnique;
 	}
-	
-	//Permet de recupeerer toutes les divinites et la pioche
+
+	/**Methode permettant d'initialiser la partie en recuperant toutes les divinites et les cartes actions existantes*/
 	public void initialisationPartie(LinkedList<ActionCard> cartesAction, LinkedList<Divinity> divinites ){
 		this.listDivinites = divinites; 
 		this.pioche = cartesAction;
 	}
-	
-	/**Methode permettant de demarrer la partie*/
+
+	/**Methode permettant de demarrer la partieen melangeant les cartes et en lancant le premier tour de jeu*/
 	public void startGame() {
 		this.melangerDivinites();
 		this.melangerPioche();
@@ -72,7 +79,7 @@ public class GameManager implements IObservableGameManager {
 		this.deroulementTourJeu();
 	}
 
-	/**Méthode permettant de mélanger les cartes divintés*/	
+	/**Méthode permettant de mélanger les cartes divinites*/	
 	public void melangerDivinites(){
 		Collections.shuffle(listDivinites);
 	}
@@ -82,44 +89,42 @@ public class GameManager implements IObservableGameManager {
 		Collections.shuffle(pioche);
 	}
 
-	/**Méthode qui permet de mélanger les cartes de la pile de défausse*/
+	/**Méthode permettant de mélanger les cartes de la pile de défausse*/
 	public void melangerDefausse(){
 		Collections.shuffle(defausse);
 	}
 
-	/**
-	 * Méthode qui défausse une carte action
+	/**Méthode permettant de défausser une carte action
 	 * @param carte la carte action a defausser qui sera ajoute dans la liste defausse
 	 */
 	public void defausserCarte(ActionCard carte){
 		defausse.add(carte);
 	}
 
-	/**
-	 * Méthode qui permet de défausser une liste de carte action
+	/**Méthode permettant de défausser une liste de carte action
 	 * @param cartes listes de cartes action à défausser
 	 */
 	public void defausserCarte(LinkedList<ActionCard> cartes){
 		defausse.addAll(cartes);
 	}
 
-	/**
-	 * Méthode qui permet de défausser une carte divinite
+	/**Méthode permettant de défausser une carte divinite
 	 * @param divinite la carte divinite à défausser
 	 */
 	public void defausserDivinite(Divinity divinite){
 		listDivinites.add(divinite);
 	}
 
-	/**
-	 * Méthode qui permet de récuperer une divinité
-	 * @return la divinité a l'index 0 de la liste
+	/**Méthode permettant de récuperer une divinité
+	 * @return la divinité au debut de la liste
 	 */
 	public Divinity piocherDivinite(){
 		return listDivinites.pop();
 	}
-	
-	//permet de piocher une carte
+
+	/**Methode permettant de piocher une carte
+	 * @return la carte au debut de la pioche
+	 */
 	public ActionCard piocherCarte(){
 		if (pioche.size() == 0){
 			if (defausse.size() == 0){
@@ -130,24 +135,31 @@ public class GameManager implements IObservableGameManager {
 		}
 		return pioche.pop();
 	}
-	
-	//permet de deposer un coroyant sur la table
+
+	/**Methode permettant de deposer un coroyant sur la table
+	 * @param carte le croyant a deposer
+	 */
 	public void deposerCroyant(Card carte){
 		if(carte instanceof Believer){
 			croyants.add((Believer) carte);
-		}else{
-			//lancement d'un exception si la carte n'est pas un croyant
 		}
 	}
-	
-	//permet d'ajouter un joueur ou un bot a la partie
+
+	/**Methode permettant d'ajouter un joueur ou un bot a la partie
+	 * @param joueur le joueur a ajouter a la partie
+	 */
 	public void ajouterJoueur(Player joueur){
+
 		players.add(joueur);
 	}
-	
+
+	/**Methode permettant de recuperer les croyants compatibles au guide
+	 * @param guide le guide a tester
+	 * @return les croyants potentiellement convertibles par ce guide
+	 */
 	public List<Believer> getCroyantCompatibles(SpiritGuide guide){
 		ArrayList<Believer> croyantsAPresenter = new ArrayList<Believer>();
-		
+
 		Believer croyant;
 		Iterator<Believer> itCroyant = GameManager.getInstanceUniqueManager().getCroyants().iterator();	
 		while(itCroyant.hasNext()){
@@ -156,22 +168,17 @@ public class GameManager implements IObservableGameManager {
 				croyantsAPresenter.add(croyant);
 			}
 		}
-		
 		return croyantsAPresenter;
 	}
-	
 
-	//Permet de réaliser l'initialisation des jeux
+	/**Methode permettant de réaliser l'initialisation des jeux*/
 	public void intialisationDesJeux(){
 		Iterator<Player> itJoueur = players.iterator();
-		//Permet l'initialisation des divinites des joueurs
-		while(itJoueur.hasNext()){
+		while(itJoueur.hasNext()){  //Permet l'initialisation des divinites des joueurs
 			Player joueur = (Player) itJoueur.next();
 			joueur.piocherDivinite();
 		}
-
-		//Permet l'intialisation des cartes action des joueurs
-		for (int i=0; i<NB_CARTE_MAX_MAIN; i++){
+		for(int i=0; i<NB_CARTE_MAX_MAIN; i++){ //Permet l'intialisation des cartes action des joueurs
 			itJoueur = players.iterator();
 			while(itJoueur.hasNext()){
 				Player joueur = (Player) itJoueur.next();
@@ -180,13 +187,13 @@ public class GameManager implements IObservableGameManager {
 		}
 	}
 
-	//Tour de jeu
+	/**Methode permettant d'effectuer les tours de jeu*/
 	public void deroulementTourJeu(){
 		int start = 1;
 		while(players.size()!=0){
 			players.get(start%players.size()).lancerDe();
 			System.out.println("\nTour Numero "+ nombreTour + " le de est sur la face "+ De.getInstanceDe().getFace());
-			
+
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){
 					players.get(i%players.size()).jouerTour();
@@ -203,16 +210,14 @@ public class GameManager implements IObservableGameManager {
 		}
 	}
 
-	/**
-	 * Permet d'éliminer un joueur de la partie
-	 * @param joueur
+	/**Methode permettant d'éliminer un joueur de la partie
+	 * @param joueur le joueur a eliminer
 	 */
 	public void eliminerJoueur(Player joueur){
 		players.remove(joueur);
 	}
 
-	/**
-	 * Assigne une Divinite a un joueur
+	/**Methode permettant d'assigner une divinite a un joueur
 	 * @param joueur, Le joueur auquel on assigne la Divinite
 	 * @param div, La Divinite a assigner
 	 */
@@ -220,16 +225,17 @@ public class GameManager implements IObservableGameManager {
 		joueur.setDivinity(div);
 	}
 
-	/**
-	 * Permet de retirer un croyant de la table de jeu
+	/**Methode permettant de retirer un croyant de la table de jeu
 	 * @param carte le croyant à retirer
 	 */
 	public void retirerCroyant(Believer carte){
 		croyants.remove(carte);
 	}
 
-	
-	//Permet de determiner l'index du plus jeune joueur
+
+	/**Methode permettant de recuperer l'index du plus jeune joueur
+	 * @return l'index de la liste des joueurs du joueur le plus jeune
+	 */
 	public int getIndexJoueurPlusJeune(){
 		Player joueurJeune;
 		int index = 0;
@@ -242,7 +248,7 @@ public class GameManager implements IObservableGameManager {
 		}
 		return index;
 	}
-	
+
 	/**Methode qui affiche les croyants en commun sur la table a chaque tour*/
 	public void afficherCroyants(){
 		Iterator<Believer> it = getCroyants().iterator();
@@ -253,13 +259,14 @@ public class GameManager implements IObservableGameManager {
 		}
 		System.out.println("-----------------------------------------------------");
 	}
-	
+
+	/**Methode permettant d'eliminer le joueur ayant le plus petit score*/
 	public void eliminationJoueurFaible(){
 		Player p;
 		Player joueurElimine = null;
 		boolean egalite = false;
 		Iterator<Player> itPlayer = players.iterator();
-		
+
 		while(itPlayer.hasNext()){
 			p = itPlayer.next();
 			if (joueurElimine == null){
@@ -270,7 +277,7 @@ public class GameManager implements IObservableGameManager {
 				}
 			}
 		}
-		
+
 		itPlayer = players.iterator();
 		while(itPlayer.hasNext()){
 			if(joueurElimine.getScore() == itPlayer.next().getScore()){
@@ -283,13 +290,14 @@ public class GameManager implements IObservableGameManager {
 			this.players.remove(joueurElimine);
 		}
 	}
-	
+
+	/**Methode permettant d'arreter la partie et d'afficher le joueur aynat le plus grand score*/
 	public void determinerVainqueur(){
 		Player p;
 		Player joueurGagnant = null;
 		int cpt = 0;
 		Iterator<Player> itPlayer = players.iterator();
-		
+
 		while(itPlayer.hasNext()){
 			p = itPlayer.next();
 			if (joueurGagnant == null){
@@ -314,73 +322,69 @@ public class GameManager implements IObservableGameManager {
 		}
 	}
 
+	/**Getter liste de divinites
+	 * @return les divintes du jeu
+	 */
 	public LinkedList<Divinity> getDivinites() {
 		return listDivinites;
 	}
 
-	public void setDivinites(LinkedList<Divinity> divinites) {
-		this.listDivinites = divinites;
-	}
-	
+	/**Getter un joueur
+	 * @return le joueur du debut du tour
+	 */
 	public Player getJoueurDebutTour() {
 		return joueurDebutTour;
 	}
 
-	public void setJoueurDebutTour(Player joueurDebutTour) {
-		this.joueurDebutTour = joueurDebutTour;
-	}
-
+	/**Getter un joueur
+	 * @return le joueur actif durant le tour de jeu
+	 */
 	public Player getJoueurActif() {
 		return joueurActif;
 	}
 
-	public void setJoueurActif(Player joueurActif) {
-		this.joueurActif = joueurActif;
-	}
-	
+	/**Getter iun entier
+	 * @return le nombre de joueur present dans la partie
+	 */
 	public int getNbJoueur(){
 		return players.size();
 	}
-	
+
+	/**Getter liste de joueurs
+	 * @return la liste des joueurs de cette partie
+	 */
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
 
-	public void setPlayers(ArrayList<Player> players) {
-		this.players = players;
-	}
-	
+	/**Getter liste de croyant
+	 * @return l'ensemble des croyants mis sur la table
+	 */
 	public LinkedList<Believer> getCroyants() {
 		return croyants;
 	}
 
-	public void setCroyants(LinkedList<Believer> croyants) {
-		this.croyants = croyants;
-	}
-	
+	/**Getter index du joueur
+	 * @param p le joueur a tester
+	 * @return l'index du joueur dans la liste des joueurs
+	 */
 	public int getIndexJoueur(Player p){
 		return players.indexOf(p);
 	}
-	
+
+	/**Getter un joueur
+	 * @param index l'index de la liste joueurs
+	 * @return le joueur a l'index demande
+	 */
 	public Player getJoueurAtIndex(int index){
 		return players.get(index);
 	}
-	
-	/**Getter pour connaitre le nombre de tour de la partie
+
+	/**Getter nombre tour
 	 * @return le nombre du tour actuel
 	 */
 	public int getNumeroTour() {
 		return nombreTour;
-	}
-
-	
-	/*
-	 * M�thodes de test d'affichage, ces m�thodes seront supprim�es par la suite
-	 */
-	public void afficherJoueur(){
-		for (Player p : players){
-			System.out.println(p.toString());
-		}
 	}
 
 	@Override
