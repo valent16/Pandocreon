@@ -1,35 +1,26 @@
 package view.ihm;
 
-import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
 
 import java.awt.Component;
 import java.awt.FlowLayout;
 
-public class TableJeu {
+public class TableJeu{
 	
 	JFrame frame = new JFrame();
 	
@@ -52,7 +43,7 @@ public class TableJeu {
 		panelGauche.setLayout(new BoxLayout(panelGauche, BoxLayout.Y_AXIS));
 		//panelGauche.setLayout(new BorderLayout());
 		
-		//Définition du panel de Gauche//
+		//D�finition du panel de Gauche//
 		
 		//Panel d'affichage des joueurs
 		final JPanel panelJoueurs = new JPanel();
@@ -75,7 +66,7 @@ public class TableJeu {
 		panelPileAppelCarte.setLayout(new BoxLayout(panelPileAppelCarte, BoxLayout.Y_AXIS));
 		
 		JPanel panelLabelPileCarte = new JPanel();
-		JLabel labelPileCarte = new JLabel("liste des cartes lancées par les joueurs:");
+		JLabel labelPileCarte = new JLabel("liste des cartes lanc�es par les joueurs:");
 		panelLabelPileCarte.add(labelPileCarte);
 		
 		labelPileCarte.setHorizontalAlignment(SwingConstants.LEFT);
@@ -110,7 +101,7 @@ public class TableJeu {
 		panelCartesRattachesJoueur.setLayout(new BoxLayout(panelCartesRattachesJoueur, BoxLayout.Y_AXIS));
 		
 		JPanel panelLabelCartesRattaches = new JPanel();
-		JLabel LabelCartesRattaches = new JLabel("Listes des cartes rattachées au joueur:");
+		JLabel LabelCartesRattaches = new JLabel("Listes des cartes rattach�es au joueur:");
 		panelLabelCartesRattaches.add(LabelCartesRattaches);
 		
 		LabelCartesRattaches.setHorizontalAlignment(SwingConstants.LEFT);
@@ -149,13 +140,13 @@ public class TableJeu {
 		
 		
 		
-		//Définition du panel de droite//
+		//D�finition du panel de droite//
 		
 		final JPanel panelDeTour = new JPanel();
 		panelDeTour.setLayout(new BoxLayout(panelDeTour, BoxLayout.Y_AXIS));
 		
 		JPanel panelLabelDe = new JPanel();
-		JLabel labelDe = new JLabel("face du dés:");
+		JLabel labelDe = new JLabel("face du d�s:");
 		panelLabelDe.add(labelDe);
 		
 		panelJoueurs.add(panelLabelJoueurJeu);
@@ -232,7 +223,7 @@ public class TableJeu {
 //		panelCarterattache.add(initializeExampleCard());
 //		panelCarterattache.add(initializeExampleCard());
 //		
-//		JLabel labelGuidesJoueur = new JLabel("cartes déposées:");
+//		JLabel labelGuidesJoueur = new JLabel("cartes d�pos�es:");
 //		labelGuidesJoueur.setVerticalAlignment(SwingConstants.LEFT);
 //		labelGuidesJoueur.setAlignmentX(Component.LEFT_ALIGNMENT);
 //		labelGuidesJoueur.setVerticalAlignment(SwingConstants.LEFT);
@@ -418,4 +409,3 @@ public class TableJeu {
 //		buttonImage.addActionListener(new ActionListener() {
 	}
 }
-
