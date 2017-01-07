@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="model.strategy.EasyStrategy"/>
 <fullyQualifiedTypeName name="model.strategy.MediumStrategy"/>
 <fullyQualifiedTypeName name="model.game.De"/>
 <fullyQualifiedTypeName name="model.EnumType.EnumOrigineDivinite"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="model.pouvoir.sacrificeCarte.NotImplementedSacrifice"/>
 <fullyQualifiedTypeName name="model.game.GameManager"/>
 <fullyQualifiedTypeName name="model.cards.OriginCards.ApocalypseWithOrigin"/>
+<fullyQualifiedTypeName name="view.ihm.TableJeu"/>
 </qualifiedTypeNameHistroy>

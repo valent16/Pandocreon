@@ -1,7 +1,0 @@
-package model.exception;
-
-public class TargetSelectionException {
-	public TargetSelectionException(String message){
-		super(message);
-	}
-}

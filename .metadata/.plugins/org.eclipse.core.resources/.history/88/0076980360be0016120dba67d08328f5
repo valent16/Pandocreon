@@ -1,9 +1,0 @@
-package model.pouvoir;
-
-public class Pouvoir {
-	private String nom;
-	
-	private String description;
-	
-	
-}
