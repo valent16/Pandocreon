@@ -9,20 +9,41 @@ import model.cards.OriginCards.SpiritGuide;
 import model.exception.ObservateurNotLinkedException;
 import view.ObservateurJoueurReel;
 
+/**Classe qui permet au controller juoeur de notifier la vue*/
 public interface IObservableHumain {
-	
+
+	/**Methode permettant d'ajouter un observateur
+	 * @param o l'observateur a ajouter
+	 */
 	public void attacher(ObservateurJoueurReel o);
-	
+
+	/**Methode permettant de retirer un observateur
+	 * @param o l'observateur a retirer
+	 */
 	public void detacher(ObservateurJoueurReel o);
-	
-	//Permet de notifier la vue pour que le joueur puisse selectionner une cible
+
+	/**Methode permettant de notifier la vue pour que le joueur selectionner une cible
+	 * @return le joueur selectionné
+	 * @throws ObservateurNotLinkedException
+	 */
 	public Player notifySelectPlayer() throws ObservateurNotLinkedException;
-	
-	//Permet de notifier la vue pour faire demarrer le tour du joueur
+
+	/**Methode permettant de notifier la vue pour que le joueur commence son tour de jeu 
+	 * @throws ObservateurNotLinkedException
+	 */
 	public void notifyStartTour() throws ObservateurNotLinkedException;
-	
+
+	/**Methode permettant de notifier la vue pour que le joueur puisse selectionner le type de points d'actions a utiliser
+	 * @param carte la carte a utiliser
+	 * @return le type de PA selectionné
+	 * @throws ObservateurNotLinkedException
+	 */
 	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException;
-	
-	//Permet de notifier la vue pour que le joueur puisse selectionner les croyants a convertir
+
+	/**Methode permettant de notifier la vue pour que le joueur puisse selectionner les croyants a convertir
+	 * @param guideSpirituel le guide qui veut convertir
+	 * @return les croyants selectionné pour etre convertis
+	 * @throws ObservateurNotLinkedException
+	 */
 	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException;
 }

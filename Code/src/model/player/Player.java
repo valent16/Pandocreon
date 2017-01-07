@@ -26,9 +26,10 @@ import model.exception.TargetSelectionException;
 import model.game.De;
 import model.game.GameManager;
 
-/**Classe qui représente un joueur*/
+/**Classe qui représente un joueur ou un bot*/
 public abstract class Player extends Observer{
 
+	/**Attribut representant le nombre de carte maximal au depart que le joueur possede*/ 
 	public static final int NB_CARTE_MAX = 7;
 
 	/**Attribut representant le nom du joueur*/
@@ -65,9 +66,13 @@ public abstract class Player extends Observer{
 		}
 	}
 
-	//Methode de jeu de tour qui se fait redefinir pour le joueur et le bot
+	/**Methode permettant au joueur de joueur son tour*/
 	public abstract void jouerTour();
 
+	/**Methode permettant de recuperer un guide possdant un croyant specifique
+	 * @param croyant le croyant a tester
+	 * @return le guide possedant de ce croyant
+	 */
 	public SpiritGuide getGuideWithCroyant(Believer croyant){
 		Iterator<SpiritGuide> itGuide = guidesRattaches.iterator();
 		SpiritGuide guide;
@@ -79,23 +84,21 @@ public abstract class Player extends Observer{
 		}
 		return null;
 	}
-	
-	
-	public List<Believer> getCroyantDeposesPendantTour(){
-		return Collections.unmodifiableList(croyantDeposesPendantTour);
-	}
-	
+
+
+
+
 	/** Le joueur joue une carte et donc on l'enleve de sa main*/
 	public void JouerCarte(ActionCard carte) {
 		//carte.utiliserPouvoir(commande, this);
 		//hand.remove(carte);
 	}
-	
+
 	public void jouerCarteRattachee(ActionCard carte){
 		if(carte instanceof SpiritGuide){
-			
+
 		}else{
-			
+
 		}
 	}
 
@@ -123,25 +126,7 @@ public abstract class Player extends Observer{
 			return null;
 		}
 	}
-	
-	public LinkedList<SpiritGuide> getGuideRattache(){
-		return guidesRattaches;
-	}
 
-	//Permet de renvoyer une liste 
-	public LinkedList<ActionCard> getHand(){ 
-		return hand;
-	}
-
-	/**Getter du pseudo*/
-	public String getNom(){
-		return pseudo;
-	}
-	/**Setter du pseudo*/
-	public void setNom(String pseudo){
-		this.pseudo = pseudo;
-	}
-	
 	public List<ActionCard> getListCardGuide(){
 		ArrayList<ActionCard> liste =  new ArrayList<ActionCard>();
 		Iterator<SpiritGuide> itGuide = guidesRattaches.iterator();
@@ -156,7 +141,7 @@ public abstract class Player extends Observer{
 		}
 		return liste;
 	}
-	
+
 	/**Getter du score du joueur*/
 	public int getScore() {
 		int score = 0;
@@ -192,11 +177,11 @@ public abstract class Player extends Observer{
 	public void lancerDe(){
 		De.getInstanceDe().lancerDe();
 	}
-	
+
 	public void ajouterMain(ActionCard card){
 		this.hand.add(card);
 	}
-	
+
 	/**Methode qui permet d'afficher la main du joueur*/
 	public void afficherHand(){
 		Iterator<ActionCard> it = hand.iterator();
@@ -205,11 +190,11 @@ public abstract class Player extends Observer{
 			System.out.println("Carte "+hand.indexOf(card) +": "+ card);
 		}
 	}
-	
+
 	public abstract Player pickTarget() throws TargetSelectionException;
-	
+
 	public abstract EnumCosmogonie pickOrigine(ActionCardWithOrigin carte);
-	
+
 	public abstract List<Believer> pickCroyant(SpiritGuide carte);
 
 	public void ajouterCroyant(Card carte){
@@ -243,7 +228,7 @@ public abstract class Player extends Observer{
 		hand.remove(carte);
 		GameManager.getInstanceUniqueManager().defausserCarte(carte);
 	}
-	
+
 	public void defausserGuideRattache(SpiritGuide guide){
 		guidesRattaches.remove(guide);
 		GameManager.getInstanceUniqueManager().defausserCarte(guide);
@@ -256,15 +241,18 @@ public abstract class Player extends Observer{
 		}
 	}
 
-	public int getNbCartes(){
-		return hand.size();
-	}
-
-	//Methode qui permet d'incrementer les pointsd'action du joueur du nombre de points indiqué
+	/**Methode permettant d'ajouter des points d'action du joueur du nombre de points indiqué
+	 * @param typePA le type de PA (nuit, jour ou neant
+	 * @param nbPA le nombre de points a donner
+	 */
 	public void incrementerPointAction(EnumCosmogonie typePA, int nbPA){
 		dicoPA.put(typePA, dicoPA.get(typePA) + nbPA);
 	}
 
+	/**Methode permettant de retirer des points d'action du joueur du nombre de points indiqué
+	 * @param typePA le type de PA (nuit, jour ou neant
+	 * @param nbPA le nombre de points a retirer
+	 */
 	public void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException{
 		if ((dicoPA.get(typePA) - nbPA) < 0){
 			throw new PAInsuffisantException("Pas assez de point d'action "+dicoPA.get(typePA));
@@ -273,6 +261,7 @@ public abstract class Player extends Observer{
 	}
 
 	//Methode appelee a chaque debut de tour pour attribuer les PA au joueur
+	/**Methode permettant d'ajoueter les points d'action au joueur a chaque tour grace au Dé*/
 	protected void incrementerPointActionWithDe(){
 		if (divinity.getOrigine() == EnumOrigineDivinite.AUBE || divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE){
 			incrementerPointAction(De.getInstanceDe().getFace(),1);
@@ -283,16 +272,49 @@ public abstract class Player extends Observer{
 		}
 	}	
 
-	/**
-	 * Methode qui permet de recuperer les points d'cations d'un joueur
-	 * @return dicoPA, les points d'action JOUR, NUIT, NEANT du joueur
+	/**Getter points d'cations d'un joueur
+	 * @return les points d'action JOUR, NUIT, NEANT du joueur
 	 */
 	public HashMap<EnumCosmogonie, Integer> getDicoPA(){
 		return dicoPA;
 	}
 
+	/**Getter lliste de guides
+	 * @return les guides qui sont rattaché a ce joueur
+	 */
 	public LinkedList<SpiritGuide> getGuides() {
 		return guidesRattaches;
+	}
+
+	/**Getter liste de croyants
+	 * @return les croyants que le joueur a depose pendant son tour de jeu
+	 */
+	public List<Believer> getCroyantDeposesPendantTour(){
+		return Collections.unmodifiableList(croyantDeposesPendantTour);
+	}
+
+	/**Getter liste de cartes actions
+	 * @return la main du joueur
+	 */ 
+	public LinkedList<ActionCard> getHand(){ 
+		return hand;
+	}
+
+	/**Getter nombre de carte
+	 * @return le nombre de carte que le joueur possede dans sa main
+	 */
+	public int getNbCartes(){
+		return hand.size();
+	}
+
+	/**Getter du pseudo*/
+	public String getNom(){
+		return pseudo;
+	}
+
+	/**Setter du pseudo*/
+	public void setNom(String pseudo){
+		this.pseudo = pseudo;
 	}
 
 	@Override

@@ -10,19 +10,30 @@ import model.exception.ObservateurNotLinkedException;
 import model.exception.TargetSelectionException;
 import view.ObservateurJoueurReel;
 
+/**Un joueur qui représente un humain*/
 public class Human extends Player implements IObservableHumain{
 	
+	/**Attribut representant le controlleur du joueur*/
 	private ObservateurJoueurReel observateur;
 	
+	/**Methode permettant de lui ajouter un controleur
+	 * @param o le controleur a ajouter
+	 */
 	public void attacher(ObservateurJoueurReel o){
 		observateur = o;
 	}
 	
+	/**Methode permettant de lui enlever un controleur
+	 * @param o le controleur a anlever
+	 */
 	public void detacher(ObservateurJoueurReel o){
 		observateur = null;
 	}
 
-	/**Constructeur de joueur qui est appelé pour créer un joueur humain*/
+	/**Constructeur de joueur qui est appelé pour créer un joueur humain
+	 * @param pseudo le nom du joueur
+	 * @param age l'age du joueur
+	 */
 	public Human(String pseudo, int age) {
 		super(pseudo, age);
 	}
@@ -37,15 +48,15 @@ public class Human extends Player implements IObservableHumain{
 		}
 	}
 	
-	//Permet de notifier la vue pour que le joueur puisse s�lectionner la une cible
+	@Override
 	public Player notifySelectPlayer() throws ObservateurNotLinkedException{
 		if (observateur == null){
-			throw new ObservateurNotLinkedException("un observateur n'est pas li� � un joueur humain");
+			throw new ObservateurNotLinkedException("un observateur n'est pas lie a un joueur humain");
 		}
 		return observateur.selectTarget();
 	}
 	
-	//Permet de notifier la vue pour faire d�marrer le tour du joueur
+	@Override
 	public void notifyStartTour() throws ObservateurNotLinkedException{
 		if (observateur == null){
 			throw new ObservateurNotLinkedException("un observateur n'est pas lie a un joueur humain");
@@ -53,7 +64,7 @@ public class Human extends Player implements IObservableHumain{
 		observateur.startTourJoueur();
 	}
 	
-	//Permet de notifier la vue pour que le joueur puisse s�lectionner les croyants � convertir
+	@Override
 	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException{
 		if (observateur == null){
 			throw new ObservateurNotLinkedException("un observateur n'est pas lie a un joueur humain");
@@ -74,7 +85,7 @@ public class Human extends Player implements IObservableHumain{
 	@Override
 	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException{
 		if (observateur == null){
-			throw new ObservateurNotLinkedException("un observateur n'est pas li� � un joueur humain");
+			throw new ObservateurNotLinkedException("un observateur n'est pas lie a un joueur humain");
 		}
 		return observateur.selectOrigine(carte);
 	}
