@@ -1,6 +1,7 @@
 package view.ihm;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -33,6 +34,9 @@ public class Client extends JFrame{
 	//bouton pour lancer une nouvelle partie
 	private JButton newGame;
 	
+	//bouton pour le chargement d'une partie
+	private JButton loadGame;
+	
 	//button pour les regles
 	private JButton rules;
 	
@@ -40,31 +44,16 @@ public class Client extends JFrame{
 	private GameController gc = new GameController();
 	private GameManager gm = GameManager.getInstanceUniqueManager();
 
+	
+
 	public Client(){
 		initialize();
 		ajoutListener();
-		frame.setTitle("Demarrage de Partie Pandocreon");
+		frame.setTitle("Client Pandocreon Divinae");
 		frame.setSize(250, 250);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);	
-	}
-
-	/**Methode permettant d'ajouter les listener au boutons*/
-	private void ajoutListener() {
-		newGame.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				nouvellePartie();
-			}
-		}); 
-		
-		rules.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				afficherRegles();
-			}
-		});
 	}
 
 	//methode pour initialiser les composants de la fenetre
@@ -73,17 +62,16 @@ public class Client extends JFrame{
 		frame.setContentPane(buttonPanel);
 		
 		buttonPanel.setPreferredSize(new Dimension(250,250));
-		Border line = BorderFactory.createLineBorder(Color.GRAY, 2);
-		TitledBorder panelBorder = BorderFactory.createTitledBorder(line, "Test");
-		buttonPanel.setBorder(panelBorder);
 		
-		newGame = new JButton("nouvelle partie");
-		newGame.setActionCommand("newGame");
-		newGame.setPreferredSize(new Dimension(150,50));
+		newGame = new JButton("Nouvelle partie");
+		newGame.setPreferredSize(new Dimension(150,35));
+		
+		loadGame = new JButton("Charger Partie");
+		loadGame.setPreferredSize(new Dimension(150, 35));
 		
 		
 		rules = new JButton("afficher les regles");
-		rules.setPreferredSize(new Dimension(150,50));
+		rules.setPreferredSize(new Dimension(150,35));
 		
 		//ajout des composants
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -92,6 +80,9 @@ public class Client extends JFrame{
 		buttonPanel.add(newGame, gbc);
 		
 		gbc.gridy = 1;
+		buttonPanel.add(loadGame, gbc);
+		
+		gbc.gridy = 2;
 		buttonPanel.add(rules, gbc);
 		
 
@@ -101,13 +92,42 @@ public class Client extends JFrame{
 		///////////////TODO IL FAUT TOUS FAIRE VIA LA CLASSE GAMECONTROLLER POU AJOUTER LES JOUEURS ou GAME si ca marche pas
 	}
 	
+	/**Methode permettant d'ajouter les listener au boutons*/
+	private void ajoutListener() {
+		newGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nouvellePartie();
+			}
+		});
+		
+		loadGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chargerPartie();
+			}
+		});
+		
+		rules.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				afficherRegles();
+			}
+		});
+	}
+	
 	/**Methode permettant de lancer une nouvelle partie*/
 	public void nouvellePartie(){
 		//TODO a faire la methode pour lancer une nouvelle partie
+		//lancer un panel pour demander le nombre de joueur et ensuite voir les methodes qui gerer ca en mode console
+	}
+	
+	private void chargerPartie() {
+		JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpe", "chargement de partie", JOptionPane.WARNING_MESSAGE);
 	}
 
 	/**Methode permettant d'afficher les regles du jeu*/
-	public void afficherRegles(){
+	private void afficherRegles(){
 		String regles = "<html><h1>Pandocreon Divinae</h1>"
 		+ "<h2>Livret de Regles</h2>"
 
