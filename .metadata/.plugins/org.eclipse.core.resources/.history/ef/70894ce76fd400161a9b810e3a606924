@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import controller.GameController;
 import controller.JoueurController;
+import fenetre.FenetrePrincipale;
 import model.EnumType.EnumCosmogonie;
 import model.player.Bot;
 import model.player.Human;
@@ -50,16 +51,14 @@ public class Main{
 				public void run() {
 					try {
 						TableJeu window = new TableJeu();
-//						window.getFenetre().setVisible(true);
+						window.getFenetre().setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			});
 			
-		case 6:
-			TableJeu table = new TableJeu();
-			break;
+		
 
 		default:
 			//ne rien mettre

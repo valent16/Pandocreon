@@ -1,9 +1,0 @@
-package view.console;
-
-import view.Observateur;
-
-public class VueJoueur  {
-
-
-
-}

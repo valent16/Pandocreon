@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import controller.GameController;
 import controller.JoueurController;
+import fenetre.FenetrePrincipale;
 import model.EnumType.EnumCosmogonie;
 import model.player.Bot;
 import model.player.Human;
