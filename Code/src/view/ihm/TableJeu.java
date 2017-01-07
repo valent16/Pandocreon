@@ -1,5 +1,4 @@
 package view.ihm;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -140,7 +139,7 @@ public class TableJeu{
 		
 		
 		
-		//D�finition du panel de droite//
+		//Definition du panel de droite//
 		
 		final JPanel panelDeTour = new JPanel();
 		panelDeTour.setLayout(new BoxLayout(panelDeTour, BoxLayout.Y_AXIS));

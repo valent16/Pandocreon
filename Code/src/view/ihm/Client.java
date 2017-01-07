@@ -24,14 +24,17 @@ public class Client extends JFrame{
 		frame.setSize(250, 250);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		
+		frame.setVisible(true);	
 	}
 
 	public void initialize(){
 		frame.getContentPane().setLayout(new BorderLayout());
 		//Faire un panel centrale en grid et ajouter des boutons nouvelle partie, charger partie, afficher les regles
 		//Lors de la nouvelle partie on change le panel et on demande le nombre de joueurs et la difficulte
+		
+		
+		
+		//pour l'affichage des regles a voir si on peut utiliser un jOPtionPane
 
 	}
 
