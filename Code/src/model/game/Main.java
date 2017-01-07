@@ -11,6 +11,7 @@ import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
 import model.strategy.MediumStrategy;
+import view.ihm.Client;
 import view.ihm.TableJeu;
 
 /**Classe de lancement du programme*/
@@ -19,7 +20,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 5;
+		int valeur = 6;
 
 		switch(valeur){
 		case 1:
@@ -57,13 +58,25 @@ public class Main{
 					}
 				}
 			});
+			
+		case 6: //Pour lancer le client
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						Client window = new Client();
+						window.getFenetre().setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 
 		default:
 			//ne rien mettre
 		}
 	}
 
-	//test du bot
+	/**Methode permettant de tester les bots dans une partie avec la strategie medium*/
 	private static void testBot() {
 		Game game = new Game();
 		game.initGame();
@@ -84,7 +97,7 @@ public class Main{
 		GameManager.getInstanceUniqueManager().startGame();
 	}
 
-
+	/**Methode permettant de tester le fonctionnement d'une partie*/
 	public static void testCreationPartie(){
 		Game game = new Game();
 		game.initGame();
@@ -110,7 +123,7 @@ public class Main{
 		GameManager.getInstanceUniqueManager().afficherJoueur();
 	}
 
-
+	/**Methode permettant de tester les humains*/
 	public static void testJoueur(){
 		Player p1 = new Human("jean Yves", 12);
 		p1.incrementerPointAction(EnumCosmogonie.JOUR, 2);
