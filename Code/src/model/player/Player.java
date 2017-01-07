@@ -1,10 +1,5 @@
 package model.player;
 
-import java.io.ByteArrayInputStream;
-
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -85,10 +80,8 @@ public abstract class Player extends Observer{
 		return null;
 	}
 
-
-
-
-	/** Le joueur joue une carte et donc on l'enleve de sa main*/
+	//TODO A VOIR SON GARDE CES METHODES
+	/**Le joueur joue une carte et donc on l'enleve de sa main*/
 	public void JouerCarte(ActionCard carte) {
 		//carte.utiliserPouvoir(commande, this);
 		//hand.remove(carte);
@@ -102,31 +95,19 @@ public abstract class Player extends Observer{
 		}
 	}
 
-	/**Methode piocher*/
+	/**Methode permettant au joueur de piocher une carte*/
 	public void piocher(){
 		hand.add(GameManager.getInstanceUniqueManager().piocherCarte());
 	}
 
-	//Permet au joueur de piocher sa divinite
+	//Methode permettant de piocher une divinite
 	public void piocherDivinite(){
 		this.divinity = GameManager.getInstanceUniqueManager().piocherDivinite();
 	}
 
-	public static Object deepClone(Object object) {
-		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ObjectOutputStream oos = new ObjectOutputStream(baos);
-			oos.writeObject(object);
-			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-			ObjectInputStream ois = new ObjectInputStream(bais);
-			return ois.readObject();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
+	/**Methode permettant de recuperer les croyants convertis par le joueur
+	 * @return la liste des croyants convertis
+	 */
 	public List<ActionCard> getListCardGuide(){
 		ArrayList<ActionCard> liste =  new ArrayList<ActionCard>();
 		Iterator<SpiritGuide> itGuide = guidesRattaches.iterator();
@@ -142,7 +123,9 @@ public abstract class Player extends Observer{
 		return liste;
 	}
 
-	/**Getter du score du joueur*/
+	/**Getter du score du joueur
+	 * @return le score du joueur
+	 */
 	public int getScore() {
 		int score = 0;
 		Iterator<SpiritGuide> itGuides = guidesRattaches.iterator();
@@ -156,33 +139,20 @@ public abstract class Player extends Observer{
 		}
 		return score;
 	}
-
-	/**Getter de la divinité du joueur*/
-	public Divinity getDivinity() {
-		return divinity;
-	}
-	/**Setter de la divinité du joueur*/
-	public void setDivinity(Divinity divinity) {
-		this.divinity = divinity;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	private void setAge(int age) {
-		this.age = age;
-	}
-
+	
+	/**Methode permettant au joueur de lancer le de*/
 	public void lancerDe(){
 		De.getInstanceDe().lancerDe();
 	}
 
+	/**Methode permettant au joueur d'ajouter une carte action dans sa main
+	 * @param card la carte a ajouter dans sa main
+	 */
 	public void ajouterMain(ActionCard card){
 		this.hand.add(card);
 	}
 
-	/**Methode qui permet d'afficher la main du joueur*/
+	/**Methode permettant d'afficher la main du joueur*/
 	public void afficherHand(){
 		Iterator<ActionCard> it = hand.iterator();
 		while(it.hasNext()){
@@ -191,50 +161,75 @@ public abstract class Player extends Observer{
 		}
 	}
 
+	/**Methode permettant de choisir une cible (joueur)
+	 * @return le joueur ciblé
+	 * @throws TargetSelectionException
+	 */
 	public abstract Player pickTarget() throws TargetSelectionException;
 
+	/**Methode permettant de choisir le type de point d'action
+	 * @param carte la carte qui va etre utiliser
+	 * @return l'origine choisi
+	 */
 	public abstract EnumCosmogonie pickOrigine(ActionCardWithOrigin carte);
 
+	/**Methode permettant de choisir les croyants que le joueur peut convertir avec son guide
+	 * @param carte le guide qui va convertir
+	 * @return la liste des croyants potentiellemnt convertibles
+	 */
 	public abstract List<Believer> pickCroyant(SpiritGuide carte);
 
+	/**Methode permettant de deposer un croyant sur la table
+	 * @param carte le croyant a deposer
+	 */
 	public void ajouterCroyant(Card carte){
 		if (carte instanceof Believer){
 			this.croyantDeposesPendantTour.add((Believer)carte);
 		}
 	}
 
+	/**Methode permettant de rattacher un guide
+	 * @param carte le guide a rattacher
+	 */
 	public void rattacherGuide(Card carte){
 		if(carte instanceof SpiritGuide){
 			this.guidesRattaches.add((SpiritGuide) carte);
 		}
 	}
 
-	public void viderCroyantPendantTour(){
-		//this.croyantDeposesPendantTour.re
-	}
-
+	/**Methode permettant de retirer une carte de la main du joueur
+	 * @param carte la carte a retirer
+	 */
 	public void retirerCarte(Card carte){
-		if (carte instanceof ActionCard){
+		if (carte instanceof ActionCard)
 			hand.remove((ActionCard)carte);
-		}
 	}
-
-	public void defausserCartes(LinkedList<ActionCard> cartes){
-		hand.removeAll(cartes);
-		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
-	}
-
+	
+	/**Methode permettant de se defausser d'une carte
+	 * @param carte la carte a se defausser
+	 */
 	public void defausserCarte(ActionCard carte){
 		hand.remove(carte);
 		GameManager.getInstanceUniqueManager().defausserCarte(carte);
 	}
 
+	/**Methode permettant de se defausser de plusieurs cartes
+	 * @param cartes la liste des cartes a se defausser
+	 */
+	public void defausserCartes(LinkedList<ActionCard> cartes){
+		hand.removeAll(cartes);
+		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
+	}
+
+	/**Methode permettant de se defausser d'un guide
+	 * @param carte le guide a se defausser
+	 */
 	public void defausserGuideRattache(SpiritGuide guide){
 		guidesRattaches.remove(guide);
 		GameManager.getInstanceUniqueManager().defausserCarte(guide);
 	}
 
-	//Fonction permettant de completer la main du joueur
+	/**Methode permettant de completer la main du joueur*/
 	public void piocherCartes(){
 		while (hand.size() < NB_CARTE_MAX){
 			hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
@@ -270,7 +265,26 @@ public abstract class Player extends Observer{
 				incrementerPointAction(De.getInstanceDe().getFace(), 2);
 			}
 		}
-	}	
+	}
+	
+	/**Getter de la divinité du joueur*/
+	public Divinity getDivinity() {
+		return divinity;
+	}
+	/**Setter de la divinité du joueur*/
+	public void setDivinity(Divinity divinity) {
+		this.divinity = divinity;
+	}
+
+	/**Getter de l'age du joueur*/
+	public int getAge() {
+		return age;
+	}
+
+	/**Setter de l'age du joueur*/
+	private void setAge(int age) {
+		this.age = age;
+	}
 
 	/**Getter points d'cations d'un joueur
 	 * @return les points d'action JOUR, NUIT, NEANT du joueur
