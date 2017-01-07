@@ -42,11 +42,29 @@ public class Client extends JFrame{
 
 	public Client(){
 		initialize();
+		ajoutListener();
 		frame.setTitle("Demarrage de Partie Pandocreon");
 		frame.setSize(250, 250);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);	
+	}
+
+	/**Methode permettant d'ajouter les listener au boutons*/
+	private void ajoutListener() {
+		newGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nouvellePartie();
+			}
+		}); 
+		
+		rules.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				afficherRegles();
+			}
+		});
 	}
 
 	//methode pour initialiser les composants de la fenetre
@@ -62,21 +80,10 @@ public class Client extends JFrame{
 		newGame = new JButton("nouvelle partie");
 		newGame.setActionCommand("newGame");
 		newGame.setPreferredSize(new Dimension(150,50));
-		newGame.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				nouvellePartie();
-			}
-		}); 
+		
 		
 		rules = new JButton("afficher les regles");
 		rules.setPreferredSize(new Dimension(150,50));
-		rules.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				afficherRegles();
-			}
-		});
 		
 		//ajout des composants
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -86,10 +93,6 @@ public class Client extends JFrame{
 		
 		gbc.gridy = 1;
 		buttonPanel.add(rules, gbc);
-				
-		System.out.println(buttonPanel.getWidth());
-		System.out.println(newGame);
-		System.out.println(rules);
 		
 
 		//Faire un panel centrale en grid et ajouter des boutons nouvelle partie, charger partie, afficher les regles
