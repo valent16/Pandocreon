@@ -95,10 +95,10 @@ public class Client extends JFrame{
 		buttonPanel.add(rules, gbc);
 		
 
-		//Faire un panel centrale en grid et ajouter des boutons nouvelle partie, charger partie, afficher les regles
-		//Lors de la nouvelle partie on change le panel et on demande le nombre de joueurs et la difficulte
+		//TODO Faire un panel centrale en grid et ajouter des boutons nouvelle partie, charger partie, afficher les regles
+		//TODO Lors de la nouvelle partie on change le panel et on demande le nombre de joueurs et la difficulte
 
-		///////////////IL FAUT TOUS FAIRE VIA LA CLASSE GAMECONTROLLER POU AJOUTER LES JOUEURS ou GAME si ca marche pas
+		///////////////TODO IL FAUT TOUS FAIRE VIA LA CLASSE GAMECONTROLLER POU AJOUTER LES JOUEURS ou GAME si ca marche pas
 	}
 	
 	/**Methode permettant de lancer une nouvelle partie*/
