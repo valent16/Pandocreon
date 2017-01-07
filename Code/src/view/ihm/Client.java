@@ -1,24 +1,22 @@
 package view.ihm;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Panel;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneLayout;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_EXCLUSIONPeer;
 
 import controller.GameController;
 import model.game.GameManager;
@@ -51,14 +49,19 @@ public class Client extends JFrame{
 		frame.setVisible(true);	
 	}
 
+	//methode pour initialiser les composants de la fenetre
 	public void initialize(){
-		frame.getContentPane().setLayout(new BorderLayout());
-
-		buttonPanel = new JPanel(new GridLayout(2,1));
-		buttonPanel.setPreferredSize(new Dimension(50,50));
-		frame.add(buttonPanel, BorderLayout.CENTER);
+		buttonPanel = new JPanel(new GridBagLayout());
+		frame.setContentPane(buttonPanel);
+		
+		buttonPanel.setPreferredSize(new Dimension(250,250));
+		Border line = BorderFactory.createLineBorder(Color.GRAY, 2);
+		TitledBorder panelBorder = BorderFactory.createTitledBorder(line, "Test");
+		buttonPanel.setBorder(panelBorder);
 		
 		newGame = new JButton("nouvelle partie");
+		newGame.setActionCommand("newGame");
+		newGame.setPreferredSize(new Dimension(150,50));
 		newGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -67,6 +70,7 @@ public class Client extends JFrame{
 		}); 
 		
 		rules = new JButton("afficher les regles");
+		rules.setPreferredSize(new Dimension(150,50));
 		rules.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -75,20 +79,18 @@ public class Client extends JFrame{
 		});
 		
 		//ajout des composants
-		JPanel p = new JPanel(new FlowLayout());
-		p.setPreferredSize(new Dimension(20, 20));
-		p.add(newGame);
-		buttonPanel.add(p);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		buttonPanel.add(newGame, gbc);
 		
-		p = new JPanel(new FlowLayout());
-		p.setPreferredSize(new Dimension(20, 20));
-		p.add(rules);
-		buttonPanel.add(p);
+		gbc.gridy = 1;
+		buttonPanel.add(rules, gbc);
+				
+		System.out.println(buttonPanel.getWidth());
+		System.out.println(newGame);
+		System.out.println(rules);
 		
-
-		//scroll = new JScrollPane(liste, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-		//JScrollPane scroll = new JScrollPane(this.getContentPane(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 		//Faire un panel centrale en grid et ajouter des boutons nouvelle partie, charger partie, afficher les regles
 		//Lors de la nouvelle partie on change le panel et on demande le nombre de joueurs et la difficulte
