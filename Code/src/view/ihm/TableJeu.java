@@ -22,8 +22,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
 import java.awt.Component;
+import java.awt.FlowLayout;
 
 public class TableJeu {
 	
@@ -35,114 +39,277 @@ public class TableJeu {
 	}
 	
 	public void initialize(){
-		
-		frame.setTitle("Pandocreon Divinae");
-		//frame.setPreferredSize(new Dimension(800, 600));
-		frame.setPreferredSize(new Dimension(200, 800));
+//		frame.setTitle("Pandocreon Divinae");
+		frame.setPreferredSize(new Dimension(1100,1000));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout());
 		
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.WEST);
-		
-		JPanel panel2 = new JPanel();
-		frame.getContentPane().add(panel2, BorderLayout.EAST);
-		
+		JPanel panelDroite = new JPanel();
+		panelDroite.setLayout(new BoxLayout(panelDroite, BoxLayout.Y_AXIS));
+		panelDroite.setAlignmentX(SwingConstants.CENTER);
 		
 		JPanel panelGauche = new JPanel();
 		panelGauche.setLayout(new BoxLayout(panelGauche, BoxLayout.Y_AXIS));
+		//panelGauche.setLayout(new BorderLayout());
+		
+		//Définition du panel de Gauche//
+		
+		//Panel d'affichage des joueurs
+		final JPanel panelJoueurs = new JPanel();
+		panelJoueurs.setLayout(new BoxLayout(panelJoueurs, BoxLayout.Y_AXIS));
+		
+		JPanel panelLabelJoueurJeu = new JPanel();
+		JLabel labelJoueurEnJeu = new JLabel("liste des joueurs en jeu:");
+		panelLabelJoueurJeu.add(labelJoueurEnJeu);
+		
+		panelJoueurs.add(panelLabelJoueurJeu);
+		SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	panelJoueurs.add(new ScrollerPlayer());
+            	frame.pack();
+            }
+        });
+		
+		final JPanel panelPileAppelCarte = new JPanel();
+		panelPileAppelCarte.setLayout(new BoxLayout(panelPileAppelCarte, BoxLayout.Y_AXIS));
+		
+		JPanel panelLabelPileCarte = new JPanel();
+		JLabel labelPileCarte = new JLabel("liste des cartes lancées par les joueurs:");
+		panelLabelPileCarte.add(labelPileCarte);
+		
+		labelPileCarte.setHorizontalAlignment(SwingConstants.LEFT);
+		panelPileAppelCarte.add(panelLabelPileCarte);
+		SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	panelPileAppelCarte.add(new Scroller());
+            	frame.pack();
+            }
+        });
+		
+		final JPanel panelCartesJoueur = new JPanel();
+		panelCartesJoueur.setLayout(new BoxLayout(panelCartesJoueur, BoxLayout.Y_AXIS));
+		
+		JPanel panelLabelCartesJoueur = new JPanel();
+		JLabel LabelCartesJoueur = new JLabel("liste des cartes de votre jeu:");
+		panelLabelCartesJoueur.add(LabelCartesJoueur);
+		
+		labelPileCarte.setHorizontalAlignment(SwingConstants.LEFT);
+		panelCartesJoueur.add(panelLabelCartesJoueur);
+		SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	panelCartesJoueur.add(new Scroller());
+            	frame.pack();
+            }
+        });
+		
+		
+		final JPanel panelCartesRattachesJoueur = new JPanel();
+		panelCartesRattachesJoueur.setLayout(new BoxLayout(panelCartesRattachesJoueur, BoxLayout.Y_AXIS));
+		
+		JPanel panelLabelCartesRattaches = new JPanel();
+		JLabel LabelCartesRattaches = new JLabel("Listes des cartes rattachées au joueur:");
+		panelLabelCartesRattaches.add(LabelCartesRattaches);
+		
+		LabelCartesRattaches.setHorizontalAlignment(SwingConstants.LEFT);
+		panelCartesRattachesJoueur.add(panelLabelCartesRattaches);
+		SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	panelCartesRattachesJoueur.add(new Scroller());
+            	frame.pack();
+            }
+        });
+	
+		//------------------------------//
 		
 		
 		
-		JPanel panelJoueur = new JPanel();
-		panelJoueur.setLayout(new BoxLayout(panelJoueur, BoxLayout.X_AXIS));
+		
+//		final JPanel panelPioche = new JPanel();
+//		panelPioche.setLayout(new BoxLayout(panelPioche, BoxLayout.Y_AXIS));
+//		
+//		JPanel panelDeckPioche = new JPanel();
+//		JLabel labelDeckPioche = new JLabel("deck de pioche:");
+//		labelDeckPioche.setAlignmentX(SwingConstants.CENTER);
+//		panelDeckPioche.add(labelDeckPioche);
+//		
+////		panelPioche.setAlignmentX(SwingConstants.CENTER);
+//		panelPioche.add(panelDeckPioche);
+//		JPanel panelImagePioche = new ImagePanel("./images/cartes/dosDeCartes.png",60,80);
+//		panelPioche.add(panelImagePioche);
+//		panelImagePioche.setAlignmentX(SwingConstants.CENTER);
+		
+		
+		
+		
+		
+		
+		
+		
+		//Définition du panel de droite//
+		
+		final JPanel panelDeTour = new JPanel();
+		panelDeTour.setLayout(new BoxLayout(panelDeTour, BoxLayout.Y_AXIS));
+		
+		JPanel panelLabelDe = new JPanel();
+		JLabel labelDe = new JLabel("face du dés:");
+		panelLabelDe.add(labelDe);
+		
+		panelJoueurs.add(panelLabelJoueurJeu);
+		panelDeTour.add(panelLabelDe);
+		
+		ImagePanel panelImageDe = new ImagePanel("./images/OrigineCarte/jour.jpg",800/20,800/20);
+		panelDeTour.add(new JLabel(new ImageIcon(panelImageDe.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH))));
+		
+		
+		panelImageDe.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		final JPanel panelPointsAction = new JPanel();
+		panelPointsAction.setLayout(new BoxLayout(panelPointsAction, BoxLayout.Y_AXIS));
+		
+		JPanel panelLabelPA = new JPanel();
+		JLabel labelPA = new JLabel("points d'action disponibles:");
+		panelLabelPA.add(labelPA);
+		
+		JPanel grillePoints = new JPanel();
+		grillePoints.setLayout(new GridLayout(2, 3));
+		
+		ImagePanel imageJour = new ImagePanel("./images/OrigineCarte/jour.jpg",800/20,800/20);
+		grillePoints.add(new JLabel(new ImageIcon(imageJour.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH))));
+		
+		ImagePanel imageNuit = new ImagePanel("./images/OrigineCarte/nuit.jpg",800/20,800/20);
+		grillePoints.add(new JLabel(new ImageIcon(imageNuit.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH))));
+		
+		ImagePanel imageNeant = new ImagePanel("./images/OrigineCarte/neant.jpg",800/20,800/20);
+		grillePoints.add(new JLabel(new ImageIcon(imageNeant.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH))));
+		
+		JLabel label = new JLabel("jour");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		grillePoints.add(label);
+		JLabel label_1 = new JLabel("nuit");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		grillePoints.add(label_1);
+		JLabel label_2 = new JLabel("neant");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		grillePoints.add(label_2);
+		
+		
+		panelPointsAction.add(panelLabelPA);
+		panelPointsAction.add(grillePoints);
+		
+		//-----------------------------//
+		
+
+		
+//		JPanel panelJoueur = new JPanel();
+//		panelJoueur.setLayout(new BoxLayout(panelJoueur, BoxLayout.X_AXIS));
+//		panelJoueur.setPreferredSize(new Dimension(200,200));
 		//panelJoueur.setBackground(Color.BLACK);
-		JScrollPane scrollPane = new JScrollPane(panelJoueur);
 		
 		
-		JTextArea labelArea = new JTextArea("Annonce du jeu\nAnnonce du jeu");
-		labelArea.setEditable(false);
-		labelArea.setLineWrap(true);
+//		JTextArea labelArea = new JTextArea("Annonce du jeu\nAnnonce du jeu");
+//		labelArea.setEditable(false);
+//		labelArea.setLineWrap(true);
 		
-		JPanel panelTableJeu = new JPanel();
-		panelTableJeu.setLayout(new BoxLayout(panelTableJeu, BoxLayout.X_AXIS));	
-		
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		panelTableJeu.add(Box.createRigidArea(new Dimension(5,0)));
-		panelTableJeu.add(initializeExampleCard());
-		
-		JPanel panelCarteMain = new JPanel();
-		panelCarteMain.setLayout(new BoxLayout(panelCarteMain, BoxLayout.X_AXIS));
-		panelCarteMain.setAutoscrolls(true);
-		
-		panelCarteMain.add(initializeExampleCard());
-		
-		JPanel panelCarterattache = new JPanel();
-		panelCarterattache.setLayout(new BoxLayout(panelCarterattache, BoxLayout.X_AXIS));
-		
-		panelCarterattache.add(initializeExampleCard());
-		panelCarterattache.add(initializeExampleCard());
-		
-		JLabel labelGuidesJoueur = new JLabel("cartes déposées:");
+//		JPanel panelTableJeu = new JPanel();
+//		panelTableJeu.setLayout(new BoxLayout(panelTableJeu, BoxLayout.X_AXIS));	
+//	
+//		JScrollPane jsp = new JScrollPane(panelTableJeu, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+//		
+//		
+//		JPanel panelCarteMain = new JPanel();
+//		panelCarteMain.setLayout(new BoxLayout(panelCarteMain, BoxLayout.X_AXIS));
+//		panelCarteMain.setAutoscrolls(true);
+//		
+//		panelCarteMain.add(initializeExampleCard());
+//		
+//		JPanel panelCarterattache = new JPanel();
+//		panelCarterattache.setLayout(new BoxLayout(panelCarterattache, BoxLayout.X_AXIS));
+//		
+//		panelCarterattache.add(initializeExampleCard());
+//		panelCarterattache.add(initializeExampleCard());
+//		
+//		JLabel labelGuidesJoueur = new JLabel("cartes déposées:");
 //		labelGuidesJoueur.setVerticalAlignment(SwingConstants.LEFT);
-		labelGuidesJoueur.setAlignmentX(Component.LEFT_ALIGNMENT);
+//		labelGuidesJoueur.setAlignmentX(Component.LEFT_ALIGNMENT);
 //		labelGuidesJoueur.setVerticalAlignment(SwingConstants.LEFT);
 		
 		//panel.add(annonceTexte);
 		//panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 //		ImageIcon image = new ImageIcon("./images/fondCarte/fond_apocalypses.jpg");
 //		panel.add(new JLabel(image));
-		panel.add(panelGauche);
 		
-		panelGauche.add(scrollPane);
+		
+		
+		
+//		panelGauche.add(new JLabel("coucou"));
+		
+//		JPanel p = new JPanel();
+//		p.add(panelJoueurs);
+//		
+//		panelGauche.add(p);
+		
+		//Ajout des panels dans le panel principal gauche
+		panelGauche.setPreferredSize(new Dimension(800,400));
+		panelGauche.add(panelJoueurs);
+		panelGauche.add(Box.createRigidArea(new Dimension(0,10)));
+		panelGauche.add(panelPileAppelCarte);
+		panelGauche.add(Box.createRigidArea(new Dimension(0,10)));
+		panelGauche.add(panelCartesJoueur);
+		panelGauche.add(Box.createRigidArea(new Dimension(0,10)));
+		panelGauche.add(panelCartesRattachesJoueur);
+		
+		
+		
+		//Ajout des panels dans le panel principal droit
+		panelDroite.setPreferredSize(new Dimension(300,400));
+		panelDroite.add(panelDeTour);
+		panelDroite.add(Box.createRigidArea(new Dimension(0,500)));
+		panelDroite.add(panelPointsAction);
+		
+		
+		
+		
+//		frame.getContentPane().add(panelJoueurs);
+//		frame.getContentPane().add(panelPileAppelCarte);
+		frame.getContentPane().add(panelGauche, BorderLayout.WEST);
+		frame.getContentPane().add(panelDroite, BorderLayout.EAST);
+//		frame.getContentPane().add(panelPileAppelCarte, BorderLayout.EAST);
+//		frame.getContentPane().add(panelDroite, BorderLayout.EAST);
+		
+		//Ajout des panels dans le panel de Gauche
+//		panelGauche.add(panelJoueurs);
+		
+		
+		
+		
+		
+		
 //		panelJoueur.add(new JLabel(image));
 		
-		panelGauche.add(panelTableJeu);
+//		panelGauche.add(jsp);
+//		
+//		jsp.setVisible(true);
+//		panelTableJeu.setPreferredSize(new Dimension(200, 200));
+//		
+		
+		
+//	panelGauche.add(panelTableJeu);
 //		panelJoueur.add(new JLabel(image));
-		panelGauche.add(Box.createRigidArea(new Dimension(0,20)));
-		panelGauche.add(labelArea);
-		panelGauche.add(Box.createRigidArea(new Dimension(0,20)));
+//		panelGauche.add(Box.createRigidArea(new Dimension(0,20)));
+//		panelGauche.add(labelArea);
+//		panelGauche.add(Box.createRigidArea(new Dimension(0,20)));
 //		panelGauche.add(new JLabel(image));
 		
-		panelGauche.add(panelCarteMain);
-		panelCarteMain.setAlignmentX(Component.LEFT_ALIGNMENT);
-		panelGauche.add(Box.createRigidArea(new Dimension(0,20)));
-		panelGauche.add(labelGuidesJoueur);
-		panelGauche.add(panelCarterattache);
-		panelCarterattache.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
+//		panelGauche.add(panelCarteMain);
+//		panelCarteMain.setAlignmentX(Component.LEFT_ALIGNMENT);
+//		panelGauche.add(Box.createRigidArea(new Dimension(0,20)));
+//		panelGauche.add(labelGuidesJoueur);
+//		panelGauche.add(panelCarterattache);
+//		panelCarterattache.setAlignmentX(Component.LEFT_ALIGNMENT);
 		frame.pack();
 		//panelJoueur.add(scrollPaneJoueur);
 	}
@@ -175,7 +342,7 @@ public class TableJeu {
 		
 		panelBox.add(panelTop);
 		
-		frame.getContentPane().add(panelBox, BorderLayout.CENTER);
+		//frame.getContentPane().add(panelBox, BorderLayout.CENTER);
 		
 		JLabel nomCarte = new JLabel();
 		nomCarte.setText("nom de la carte\n");

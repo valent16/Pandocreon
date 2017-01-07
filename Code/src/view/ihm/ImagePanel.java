@@ -24,6 +24,11 @@ public class ImagePanel extends JPanel {
 	            e.printStackTrace();
 	       }
 		this.setPreferredSize(new Dimension(width, height));
+		
+	}
+	
+	public BufferedImage getBufferedImage(){
+		return this.image;
 	}
 	
 	@Override
