@@ -69,7 +69,7 @@ public class Main{
 				public void run() {
 					try {
 						Client window = new Client();
-						window.getFenetre().setVisible(true);
+						window.getFenetre();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

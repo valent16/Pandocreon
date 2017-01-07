@@ -3,15 +3,9 @@ package view.ihm;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 import controller.GameController;
-import model.game.Game;
 import model.game.GameManager;
 
 public class Client extends JFrame{
@@ -27,10 +21,11 @@ public class Client extends JFrame{
 	public Client(){
 		initialize();
 		frame.setTitle("Demarrage de Partie Pandocreon");
-		frame.setPreferredSize(new Dimension(250, 250));
+		frame.setSize(250, 250);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
+		
 	}
 
 	public void initialize(){
