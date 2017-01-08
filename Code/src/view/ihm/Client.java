@@ -1,13 +1,18 @@
 package view.ihm;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,8 +30,8 @@ public class Client extends JFrame{
 
 	private JFrame frame = new JFrame();
 
-	//panel centrale des bouton
-	private JPanel buttonPanel;
+	//panel du menu principale
+	private JPanel menuPrincipal;
 
 	//bouton pour lancer une nouvelle partie
 	private JButton newGame;
@@ -36,21 +41,24 @@ public class Client extends JFrame{
 
 	//button pour les regles
 	private JButton rules;
-	
+
 	//label pour le nombre de joueur
 	private JLabel nombreJoueur;
+
+	//logo du jeu
+	private ImageIcon logo = new ImageIcon("images/logo.png");
 
 	//model
 	private final static int NOMBRE_MINIMAL_JOUEUR = 2;
 	private final static int NOMBRE_MAXIMAL_JOUEUR = 10;
-	
+
 	private GameController gc = new GameController();
 	private GameManager gm = GameManager.getInstanceUniqueManager();
 
 	private int nombreTotalJoueur = 0;
 	private int nombreJoueurReel = 0;
 	private int nombreTotalVirtuel = 0;
-	
+
 	/**Constructeur du client*/
 	public Client(){
 		initialize();
@@ -64,10 +72,10 @@ public class Client extends JFrame{
 
 	//methode pour initialiser les composants de la fenetre
 	public void initialize(){
-		buttonPanel = new JPanel(new GridBagLayout());
-		frame.setContentPane(buttonPanel);
+		menuPrincipal = new JPanel(new GridBagLayout());
+		frame.setContentPane(menuPrincipal);
 
-		buttonPanel.setPreferredSize(new Dimension(250,250));
+		menuPrincipal.setPreferredSize(new Dimension(250,250));
 
 		newGame = new JButton("Nouvelle partie");
 		newGame.setPreferredSize(new Dimension(150,35));
@@ -83,19 +91,13 @@ public class Client extends JFrame{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		buttonPanel.add(newGame, gbc);
+		menuPrincipal.add(newGame, gbc);
 
 		gbc.gridy = 1;
-		buttonPanel.add(loadGame, gbc);
+		menuPrincipal.add(loadGame, gbc);
 
 		gbc.gridy = 2;
-		buttonPanel.add(rules, gbc);
-
-
-		//TODO Faire un panel centrale en grid et ajouter des boutons nouvelle partie, charger partie, afficher les regles
-		//TODO Lors de la nouvelle partie on change le panel et on demande le nombre de joueurs et la difficulte
-
-		///////////////TODO IL FAUT TOUS FAIRE VIA LA CLASSE GAMECONTROLLER POU AJOUTER LES JOUEURS ou GAME si ca marche pas
+		menuPrincipal.add(rules, gbc);
 	}
 
 	/**Methode permettant d'ajouter les listener au boutons*/
@@ -123,8 +125,8 @@ public class Client extends JFrame{
 	}
 
 	/**Methode permettant de lancer une nouvelle partie*/
-	public void nouvellePartie(){			
-		JPanel nombreJoueurPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
+	public void nouvellePartie(){	
+		JPanel framePanel = new JPanel(new BorderLayout());
 
 		//label nombre de joueur
 		nombreJoueur = new JLabel(""+NOMBRE_MINIMAL_JOUEUR);
@@ -170,31 +172,10 @@ public class Client extends JFrame{
 			}
 		});
 
-		//bouton valider
-		JButton valider = new JButton("Valider");
-		valider.setPreferredSize(new Dimension(60, 30));
-		valider.setMinimumSize(new Dimension(60, 30));
-		valider.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreJoueur.getText() +" joueurs. Voulez-vous continuer", "Joueur ajouté", 
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if(option == JOptionPane.OK_OPTION){
-					System.out.println("test");
-					//TODO on passe a un Frame ou on demande le nombre de joueur virtuel et le nombre de jouuer reel puis on redemande valider on veriife que les deux nombres vaut le nombre de joueru total
-
-
-				}else{
-					//si il refuse on regarde ce qu'il se passe
-					JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE);
-					//this.requestFocus();	
-				}
-			}
-		});
-
-
+		JPanel nombreJoueurPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
 		JLabel mod = new JLabel("Nombre de joueur ("+NOMBRE_MINIMAL_JOUEUR+"-"+NOMBRE_MAXIMAL_JOUEUR+")");
 		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		nombreJoueurPanel.add(mod, gbc);
@@ -203,25 +184,75 @@ public class Client extends JFrame{
 		nombreJoueurPanel.add(moins, gbc);
 
 		gbc.gridx = 2;
-		//gbc.insets = new Insets(0, 5, 0, 0);
 		nombreJoueurPanel.add(nombreJoueur, gbc);
 
 		gbc.gridx = 3;
 		nombreJoueurPanel.add(plus, gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.gridwidth = 4;
-		//gbc.gridx = GridBagConstraints.REMAINDER;
-		nombreJoueurPanel.add(valider, gbc);
 
-		frame.setContentPane(nombreJoueurPanel);
+		//bouton annuler
+		JButton annuler = new JButton("Annuler");
+		annuler.setPreferredSize(new Dimension(100, 30));
+		//annuler.setMinimumSize(new Dimension(60, 30));
+		annuler.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				retourMenuPrincipale();
+			}
+		});
+
+		//bouton valider
+		JButton valider = new JButton("Valider");
+		valider.setPreferredSize(new Dimension(100, 30));
+		//valider.setMinimumSize(new Dimension(60, 30));
+		valider.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				validerNombreJoueur(); //permet de valider le nombre de joueur
+			}
+		});
+
+		//Panel sud
+		JPanel southPanel = new JPanel (new FlowLayout());
+		southPanel.add(annuler);
+		southPanel.add(valider);
+
+		framePanel.add(nombreJoueurPanel, BorderLayout.CENTER);
+		framePanel.add(southPanel, BorderLayout.SOUTH);
+
+		frame.setContentPane(framePanel);
 		frame.repaint();
 		frame.validate();
 	}
 
+	/**Methode qui valide le nombre de joueur saisi par l'utilisateur*/
+	private void validerNombreJoueur() {
+		int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreJoueur.getText() +" joueurs. Voulez-vous continuer", "Joueur ajouté", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
+		if(option == JOptionPane.OK_OPTION){
+			nombreTotalJoueur = Integer.parseInt(nombreJoueur.getText());
+			//System.out.println(nombreTotalJoueur);///////////////////////////////////////////////////////////////////////////////////
+			//TODO Lors de la nouvelle partie on change le panel et on demande le nombre de joueurs et la difficulte
+			///////////////TODO IL FAUT TOUS FAIRE VIA LA CLASSE GAMECONTROLLER POU AJOUTER LES JOUEURS ou GAME si ca marche pas
+			//TODO on passe a un Frame ou on demande le nombre de joueur virtuel et le nombre de jouuer reel puis 
+			//on redemande valider on veriife que les deux nombres vaut le nombre de joueru total
+
+		}else{
+			JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE, 
+					logo);
+		}
+		
+	}
+
+	private void retourMenuPrincipale() {
+		int option = JOptionPane.showConfirmDialog(null, "Voulez vous revenir au menu principal ?", "Revenir au Menu Principal", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
+		if(option == JOptionPane.OK_OPTION){
+			frame.setContentPane(menuPrincipal);
+		}
+	}
+
 	private void chargerPartie() {
-		JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpé", "chargement de partie", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpé", "chargement de partie", JOptionPane.WARNING_MESSAGE, logo);
 	}
 
 	/**Methode permettant d'afficher les regles du jeu*/
@@ -357,8 +388,9 @@ public class Client extends JFrame{
 
 		JLabel labelRegles = new JLabel(regles);
 		JScrollPane scrollPanel = new JScrollPane(labelRegles);
+		scrollPanel.getVerticalScrollBar().setUnitIncrement(10);//augmente la vitesse de scroling
 		scrollPanel.setPreferredSize( new Dimension(600, 700) );
-		JOptionPane.showMessageDialog(null, scrollPanel, "Regles du jeu", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, scrollPanel, "Regles du jeu", JOptionPane.INFORMATION_MESSAGE, logo);
 	}
 
 	/**Getter Jframe
