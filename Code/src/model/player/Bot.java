@@ -221,7 +221,6 @@ public class Bot extends Player{
 		 return false;
 	 }
 
-	 //TODO A FAIREMethode pour tester si le bot est dernier au score
 	 public boolean isLast(){
 		 //TODO a faire en sorte que cette methode marche faire une hasmap avec les bot et le score et utiliser une methode sort pour les tries
 		 Player p;
@@ -251,7 +250,8 @@ public class Bot extends Player{
 				 }
 			 }
 			 if(joueurDernier==this){
-				 players.remove(this);////////////////////////////:CEST ICI QUON SUPPRIME LE BOT//voir si on fait pas dans la methode lancer apocalypse du de la strategy un remove du joueur en appelant la methode elimination joueurfaibel du gameManager 
+				 //players.remove(this);////////////////////////////:CEST ICI QUON SUPPRIME LE BOT//voir si on fait pas dans la methode lancer apocalypse 
+				 //du de la strategy un remove du joueur en appelant la methode elimination joueurfaible du gameManager 
 				 System.out.println(joueurDernier.getNom()+" est dernier");///////////////////////////////////////////////////////////////
 				 return true;
 			 }

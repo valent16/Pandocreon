@@ -35,17 +35,14 @@ public class MediumStrategy implements Strategy {
 	 */
 	public void jouer(Bot b){
 		this.setBot(b); //Passage des données du bot
-		bot.afficherHand();
-		System.out.println("\n\n////////////////////////////////////APPELLE DE LA METHODE isLAST");//////////////////////////////////////////////////////////
-		bot.isLast();////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		System.out.println("\n\n////////////////////////////////////");///////////////////////////////////////////////////////////////////////////////////////
-		System.out.println("score de "+ bot.getNom() + " " +bot.getScore());
-		if(bot.hasApocalypse()){
-			System.out.println("il a une apocalypse");
+		System.out.println("Origine de la Divinite de "+ bot.getNom() +" "+ bot.getDivinity().getOrigine());////////////////////////////////////////////////////////
+		System.out.println("les points de "+ bot.getNom() +" "+ bot.getDicoPA());////////////////////////////////////////////////////////
+		System.out.println(bot.getNom() +" a comme cartes :");//////////////////////////////////////////////////////////////////////////////////////////////
+		bot.afficherHand();///////////////////////////////////////////////////////////////////:///////////////////////////////////////
+		
+		if(bot.hasApocalypse()){//si le bot a une apocalypse
 			this.lancerApocalypse();
-		}
-		else{//si pas d'apocalypse on eesaye de convertir un croyant
-			System.out.println("il essaye de convertir");
+		}else{//si pas d'apocalypse on eesaye de convertir un croyant
 			this.convertirCroyants();
 		}
 	}
@@ -58,9 +55,11 @@ public class MediumStrategy implements Strategy {
 			if(possibleBelievers.size() != 0){//si des croyants sont potentiellement convertibles
 				SpiritGuide guide = bot.getSpiritGuides().get(0); //recupere un guide
 				if(bot.pointsOrigineSuffisants(guide)){
-					System.out.println("il a assez de points");
 					try{
 						guide.utiliserPouvoir("convertir Croyant", bot);
+						System.out.println(bot.getNom() +" a converti avec son guide des croyants ");////////////////////////////////////////////////////////
+						System.out.println("le guide qui a converti " + guide);////////////////////////////////////////////////////////////////////////////
+						System.out.println("les croyants convertis " +guide.getCroyantsConvertis());/////////////////////////////////////////////////////////
 					}catch (Exception e) {
 						this.depotCroyant();
 					}
@@ -86,10 +85,9 @@ public class MediumStrategy implements Strategy {
 			while(it.hasNext()){ //recupere le premier croyant posable
 				Believer believer = it.next();
 				if(bot.pointsOrigineSuffisants(believer)){	//test si le bot a suffisamment de point
-					System.out.println("le point requis " + bot.getDicoPA().get(believer.getOrigine()));
-					System.out.println("il a assez de point");
 					try{
 						believer.utiliserPouvoir("deposer Croyant", bot);
+						System.out.println(bot.getNom() +" a deposer"+ believer);////////////////////////////////////////////////////////
 						break;
 					} catch (Exception e) {
 						this.economy();
@@ -105,34 +103,27 @@ public class MediumStrategy implements Strategy {
 		}
 	}
 
-	/*Methode permettant au bot d'economiser ses points et donc de piocher ou de se defauuser dependant du nombre de cartes qu'il possede*/
-	@Override
-	public void economy(){
-		if(bot.getNbCartes() < 7){//si le bot n'a plus de cartes il pioche
-			System.out.println(bot.getNom() +" pioche");
-			bot.piocher();
-
-		}else{
-			bot.defausserCarte(bot.getHand().get(0));//il se defausse de sa premiere carte
-			System.out.println(bot.getNom() +" s'est defausser de 7 cartes");
-		}
-	}
-
 	@Override
 	/**Methode permettant au bot de lancer une apocalypse*/
 	public void lancerApocalypse(){
 		if(GameManager.getInstanceUniqueManager().getNumeroTour() > 5){//Si on est dans les 5 premiers tour de jeu on ne lance pas d'apocalypse
-			ArrayList<Player> test = GameManager.getInstanceUniqueManager().getPlayers();
-			System.out.println(test.size());
+			ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();/////////////////////////////////:::::::::::::::::::::::::::::::::::::::::::::::
+			System.out.println(players.size());////////////////////////////////////////////////////////////////////////////////////////////////////////
 			ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
+			System.out.println("\n\nAPPELLE DE LA METHODE isLAST");//////////////////////////////////////////////////////////
+			bot.isLast();////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			System.out.println("\n\n////////////////////////////////////");///////////////////////////////////////////////////////////////////////////////////////
+			System.out.println("score de "+ bot.getNom() + " " +bot.getScore());/////////////////////////////////////////////////////////////////////////////////
 			if(!bot.isLast()){//on test s'il est dernier
 				if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
 					try {					
-						Iterator<Player> it = test.iterator();
-						while(it.hasNext()){
-							System.out.println("score du "+ it.next().getNom() +" = "+ it.next().getScore());
+						Iterator<Player> it = players.iterator();////////////////////////////////////////////////////:
+						while(it.hasNext()){///////////////////////////////////////////////////////////////////////////
+							System.out.println("score du "+ it.next().getNom() +" = "+ it.next().getScore());/////////////////////////////////////////////////////////////////
 						}
 						apocalypse.utiliserPouvoir("declencher apocalypse", bot);
+						System.out.println(bot.getNom() +" A LANCER UNE APOCALYSPE "+ apocalypse);////////////////////////////////////////////////////////
+						System.out.println("joueurs Restant "+GameManager.getInstanceUniqueManager().getPlayers());//////////////////////////////////////////////////////////////////////////
 						//TODO voir si on doit arreter la partie de nous meme ou si dans les methodes et classe apocalypse on l'arrete automatiquement
 					} catch (PAInsuffisantException e) {
 						this.convertirCroyants();
@@ -146,7 +137,19 @@ public class MediumStrategy implements Strategy {
 		}else{
 			this.convertirCroyants();
 		}
+	}
+	
+	/*Methode permettant au bot d'economiser ses points et donc de piocher ou de se defauuser dependant du nombre de cartes qu'il possede*/
+	@Override
+	public void economy(){
+		if(bot.getNbCartes() < 7){//si le bot n'a plus de cartes il pioche
+			System.out.println(bot.getNom() +" pioche");
+			bot.piocher();
 
+		}else{
+			bot.defausserCarte(bot.getHand().get(0));//il se defausse de sa premiere carte
+			System.out.println(bot.getNom() +" s'est defausser de 7 cartes");
+		}
 	}
 
 	@Override

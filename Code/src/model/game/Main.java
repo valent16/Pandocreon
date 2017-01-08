@@ -19,7 +19,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 7;
+		int valeur = 3;
 
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -66,14 +66,14 @@ public class Main{
 		Bot b1 = new Bot("bot1", new MediumStrategy());
 		Bot b2 = new Bot("bot2", new MediumStrategy());
 		Bot b3 = new Bot("bot3", new MediumStrategy());
-		Bot b4 = new Bot("bot4", new MediumStrategy());
-		Bot b5 = new Bot("bot5", new MediumStrategy());
+		//Bot b4 = new Bot("bot4", new MediumStrategy());
+		//Bot b5 = new Bot("bot5", new MediumStrategy());
 
 		game.ajouterBot(b1);
 		game.ajouterBot(b2);
 		game.ajouterBot(b3);
-		game.ajouterBot(b4);
-		game.ajouterBot(b5);
+		//game.ajouterBot(b4);
+		//game.ajouterBot(b5);
 
 		game.nouvellePartie();	
 		GameManager.getInstanceUniqueManager().startGame();
