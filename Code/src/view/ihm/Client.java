@@ -3,12 +3,16 @@ package view.ihm;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,24 +31,26 @@ public class Client extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private JFrame frame = new JFrame();
-	
+
 	//panel centrale des bouton
 	private JPanel buttonPanel;
-	
+
 	//bouton pour lancer une nouvelle partie
 	private JButton newGame;
-	
+
 	//bouton pour le chargement d'une partie
 	private JButton loadGame;
-	
+
 	//button pour les regles
 	private JButton rules;
-	
+
 
 	private GameController gc = new GameController();
 	private GameManager gm = GameManager.getInstanceUniqueManager();
 
-	
+	private JLabel nombreJoueur;
+
+
 
 	public Client(){
 		initialize();
@@ -60,38 +66,38 @@ public class Client extends JFrame{
 	public void initialize(){
 		buttonPanel = new JPanel(new GridBagLayout());
 		frame.setContentPane(buttonPanel);
-		
+
 		buttonPanel.setPreferredSize(new Dimension(250,250));
-		
+
 		newGame = new JButton("Nouvelle partie");
 		newGame.setPreferredSize(new Dimension(150,35));
-		
+
 		loadGame = new JButton("Charger Partie");
 		loadGame.setPreferredSize(new Dimension(150, 35));
-		
-		
+
+
 		rules = new JButton("afficher les regles");
 		rules.setPreferredSize(new Dimension(150,35));
-		
+
 		//ajout des composants
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		buttonPanel.add(newGame, gbc);
-		
+
 		gbc.gridy = 1;
 		buttonPanel.add(loadGame, gbc);
-		
+
 		gbc.gridy = 2;
 		buttonPanel.add(rules, gbc);
-		
+
 
 		//TODO Faire un panel centrale en grid et ajouter des boutons nouvelle partie, charger partie, afficher les regles
 		//TODO Lors de la nouvelle partie on change le panel et on demande le nombre de joueurs et la difficulte
 
 		///////////////TODO IL FAUT TOUS FAIRE VIA LA CLASSE GAMECONTROLLER POU AJOUTER LES JOUEURS ou GAME si ca marche pas
 	}
-	
+
 	/**Methode permettant d'ajouter les listener au boutons*/
 	private void ajoutListener() {
 		newGame.addActionListener(new ActionListener() {
@@ -100,14 +106,14 @@ public class Client extends JFrame{
 				nouvellePartie();
 			}
 		});
-		
+
 		loadGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				chargerPartie();
 			}
 		});
-		
+
 		rules.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -115,21 +121,86 @@ public class Client extends JFrame{
 			}
 		});
 	}
-	
+
 	/**Methode permettant de lancer une nouvelle partie*/
 	public void nouvellePartie(){
 		//TODO a faire la methode pour lancer une nouvelle partie
-		//lancer un panel pour demander le nombre de joueur et ensuite voir les methodes qui gerer ca en mode console
+		//TODO lancer un panel pour demander le nombre de joueur et ensuite voir les methodes qui gerer ca en mode console
+
+		//Panel pour le nombre de joueur		
+		JPanel nombreJoueurPanel = new JPanel(new GridBagLayout());
+
+		nombreJoueur = new JLabel("1");
+		nombreJoueur.setHorizontalAlignment(JLabel.CENTER); //permet de centrer le contenu du label
+		
+		Border line = BorderFactory.createLineBorder(Color.GRAY, 2);//permet de creer un borudre sur le label
+		Border panelBorder = BorderFactory.createTitledBorder(line, "");
+		nombreJoueur.setBorder(panelBorder);
+		nombreJoueur.setPreferredSize(new Dimension(30,30));
+
+		//JButton plus = new JButton(new ImageIcon("./image/plus.png"));
+		JButton plus = new JButton("+");
+		plus.setPreferredSize(new Dimension(30, 30));
+		plus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String d = nombreJoueur.getText();
+				int c = Integer.parseInt(d);
+				c++;
+				nombreJoueur.setText(""+c);
+				frame.requestFocus();				
+			}
+		});
+		//JButton moins = new JButton(new ImageIcon("./image/moins.png"));
+		JButton moins = new JButton("-");
+		moins.setPreferredSize(new Dimension(30, 30));
+		moins.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String d = nombreJoueur.getText();
+				int c = Integer.parseInt(d);
+				if(c == 1)
+					c = 1;
+				else
+					c--;
+				nombreJoueur.setText(""+c);
+				frame.requestFocus();				
+			}
+		});
+
+		JLabel mod = new JLabel("Nombre de joueur :  ");
+
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		nombreJoueurPanel.add(mod, gbc);
+
+		gbc.gridx = 1;
+		nombreJoueurPanel.add(moins, gbc);
+		
+		gbc.gridx = 2;
+		//gbc.insets = new Insets(0, 5, 0, 0);
+		nombreJoueurPanel.add(nombreJoueur, gbc);
+		
+		gbc.gridx = 3;
+		nombreJoueurPanel.add(plus, gbc);
+			
+		frame.setContentPane(nombreJoueurPanel);
+		frame.repaint();
+		frame.validate();
 	}
-	
+
 	private void chargerPartie() {
-		JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpe", "chargement de partie", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpé", "chargement de partie", JOptionPane.WARNING_MESSAGE);
 	}
 
 	/**Methode permettant d'afficher les regles du jeu*/
 	private void afficherRegles(){
 		String regles = "<html><h1>Pandocreon Divinae</h1>"
-		+ "<h2>Livret de Regles</h2>"
+				+ "<h2>Livret de Regles</h2>"
 
 		+ "<h3>Mythologie</h3>"
 		+ "Dans le monde de Pandocréon, les hommes prient le Haut Dieu, chacun à leur<br/>"
@@ -206,7 +277,7 @@ public class Client extends JFrame{
 		+ "Les Croyants possèdent des capacités spéciales qui permettent de faire certaines<br/>"
 		+ "actions en contrepartie d’un sacrifice (la carte est alors défaussée). Une carte de<br/>"
 		+ "Croyants ne peut pas être sacrifiée lorsqu’elle est encore au centre de la table.<br/>"
-	
+
 		+ "<h3>Les Guides Spirituels</h3>"
 		+ "Lorsque les Croyants sont au milieu de la table, ils ne rapportent aucun point de<br/>"
 		+ "Prière aux Divinités. Pour que celles-ci récupèrent les prières des Croyants, il<br/>"
@@ -224,13 +295,13 @@ public class Client extends JFrame{
 		+ " (il est alors défaussé, et les Croyants qui y étaient attachés reviennent au centre de la table).<br/>"
 		+ "Un Guide Spirituel n'ayant plus de Croyants rattachés à lui (à la suite de sacrifices<br/>"
 		+ "par exemple) est défaussé. Sa capacité spéciale de sacrifice n'est pas jouée.<br/>"
-		
+
 		+ "<h3>Les cartes DeusEx</h3>"
 		+ "Ces cartes ont des capacités spéciales, agissant sur les Croyants ou les Guides<br/>"
 		+ "Spirituels en jeu, voire directement sur les Divinités. Leur effet est immédiat.<br/>"
 		+ "Les Deus Ex sans Origine peuvent être utilisées à n’importe quel moment, sans<br/>"
 		+ "coûter de point d’Action.<br/>"
-		
+
 		+ "<h3>Les cartes Apocalypse</h3>"
 		+ "Lorsqu’un joueur pose une carte Apocalypse, un bouleversement divin a lieu, qui<br/>"
 		+ "interrompt la partie. Tous les joueurs additionnent alors le nombre de Croyants<br/>"
@@ -263,12 +334,17 @@ public class Client extends JFrame{
 		JOptionPane.showMessageDialog(null, scrollPanel, "Regles du jeu", JOptionPane.INFORMATION_MESSAGE);
 	}
 
-
-
 	/**Getter Jframe
 	 * @return la fenetre graphique
 	 */
 	public JFrame getFenetre(){
 		return frame;
+	}
+	
+	/**Getter nombre de joueur
+	 * @return le nombre de joueur choisi pour demarrer la partie
+	 */
+	public int getJoueurs(){
+		return Integer.parseInt(nombreJoueur.getText());
 	}
 }
