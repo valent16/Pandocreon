@@ -65,7 +65,7 @@ public class TableJeu{
 		panelPileAppelCarte.setLayout(new BoxLayout(panelPileAppelCarte, BoxLayout.Y_AXIS));
 		
 		JPanel panelLabelPileCarte = new JPanel();
-		JLabel labelPileCarte = new JLabel("liste des cartes lanc�es par les joueurs:");
+		JLabel labelPileCarte = new JLabel("liste des cartes lancees par les joueurs:");
 		panelLabelPileCarte.add(labelPileCarte);
 		
 		labelPileCarte.setHorizontalAlignment(SwingConstants.LEFT);

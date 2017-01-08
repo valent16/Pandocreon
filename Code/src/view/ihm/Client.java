@@ -1,18 +1,13 @@
 package view.ihm;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,8 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-
 
 import controller.GameController;
 import model.game.GameManager;
@@ -43,20 +36,27 @@ public class Client extends JFrame{
 
 	//button pour les regles
 	private JButton rules;
+	
+	//label pour le nombre de joueur
+	private JLabel nombreJoueur;
 
-
+	//model
+	private final static int NOMBRE_MINIMAL_JOUEUR = 2;
+	private final static int NOMBRE_MAXIMAL_JOUEUR = 10;
+	
 	private GameController gc = new GameController();
 	private GameManager gm = GameManager.getInstanceUniqueManager();
 
-	private JLabel nombreJoueur;
-
-
-
+	private int nombreTotalJoueur = 0;
+	private int nombreJoueurReel = 0;
+	private int nombreTotalVirtuel = 0;
+	
+	/**Constructeur du client*/
 	public Client(){
 		initialize();
 		ajoutListener();
 		frame.setTitle("Client Pandocreon Divinae");
-		frame.setSize(250, 250);
+		frame.setSize(400, 250);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);	
@@ -123,46 +123,46 @@ public class Client extends JFrame{
 	}
 
 	/**Methode permettant de lancer une nouvelle partie*/
-	public void nouvellePartie(){
-		//TODO a faire la methode pour lancer une nouvelle partie
-		//TODO lancer un panel pour demander le nombre de joueur et ensuite voir les methodes qui gerer ca en mode console
+	public void nouvellePartie(){			
+		JPanel nombreJoueurPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
 
-		//Panel pour le nombre de joueur		
-		JPanel nombreJoueurPanel = new JPanel(new GridBagLayout());
-
-		nombreJoueur = new JLabel("1");
+		//label nombre de joueur
+		nombreJoueur = new JLabel(""+NOMBRE_MINIMAL_JOUEUR);
 		nombreJoueur.setHorizontalAlignment(JLabel.CENTER); //permet de centrer le contenu du label
-		
-		Border line = BorderFactory.createLineBorder(Color.GRAY, 2);//permet de creer un borudre sur le label
+
+		//bordure sur le label nombre de joueur
+		Border line = BorderFactory.createLineBorder(Color.GRAY, 2);
 		Border panelBorder = BorderFactory.createTitledBorder(line, "");
 		nombreJoueur.setBorder(panelBorder);
 		nombreJoueur.setPreferredSize(new Dimension(30,30));
 
-		//JButton plus = new JButton(new ImageIcon("./image/plus.png"));
+		//bouton plus
 		JButton plus = new JButton("+");
 		plus.setPreferredSize(new Dimension(30, 30));
 		plus.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String d = nombreJoueur.getText();
 				int c = Integer.parseInt(d);
-				c++;
+				if(c == NOMBRE_MAXIMAL_JOUEUR)
+					c = NOMBRE_MAXIMAL_JOUEUR;
+				else
+					c++;
 				nombreJoueur.setText(""+c);
 				frame.requestFocus();				
 			}
 		});
-		//JButton moins = new JButton(new ImageIcon("./image/moins.png"));
+
+		//bouton moins
 		JButton moins = new JButton("-");
 		moins.setPreferredSize(new Dimension(30, 30));
 		moins.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String d = nombreJoueur.getText();
 				int c = Integer.parseInt(d);
-				if(c == 1)
-					c = 1;
+				if(c == NOMBRE_MINIMAL_JOUEUR)
+					c = NOMBRE_MINIMAL_JOUEUR;
 				else
 					c--;
 				nombreJoueur.setText(""+c);
@@ -170,9 +170,30 @@ public class Client extends JFrame{
 			}
 		});
 
-		JLabel mod = new JLabel("Nombre de joueur :  ");
+		//bouton valider
+		JButton valider = new JButton("Valider");
+		valider.setPreferredSize(new Dimension(60, 30));
+		valider.setMinimumSize(new Dimension(60, 30));
+		valider.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreJoueur.getText() +" joueurs. Voulez-vous continuer", "Joueur ajouté", 
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if(option == JOptionPane.OK_OPTION){
+					System.out.println("test");
+					//TODO on passe a un Frame ou on demande le nombre de joueur virtuel et le nombre de jouuer reel puis on redemande valider on veriife que les deux nombres vaut le nombre de joueru total
 
-		
+
+				}else{
+					//si il refuse on regarde ce qu'il se passe
+					JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE);
+					//this.requestFocus();	
+				}
+			}
+		});
+
+
+		JLabel mod = new JLabel("Nombre de joueur ("+NOMBRE_MINIMAL_JOUEUR+"-"+NOMBRE_MAXIMAL_JOUEUR+")");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -180,14 +201,20 @@ public class Client extends JFrame{
 
 		gbc.gridx = 1;
 		nombreJoueurPanel.add(moins, gbc);
-		
+
 		gbc.gridx = 2;
 		//gbc.insets = new Insets(0, 5, 0, 0);
 		nombreJoueurPanel.add(nombreJoueur, gbc);
-		
+
 		gbc.gridx = 3;
 		nombreJoueurPanel.add(plus, gbc);
-			
+		
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.gridwidth = 4;
+		//gbc.gridx = GridBagConstraints.REMAINDER;
+		nombreJoueurPanel.add(valider, gbc);
+
 		frame.setContentPane(nombreJoueurPanel);
 		frame.repaint();
 		frame.validate();
@@ -340,7 +367,7 @@ public class Client extends JFrame{
 	public JFrame getFenetre(){
 		return frame;
 	}
-	
+
 	/**Getter nombre de joueur
 	 * @return le nombre de joueur choisi pour demarrer la partie
 	 */
