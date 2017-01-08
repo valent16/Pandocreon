@@ -160,7 +160,7 @@ public class MediumStrategy implements Strategy {
 
 	@Override
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
-		// Remplacer les test de bot.points origines suffisant si on a les points jours ou neant on prend cela sinon on utilise les neants
+		// Remplacer les test de bot points origines suffisant si on a les points jours ou neant on prend cela sinon on utilise les neants
 		return null;
 	}
 

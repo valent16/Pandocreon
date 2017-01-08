@@ -58,7 +58,7 @@ public class GameManager implements IObservableGameManager {
 		if (managerUnique == null){
 			synchronized (GameManager.class){ //pour gerer le multi-thread
 				if (managerUnique == null){
-					managerUnique= new GameManager();
+					managerUnique = new GameManager();
 				}
 			}
 		}
