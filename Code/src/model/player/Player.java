@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.sun.javafx.geom.transform.BaseTransform.Degree;
+
 import model.Observer;
 import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumOrigineDivinite;
@@ -255,15 +257,29 @@ public abstract class Player extends Observer{
 		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
 	}
 
-	//Methode appelee a chaque debut de tour pour attribuer les PA au joueur
 	/**Methode permettant d'ajoueter les points d'action au joueur a chaque tour grace au Dé*/
 	protected void incrementerPointActionWithDe(){
-		if (divinity.getOrigine() == EnumOrigineDivinite.AUBE || divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE){
-			incrementerPointAction(De.getInstanceDe().getFace(),1);
-		}else{
-			if (De.getInstanceDe().getFace() == EnumCosmogonie.JOUR || De.getInstanceDe().getFace() == EnumCosmogonie.NUIT){
-				incrementerPointAction(De.getInstanceDe().getFace(), 2);
-			}
+		
+		//si le de a une face jour
+		if (De.getInstanceDe().getFace() == EnumCosmogonie.JOUR){
+			if(divinity.getOrigine() == EnumOrigineDivinite.JOUR)
+				incrementerPointAction(De.getInstanceDe().getFace(), 1);//on ajoute 2 point pour une orgine Jour
+			else if(divinity.getOrigine() == EnumOrigineDivinite.AUBE)
+				incrementerPointAction(De.getInstanceDe().getFace(), 1);//on ajoute 1 point pour une origine Aube
+		}
+		//si le de a une face nuit
+		else if (De.getInstanceDe().getFace() == EnumCosmogonie.NUIT){
+			if(divinity.getOrigine() == EnumOrigineDivinite.NUIT)
+				incrementerPointAction(De.getInstanceDe().getFace(), 2);//on ajoute 2 point pour une orgine Nuit
+			if(divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE)
+				incrementerPointAction(De.getInstanceDe().getFace(), 1);//on ajoute 1 point pour une origine Crepuscule
+		}
+		//si le de a une face neant
+		else if(De.getInstanceDe().getFace() == EnumCosmogonie.NEANT){
+			if(divinity.getOrigine() == EnumOrigineDivinite.AUBE)
+				incrementerPointAction(De.getInstanceDe().getFace(), 1);//on ajoute 1 point pour une orgine Aube
+			if(divinity.getOrigine() == EnumOrigineDivinite.CREPUSCULE)
+				incrementerPointAction(De.getInstanceDe().getFace(), 1);//on ajoute 1 point pour une origine Crepuscule
 		}
 	}
 	
