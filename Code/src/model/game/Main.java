@@ -82,7 +82,7 @@ public class Main{
 			gameController.CreationJoueur("valentin", 18);
 			gameController.CreationJoueur("David", 20);
 			
-			gameController.lancerPartie();//choisi de lancer en mode graphique
+			gameController.lancerPartie();
 			break;
 		default:
 		}
