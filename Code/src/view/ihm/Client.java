@@ -23,11 +23,11 @@ import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
 import controller.GameController;
+import model.game.Game;
+import model.game.GameManager;
 
 /**Classe qui represente le menu de l'IHM*/
-public class Client extends JFrame{
-
-	private static final long serialVersionUID = 1L;
+public class Client{
 
 	/**Attribut represennat les composants de l'interface graphique*/
 	private JFrame frame = new JFrame();
@@ -77,7 +77,7 @@ public class Client extends JFrame{
 		frame.setTitle("Client Pandocreon Divinae");
 		frame.setSize(500, 200);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);	
 	}
 
@@ -386,7 +386,6 @@ public class Client extends JFrame{
 				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreHumain.getText() +" de joueurs humains. Voulez-vous continuer ?", "humain ajoutés", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
 				if(option == JOptionPane.OK_OPTION){
 					nombreTotalHumain = Integer.parseInt(nombreHumain.getText());
-					System.out.println(nombreTotalHumain);
 					ajouterInfoJoueurHumain();//on ajoute les noms et age des joueurs
 				}else
 					JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE, logo);
@@ -418,50 +417,41 @@ public class Client extends JFrame{
 
 	/**Methode pour lancer la partie*/
 	private void lancerPartie() {
-		System.out.println("on lance la partie");
-
+		CreationJoueur();//methodes pour creer tous les joueurs
 		//TODO Dans la classe Player ajouter une instance observateur Player
 		//TODO Quand on pose une carte on notifie le joueur et la carte
 		//TODO faire un ObservateurPlayer dans view qui permet
 		//TODO Creer les bots puis les mettre games dans la nouvelle partie
 		//TODO il balance une carte il faut recuperer la carte et le nom du bot
-
-		JFrame test = new JFrame("Test");
-		JLabel salut = new JLabel("salut");
-		test.getContentPane().add(salut);
-		
-		test.pack();
-		test.setVisible(true);
-		
+		//TODO il faut changer la vue car la methode MenuPrinciaple de la classe VUegame est fait pour la consolle il faut appeler une nouvelle methode
 
 
-		///TODO A FAIRE AU COMPLET
-		//il faut changer la vue car la methode MenuPrinciaple de la classe VUegame est fait pour la consolle il faut appeler une nouvelle methode
-		//La methode de game est bonn mais 
+		//POURQUOI CA MARCHE DANS LE MAIN ET PAS LA
+		/*
+		GameController gameController1 = new GameController();
+		gameController1.startGame();
 
-		//TODO PROBLEME CA NE LANCE PAS LA FENETRE
-		GameController gameController = new GameController();
-		gameController.startGame();
+		gameController1.CreationJoueur("valentin", 18);
+		gameController1.CreationJoueur("David", 20);
 
-		gameController.CreationJoueur("valentin", 22);////////////////////////
-		gameController.CreationJoueur("David", 20);//////////////////////////
+		gameController1.lancerPartie();
+		 */
+	}
 
-		gameController.lancerPartie();
+	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
+	private void CreationJoueur() {
+		//Creation et ajout des bots dans la partie
+		for(int i = 0; i<nombreTotalBot; i++){
+			gc.CreationBot(Game.getBotName(i), strategie);//ajout des bots
+		}
+		System.out.println("affichage des bots "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 
+		//Creation et ajout des humains dans la partie
+		for(int i = 0; i<nombreTotalHumain; i++){
+			gc.CreationJoueur("Humain"+i, 20); //TODO Il faudra Avoir un arraylist pour les noms et 1 pour les ages en attribut et lors de la methode Ajoutinfojoueurs on les recuperers
+		}
+		System.out.println("affichage des joueur "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 
-		////////////////////
-		/*GameController gameController = new GameController();
-		gameController.startGame();
-
-		Human joueur1 = new Human("valentin", 18);
-		joueur1.attacher(new JoueurController(joueur1));
-		Human joueur2 = new Human("David", 20);
-		joueur2.attacher(new JoueurController(joueur2));
-
-		gameController.getGame().ajouterJoueurReel(joueur1);
-		gameController.getGame().ajouterJoueurReel(joueur2);
-
-		gameController.lancerPartie();*/
 	}
 
 	/**Methode pour revenir au panel MenuPrincipale*/

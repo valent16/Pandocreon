@@ -26,7 +26,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 6;
+		int valeur = 7;
 		
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -48,18 +48,15 @@ public class Main{
 
 		case 5: //test pour le lancement d'une partie
 			GameController gameController = new GameController();
-			//gameController.getGame().initGame();
 			gameController.startGame();
 			
-			gameController.CreationJoueur("valentin", 22);////////////////////////
-			gameController.CreationJoueur("David", 20);//////////////////////////
-			//Human joueur1 = new Human("valentin", 18);
-			//joueur1.attacher(new JoueurController(joueur1));
-			//Human joueur2 = new Human("David", 20);
-			//joueur2.attacher(new JoueurController(joueur2));
+			Human joueur1 = new Human("valentin", 18);
+			joueur1.attacher(new JoueurController(joueur1));
+			Human joueur2 = new Human("David", 20);
+			joueur2.attacher(new JoueurController(joueur2));
 			
-			//gameController.getGame().ajouterJoueurReel(joueur1);
-			//gameController.getGame().ajouterJoueurReel(joueur2);
+			gameController.getGame().ajouterJoueurReel(joueur1);
+			gameController.getGame().ajouterJoueurReel(joueur2);
 
 			gameController.lancerPartie(); //on lance en mode console
 			break;
@@ -69,7 +66,6 @@ public class Main{
 				public void run() {
 					try {
 						Client window = new Client();
-						System.out.println(window);///////////
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -85,6 +81,7 @@ public class Main{
 			gameController1.CreationJoueur("David", 20);
 			
 			gameController1.lancerPartie();
+			System.out.println("affichage des joueur "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 			break;
 		default:
 		}
