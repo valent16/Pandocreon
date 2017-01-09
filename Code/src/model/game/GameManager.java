@@ -53,6 +53,9 @@ public class GameManager implements IObservableGameManager {
 
 	/**Attribut representant le nombre de tour*/
 	private int nombreTour = 1;
+	
+	/**ajout de l'IHM tableJeu*/
+	private TableJeu tb;
 
 	/** Methode permettant d'avoir une seule instance du gestionnaire de partie
 	 * @return le gestionnaire de partie
@@ -84,7 +87,7 @@ public class GameManager implements IObservableGameManager {
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
-		TableJeu tb = new TableJeu();
+		tb = new TableJeu();
 		this.deroulementTourJeu();	
 	}
 
@@ -402,6 +405,13 @@ public class GameManager implements IObservableGameManager {
 	 */
 	public LinkedList<Card> getPilesCartesTour(){
 		return pilesCartesTour;
+	}
+	
+	/**Getter de la table du jeu
+	 * @return la table du jeu
+	 */
+	public TableJeu getTableJeu() {
+		return tb;
 	}
 
 	@Override

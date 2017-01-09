@@ -42,6 +42,7 @@ public class TableJeu extends ViewGame{
 		//super(controller, j);
 		initialize();
 		frame.setVisible(true);
+		frame.requestFocus();
 	}
 	
 	public void initialize(){
@@ -71,6 +72,7 @@ public class TableJeu extends ViewGame{
 
 		frame.getContentPane().add(panelGlobal, BorderLayout.CENTER);
 		frame.pack();
+		frame.setLocationRelativeTo(null);
 		
 //		JPanel panelDroite = new JPanel();
 //		panelDroite.setLayout(new BoxLayout(panelDroite, BoxLayout.Y_AXIS));

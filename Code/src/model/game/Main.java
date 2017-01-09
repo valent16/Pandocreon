@@ -26,7 +26,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 7;
+		int valeur = 5;
 		
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -50,14 +50,16 @@ public class Main{
 			GameController gameController = new GameController();
 			//gameController.getGame().initGame();
 			gameController.startGame();
-
-			Human joueur1 = new Human("valentin", 18);
-			joueur1.attacher(new JoueurController(joueur1));
-			Human joueur2 = new Human("David", 20);
-			joueur2.attacher(new JoueurController(joueur2));
 			
-			gameController.getGame().ajouterJoueurReel(joueur1);
-			gameController.getGame().ajouterJoueurReel(joueur2);
+			gameController.CreationJoueur("valentin", 22);////////////////////////
+			gameController.CreationJoueur("David", 20);//////////////////////////
+			//Human joueur1 = new Human("valentin", 18);
+			//joueur1.attacher(new JoueurController(joueur1));
+			//Human joueur2 = new Human("David", 20);
+			//joueur2.attacher(new JoueurController(joueur2));
+			
+			//gameController.getGame().ajouterJoueurReel(joueur1);
+			//gameController.getGame().ajouterJoueurReel(joueur2);
 
 			gameController.lancerPartie(); //on lance en mode console
 			break;

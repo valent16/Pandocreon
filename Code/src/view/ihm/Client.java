@@ -424,15 +424,40 @@ public class Client extends JFrame{
 
 	/**Methode pour lancer la partie*/
 	private void lancerPartie() {
+		System.out.println("on lance la partie");
+		
+		JFrame test = new JFrame("salut");
+		JLabel salut = new JLabel("salut");
+		test.getContentPane().add(salut);
+		test.setVisible(true);
+		
 		
 		//TODO ca ne lance pas la fenetre
-		GameController gameController = new GameController();
+		/**GameController gameController = new GameController();
 		gameController.startGame();
 		
-		gameController.CreationJoueur("valentin", 18);
-		gameController.CreationJoueur("David", 20);
+		GameController gameController = new GameController();
+		//gameController.getGame().initGame();
+		gameController.startGame();
 		
-		gameController.lancerPartie();
+		gameController.CreationJoueur("valentin", 22);////////////////////////
+		gameController.CreationJoueur("David", 20);//////////////////////////
+		
+		//Human joueur1 = new Human("valentin", 18);
+		//joueur1.attacher(new JoueurController(joueur1));
+		//Human joueur2 = new Human("David", 20);
+		//joueur2.attacher(new JoueurController(joueur2));
+		
+		//gameController.getGame().ajouterJoueurReel(joueur1);
+		//gameController.getGame().ajouterJoueurReel(joueur2);
+
+		gameController.lancerPartie(); //on lance en mode console
+		
+		//////////////////////////////////////////
+		//gameController.CreationJoueur("valentin", 18);
+		//gameController.CreationJoueur("David", 20);
+		
+		//gameController.lancerPartie();
 
 		///TODO A FAIRE AU COMPLET
 		//il faut changer la vue car la methode MenuPrinciaple de la classe VUegame est fait pour la consolle il faut appeler une nouvelle methode
