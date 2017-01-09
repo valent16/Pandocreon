@@ -22,12 +22,13 @@ public interface Strategy {
 	
 	public void lancerApocalypse();
 	
-	/**Methode permettant d'economiser ses points*/
-	public void economy();
+	public void defausser();
 	
 	public Player pickTarget();
 	
 	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte);
 	
 	public List<Believer> pickCroyant(SpiritGuide carte);
+
+	
 }

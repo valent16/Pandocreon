@@ -58,7 +58,7 @@ public class EasyStrategy implements Strategy {
 
 	@Override
 	/**permet d'economiser ses points dans notre cas il pioche son tour*/
-	public void economy() {
+	public void defausser() {
 		
 	}
 

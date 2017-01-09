@@ -101,7 +101,7 @@ public class Game {
 	 * @param index numero ou se trouve le nom
 	 * @return le nom du bot
 	 */
-	public String getBotName(int index){
+	public static String getBotName(int index){
 		index = index%BOT_NAME.length;
 		return BOT_NAME[index];
 	}
