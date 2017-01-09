@@ -38,7 +38,7 @@ public abstract class Player extends Observer{
 	protected LinkedList<ActionCard> hand = new LinkedList<ActionCard>();
 
 	/**Attribut representant les points d'actions du joueur*/
-	private HashMap<EnumCosmogonie, Integer> dicoPA = new HashMap<EnumCosmogonie, Integer>();
+	protected HashMap<EnumCosmogonie, Integer> dicoPA = new HashMap<EnumCosmogonie, Integer>();
 
 	/**Attribut representant les croyants deposes pendant le tour de jeu*/
 	private LinkedList<Believer> croyantDeposesPendantTour = new LinkedList<Believer>();
@@ -47,7 +47,7 @@ public abstract class Player extends Observer{
 	protected LinkedList<SpiritGuide> guidesRattaches = new LinkedList<SpiritGuide>();
 
 	/**Attribut representant la divinite du joueur*/
-	private Divinity divinity;
+	protected Divinity divinity;
 
 	/**Constructeur
 	 * @param pseudo le nom du joueur 
@@ -82,11 +82,9 @@ public abstract class Player extends Observer{
 	}
 
 	/**Methode permettant au joueur de piocher une carte*/
-	public void piocher(){
-		hand.add(GameManager.getInstanceUniqueManager().piocherCarte());
-	}
+	public abstract void piocher();
 
-	//Methode permettant de piocher une divinite
+	/**Methode permettant de piocher une divinite*/
 	public void piocherDivinite(){
 		this.divinity = GameManager.getInstanceUniqueManager().piocherDivinite();
 	}
@@ -134,9 +132,7 @@ public abstract class Player extends Observer{
 	/**Methode permettant au joueur d'ajouter une carte action dans sa main
 	 * @param card la carte a ajouter dans sa main
 	 */
-	public void ajouterMain(ActionCard card){
-		this.hand.add(card);
-	}
+	public abstract void ajouterMain(ActionCard card);
 
 	/**Methode permettant d'afficher la main du joueur*/
 	public void afficherHand(){
@@ -177,11 +173,7 @@ public abstract class Player extends Observer{
 	/**Methode permettant de rattacher un guide
 	 * @param carte le guide a rattacher
 	 */
-	public void rattacherGuide(Card carte){
-		if(carte instanceof SpiritGuide){
-			this.guidesRattaches.add((SpiritGuide) carte);
-		}
-	}
+	public abstract void rattacherGuide(Card carte);
 
 	/**Methode permettant de retirer une carte de la main du joueur
 	 * @param carte la carte a retirer
@@ -194,31 +186,22 @@ public abstract class Player extends Observer{
 	/**Methode permettant de se defausser d'une carte
 	 * @param carte la carte a se defausser
 	 */
-	public void defausserCarte(ActionCard carte){
-		hand.remove(carte);
-		GameManager.getInstanceUniqueManager().defausserCarte(carte);
-	}
+	public abstract void defausserCarte(ActionCard carte);
 
 	/**Methode permettant de se defausser de plusieurs cartes
 	 * @param cartes la liste des cartes a se defausser
 	 */
-	public void defausserCartes(LinkedList<ActionCard> cartes){
-		hand.removeAll(cartes);
-		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
-	}
+	public abstract void defausserCartes(LinkedList<ActionCard> cartes);
 
 	/**Methode permettant de se defausser d'un guide
 	 * @param carte le guide a se defausser
 	 */
-	public void defausserGuideRattache(SpiritGuide guide){
-		guidesRattaches.remove(guide);
-		GameManager.getInstanceUniqueManager().defausserCarte(guide);
-	}
+	public abstract void defausserGuideRattache(SpiritGuide guide);
 
 	/**Methode permettant de completer la main du joueur*/
 	public void piocherCartes(){
 		while (hand.size() < NB_CARTE_MAX){
-			hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
+			piocher();
 		}
 	}
 
@@ -226,28 +209,20 @@ public abstract class Player extends Observer{
 	 * @param typePA le type de PA (nuit, jour ou neant
 	 * @param nbPA le nombre de points a donner
 	 */
-	public void incrementerPointAction(EnumCosmogonie typePA, int nbPA){
-		dicoPA.put(typePA, dicoPA.get(typePA) + nbPA);
-	}
+	public abstract void incrementerPointAction(EnumCosmogonie typePA, int nbPA);
 
 	/**Methode permettant de retirer des points d'action du joueur du nombre de points indiqué
 	 * @param typePA le type de PA (nuit, jour ou neant
 	 * @param nbPA le nombre de points a retirer
 	 */
-	public void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException{
-		if ((dicoPA.get(typePA) - nbPA) < 0){
-			throw new PAInsuffisantException("Pas assez de point d'action "+dicoPA.get(typePA));
-		}
-		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
-	}
+	public abstract void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException;
 
 	/**Methode permettant d'ajoueter les points d'action au joueur a chaque tour grace au Dé*/
 	protected void incrementerPointActionWithDe(){
-		
 		//si le de a une face jour
 		if (De.getInstanceDe().getFace() == EnumCosmogonie.JOUR){
 			if(divinity.getOrigine() == EnumOrigineDivinite.JOUR)
-				incrementerPointAction(De.getInstanceDe().getFace(), 1);//on ajoute 2 point pour une orgine Jour
+				incrementerPointAction(De.getInstanceDe().getFace(), 2);//on ajoute 2 point pour une orgine Jour
 			else if(divinity.getOrigine() == EnumOrigineDivinite.AUBE)
 				incrementerPointAction(De.getInstanceDe().getFace(), 1);//on ajoute 1 point pour une origine Aube
 		}
@@ -267,11 +242,11 @@ public abstract class Player extends Observer{
 		}
 	}
 	
-	/**Getter de la divinité du joueur*/
+	/**Getter de la divinite du joueur*/
 	public Divinity getDivinity() {
 		return divinity;
 	}
-	/**Setter de la divinité du joueur*/
+	/**Setter de la divinite du joueur*/
 	public void setDivinity(Divinity divinity) {
 		this.divinity = divinity;
 	}

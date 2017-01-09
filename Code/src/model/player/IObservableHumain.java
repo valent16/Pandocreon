@@ -2,12 +2,12 @@ package model.player;
 
 import java.util.List;
 
+import controller.IObserverJoueurReel;
 import model.EnumType.EnumCosmogonie;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.exception.ObservateurNotLinkedException;
-import view.ObservateurJoueurReel;
 
 /**Classe qui permet au controller joueur de notifier la vue*/
 public interface IObservableHumain {
@@ -15,12 +15,12 @@ public interface IObservableHumain {
 	/**Methode permettant d'ajouter un observateur
 	 * @param o l'observateur a ajouter
 	 */
-	public void attacher(ObservateurJoueurReel o);
+	public void attacher(IObserverJoueurReel o);
 
 	/**Methode permettant de retirer un observateur
 	 * @param o l'observateur a retirer
 	 */
-	public void detacher(ObservateurJoueurReel o);
+	public void detacher(IObserverJoueurReel o);
 
 	/**Methode permettant de notifier la vue pour que le joueur selectionner une cible
 	 * @return le joueur selectionné
@@ -46,4 +46,16 @@ public interface IObservableHumain {
 	 * @throws ObservateurNotLinkedException
 	 */
 	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException;
+	
+	/**Methode permettant de notifier le controller du changement de jeu du joueur*/
+	public void notifyChangementHand();
+	
+	/**Methode permettant de notifier le controller du changement des cartes rattachees au joueur*/
+	public void notifyChangementCarteRattachees();
+	
+	/**Methode permettant de notifier le controller du changement des points d'action du joueur*/
+	public void notifyChangementPA();
+	
+	
+	public void notifyChangementDivinite();
 }

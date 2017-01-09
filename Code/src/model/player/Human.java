@@ -1,32 +1,37 @@
 package model.player;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import controller.IObserverJoueurReel;
 import model.EnumType.EnumCosmogonie;
+import model.cards.ActionCard;
+import model.cards.Card;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.exception.ObservateurNotLinkedException;
+import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
-import view.ObservateurJoueurReel;
+import model.game.GameManager;
 
 /**Un joueur qui représente un humain*/
 public class Human extends Player implements IObservableHumain{
 	
 	/**Attribut representant le controlleur du joueur*/
-	private ObservateurJoueurReel observateur;
+	private IObserverJoueurReel observateur;
 	
 	/**Methode permettant de lui ajouter un controleur
 	 * @param o le controleur a ajouter
 	 */
-	public void attacher(ObservateurJoueurReel o){
+	public void attacher(IObserverJoueurReel o){
 		observateur = o;
 	}
 	
 	/**Methode permettant de lui enlever un controleur
 	 * @param o le controleur a anlever
 	 */
-	public void detacher(ObservateurJoueurReel o){
+	public void detacher(IObserverJoueurReel o){
 		observateur = null;
 	}
 
@@ -41,6 +46,7 @@ public class Human extends Player implements IObservableHumain{
 	@Override
 	public void jouerTour() {
 		incrementerPointActionWithDe();
+		notifyChangementPA();
 		try{
 			notifyStartTour();
 		}catch(ObservateurNotLinkedException e){
@@ -113,5 +119,88 @@ public class Human extends Player implements IObservableHumain{
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public void notifyChangementHand() {
+		observateur.miseAJourCarte();
+	}
+
+	@Override
+	public void notifyChangementCarteRattachees() {
+		observateur.miseAJourCarteRattachees();
+	}
+
+	@Override
+	public void notifyChangementPA() {
+		observateur.miseAJourPA();
 	}	
+	
+	@Override
+	public void piocher(){
+		hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
+		notifyChangementHand();
+	}
+	
+	@Override
+	public void ajouterMain(ActionCard card){
+		this.hand.push(card);
+		notifyChangementHand();
+	}
+	
+	@Override
+	public void rattacherGuide(Card carte){
+		if(carte instanceof SpiritGuide){
+			this.guidesRattaches.add((SpiritGuide) carte);
+		}
+		notifyChangementCarteRattachees();
+	}
+	
+	@Override
+	public void defausserCarte(ActionCard carte){
+		hand.remove(carte);
+		GameManager.getInstanceUniqueManager().defausserCarte(carte);
+		notifyChangementHand();
+	}
+	
+	@Override
+	public void defausserGuideRattache(SpiritGuide guide){
+		guidesRattaches.remove(guide);
+		GameManager.getInstanceUniqueManager().defausserCarte(guide);
+		notifyChangementHand();
+	}
+	
+	@Override
+	public void incrementerPointAction(EnumCosmogonie typePA, int nbPA){
+		dicoPA.put(typePA, dicoPA.get(typePA) + nbPA);
+		notifyChangementPA();
+	}
+	
+	@Override
+	public void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException{
+		if ((dicoPA.get(typePA) - nbPA) < 0){
+			throw new PAInsuffisantException("Pas assez de point d'action "+dicoPA.get(typePA));
+		}
+		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
+		notifyChangementPA();
+	}
+	
+	@Override
+	public void defausserCartes(LinkedList<ActionCard> cartes){
+		hand.removeAll(cartes);
+		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
+		notifyChangementHand();
+	}
+	
+	@Override
+	public void piocherDivinite(){
+		this.divinity = GameManager.getInstanceUniqueManager().piocherDivinite();
+		notifyChangementDivinite();
+	}
+
+	@Override
+	public void notifyChangementDivinite() {
+		// TODO Auto-generated method stub
+		observateur.miseAJourDivinite();
+	}
 }

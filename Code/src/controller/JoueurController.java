@@ -13,24 +13,24 @@ import model.cards.OriginCards.SpiritGuide;
 import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
-import view.ObservateurJoueurReel;
+import view.IViewJoueurReel;
 import view.console.VueJoueurReel;
 
 /**Classe qui agit comme un controller du joueur humain en gerant la vue du joueur et le joueur */
-public class JoueurController implements ObservateurJoueurReel {
+public class JoueurController implements IObserverJoueurReel {
 
 	/**Attribut correspondant a la vue du joueur*/
-	VueJoueurReel vueJoueur;
+	IViewJoueurReel vueJoueur;
 
 	/**Attribut correspondant au joueur humain*/
 	Human joueur;
 
 	/**Constructeur
-	 * @param j l'humain qui sera utilisé par le controller 
+	 * @param j l'humain qui sera utilise par le controller 
 	 */
-	public JoueurController(Human j) {
+	public JoueurController(Human j, IViewJoueurReel vueJoueur) {
 		this.joueur = j;
-		this.vueJoueur = new VueJoueurReel(this, j);
+		this.vueJoueur = vueJoueur;
 	}
 
 
@@ -43,7 +43,7 @@ public class JoueurController implements ObservateurJoueurReel {
 	public void completerMain(){
 		if (joueur.getNbCartes() == Player.NB_CARTE_MAX){
 			System.out.println("Votre jeu est deja complet");
-			vueJoueur.jouerTour();
+//			vueJoueur.jouerTour();
 		}
 		joueur.piocherCartes();
 	}
@@ -72,19 +72,22 @@ public class JoueurController implements ObservateurJoueurReel {
 		String answer;
 		int index;
 		do{
-			answer = vueJoueur.selectTarget();
+			answer = "lala";
+//			answer = vueJoueur.selectTarget();
 		}
 		while (!checkAnswerTarget(answer));
-		index = Integer.parseInt(answer);
-		if (index >= GameManager.getInstanceUniqueManager().getIndexJoueur(joueur)){
-			return GameManager.getInstanceUniqueManager().getJoueurAtIndex(index+1);
-		}
-		return GameManager.getInstanceUniqueManager().getJoueurAtIndex(index);
+//		index = Integer.parseInt(answer);
+//		if (index >= GameManager.getInstanceUniqueManager().getIndexJoueur(joueur)){
+//			return GameManager.getInstanceUniqueManager().getJoueurAtIndex(index+1);
+//		}
+//		return GameManager.getInstanceUniqueManager().getJoueurAtIndex(index);
+		return GameManager.getInstanceUniqueManager().getJoueurAtIndex(1);
 	}
 
 	@Override
 	public List<Believer> selectCroyant(SpiritGuide carte) {
-		return vueJoueur.selectCroyant(carte);
+		return new ArrayList<Believer>();
+//		return vueJoueur.selectCroyant(carte);
 	}
 
 	@Override
@@ -99,14 +102,14 @@ public class JoueurController implements ObservateurJoueurReel {
 			listePA.add(EnumCosmogonie.NUIT);
 		}
 
-		vueJoueur.selectOrigine(listePA);
+//		vueJoueur.selectOrigine(listePA);
 		return null;
 	}
 
 	@Override
 	public void startTourJoueur() {
-		vueJoueur.passageTour();
-		vueJoueur.jouerTour();	
+//		vueJoueur.passageTour();
+//		vueJoueur.jouerTour();	
 	}
 
 	/**Methode permettant de verifier le choix de la cible du joueur
@@ -191,5 +194,29 @@ public class JoueurController implements ObservateurJoueurReel {
 			System.out.println("coucou");
 			joueur.defausserGuideRattache(guide);
 		}
+	}
+
+
+	@Override
+	public void miseAJourCarte() {
+		vueJoueur.majDeckCarte();
+	}
+
+
+	@Override
+	public void miseAJourCarteRattachees() {
+		vueJoueur.majCartesRattachees();
+	}
+
+
+	@Override
+	public void miseAJourPA() {
+		vueJoueur.majPointsAction();
+	}
+
+
+	@Override
+	public void miseAJourDivinite() {
+		vueJoueur.majDivinite();
 	}
 }

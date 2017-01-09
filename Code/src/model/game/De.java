@@ -1,10 +1,18 @@
 package model.game;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import controller.IObserverDe;
+import controller.IObserverGameManager;
 import model.EnumType.EnumCosmogonie;
 
-public class De {
+public class De implements IObservableDe {
+	/**Liste des observers du de*/
+	private List<IObserverGameManager> observersDe = new ArrayList<IObserverGameManager>();
 	
-	/*Attribut representant un singleton pour avoir un unique dé*/
+	/**Attribut representant un singleton pour avoir un unique de*/
 	private volatile static De de;
 	
 	/**Attribut representant la face du de*/
@@ -13,7 +21,7 @@ public class De {
 	/**Constructeur*/
 	private De(){}
 
-	/**Méthode permetttant d'avoir qu'une seule instance de Dé
+	/**Méthode permetttant d'avoir qu'une seule instance de De
 	 * @return de le De de la classe
 	 */
 	public static synchronized De getInstanceDe(){
@@ -26,7 +34,7 @@ public class De {
 		return de;
 	}
 
-	/**Méthode permettant de lancer de maniere random un Dé pour obtenir une face*/
+	/**Methode permettant de lancer de maniere random un Dé pour obtenir une face*/
 	public void lancerDe(){
 		int random = (int) (Math.random() * 3 + 1);
 		if(random == 1){
@@ -38,6 +46,8 @@ public class De {
 		if(random == 3 ){
 			de.face = EnumCosmogonie.NEANT;
 		}
+		
+		notifyChangementFace();
 	}
 
 	/**Getter origine sur lequel le dé est retombé
@@ -52,5 +62,21 @@ public class De {
 	 */
 	public void setFace(EnumCosmogonie face){
 		this.face = face;
+	}
+
+	/**
+	 * M�thode de notification pour le controller
+	 */
+	@Override
+	public void notifyChangementFace() {
+		Iterator<IObserverGameManager> it = observersDe.iterator();
+		while (it.hasNext()){
+			it.next().miseAJourDe();
+		}
+	}
+
+	@Override
+	public void attacher(IObserverGameManager o) {
+		observersDe.add(o);
 	}
 }

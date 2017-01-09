@@ -1,0 +1,5 @@
+package view.ihm;
+
+public class PanelDe extends JPanel {
+
+}

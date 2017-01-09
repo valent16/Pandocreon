@@ -28,8 +28,6 @@ import model.cards.withoutOriginCards.DeusEx;
 
 public class PanelCarte extends JPanel{
 	
-	private static final long serialVersionUID = 1L;
-
 	//panel contenant l'origine bordure gauche
 	//contenant le nombre de coyant � droite
 	private JPanel panelTop;
@@ -48,6 +46,9 @@ public class PanelCarte extends JPanel{
 	
 	//carte rerp�sent� dans le panel
 	private Card carte;
+	
+	
+	
 	
 	public PanelCarte(Card carte){
 		this.carte = carte;
@@ -73,6 +74,9 @@ public class PanelCarte extends JPanel{
 		labelArea.setEditable(false);
 		labelArea.setLineWrap(true);
 		
+		labelArea.setOpaque(false);
+		
+		
 		this.add(panelTop);
 		this.add(panelTitre);
 		this.add(labelArea);
@@ -80,6 +84,10 @@ public class PanelCarte extends JPanel{
 		
 		this.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
 		panelFactory();
+	}
+	
+	public Card getCarte(){
+		return carte;
 	}
 	
 	//M�thode de cr�ation du panel en fonction de la carte 
@@ -231,7 +239,7 @@ public class PanelCarte extends JPanel{
 	}
 	
 	public void ajoutNom(){
-//		String nom = "";
+		String nom = "";
 //		if (carte instanceof Divinity){
 //			
 //			//((Divinity)carte).get

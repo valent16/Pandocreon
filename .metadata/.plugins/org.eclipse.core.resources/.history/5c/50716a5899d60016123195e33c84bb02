@@ -1,0 +1,178 @@
+package view.ihm;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.util.ArrayList;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
+import model.game.De;
+import model.game.GameManager;
+import model.player.Bot;
+import model.player.Player;
+import model.strategy.MediumStrategy;
+import view.IViewGame;
+import model.cards.*;
+
+import model.cards.OriginCards.*;
+import java.awt.Component;
+
+public class PanelTableJeu extends JPanel implements IViewGame {
+	
+	JPanel panelJoueurs;
+	
+	ScrollerPlayer scrollJoueur;
+	
+	ImagePanel panelImageDe;
+	
+	JLabel label;
+	
+	ScrollerCard scrollCroyant;
+	
+	public PanelTableJeu(final GameManager gameManager, De de){
+		this.setLayout(new BorderLayout());
+//		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		JPanel panelGauche = new JPanel();
+		panelGauche.setLayout(new BoxLayout(panelGauche, BoxLayout.Y_AXIS));
+		JPanel panelDroite = new JPanel();
+		panelDroite.setLayout(new BoxLayout(panelDroite, BoxLayout.Y_AXIS));
+		
+		
+		//Definition du panel des joueurs
+		panelJoueurs = new JPanel();
+		panelJoueurs.setLayout(new BoxLayout(panelJoueurs, BoxLayout.Y_AXIS));
+		panelJoueurs.setPreferredSize(new Dimension(800,120));
+		
+		JPanel panelLabelJoueurJeu = new JPanel();
+		JLabel labelJoueurEnJeu = new JLabel("liste des joueurs en jeu:");
+		panelLabelJoueurJeu.add(labelJoueurEnJeu);
+//		final ArrayList<Player> liste = new ArrayList<Player>();
+//		liste.add(new Bot("lala", new MediumStrategy()));
+//		liste.add(new Bot("lala", new MediumStrategy()));
+		
+		panelJoueurs.add(panelLabelJoueurJeu);
+		SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	scrollJoueur = new ScrollerPlayer(gameManager.getPlayers());
+            	panelJoueurs.add(scrollJoueur);
+            }
+        });	
+		
+		
+		//Panel de la pile d'appel de carte
+		
+		final JPanel panelCroyant = new JPanel();
+		panelCroyant.setLayout(new BoxLayout(panelCroyant, BoxLayout.Y_AXIS));
+		panelCroyant.setPreferredSize(new Dimension(800,200));
+		
+		JPanel panelLabelCroyants = new JPanel();
+		JLabel labelCroyant = new JLabel("liste des croyants sur la table de jeu:");
+		panelLabelCroyants.add(labelCroyant);
+		
+		labelCroyant.setHorizontalAlignment(SwingConstants.LEFT);
+		labelCroyant.setHorizontalAlignment(SwingConstants.LEFT);
+		panelCroyant.add(panelLabelCroyants);
+		SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	scrollCroyant = new ScrollerCard(new ArrayList<Card>(gameManager.getPilesCartesTour()));
+            	panelCroyant.add(scrollCroyant);
+            }
+        });
+
+		
+		//définition de l'espace réservé au dé
+		final JPanel panelDeTour = new JPanel();
+		panelDeTour.setLayout(new BoxLayout(panelDeTour, BoxLayout.Y_AXIS));
+		
+		JPanel panelLabelDe = new JPanel();
+		panelLabelDe.setLayout(new BorderLayout(0, 0));
+		JLabel labelDe = new JLabel("face du de:");
+		panelLabelDe.add(labelDe);
+		
+		panelJoueurs.add(panelLabelJoueurJeu);
+		panelDeTour.add(panelLabelDe);
+		
+		// mettre une image non définie lorseque le dé est affiché pour la premiere fois
+		panelImageDe = new ImagePanel("./images/OrigineCarte/jour.jpg",800/20,800/20);
+		label = new JLabel(new ImageIcon(panelImageDe.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH)));
+		label.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		panelDeTour.add(label);
+		panelDeTour.add(Box.createRigidArea(new Dimension(0,250)));
+		
+		panelImageDe.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		panelGauche.add(panelJoueurs);
+		panelGauche.add(panelCroyant);
+		
+		
+		panelDroite.add(panelDeTour);
+		panelDroite.add(Box.createRigidArea(new Dimension(150,0)));
+		
+		this.add(panelGauche, BorderLayout.WEST);
+		this.add(panelDroite, BorderLayout.EAST);
+	}
+
+	@Override
+	public void majJoueurs() {
+		scrollJoueur.majPlayer();
+	}
+
+	@Override
+	public void majFaceDe() {
+		switch(De.getInstanceDe().getFace()){
+		case JOUR:
+			panelImageDe = new ImagePanel("./images/OrigineCarte/jour.jpg",800/20,800/20);
+			break;
+		case NUIT:
+			panelImageDe = new ImagePanel("./images/OrigineCarte/nuit.jpg",800/20,800/20);
+			break;
+			
+		case NEANT:
+			panelImageDe = new ImagePanel("./images/OrigineCarte/neant.jpg",800/20,800/20);
+			break;
+			
+		case NOTREFERENCED:
+			break;
+		}
+		try{
+			System.out.println(De.getInstanceDe().getFace());
+		Thread.sleep(4000);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void majTableCroyant() {
+		scrollCroyant.majCarte(new ArrayList<Card>(GameManager.getInstanceUniqueManager().getCroyants()));
+	}
+
+	@Override
+	public void majNbTours() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afficherVainqueur(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afficherDefaite(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

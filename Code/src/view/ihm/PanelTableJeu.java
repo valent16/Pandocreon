@@ -1,7 +1,6 @@
 package view.ihm;
 
 import java.awt.BorderLayout;
-
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -17,13 +16,29 @@ import javax.swing.SwingUtilities;
 
 import model.game.De;
 import model.game.GameManager;
+import model.player.Bot;
+import model.player.Player;
+import model.strategy.MediumStrategy;
+import view.IViewGame;
 import model.cards.*;
+
+import model.cards.OriginCards.*;
 import java.awt.Component;
 
-public class PanelTableJeu extends JPanel {
+public class PanelTableJeu extends JPanel implements IViewGame {
 	
-	private static final long serialVersionUID = 1L;
-
+	JPanel panelJoueurs;
+	
+	ScrollerPlayer scrollJoueur;
+	
+	ImagePanel panelImageDe;
+	
+	JLabel label;
+	
+	JPanel panelDeTour;
+	
+	ScrollerCard scrollCroyant;
+	
 	public PanelTableJeu(final GameManager gameManager, De de){
 		this.setLayout(new BorderLayout());
 //		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -34,7 +49,7 @@ public class PanelTableJeu extends JPanel {
 		
 		
 		//Definition du panel des joueurs
-		final JPanel panelJoueurs = new JPanel();
+		panelJoueurs = new JPanel();
 		panelJoueurs.setLayout(new BoxLayout(panelJoueurs, BoxLayout.Y_AXIS));
 		panelJoueurs.setPreferredSize(new Dimension(800,120));
 		
@@ -49,35 +64,36 @@ public class PanelTableJeu extends JPanel {
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-            	panelJoueurs.add(new ScrollerPlayer(gameManager.getPlayers()));
-//            	frame.pack();
+            	scrollJoueur = new ScrollerPlayer(gameManager.getPlayers());
+            	panelJoueurs.add(scrollJoueur);
             }
         });	
 		
 		
 		//Panel de la pile d'appel de carte
 		
-		final JPanel panelPileAppelCarte = new JPanel();
-		panelPileAppelCarte.setLayout(new BoxLayout(panelPileAppelCarte, BoxLayout.Y_AXIS));
-		panelPileAppelCarte.setPreferredSize(new Dimension(800,200));
+		final JPanel panelCroyant = new JPanel();
+		panelCroyant.setLayout(new BoxLayout(panelCroyant, BoxLayout.Y_AXIS));
+		panelCroyant.setPreferredSize(new Dimension(800,200));
 		
-		JPanel panelLabelPileCarte = new JPanel();
-		JLabel labelPileCarte = new JLabel("liste des cartes lancees par les joueurs:");
-		panelLabelPileCarte.add(labelPileCarte);
+		JPanel panelLabelCroyants = new JPanel();
+		JLabel labelCroyant = new JLabel("liste des croyants sur la table de jeu:");
+		panelLabelCroyants.add(labelCroyant);
 		
-		labelPileCarte.setHorizontalAlignment(SwingConstants.LEFT);
-		labelPileCarte.setHorizontalAlignment(SwingConstants.LEFT);
-		panelPileAppelCarte.add(panelLabelPileCarte);
+		labelCroyant.setHorizontalAlignment(SwingConstants.LEFT);
+		labelCroyant.setHorizontalAlignment(SwingConstants.LEFT);
+		panelCroyant.add(panelLabelCroyants);
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-            	panelPileAppelCarte.add(new ScrollerCard(new ArrayList<Card>(gameManager.getPilesCartesTour())));
+            	scrollCroyant = new ScrollerCard(new ArrayList<Card>(gameManager.getPilesCartesTour()));
+            	panelCroyant.add(scrollCroyant);
             }
         });
 
 		
 		//d�finition de l'espace r�serv� au d�
-		final JPanel panelDeTour = new JPanel();
+		panelDeTour = new JPanel();
 		panelDeTour.setLayout(new BoxLayout(panelDeTour, BoxLayout.Y_AXIS));
 		
 		JPanel panelLabelDe = new JPanel();
@@ -89,16 +105,14 @@ public class PanelTableJeu extends JPanel {
 		panelDeTour.add(panelLabelDe);
 		
 		// mettre une image non d�finie lorseque le d� est affich� pour la premiere fois
-		ImagePanel panelImageDe = new ImagePanel("./images/OrigineCarte/jour.jpg",800/20,800/20);
-		JLabel label = new JLabel(new ImageIcon(panelImageDe.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH)));
+		label = new JLabel();
 		label.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panelDeTour.add(label);
 		panelDeTour.add(Box.createRigidArea(new Dimension(0,250)));
 		
-		panelImageDe.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		panelGauche.add(panelJoueurs);
-		panelGauche.add(panelPileAppelCarte);
+		panelGauche.add(panelCroyant);
 		
 		
 		panelDroite.add(panelDeTour);
@@ -106,9 +120,65 @@ public class PanelTableJeu extends JPanel {
 		
 		this.add(panelGauche, BorderLayout.WEST);
 		this.add(panelDroite, BorderLayout.EAST);
+	}
+
+	@Override
+	public void majJoueurs() {
+		scrollJoueur.majPlayer();
+	}
+
+	@Override
+	public void majFaceDe() {
 		
-//		this.add(panelGauche);
-//		this.add(panelDeTour);
+		
+		switch(De.getInstanceDe().getFace()){
+		case JOUR:
+			panelImageDe = new ImagePanel("./images/OrigineCarte/jour.jpg",800/20,800/20);
+			label.setIcon(new ImageIcon(panelImageDe.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH)));
+			break;
+		case NUIT:
+			panelImageDe = new ImagePanel("./images/OrigineCarte/nuit.jpg",800/20,800/20);
+			label.setIcon(new ImageIcon(panelImageDe.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH)));
+			break;
+			
+		case NEANT:
+			panelImageDe = new ImagePanel("./images/OrigineCarte/neant.jpg",800/20,800/20);
+			label.setIcon(new ImageIcon(panelImageDe.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH)));
+			break;
+			
+		case NOTREFERENCED:
+			break;
+		}
+		
+		panelDeTour.revalidate();
+		try{
+			System.out.println(De.getInstanceDe().getFace());
+		Thread.sleep(1000);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void majTableCroyant() {
+		scrollCroyant.majCarte(new ArrayList<Card>(GameManager.getInstanceUniqueManager().getCroyants()));
+	}
+
+	@Override
+	public void majNbTours() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afficherVainqueur(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afficherDefaite(Player p) {
+		// TODO Auto-generated method stub
 		
 	}
 	
