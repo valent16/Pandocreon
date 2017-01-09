@@ -87,15 +87,9 @@ public class VueJoueurReel {
 	public void defausserCartes(){
 		//LinkedList<ActionCard> cartesToDelete = new LinkedList<ActionCard>();
 		Scanner sc = new Scanner(System.in);
-
 		System.out.println("liste des cartes pouvant etre defaussees:");
 		List<ActionCard> listeAAfficher = joueur.getHand();
-		
-		//TODO afficherListeCarte(listeAAfficher);
-		//TODO System.out.println("veuillez renseigner la carte a defausser en renseignant son numero:");
-		//TODO System.out.println("taper \"end\" si votre selection de carte a supprimer est terminee");
-		//TODO System.out.print("votre choix: ");
-
+	
 		String choix = "";
 		
 		while(!(choix.equals("end") || listeAAfficher.size() == 0 || GameManager.getInstanceUniqueManager().getNbJoueur() == 0 )){
@@ -106,8 +100,6 @@ public class VueJoueurReel {
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 			
-//			if (!(choix.matches("[0-9]+") && listeAAfficher.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))))			
-//			while((!choix.matches("[0-9]+") || (listeAAfficher.size() > Integer.parseInt(choix)) || Integer.parseInt(choix) >= 0 ) && !choix.equals("end")){
 			while(!(choix.matches("[0-9]+") && listeAAfficher.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))){
 				System.out.println("\n");
 				afficherListeCarte(listeAAfficher);
@@ -119,11 +111,7 @@ public class VueJoueurReel {
 				controller.supprimerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 			}
 		}
-		
-		//TODO lister les cartes
-		//TODO faire un check si le joueur a bien des cartes
 	}
-	
 	
 	public void afficherListeCarte(List<ActionCard> cartes){
 		for (int i=0; i< cartes.size(); i++){
@@ -132,7 +120,6 @@ public class VueJoueurReel {
 	}
 	
 	public void jouerCartes(){
-		//LinkedList<ActionCard> cartesToDelete = new LinkedList<ActionCard>();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("liste des cartes pouvant etre jouees:");
 		List<ActionCard> listeAAfficher = joueur.getHand();
@@ -151,14 +138,11 @@ public class VueJoueurReel {
 				System.out.println(i+listeAAfficher.size()+"- "+listeCarteRattaches.get(i).toString());
 			}
 			
-//			afficherListeCarte(listeAAfficher);
 			System.out.println("veuillez renseigner la carte a utiliser en renseignant son numero:");
 			System.out.println("taper \"end\" si vous avez fini d'utiliser des cartes");
 			System.out.print("votre choix: ");
 			choix = sc.nextLine();
 			
-//			if (!(choix.matches("[0-9]+") && listeAAfficher.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))))			
-//			while((!choix.matches("[0-9]+") || (listeAAfficher.size() > Integer.parseInt(choix)) || Integer.parseInt(choix) >= 0 ) && !choix.equals("end")){
 			while(!(choix.matches("[0-9]+") && listeAAfficher.size()+listeCarteRattaches.size() > Integer.parseInt(choix) && Integer.parseInt(choix) >= 0 || choix.equals("end"))){
 				System.out.println("\n");
 				afficherListeCarte(listeAAfficher);

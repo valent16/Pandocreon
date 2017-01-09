@@ -27,7 +27,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 8;
+		int valeur = 3;
 		
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -122,15 +122,11 @@ public class Main{
 	/**Methode permettant de tester les bots dans une partie avec la strategie medium*/
 	private static void testBot() {
 		GameController gc = new GameController();
-		gc.getGame().initGame();
-
-		Bot b1 = new Bot("bot1", new MediumStrategy());
-		Bot b2 = new Bot("bot2", new MediumStrategy());
-		Bot b3 = new Bot("bot3", new MediumStrategy());
-
-		gc.getGame().ajouterBot(b1);
-		gc.getGame().ajouterBot(b2);
-		gc.getGame().ajouterBot(b3);
+		gc.startGame();
+		
+		gc.CreationBot("bot1", "medium");
+		gc.CreationBot("bot2", "medium");
+		gc.CreationBot("bot3", "medium");
 
 		gc.lancerPartie("console");
 		//GameManager.getInstanceUniqueManager().startGameConsole();
@@ -138,18 +134,13 @@ public class Main{
 
 	/**Methode permettant de tester le fonctionnement d'une partie*/
 	public static void testCreationPartie(){
-		Game game = new Game();
-		game.initGame();
+		GameController gc = new GameController();
+		gc.startGame();
 
-		Human joueur1 = new Human("valentin", 18);
-		joueur1.attacher(new JoueurController(joueur1));
-		Human joueur2 = new Human("David", 20);
-		joueur2.attacher(new JoueurController(joueur2));
-		game.ajouterJoueurReel(joueur1);
-		game.ajouterJoueurReel(joueur2);
+		gc.CreationJoueur("valentin", 18);
+		gc.CreationJoueur("David", 20);
 
-		game.nouvellePartie();
-		GameManager.getInstanceUniqueManager().startGameConsole();
+		gc.lancerPartie("console");
 	}
 
 	/**Methode permettant de tester les humains*/

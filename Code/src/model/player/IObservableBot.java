@@ -12,7 +12,7 @@ import view.ObservateurJoueurReel;
 /**Classe qui permet au controller bot de notifier la vue*/
 public interface IObservableBot{
 
-	//TODO A MODIF POUR QUE CA CORREPSONDE AU BOT
+	//TODO A MODIF POUR QUE CA CORRESPONDE AU BOT REPRENDRE IOBSERVABLEJOUEUR
 	/**Methode permettant d'ajouter un observateur
 	 * @param o l'observateur a ajouter
 	 */
