@@ -43,7 +43,7 @@ public class MediumStrategy implements Strategy {
 		System.out.println(bot.getNom() +" a comme cartes :");//////////////////////////////////////////////////////////////////////////////////////////////
 		bot.afficherHand();///////////////////////////////////////////////////////////////////:///////////////////////////////////////
 		System.out.println("les guides rattachés "+ bot.getGuides());
-		System.out.println("Score de"+ bot.getNom()+ " : "+bot.getScore());
+		System.out.println("Score de "+ bot.getNom()+ " : "+bot.getScore());
 		//TODO a mettre dans la vue du bot//////////////////////////////////////////////
 
 

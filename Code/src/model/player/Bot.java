@@ -13,12 +13,14 @@ import model.cards.OriginCards.ApocalypseWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
+import model.exception.ObservateurNotLinkedException;
 import model.exception.TargetSelectionException;
 import model.game.GameManager;
 import model.strategy.*;
+import view.ObservateurJoueurReel;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
-public class Bot extends Player{
+public class Bot extends Player implements IObservableBot{
 	public final static int AGE_BOT = 200;
 
 	/**Attribut representant la stratégie choisi au départ pour tous les bots*/
@@ -216,7 +218,6 @@ public class Bot extends Player{
 	 public boolean isLast(){
 		 //TODO a faire en sorte que cette methode marche faire une hasmap avec les bot et le score et utiliser une methode sort pour les tries
 		 Player p;
-		 Player joueurDernier = null;
 		 
 		 System.out.println("///////////////////");/////////////////////////////////////////////////////////////////////
 		 System.out.println("Score des joueurs dans la game");/////////////////////////////////////////////////////////////////
@@ -272,4 +273,40 @@ public class Bot extends Player{
 	 private void setStrategy(Strategy strategy) {
 		 Bot.strategy = strategy;
 	 }
+
+	@Override
+	public void attacher(ObservateurJoueurReel o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void detacher(ObservateurJoueurReel o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Player notifySelectPlayer() throws ObservateurNotLinkedException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void notifyStartTour() throws ObservateurNotLinkedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

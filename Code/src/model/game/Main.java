@@ -1,11 +1,9 @@
 package model.game;
 
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -62,7 +60,7 @@ public class Main{
 			game.ajouterJoueurReel(joueur2);
 
 			game.nouvellePartie();
-			GameManager.getInstanceUniqueManager().startGame();
+			GameManager.getInstanceUniqueManager().startGameConsole();
 			
 			break;
 		
@@ -79,21 +77,27 @@ public class Main{
 					}
 				}
 			});
+			break;
 			
 		case 8:
-			Game ga = new Game();
-			ga.initGame();
-			
+			GameController gameController = new GameController();
+			gameController.getGame().initGame();
+
+			Bot b1 = new Bot("bot1", new MediumStrategy());
+			Bot b2 = new Bot("bot2", new MediumStrategy());
+			Bot b3 = new Bot("bot3", new MediumStrategy());
+
 			Human j1 = new Human("valentin", 18);
 			j1.attacher(new JoueurController(j1));
 			
 			Human j2 = new Human("David", 20);
 			j2.attacher(new JoueurController(j2));
-			ga.ajouterJoueurReel(j1);
-			ga.ajouterJoueurReel(j2);
-			ga.nouvellePartie();
+			gameController.getGame().ajouterJoueurReel(j1);
+			gameController.getGame().ajouterJoueurReel(j2);
 			
-			GameManager.getInstanceUniqueManager().startGame();
+			gameController.lancerPartie("IHM");//choisi de lancer en mode graphique
+			
+			
 			
 			TableJeu tb = new TableJeu();
 //			testCarte();
@@ -126,19 +130,19 @@ public class Main{
 
 	/**Methode permettant de tester les bots dans une partie avec la strategie medium*/
 	private static void testBot() {
-		Game game = new Game();
-		game.initGame();
+		GameController gc = new GameController();
+		gc.getGame().initGame();
 
 		Bot b1 = new Bot("bot1", new MediumStrategy());
 		Bot b2 = new Bot("bot2", new MediumStrategy());
 		Bot b3 = new Bot("bot3", new MediumStrategy());
 
-		game.ajouterBot(b1);
-		game.ajouterBot(b2);
-		game.ajouterBot(b3);
+		gc.getGame().ajouterBot(b1);
+		gc.getGame().ajouterBot(b2);
+		gc.getGame().ajouterBot(b3);
 
-		game.nouvellePartie();	
-		GameManager.getInstanceUniqueManager().startGame();
+		gc.lancerPartie("console");
+		//GameManager.getInstanceUniqueManager().startGameConsole();
 	}
 
 	/**Methode permettant de tester le fonctionnement d'une partie*/
@@ -154,7 +158,7 @@ public class Main{
 		game.ajouterJoueurReel(joueur2);
 
 		game.nouvellePartie();
-		GameManager.getInstanceUniqueManager().startGame();
+		GameManager.getInstanceUniqueManager().startGameConsole();
 	}
 
 	/**Methode permettant de tester les humains*/

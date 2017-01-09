@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import controller.GameManagerController;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
@@ -14,7 +13,6 @@ import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.player.Player;
 import view.IObservateurGameManager;
-import view.console.VueGameManager;
 import view.ihm.TableJeu;
 
 /**Classe qui gÃ¨re tous les elements de la partie*/
@@ -40,7 +38,7 @@ public class GameManager implements IObservableGameManager {
 	/**Attribut representant les cartes divinites de la partie*/
 	private LinkedList<Divinity> listDivinites = new LinkedList<Divinity>();
 	
-	/**Attribut representant la pile de cartes appelées pendant le tour*/
+	/**Attribut representant la pile de cartes appelï¿½es pendant le tour*/
 	private LinkedList<Card> pilesCartesTour = new LinkedList<Card>();
 
 	/**Attribut representant les joueurs de la partie*/
@@ -79,15 +77,30 @@ public class GameManager implements IObservableGameManager {
 	public void initialisationController(IObservateurGameManager controller){
 		observateur = controller;
 	}
+	
+	/**Methode permeettant de demarrer la partie en mode console*/
+	public void startGameConsole(){
+		this.melangerDivinites();
+		this.melangerPioche();
+		this.intialisationDesJeux();
+		this.deroulementTourJeu();
+	}
 
-	/**Methode permettant de demarrer la partieen melangeant les cartes et en lancant le premier tour de jeu*/
-	public void startGame() {
+	/**Methode permettant de demarrer la partie en mode graphique*/
+	public void startGameIHM() {
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
 		TableJeu tb = new TableJeu();
-		this.deroulementTourJeu();
-		
+		this.deroulementTourJeu();	
+	}
+	
+	public void startGame(){
+		this.melangerDivinites();
+		this.melangerPioche();
+		this.intialisationDesJeux();
+		TableJeu tb = new TableJeu();
+		this.deroulementTourJeu();	
 	}
 
 	/**MÃ©thode permettant de mÃ©langer les cartes divinites*/	
@@ -401,7 +414,7 @@ public class GameManager implements IObservableGameManager {
 	}
 	
 	/**Getter de la pile de carte des tours
-	 * @return liste de cartes jouées pendant le tour
+	 * @return liste de cartes jouï¿½es pendant le tour
 	 */
 	public LinkedList<Card> getPilesCartesTour(){
 		return pilesCartesTour;

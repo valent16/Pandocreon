@@ -15,10 +15,10 @@ import view.console.VueGameManager;
 public class GameController {
 
 	/**Attribut correspondant a la vue du jeu*/
-	VueGame vueJeu;
-	
+	private VueGame vueJeu;
+
 	/**Attribut correspondant a la parte*/
-	Game game;
+	private Game game;
 
 	/**Constructeur*/
 	public GameController(){
@@ -82,5 +82,34 @@ public class GameController {
 		game.nouvellePartie();
 		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(new VueGameManager()));
 		GameManager.getInstanceUniqueManager().startGame();
+	}
+
+	/**Methode permettant de lancer la partie en mode console ou en mode IHM*/
+	public void lancerPartie(String mode){
+		game.nouvellePartie();
+		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(new VueGameManager()));
+		switch(mode){
+		case "console"://lance la partie en mode console
+			GameManager.getInstanceUniqueManager().startGameConsole();
+			break;
+		case "IHM"://lance la partie en mode graphique
+			GameManager.getInstanceUniqueManager().startGameIHM();
+		default:
+			System.out.println("ce mode n'existe pas");
+		}
+	}
+
+	/**gettre du model
+	 * @return le mode du jeu
+	 */
+	public Game getGame(){
+		return game;
+	}
+
+	/**Getter de la vue
+	 * @return la vue du jeu
+	 */
+	public VueGame getVueGame(){
+		return vueJeu;
 	}
 }

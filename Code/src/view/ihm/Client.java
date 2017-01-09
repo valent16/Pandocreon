@@ -23,7 +23,10 @@ import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
 import controller.GameController;
+import controller.JoueurController;
 import model.game.Game;
+import model.game.GameManager;
+import model.player.Human;
 
 public class Client extends JFrame{
 
@@ -311,10 +314,30 @@ public class Client extends JFrame{
 
 	/**Methode pour lancer la partie*/
 	private void lancerPartie() {
+		///TODO A FAIRE AU COMPLET
 		gc.startGame();//lancement de la partie
 		//il faut changer la vue car la methode MenuPrinciaple de la classe VUegame est fait pour la consolle il faut appeler une nouvelle methode
 		//La methode de game est bonn mais 
 		
+		/////////:IL FAUT REPRENDRE CA POUR LANCER LA PARTIE
+		Game game = new Game();
+		game.initGame();
+		
+		//POUR LES HUMAINS/////////////////////////
+		Human j1 = new Human("valentin", 18);
+		j1.attacher(new JoueurController(j1));
+		
+		Human j2 = new Human("David", 20);
+		j2.attacher(new JoueurController(j2));
+		game.ajouterJoueurReel(j1);
+		game.ajouterJoueurReel(j2);
+		game.nouvellePartie();
+		
+		//TODO POUR LES BOTS/////////////////////////
+		//faire la meme chose que ce qu'il ya pour les humains mais pour les bots
+		
+		GameManager.getInstanceUniqueManager().startGame();
+		TableJeu tb = new TableJeu();
 		
 		//TODO Dans la classe Player ajouter une instance observateur Player
 		//TODO Quand on pose une carte on notifie le joueru et la carte

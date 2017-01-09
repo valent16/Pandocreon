@@ -9,9 +9,10 @@ import model.cards.OriginCards.SpiritGuide;
 import model.exception.ObservateurNotLinkedException;
 import view.ObservateurJoueurReel;
 
-/**Classe qui permet au controller joueur de notifier la vue*/
-public interface IObservableHumain {
+/**Classe qui permet au controller bot de notifier la vue*/
+public interface IObservableBot{
 
+	//TODO A MODIF POUR QUE CA CORREPSONDE AU BOT
 	/**Methode permettant d'ajouter un observateur
 	 * @param o l'observateur a ajouter
 	 */
