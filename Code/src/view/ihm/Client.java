@@ -52,15 +52,13 @@ public class Client{
 	/**label pour le nombre de joueur*/
 	private JLabel nombreJoueur, nombreHumain, nombreBot;
 
-	/**Champ de texte pour les caracteristique d'un joueur*/
-	private JTextField tfNom, tfAge;
-
 	/**logo du jeu*/
 	private ImageIcon logo = new ImageIcon("images/logo.png");
 
 	//model
 	private final static int NOMBRE_MINIMAL_JOUEUR = 0;
 	private final static int NOMBRE_MAXIMAL_JOUEUR = 9;
+	private final static int AGE_JOUEUR = 20;
 
 	/**Attribut representant le controlleur de la partie*/
 	private GameController gc;
@@ -75,10 +73,13 @@ public class Client{
 	private String strategie;
 
 	/**Attribut represenat les noms des humains*/
-	private LinkedList<String> listeNomHumains;
+	private LinkedList<String> listeNomHumains = new LinkedList<String>();
 
 	/*Attribut representant les ages de humain*/
-	private LinkedList<String> listeAgeHumains;
+	private LinkedList<Integer> listeAgeHumains = new LinkedList<Integer>();
+
+	/**attribut representant le numero du joueur*/
+	private int indexHumain = 1;
 
 	/**Constructeur du client*/
 	public Client(){
@@ -397,8 +398,10 @@ public class Client{
 			public void actionPerformed(ActionEvent e) {
 				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreHumain.getText() +" de joueurs humains. Voulez-vous continuer ?", "humain ajoutés", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
 				if(option == JOptionPane.OK_OPTION){
+
 					nombreTotalHumain = Integer.parseInt(nombreHumain.getText());
 					ajouterInfoJoueurHumain();//on ajoute les noms et age des joueurs
+
 				}else
 					JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE, logo);
 			}
@@ -418,82 +421,8 @@ public class Client{
 		frame.validate();
 	}
 
+	/**Methode Permettant d'ajouter le nom et l'age a un humain*/
 	private void ajouterInfoJoueurHumain() {
-		//pour chaque joueur
-		for(int i = 0; i<nombreTotalHumain; i++){
-			JPanel framePanel = new JPanel(new BorderLayout());
-
-			JLabel labelHumain = new JLabel("humain numero "+i);
-			labelHumain.setHorizontalAlignment(JLabel.CENTER); //permet de centrer le contenu du label
-
-			//ajout des champs de text
-			tfNom = new JTextField();
-			tfAge = new JTextField();
-			tfNom.setColumns(10);
-			tfAge.setColumns(10);
-			JLabel nomHumain = new JLabel("Nom : ");
-			JLabel ageHumain = new JLabel("Age : ");
-
-			JPanel infoHumainPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
-
-			GridBagConstraints gbc = new GridBagConstraints();
-			gbc.insets = new Insets(2, 2, 2, 2);
-			gbc.gridx = 0;
-			gbc.gridy = 0;
-			infoHumainPanel.add(labelHumain, gbc);
-
-			gbc.gridx = 0;
-			gbc.gridy = 1;
-			infoHumainPanel.add(nomHumain, gbc);
-
-			gbc.gridx = 1;
-			infoHumainPanel.add(tfNom, gbc);
-
-			gbc.gridx = 2;
-			infoHumainPanel.add(ageHumain, gbc);
-
-			gbc.gridx = 3;
-			infoHumainPanel.add(tfAge, gbc);
-
-			//bouton annuler
-			JButton annuler = new JButton("Annuler");
-			annuler.setPreferredSize(new Dimension(120, 50));
-			annuler.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					retourMenuPrincipale();
-				}
-			});
-
-			//bouton valider
-			JButton valider = new JButton("Valider");
-			valider.setPreferredSize(new Dimension(120, 50));
-			valider.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if(tfNom.getText().equals("") || tfAge.getText().equals("")){	
-						//TODO revenir a l'humain en question TESTER SI c'est pas vide
-					}else{
-						listeNomHumains.add(tfNom.getText());
-						listeAgeHumains.add(tfAge.getText());
-					}
-				}
-			});
-			
-			//Panel sud
-			JPanel southPanel = new JPanel (new FlowLayout());
-			southPanel.add(annuler);
-			southPanel.add(valider);
-
-			framePanel.add(infoHumainPanel, BorderLayout.CENTER);
-			framePanel.add(southPanel, BorderLayout.SOUTH);
-
-			frame.setTitle("Nombres d'humains");
-			frame.setContentPane(framePanel);
-			frame.repaint();
-			frame.validate();
-		}
-		
 		lancerPartie();//on lance la partie maintenant
 
 		//TODO faire une boucle for qui parcours nombreTotalJOueur
@@ -505,20 +434,14 @@ public class Client{
 
 	/**Methode pour lancer la partie*/
 	private void lancerPartie() {
-		
-		//liste des joueurs
-		System.out.println("taille nom" + listeNomHumains.size());
-		System.out.println("taille age" + listeAgeHumains.size());
-		System.out.println("liste nom" + listeNomHumains);
-		System.out.println("liste age"+ listeAgeHumains);
-		
+
 		int nombreTotalJoueur = nombreTotalBot+nombreTotalHumain;
 		if(nombreTotalJoueur == 0){
 			int option = JOptionPane.showConfirmDialog(null, "Vous n'avez saisis aucun joueur", "probleme nombre de joueur", 
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
 			retourMenuPrincipale();
 		}else{//sinon il y au moins un joueur
-			CreationJoueur();//methodes pour creer tous les joueurs
+			CreationJoueurs();//methodes pour creer tous les joueurs
 		}
 
 		//POURQUOI CA MARCHE DANS LE MAIN ET PAS LA
@@ -534,19 +457,20 @@ public class Client{
 	}
 
 	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
-	private void CreationJoueur() {
+	private void CreationJoueurs() {
 		//Creation et ajout des bots dans la partie
 		for(int i = 0; i<nombreTotalBot; i++){
-			gc.CreationBot(Game.getBotName(i), strategie);//ajout des bots
+			gc.CreationBot("Bot "+Game.getBotName(i), strategie);//ajout des bots
 		}
+		
 		System.out.println("affichage des bots "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 
 		//Creation et ajout des humains dans la partie
 		for(int i = 0; i<nombreTotalHumain; i++){
-			gc.CreationJoueur("Humain"+i, 20); //TODO Il faudra Avoir un arraylist pour les noms et 1 pour les ages en attribut et lors de la methode Ajoutinfojoueurs on les recuperers
+			gc.CreationJoueur("Humain "+Game.getBotName(i), AGE_JOUEUR);
 		}
+		
 		System.out.println("affichage des joueur "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
-
 	}
 
 	/**Methode pour revenir au panel MenuPrincipale*/

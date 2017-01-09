@@ -1,5 +1,4 @@
 package view.ihm.client;
-import java.util.Scanner;
 
 import javax.swing.JPanel;
 

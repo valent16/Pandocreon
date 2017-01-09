@@ -1,32 +1,12 @@
 package view.ihm.client;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 
 /**Classe qui gere la vue de la partie en mode console*/
 public class PanelAjoutInfoHumain extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	/**panel du menu principale*/
-	private JPanel menuPrincipal;
-
-	/**bouton pour lancer une nouvelle partie*/
-	private JButton newGame;
-
-	/**bouton pour le chargement d'une partie*/
-	private JButton loadGame;
-
-	/**button pour les regles*/
-	private JButton rules;
 
 	/**Constructeur*/
 	public PanelAjoutInfoHumain(){
@@ -34,53 +14,68 @@ public class PanelAjoutInfoHumain extends JPanel{
 	}
 
 	private void initialize(){
-		menuPrincipal = new JPanel(new GridBagLayout());
+		/*//pour chaque joueur
+		JPanel framePanel = new JPanel(new BorderLayout());
 
-		menuPrincipal.setPreferredSize(new Dimension(250,250));
+		//ajout des champs de text
+		JLabel nomHumain = new JLabel("Nom : ");
+		tfNom = new JTextField();
+		tfNom.setColumns(10);
 
-		newGame = new JButton("Nouvelle partie");
-		newGame.setPreferredSize(new Dimension(200,50));
+		JPanel[] infos = new JPanel[nombreTotalHumain];
 
-		loadGame = new JButton("Charger Partie");
-		loadGame.setPreferredSize(new Dimension(200, 50));
-
-		rules = new JButton("Afficher les regles");
-		rules.setPreferredSize(new Dimension(200,50));
-
-		//ajout des composants
+		JPanel infoHumainPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
 		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(2, 2, 2, 2);
+
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		menuPrincipal.add(newGame, gbc);
+		//infoHumainPanel.add(nomHumain, gbc);
 
-		gbc.gridy = 1;
-		menuPrincipal.add(loadGame, gbc);
+		gbc.gridx = 1;
+		infoHumainPanel.add(tfNom, gbc);
 
-		gbc.gridy = 2;
-		menuPrincipal.add(rules, gbc);
-
-
-		//Methode permettant d'ajouter les listener au boutons
-		newGame.addActionListener(new ActionListener() {
+		//bouton annuler
+		JButton annuler = new JButton("Annuler");
+		annuler.setPreferredSize(new Dimension(120, 50));
+		annuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				lancerIHM();
+				retourMenuPrincipale();
 			}
 		});
 
-		loadGame.addActionListener(new ActionListener() {
+		//bouton valider
+		JButton valider = new JButton("Valider");
+		valider.setPreferredSize(new Dimension(120, 50));
+		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chargerPartie();
+
+				//TODO faire des test sur le nom et l'age récuperé
+
+				do{
+					System.out.println(indexHumain);
+					listeNomHumains.add(tfNom.getText());
+					listeAgeHumains.add(20);
+					//ajouterInfoJoueurHumain();
+					indexHumain++;
+					//liste des joueurs
+					System.out.println("liste nom " + listeNomHumains);//////////////////////////////////////////////////////////////////////////////
+					System.out.println("liste age "+ listeAgeHumains);//////////////////////////////////////////////////////////////////////////////
+				}while(indexHumain <= nombreTotalHumain);//on le fait pour le nombre d'humain demander
 			}
 		});
 
-		rules.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				afficherRegles();
-			}
-		});
+		//Panel sud
+		JPanel southPanel = new JPanel (new FlowLayout());
+		southPanel.add(annuler);
+		southPanel.add(valider);
+
+		frame.setTitle("humain numero : "+indexHumain);
+		frame.setContentPane(framePanel);
+		frame.repaint();
+		frame.validate();*/
 
 	}
 
