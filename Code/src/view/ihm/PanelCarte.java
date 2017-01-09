@@ -47,6 +47,9 @@ public class PanelCarte extends JPanel{
 	//carte rerpésenté dans le panel
 	private Card carte;
 	
+	
+	
+	
 	public PanelCarte(Card carte){
 		this.carte = carte;
 		//panelBox = new JPanel();
@@ -71,6 +74,9 @@ public class PanelCarte extends JPanel{
 		labelArea.setEditable(false);
 		labelArea.setLineWrap(true);
 		
+		labelArea.setOpaque(false);
+		
+		
 		this.add(panelTop);
 		this.add(panelTitre);
 		this.add(labelArea);
@@ -78,6 +84,10 @@ public class PanelCarte extends JPanel{
 		
 		this.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
 		panelFactory();
+	}
+	
+	public Card getCarte(){
+		return carte;
 	}
 	
 	//Méthode de création du panel en fonction de la carte 

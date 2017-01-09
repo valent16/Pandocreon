@@ -14,12 +14,19 @@ import model.cards.Card;
 
 public class ScrollerCard extends JPanel {
 
+	JPanel panel;
+	
+	private final JScrollPane scroll;
+	
+	private ArrayList<PanelCarte> listeCartesGraphiques = new ArrayList<PanelCarte>();
+	
     public ScrollerCard(List<Card> listeCartes) throws HeadlessException {
-        JPanel panel = new JPanel();
+    	
+    	panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 //        panel.setPreferredSize(new Dimension(800,150));
         panel.setBorder(BorderFactory.createLineBorder(Color.red));
-        final JScrollPane scroll = new JScrollPane(panel);
+        scroll = new JScrollPane(panel);
 
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -27,47 +34,46 @@ public class ScrollerCard extends JPanel {
 //        setSize(300, 300);
 //        setVisible(true);
         
-        
         Iterator<Card> it = listeCartes.iterator();
         
         while (it.hasNext()){
-        	panel.add(new PanelCarte(it.next()));
+        	PanelCarte panelCarte = new PanelCarte(it.next());
+        	panel.add(panelCarte);
+        	listeCartesGraphiques.add(panelCarte);
         	panel.add(Box.createRigidArea(new Dimension(5,0)));
         }
-//        panel.add(initializeExampleCard());
-//        panel.add(Box.createRigidArea(new Dimension(5,0)));
-//        panel.add(initializeExampleCard());
-//        panel.add(Box.createRigidArea(new Dimension(5,0)));
-//        panel.add(initializeExampleCard());
-//        panel.add(Box.createRigidArea(new Dimension(5,0)));
-//        panel.add(initializeExampleCard());
-//        panel.add(Box.createRigidArea(new Dimension(5,0)));
-//        panel.add(initializeExampleCard());
-//        panel.add(Box.createRigidArea(new Dimension(5,0)));
-//        panel.add(initializeExampleCard());
-//        panel.add(Box.createRigidArea(new Dimension(5,0)));
-//        panel.add(initializeExampleCard());
-//        panel.add(Box.createRigidArea(new Dimension(5,0)));
-//        panel.add(initializeExampleCard());
-//        panel.add(Box.createRigidArea(new Dimension(5,0)));
-//        panel.add(initializeExampleCard());
-//        panel.add(Box.createRigidArea(new Dimension(5,0)));
-        
         panel.revalidate();
         scroll.revalidate();
     }
     
-//    public JPanel initializeExampleCard(){
-//    	
-//    	ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
-//		dogmes.add(EnumDogme.CHAOS);
-//		dogmes.add(EnumDogme.NATURE);
-//		String description = "description de la divinite";
-//		EnumOrigineDivinite origine = EnumOrigineDivinite.JOUR;
-//		Divinity carte = new Divinity("nom divinite", dogmes, description, origine);
-//		
-//		PanelCarte panel = new PanelCarte(carte);
-//		
-//		return panel;
-//	}  
+    //Permet de mettre à jour le panel de carte en fonction de la liste de carte passé en paramètre
+    public void majCarte(List<Card> cartes){
+    	ArrayList<Card> cartesASupprimer = new ArrayList<Card>();
+    	//Permet de faire une deep copy de la liste de cartes
+    	Iterator<PanelCarte> it = listeCartesGraphiques.iterator();
+    	while(it.hasNext()){
+    		cartesASupprimer.add(it.next().getCarte());
+    	}
+    	
+    	Iterator<PanelCarte> itPanelCarte = listeCartesGraphiques.iterator();
+    	while(itPanelCarte.hasNext()){
+    		PanelCarte panelCarte = itPanelCarte.next();
+    		if (cartes.contains(panelCarte.getCarte())){
+    			cartesASupprimer.remove(panelCarte.getCarte());
+    			cartes.remove(panelCarte.getCarte());
+    		}
+    	}
+    	
+    	//Ajout des cartes qui n'étaient pas présentes
+    	Iterator<Card> itCarteAjout = cartes.iterator();
+    	while (itCarteAjout.hasNext()){
+    		PanelCarte panelCarte = new PanelCarte(itCarteAjout.next());
+        	panel.add(panelCarte);
+        	listeCartesGraphiques.add(panelCarte);
+        	panel.add(Box.createRigidArea(new Dimension(5,0)));
+    	}
+    	
+    	panel.revalidate();
+        scroll.revalidate();
+    }
 }

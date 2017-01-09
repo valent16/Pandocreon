@@ -9,6 +9,7 @@ import model.cards.OriginCards.Believer;
 import model.exception.NoCroyantLinkedAtConversion;
 import model.exception.PAInsuffisantException;
 import model.game.GameManager;
+import model.player.Human;
 import model.player.Player;
 import model.pouvoir.Pouvoir;
 
@@ -50,5 +51,10 @@ public class ConversionCroyant extends Pouvoir {
 		joueur.getScore();
 		joueur.retirerCarte(carte);
 		joueur.rattacherGuide(carte);
+		
+		if (joueur instanceof Human)
+		{
+			((Human)joueur).notifyChangementCarteRattachees();
+		}
 	}
 }

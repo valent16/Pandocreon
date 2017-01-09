@@ -6,13 +6,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import controller.IObserverGameManager;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.player.Player;
-import view.IObservateurGameManager;
 import view.ihm.TableJeu;
 
 /**Classe qui gère tous les elements de la partie*/
@@ -21,7 +21,7 @@ public class GameManager implements IObservableGameManager {
 	private final static int NB_CARTE_MAX_MAIN = 7;
 
 	/**Attribut representant le controller qui observe la victoire ou la defaite des joueurs*/
-	private IObservateurGameManager observateur ;
+	private IObserverGameManager observateur ;
 
 	/**Attribut representant le gestionnaire de partie*/
 	private static volatile GameManager managerUnique;
@@ -74,32 +74,38 @@ public class GameManager implements IObservableGameManager {
 	}
 	
 	// initialisation du controller de la partie 
-	public void initialisationController(IObservateurGameManager controller){
+	public void initialisationController(IObserverGameManager controller){
 		observateur = controller;
 	}
 	
-	/**Methode permeettant de demarrer la partie en mode console*/
-	public void startGameConsole(){
+//	/**Methode permeettant de demarrer la partie en mode console*/
+//	public void startGameConsole(){
+//		this.melangerDivinites();
+//		this.melangerPioche();
+//		this.intialisationDesJeux();
+//		this.deroulementTourJeu();
+//	}
+//
+//	/**Methode permettant de demarrer la partie en mode graphique*/
+//	public void startGameIHM() {
+//		this.melangerDivinites();
+//		this.melangerPioche();
+//		this.intialisationDesJeux();
+//		TableJeu tb = new TableJeu();
+//		this.deroulementTourJeu();	
+//	}
+	
+	public void nouvellePartie(){
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
-		this.deroulementTourJeu();
-	}
-
-	/**Methode permettant de demarrer la partie en mode graphique*/
-	public void startGameIHM() {
-		this.melangerDivinites();
-		this.melangerPioche();
-		this.intialisationDesJeux();
-		TableJeu tb = new TableJeu();
-		this.deroulementTourJeu();	
 	}
 	
 	public void startGame(){
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
-		TableJeu tb = new TableJeu();
+//		TableJeu tb = new TableJeu();
 		this.deroulementTourJeu();	
 	}
 
@@ -173,8 +179,8 @@ public class GameManager implements IObservableGameManager {
 	 * @param joueur le joueur a ajouter a la partie
 	 */
 	public void ajouterJoueur(Player joueur){
-
 		players.add(joueur);
+		notifyChangementJoueurs();
 	}
 
 	/**Methode permettant de recuperer les croyants compatibles au guide
@@ -423,10 +429,27 @@ public class GameManager implements IObservableGameManager {
 	@Override
 	public void notifyPlayerVictory(Player p) {
 		observateur.annoncerVictoireJoueur(p);
+		observateur.miseAJourJoueurs();
 	}
 
 	@Override
 	public void notifyPlayerDefeat(Player p) {
 		observateur.annoncerDefaitJoueur(p);
+		observateur.miseAJourJoueurs();
+	}
+
+	@Override
+	public void notifyChangementCroyants() {
+		observateur.miseAJourCroyants();
+	}
+
+	@Override
+	public void notifyChangementTour() {
+		observateur.miseAJourNbTour();
+	}
+	
+	@Override
+	public void notifyChangementJoueurs(){
+		observateur.miseAJourJoueurs();
 	}
 }

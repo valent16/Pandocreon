@@ -2,12 +2,12 @@ package model.player;
 
 import java.util.List;
 
+import controller.IObserverJoueurReel;
 import model.EnumType.EnumCosmogonie;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.exception.ObservateurNotLinkedException;
-import view.ObservateurJoueurReel;
 
 /**Classe qui permet au controller bot de notifier la vue*/
 public interface IObservableBot{
@@ -16,12 +16,12 @@ public interface IObservableBot{
 	/**Methode permettant d'ajouter un observateur
 	 * @param o l'observateur a ajouter
 	 */
-	public void attacher(ObservateurJoueurReel o);
+	public void attacher(IObserverJoueurReel o);
 
 	/**Methode permettant de retirer un observateur
 	 * @param o l'observateur a retirer
 	 */
-	public void detacher(ObservateurJoueurReel o);
+	public void detacher(IObserverJoueurReel o);
 
 	/**Methode permettant de notifier la vue pour que le joueur selectionner une cible
 	 * @return le joueur selectionné

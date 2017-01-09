@@ -1,0 +1,11 @@
+package view;
+
+public interface iViewJoueurReel {
+
+	public void majDeckCarte();
+	
+	public void majPointsAction();
+	
+	public void majCartesRattachees();
+	
+}

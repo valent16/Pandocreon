@@ -1,0 +1,13 @@
+package view;
+
+public interface IViewGame {
+	public void majJoueurs();
+	
+	public void majFaceDe();
+	
+	public void majTableCroyant();
+	
+	public void majNbTours();
+	
+	public void afficherVainqueur();
+}

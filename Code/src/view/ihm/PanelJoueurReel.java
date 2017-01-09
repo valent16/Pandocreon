@@ -16,13 +16,37 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import controller.JoueurController;
 import model.player.Human;
 import model.player.Player;
+import view.IViewJoueurReel;
+import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
 import model.cards.OriginCards.*;
-public class PanelJoueurReel extends JPanel {
+public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
+	
+	JoueurController controller;
 	
 	Human joueurReel;
+	
+	//jour
+	JLabel label;
+	
+	//nuit
+	JLabel label_1;
+	
+	//néant
+	JLabel label_2;
+	
+	//scroll label de la main du joueur
+	ScrollerCard mainJoueur;
+	
+	//scroll label des cartes rattachées au joueur
+	ScrollerCard cartesRattachees;
+	
+	JPanel panelDivinite;
+	
+	JPanel panelDroite;
 	
 	public PanelJoueurReel(Human p){
 		
@@ -36,7 +60,7 @@ public class PanelJoueurReel extends JPanel {
 		panelGauche.setLayout(new BoxLayout(panelGauche, BoxLayout.Y_AXIS));
 		panelGauche.setPreferredSize(new Dimension(800,300));
 		
-		JPanel panelDroite = new JPanel();
+		panelDroite = new JPanel();
 		panelDroite.setLayout(new BoxLayout(panelDroite, BoxLayout.Y_AXIS));
 		
 		//liste des cartes du joueur
@@ -51,7 +75,8 @@ public class PanelJoueurReel extends JPanel {
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-            	panelCartesJoueur.add(new ScrollerCard(new ArrayList<Card>(joueurReel.getHand())));
+            	mainJoueur = new ScrollerCard(new ArrayList<Card>(joueurReel.getHand()));
+            	panelCartesJoueur.add(mainJoueur);
 //            	frame.pack();
             }
         });
@@ -70,7 +95,8 @@ public class PanelJoueurReel extends JPanel {
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-            	panelCartesRattachesJoueur.add(new ScrollerCard(getCartesRattaches()));
+            	cartesRattachees =new ScrollerCard(getCartesRattaches()); 
+            	panelCartesRattachesJoueur.add(cartesRattachees);
 //            	frame.pack();
             }
         });
@@ -99,13 +125,13 @@ public class PanelJoueurReel extends JPanel {
 		ImagePanel imageNeant = new ImagePanel("./images/OrigineCarte/neant.jpg",800/20,800/20);
 		grillePoints.add(new JLabel(new ImageIcon(imageNeant.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH))));
 		
-		JLabel label = new JLabel("jour");
+		label = new JLabel("jour");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		grillePoints.add(label);
-		JLabel label_1 = new JLabel("nuit");
+		label_1 = new JLabel("nuit");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		grillePoints.add(label_1);
-		JLabel label_2 = new JLabel("neant");
+		label_2 = new JLabel("neant");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		grillePoints.add(label_2);
 		
@@ -114,7 +140,8 @@ public class PanelJoueurReel extends JPanel {
 		
 		panelDroite.add(Box.createRigidArea(new Dimension(0,230)));
 		panelDroite.add(panelPointsAction);
-		panelDroite.add(new PanelCarte(joueurReel.getDivinity()));
+//		panelDivinite = new JPanel();
+//		panelDroite.add(panelDivinite);
 		
 		
 		this.add(panelGauche, BorderLayout.WEST);
@@ -139,5 +166,29 @@ public class PanelJoueurReel extends JPanel {
 			cartesConverties.add(guide);
 		}
 		return cartesConverties; 
+	}
+	
+	@Override
+	public void majDeckCarte(){
+		mainJoueur.majCarte(new ArrayList<Card>(joueurReel.getHand()));
+	}
+
+	@Override
+	public void majPointsAction() {
+		label.setText(String.valueOf(joueurReel.getDicoPA().get(EnumCosmogonie.JOUR))); 
+		label_1.setText(String.valueOf(joueurReel.getDicoPA().get(EnumCosmogonie.NUIT)));
+		label_2.setText(String.valueOf(joueurReel.getDicoPA().get(EnumCosmogonie.NEANT)));
+	}
+
+	@Override
+	public void majCartesRattachees() {
+		cartesRattachees.majCarte(getCartesRattaches());
+	}
+
+	@Override
+	public void majDivinite() {
+		// TODO Auto-generated method stub
+		panelDivinite = new PanelCarte(joueurReel.getDivinity());
+		panelDroite.add(panelDivinite);
 	}
 }

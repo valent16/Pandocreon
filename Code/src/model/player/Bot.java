@@ -6,18 +6,21 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import controller.IObserverJoueurReel;
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
+import model.cards.Card;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.ApocalypseWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.exception.ObservateurNotLinkedException;
+import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
 import model.game.GameManager;
 import model.strategy.*;
-import view.ObservateurJoueurReel;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
 public class Bot extends Player implements IObservableBot{
@@ -239,7 +242,56 @@ public class Bot extends Player implements IObservableBot{
 		 System.out.println(this.getNom() + " est dernier avec un score : "+this.getScore());//////////////////////////////////////////////
 		 return true;
 	 }
-
+	 
+	 @Override
+	 public void piocher(){
+		 hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
+	 }
+	 
+	 @Override
+	 public void rattacherGuide(Card carte){
+		 if(carte instanceof SpiritGuide){
+			 this.guidesRattaches.add((SpiritGuide) carte);
+		 }
+	 }	 
+	 
+	 @Override
+	 public void defausserCarte(ActionCard carte){
+		 hand.remove(carte);
+		 GameManager.getInstanceUniqueManager().defausserCarte(carte);
+	 }
+	 
+	 @Override
+	 public void defausserCartes(LinkedList<ActionCard> cartes){
+		 hand.removeAll(cartes);
+		 GameManager.getInstanceUniqueManager().defausserCarte(cartes);
+	 }
+	 
+	 @Override
+	 public void defausserGuideRattache(SpiritGuide guide){
+		 guidesRattaches.remove(guide);
+		 GameManager.getInstanceUniqueManager().defausserCarte(guide);
+	 }
+	 
+	 @Override
+	 public void incrementerPointAction(EnumCosmogonie typePA, int nbPA){
+		 dicoPA.put(typePA, dicoPA.get(typePA) + nbPA);		
+	 }
+	 
+	 @Override
+	 public void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException{
+		 if ((dicoPA.get(typePA) - nbPA) < 0){
+			 throw new PAInsuffisantException("Pas assez de point d'action "+dicoPA.get(typePA));
+		 }
+		 dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
+	 }
+	 
+	 
+	 @Override
+	public void ajouterMain(ActionCard card){
+		 this.hand.push(card);
+	 }
+	 
 	 @Override
 	 public Player pickTarget() throws TargetSelectionException {
 		 return strategy.pickTarget();
@@ -275,13 +327,13 @@ public class Bot extends Player implements IObservableBot{
 	 }
 
 	@Override
-	public void attacher(ObservateurJoueurReel o) {
+	public void attacher(IObserverJoueurReel o) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void detacher(ObservateurJoueurReel o) {
+	public void detacher(IObserverJoueurReel o) {
 		// TODO Auto-generated method stub
 		
 	}

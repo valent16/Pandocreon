@@ -27,7 +27,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 8;
+		int valeur = 4;
 		
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -53,9 +53,9 @@ public class Main{
 			gameController.startGame();
 
 			Human joueur1 = new Human("valentin", 18);
-			joueur1.attacher(new JoueurController(joueur1));
+//			joueur1.attacher(new JoueurController(joueur1));
 			Human joueur2 = new Human("David", 20);
-			joueur2.attacher(new JoueurController(joueur2));
+//			joueur2.attacher(new JoueurController(joueur2));
 			
 			gameController.getGame().ajouterJoueurReel(joueur1);
 			gameController.getGame().ajouterJoueurReel(joueur2);
@@ -64,7 +64,7 @@ public class Main{
 			break;
 		
 		case 6:
-			TableJeu table = new TableJeu();
+//			TableJeu table = new TableJeu();
 			break;
 		case 7: //Pour lancer le client (Menu du jeu)
 			EventQueue.invokeLater(new Runnable() {

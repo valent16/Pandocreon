@@ -1,0 +1,10 @@
+package model.game;
+
+public interface IObservableDe {
+	/**Méthode permettant de notifier la vue lorsque la face du dé est changée
+	 * 
+	 */
+	public void notifyChangementFace();
+	
+	public void attacher(IObserverDe);
+}
