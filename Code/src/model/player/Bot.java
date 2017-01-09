@@ -1,11 +1,11 @@
 ﻿package model.player;
 
 import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.OriginCards.ActionCardWithOrigin;
@@ -13,14 +13,12 @@ import model.cards.OriginCards.ApocalypseWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
-import model.exception.ObservateurNotLinkedException;
 import model.exception.TargetSelectionException;
 import model.game.GameManager;
 import model.strategy.*;
-import view.ObservateurJoueurReel;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
-public class Bot extends Player implements IObservableBot{
+public class Bot extends Player{
 	public final static int AGE_BOT = 200;
 
 	/**Attribut representant la stratégie choisi au départ pour tous les bots*/
@@ -274,39 +272,4 @@ public class Bot extends Player implements IObservableBot{
 	 private void setStrategy(Strategy strategy) {
 		 Bot.strategy = strategy;
 	 }
-
-	@Override
-	public void attacher(ObservateurJoueurReel o) {
-		// TODO faire la methode attacherr voir la methode attacher de HUMAN
-		
-	}
-
-	@Override
-	public void detacher(ObservateurJoueurReel o) {
-		// TODO faire la methode detacher voir la methode detacher de HUMAN
-		
-	}
-
-	@Override
-	public Player notifySelectPlayer() throws ObservateurNotLinkedException {
-		// TODO faire la methode notifySelectPlayer() voir la methode notifySelectPlayer() de HUMAN
-		return null;
-	}
-
-	@Override
-	public void notifyStartTour() throws ObservateurNotLinkedException {
-		// TODO faire la methode notifyStartTour() voir la mathode notifyStartTour() de HUMAN
-	}
-
-	@Override
-	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException {
-		// TODO faire la methode notifySelectOriginePA voir la methode notifySelectOriginePA de HUMAN
-		return null;
-	}
-
-	@Override
-	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException {
-		// TODO faire la methode notifySelectCroyant voir la mathode notifySelectCroyant de HUMAN
-		return null;
-	}
 }

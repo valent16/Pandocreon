@@ -88,7 +88,7 @@ public class GameController {
 		switch(mode){
 		case "console"://lance la partie en mode console
 			GameManager.getInstanceUniqueManager().startGameConsole();
-			vueJeu.MenuPrincipal();//obliger de le laisser pour le main 4 mais ne marche pas//TODO VOIR SI ON PEUT METTRE CETTE METHODE A CET ENDROIT GameManager.getInstanceUniqueManager().startGameConsole(); //l'appel Console
+			//vueJeu.MenuPrincipal();
 			break;
 		case "IHM"://lance la partie en mode graphique
 			GameManager.getInstanceUniqueManager().startGameIHM();

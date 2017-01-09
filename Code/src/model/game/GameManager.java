@@ -91,9 +91,8 @@ public class GameManager implements IObservableGameManager {
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
-		
+		TableJeu tb = new TableJeu();
 		this.deroulementTourJeu();	
-		TableJeu tb = new TableJeu();//l'appel graphique
 	}
 	
 	public void startGame(){
