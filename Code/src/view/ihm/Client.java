@@ -10,6 +10,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -20,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import controller.GameController;
@@ -50,6 +52,9 @@ public class Client{
 	/**label pour le nombre de joueur*/
 	private JLabel nombreJoueur, nombreHumain, nombreBot;
 
+	/**Champ de texte pour les caracteristique d'un joueur*/
+	private JTextField tfNom, tfAge;
+
 	/**logo du jeu*/
 	private ImageIcon logo = new ImageIcon("images/logo.png");
 
@@ -68,6 +73,12 @@ public class Client{
 
 	/**Attribut representant la strategie choisi par le joueur*/
 	private String strategie;
+
+	/**Attribut represenat les noms des humains*/
+	private LinkedList<String> listeNomHumains;
+
+	/*Attribut representant les ages de humain*/
+	private LinkedList<String> listeAgeHumains;
 
 	/**Constructeur du client*/
 	public Client(){
@@ -188,12 +199,12 @@ public class Client{
 		});
 
 		JPanel nombreBotPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
-		JLabel mod = new JLabel("Nombre de bots a ajouter : ("+NOMBRE_MINIMAL_JOUEUR+"-"+NOMBRE_MAXIMAL_JOUEUR+")");
+		JLabel labelNombreBot = new JLabel("Nombre de bots a ajouter : ("+NOMBRE_MINIMAL_JOUEUR+"-"+NOMBRE_MAXIMAL_JOUEUR+")");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		nombreBotPanel.add(mod, gbc);
+		nombreBotPanel.add(labelNombreBot, gbc);
 
 		gbc.gridx = 1;
 		nombreBotPanel.add(moins, gbc);
@@ -253,12 +264,12 @@ public class Client{
 		listeStrategie = new JComboBox<String>(strats);
 
 		JPanel strategieBotPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
-		JLabel mod = new JLabel("Choississez la strategie des bots (seul la difficulte Moyen fonctionne)");
+		JLabel labelStrategieBot = new JLabel("Choississez la strategie des bots (seul la difficulte Moyen fonctionne)");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		strategieBotPanel.add(mod, gbc);
+		strategieBotPanel.add(labelStrategieBot, gbc);
 
 		gbc.gridy = 1;
 		strategieBotPanel.add(listeStrategie, gbc);
@@ -304,6 +315,7 @@ public class Client{
 
 	/**Methode qui permet d'ajouter les joueurs humains en fonction du nombre de joueur saisi*/
 	private void ajouterJoueurHumain() {
+
 		JPanel framePanel = new JPanel(new BorderLayout());
 
 		//label nombre de joueur
@@ -351,12 +363,12 @@ public class Client{
 		});
 
 		JPanel nombreHumainPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
-		JLabel mod = new JLabel("Nombre d'humains a ajouter (1 seul) : ("+ NOMBRE_MINIMAL_JOUEUR + "-" + nombreTotalHumain +")");
+		JLabel labelNombreHumain = new JLabel("Nombre d'humains a ajouter (1 seul) : ("+ NOMBRE_MINIMAL_JOUEUR + "-" + nombreTotalHumain +")");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		nombreHumainPanel.add(mod, gbc);
+		nombreHumainPanel.add(labelNombreHumain, gbc);
 
 		gbc.gridx = 1;
 		nombreHumainPanel.add(moins, gbc);
@@ -407,7 +419,83 @@ public class Client{
 	}
 
 	private void ajouterInfoJoueurHumain() {
-		lancerPartie();
+		//pour chaque joueur
+		for(int i = 0; i<nombreTotalHumain; i++){
+			JPanel framePanel = new JPanel(new BorderLayout());
+
+			JLabel labelHumain = new JLabel("humain numero "+i);
+			labelHumain.setHorizontalAlignment(JLabel.CENTER); //permet de centrer le contenu du label
+
+			//ajout des champs de text
+			tfNom = new JTextField();
+			tfAge = new JTextField();
+			tfNom.setColumns(10);
+			tfAge.setColumns(10);
+			JLabel nomHumain = new JLabel("Nom : ");
+			JLabel ageHumain = new JLabel("Age : ");
+
+			JPanel infoHumainPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
+
+			GridBagConstraints gbc = new GridBagConstraints();
+			gbc.insets = new Insets(2, 2, 2, 2);
+			gbc.gridx = 0;
+			gbc.gridy = 0;
+			infoHumainPanel.add(labelHumain, gbc);
+
+			gbc.gridx = 0;
+			gbc.gridy = 1;
+			infoHumainPanel.add(nomHumain, gbc);
+
+			gbc.gridx = 1;
+			infoHumainPanel.add(tfNom, gbc);
+
+			gbc.gridx = 2;
+			infoHumainPanel.add(ageHumain, gbc);
+
+			gbc.gridx = 3;
+			infoHumainPanel.add(tfAge, gbc);
+
+			//bouton annuler
+			JButton annuler = new JButton("Annuler");
+			annuler.setPreferredSize(new Dimension(120, 50));
+			annuler.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					retourMenuPrincipale();
+				}
+			});
+
+			//bouton valider
+			JButton valider = new JButton("Valider");
+			valider.setPreferredSize(new Dimension(120, 50));
+			valider.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(tfNom.getText().equals("") || tfAge.getText().equals("")){	
+						//TODO revenir a l'humain en question TESTER SI c'est pas vide
+					}else{
+						listeNomHumains.add(tfNom.getText());
+						listeAgeHumains.add(tfAge.getText());
+					}
+				}
+			});
+			
+			//Panel sud
+			JPanel southPanel = new JPanel (new FlowLayout());
+			southPanel.add(annuler);
+			southPanel.add(valider);
+
+			framePanel.add(infoHumainPanel, BorderLayout.CENTER);
+			framePanel.add(southPanel, BorderLayout.SOUTH);
+
+			frame.setTitle("Nombres d'humains");
+			frame.setContentPane(framePanel);
+			frame.repaint();
+			frame.validate();
+		}
+		
+		lancerPartie();//on lance la partie maintenant
+
 		//TODO faire une boucle for qui parcours nombreTotalJOueur
 		//on afiche Faire un panel avec deux champs de test et un label avec joueur+"i"
 		//on recupere dans l'arraylist nomHumains le premier champs de texte
@@ -417,17 +505,24 @@ public class Client{
 
 	/**Methode pour lancer la partie*/
 	private void lancerPartie() {
+		
+		//liste des joueurs
+		System.out.println("taille nom" + listeNomHumains.size());
+		System.out.println("taille age" + listeAgeHumains.size());
+		System.out.println("liste nom" + listeNomHumains);
+		System.out.println("liste age"+ listeAgeHumains);
+		
 		int nombreTotalJoueur = nombreTotalBot+nombreTotalHumain;
 		if(nombreTotalJoueur == 0){
-			int option = JOptionPane.showConfirmDialog(null, "Vous n'avez saisis aucun joueur", "probleme nombre de joeuur", 
+			int option = JOptionPane.showConfirmDialog(null, "Vous n'avez saisis aucun joueur", "probleme nombre de joueur", 
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
 			retourMenuPrincipale();
 		}else{//sinon il y au moins un joueur
-		CreationJoueur();//methodes pour creer tous les joueurs
-	}
+			CreationJoueur();//methodes pour creer tous les joueurs
+		}
 
-	//POURQUOI CA MARCHE DANS LE MAIN ET PAS LA
-	/*
+		//POURQUOI CA MARCHE DANS LE MAIN ET PAS LA
+		/*
 		GameController gameController1 = new GameController();
 		gameController1.startGame();
 
@@ -435,45 +530,45 @@ public class Client{
 		gameController1.CreationJoueur("David", 20);
 
 		gameController1.lancerPartie();
-	 */
-}
-
-/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
-private void CreationJoueur() {
-	//Creation et ajout des bots dans la partie
-	for(int i = 0; i<nombreTotalBot; i++){
-		gc.CreationBot(Game.getBotName(i), strategie);//ajout des bots
+		 */
 	}
-	System.out.println("affichage des bots "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 
-	//Creation et ajout des humains dans la partie
-	for(int i = 0; i<nombreTotalHumain; i++){
-		gc.CreationJoueur("Humain"+i, 20); //TODO Il faudra Avoir un arraylist pour les noms et 1 pour les ages en attribut et lors de la methode Ajoutinfojoueurs on les recuperers
+	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
+	private void CreationJoueur() {
+		//Creation et ajout des bots dans la partie
+		for(int i = 0; i<nombreTotalBot; i++){
+			gc.CreationBot(Game.getBotName(i), strategie);//ajout des bots
+		}
+		System.out.println("affichage des bots "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
+
+		//Creation et ajout des humains dans la partie
+		for(int i = 0; i<nombreTotalHumain; i++){
+			gc.CreationJoueur("Humain"+i, 20); //TODO Il faudra Avoir un arraylist pour les noms et 1 pour les ages en attribut et lors de la methode Ajoutinfojoueurs on les recuperers
+		}
+		System.out.println("affichage des joueur "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
+
 	}
-	System.out.println("affichage des joueur "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 
-}
-
-/**Methode pour revenir au panel MenuPrincipale*/
-private void retourMenuPrincipale() {
-	int option = JOptionPane.showConfirmDialog(null, "Voulez vous revenir au menu principal ?", "Revenir au Menu Principal", 
-			JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
-	if(option == JOptionPane.OK_OPTION){
-		frame.setTitle("Client Pandocreon Divinae");
-		frame.setContentPane(menuPrincipal);
-		frame.repaint();
-		frame.validate();
+	/**Methode pour revenir au panel MenuPrincipale*/
+	private void retourMenuPrincipale() {
+		int option = JOptionPane.showConfirmDialog(null, "Voulez vous revenir au menu principal ?", "Revenir au Menu Principal", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
+		if(option == JOptionPane.OK_OPTION){
+			frame.setTitle("Client Pandocreon Divinae");
+			frame.setContentPane(menuPrincipal);
+			frame.repaint();
+			frame.validate();
+		}
 	}
-}
 
-private void chargerPartie() {
-	JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpé", "chargement de partie", JOptionPane.WARNING_MESSAGE, logo);
-}
+	private void chargerPartie() {
+		JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpé", "chargement de partie", JOptionPane.WARNING_MESSAGE, logo);
+	}
 
-/**Methode permettant d'afficher les regles du jeu*/
-private void afficherRegles(){
-	String regles = "<html><h1>Pandocreon Divinae</h1>"
-			+ "<h2>Livret de Regles</h2>"
+	/**Methode permettant d'afficher les regles du jeu*/
+	private void afficherRegles(){
+		String regles = "<html><h1>Pandocreon Divinae</h1>"
+				+ "<h2>Livret de Regles</h2>"
 
 		+ "<h3>Mythologie</h3>"
 		+ "Dans le monde de Pandocréon, les hommes prient le Haut Dieu, chacun à leur<br/>"
@@ -601,31 +696,31 @@ private void afficherRegles(){
 		+ "<html><p><b>Auteurs: </b><i>Gilbert Valentin - Noga Lucas</i></p>"
 		+ "<p>Projet Pandocreon Divinae - Université de Technologie de Troyes</p>";
 
-	JLabel labelRegles = new JLabel(regles);
-	JScrollPane scrollPanel = new JScrollPane(labelRegles);
-	scrollPanel.getVerticalScrollBar().setUnitIncrement(10);//augmente la vitesse de scroling
-	scrollPanel.setPreferredSize( new Dimension(600, 700) );
-	JOptionPane.showMessageDialog(null, scrollPanel, "Regles du jeu", JOptionPane.INFORMATION_MESSAGE, logo);
-}
+		JLabel labelRegles = new JLabel(regles);
+		JScrollPane scrollPanel = new JScrollPane(labelRegles);
+		scrollPanel.getVerticalScrollBar().setUnitIncrement(10);//augmente la vitesse de scroling
+		scrollPanel.setPreferredSize( new Dimension(600, 700) );
+		JOptionPane.showMessageDialog(null, scrollPanel, "Regles du jeu", JOptionPane.INFORMATION_MESSAGE, logo);
+	}
 
-/**Getter Jframe
- * @return la fenetre graphique
- */
-public JFrame getFenetre(){
-	return frame;
-}
+	/**Getter Jframe
+	 * @return la fenetre graphique
+	 */
+	public JFrame getFenetre(){
+		return frame;
+	}
 
-/**Getter nombre de joueur
- * @return le nombre de joueur choisi pour demarrer la partie
- */
-public int getJoueurs(){
-	return Integer.parseInt(nombreJoueur.getText());
-}
+	/**Getter nombre de joueur
+	 * @return le nombre de joueur choisi pour demarrer la partie
+	 */
+	public int getJoueurs(){
+		return Integer.parseInt(nombreJoueur.getText());
+	}
 
-/**Getter pour le controller de la partie
- * @return le GameControler
- */
-public GameController getGc() {
-	return gc;
-}
+	/**Getter pour le controller de la partie
+	 * @return le GameControler
+	 */
+	public GameController getGc() {
+		return gc;
+	}
 }
