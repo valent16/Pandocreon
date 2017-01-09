@@ -1,0 +1,8 @@
+package view.ihm;
+
+public class PanelPlayer extends JPanel{
+
+	
+	
+	
+}

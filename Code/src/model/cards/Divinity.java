@@ -34,6 +34,10 @@ public class Divinity extends Card implements Serializable{
 		this.dogmes = dogmes;
 		this.origine = origine;
 	}
+	
+	public String getDescription(){
+		return description;
+	}
 
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {

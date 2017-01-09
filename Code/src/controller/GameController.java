@@ -9,6 +9,7 @@ import model.strategy.HardStrategy;
 import model.strategy.MediumStrategy;
 import model.strategy.Strategy;
 import view.console.VueGame;
+import view.console.VueGameManager;
 
 /**Classe qui agit comme un controller de la partie*/
 public class GameController {
@@ -40,7 +41,6 @@ public class GameController {
 		}
 		return false;
 	}
-
 
 	/**Methode permettant la creation d'un joueur a partir de parametres
 	 * @param nom le nom du joueur
@@ -80,6 +80,7 @@ public class GameController {
 	/**Methode permettant de lancer la partie*/
 	public void lancerPartie(){
 		game.nouvellePartie();
+		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(new VueGameManager()));
 		GameManager.getInstanceUniqueManager().startGame();
 	}
 }

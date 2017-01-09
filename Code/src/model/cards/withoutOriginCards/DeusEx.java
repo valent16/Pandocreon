@@ -9,11 +9,19 @@ public class DeusEx extends ActionCard implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	private String description;
+	
 	/**Constructeur*/
-	public DeusEx(String nom) {
+	public DeusEx(String nom, String description) {
 		super(nom);
+		
+		this.description = description;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+	
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
 		// TODO Appeller le pouvoir des DEUS EX

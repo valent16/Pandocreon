@@ -1,0 +1,17 @@
+package view;
+
+import controller.GameController;
+import model.game.Game;
+
+public abstract class View {
+	GameController controllerJeu;
+	
+	Game game;
+	
+	public VueGame(GameController gameController, Game jeu){
+		this.controllerJeu = gameController;
+		this.game = jeu;
+	}
+	
+	
+}

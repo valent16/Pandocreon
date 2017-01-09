@@ -26,6 +26,4 @@ public class GameManagerController implements IObservateurGameManager{
 	public void annoncerVictoireJoueur(Player joueur) {
 		vue.afficherVictoireJoueur(joueur);
 	}
-
-
 }

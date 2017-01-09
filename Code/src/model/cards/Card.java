@@ -30,6 +30,11 @@ public abstract class Card implements Serializable{
 	public Card(String nom){
 		this.nom = nom;
 	}
+	
+	public String getNom(){
+		return nom;
+	}
+	
 
 	/**Getter qui renvoie le fichier contennant l'image de la carte*/
 	public String getImg(){

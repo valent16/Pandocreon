@@ -299,12 +299,11 @@ public class ParserXML implements IDataLoad {
 									}
 									EnumCosmogonie orCA = recupOrigineCarte(carte.getAttribute("template"));
 									if (orCA == null){
-										DeusEx deusEx = new DeusEx(lstr[0].trim());
+										DeusEx deusEx = new DeusEx(lstr[0].trim(), lstr[3].trim());
 										cartesAction.push(deusEx);
 										deusEx.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
-										//System.out.println(deusEx.toString());
 									}else{
-										DeusExWithOrigin deusExOrigine = new DeusExWithOrigin(lstr[0].trim(), orCA);
+										DeusExWithOrigin deusExOrigine = new DeusExWithOrigin(lstr[0].trim(), orCA, lstr[3].trim());
 										cartesAction.push(deusExOrigine);
 										deusExOrigine.ajouterPouvoir(pouvoir, listeSacrifice.get(pouvoir));
 										//System.out.println(deusExOrigine.toString());
@@ -316,7 +315,7 @@ public class ParserXML implements IDataLoad {
 										apocalypse.ajouterPouvoir("declencher apocalypse", pvApocalypse);
 										//System.out.println(apocalypse.toString());
 									}else{
-										ApocalypseWithOrigin apocalypse = new ApocalypseWithOrigin(orCA);
+										ApocalypseWithOrigin apocalypse = new ApocalypseWithOrigin(orCA); 
 										apocalypse.ajouterPouvoir("declencher apocalypse", pvApocalypse);
 										cartesAction.push(apocalypse);
 									}

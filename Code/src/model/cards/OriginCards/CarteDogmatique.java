@@ -31,6 +31,11 @@ public abstract class CarteDogmatique extends ActionCardWithOrigin implements Se
 		this.dogmes = dogmes;
 		this.sacrifice = sacrifice;
 	}
+	
+	public String getTextSacrifice(){
+		return this.sacrifice;
+	}
+	
 
 	/**Getter des Dogmes 
 	 * @return les dogmes de la carte
