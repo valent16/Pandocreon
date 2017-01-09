@@ -1,38 +1,25 @@
 package view.ihm;
-import javax.swing.Box;
+
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
-import controller.JoueurController;
-import model.EnumType.EnumDogme;
-import model.EnumType.EnumOrigineDivinite;
-import model.cards.Card;
-import model.cards.Divinity;
 import model.game.De;
 import model.game.GameManager;
-import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
-import model.strategy.MediumStrategy;
 import view.ViewGame;
-import view.ViewJoueur;
 
 import java.awt.Component;
-import java.awt.FlowLayout;
 
 public class TableJeu extends ViewGame{
 	

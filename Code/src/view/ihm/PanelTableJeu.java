@@ -1,6 +1,7 @@
 package view.ihm;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -16,15 +17,13 @@ import javax.swing.SwingUtilities;
 
 import model.game.De;
 import model.game.GameManager;
-import model.player.Bot;
-import model.player.Player;
-import model.strategy.MediumStrategy;
 import model.cards.*;
 import java.awt.Component;
 
 public class PanelTableJeu extends JPanel {
 	
-	
+	private static final long serialVersionUID = 1L;
+
 	public PanelTableJeu(final GameManager gameManager, De de){
 		this.setLayout(new BorderLayout());
 //		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -77,7 +76,7 @@ public class PanelTableJeu extends JPanel {
         });
 
 		
-		//définition de l'espace réservé au dé
+		//dï¿½finition de l'espace rï¿½servï¿½ au dï¿½
 		final JPanel panelDeTour = new JPanel();
 		panelDeTour.setLayout(new BoxLayout(panelDeTour, BoxLayout.Y_AXIS));
 		
@@ -89,7 +88,7 @@ public class PanelTableJeu extends JPanel {
 		panelJoueurs.add(panelLabelJoueurJeu);
 		panelDeTour.add(panelLabelDe);
 		
-		// mettre une image non définie lorseque le dé est affiché pour la premiere fois
+		// mettre une image non dï¿½finie lorseque le dï¿½ est affichï¿½ pour la premiere fois
 		ImagePanel panelImageDe = new ImagePanel("./images/OrigineCarte/jour.jpg",800/20,800/20);
 		JLabel label = new JLabel(new ImageIcon(panelImageDe.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH)));
 		label.setAlignmentX(Component.RIGHT_ALIGNMENT);

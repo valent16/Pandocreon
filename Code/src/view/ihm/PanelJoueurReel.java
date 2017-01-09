@@ -1,6 +1,7 @@
 package view.ihm;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -17,10 +18,12 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import model.player.Human;
-import model.player.Player;
 import model.cards.Card;
 import model.cards.OriginCards.*;
+
 public class PanelJoueurReel extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
 	
 	Human joueurReel;
 	
@@ -56,7 +59,7 @@ public class PanelJoueurReel extends JPanel {
             }
         });
 		
-		//Affichages des cartes rattachées au joueur
+		//Affichages des cartes rattachï¿½es au joueur
 		final JPanel panelCartesRattachesJoueur = new JPanel();
 		panelCartesRattachesJoueur.setLayout(new BoxLayout(panelCartesRattachesJoueur, BoxLayout.Y_AXIS));
 		panelCartesRattachesJoueur.setPreferredSize(new Dimension(800,200));
@@ -125,7 +128,7 @@ public class PanelJoueurReel extends JPanel {
 		
 	}
 	
-	//Méthode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
+	//Mï¿½thode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
 	private List<Card> getCartesRattaches(){
 		final ArrayList<Card> cartesConverties = new ArrayList<Card>();
 		Iterator<SpiritGuide> it = joueurReel.getGuides().iterator();

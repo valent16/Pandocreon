@@ -1,20 +1,19 @@
 package view.ihm;
 
 import java.awt.*;
-import java.util.ArrayList;
+
 import java.util.Iterator;
 
 import javax.swing.*;
 import java.util.List;
 
-import model.EnumType.EnumDogme;
-import model.EnumType.EnumOrigineDivinite;
-import model.cards.Divinity;
 import model.cards.Card;
 
 public class ScrollerCard extends JPanel {
 
-    public ScrollerCard(List<Card> listeCartes) throws HeadlessException {
+	private static final long serialVersionUID = 1L;
+
+	public ScrollerCard(List<Card> listeCartes) throws HeadlessException {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 //        panel.setPreferredSize(new Dimension(800,150));

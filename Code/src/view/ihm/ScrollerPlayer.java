@@ -10,7 +10,9 @@ import model.player.Player;
 
 public class ScrollerPlayer extends JPanel {
 
-	//création de cet objet à chaque fois qu'un joueur est éliminé
+	private static final long serialVersionUID = 1L;
+
+	//crï¿½ation de cet objet ï¿½ chaque fois qu'un joueur est ï¿½liminï¿½
     public ScrollerPlayer(List<Player> listeJoueurs) throws HeadlessException {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
