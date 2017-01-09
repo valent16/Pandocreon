@@ -27,7 +27,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 3;
+		int valeur = 8;
 		
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -80,15 +80,10 @@ public class Main{
 			
 		case 8:
 			gameController = new GameController();
-			gameController.getGame().initGame();
-
-			Human j1 = new Human("valentin", 18);
-			j1.attacher(new JoueurController(j1));
+			gameController.startGame();
 			
-			Human j2 = new Human("David", 20);
-			j2.attacher(new JoueurController(j2));
-			gameController.getGame().ajouterJoueurReel(j1);
-			gameController.getGame().ajouterJoueurReel(j2);
+			gameController.CreationJoueur("valentin", 18);
+			gameController.CreationJoueur("David", 20);
 			
 			gameController.lancerPartie("IHM");//choisi de lancer en mode graphique
 			break;
@@ -129,7 +124,6 @@ public class Main{
 		gc.CreationBot("bot3", "medium");
 
 		gc.lancerPartie("console");
-		//GameManager.getInstanceUniqueManager().startGameConsole();
 	}
 
 	/**Methode permettant de tester le fonctionnement d'une partie*/
@@ -139,7 +133,7 @@ public class Main{
 
 		gc.CreationJoueur("valentin", 18);
 		gc.CreationJoueur("David", 20);
-
+		
 		gc.lancerPartie("console");
 	}
 
