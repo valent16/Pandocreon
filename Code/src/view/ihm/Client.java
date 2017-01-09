@@ -54,7 +54,7 @@ public class Client{
 	private ImageIcon logo = new ImageIcon("images/logo.png");
 
 	//model
-	private final static int NOMBRE_MINIMAL_JOUEUR = 1;
+	private final static int NOMBRE_MINIMAL_JOUEUR = 0;
 	private final static int NOMBRE_MAXIMAL_JOUEUR = 9;
 
 	/**Attribut representant le controlleur de la partie*/
@@ -115,7 +115,7 @@ public class Client{
 		newGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				nouvellePartie();
+				lancerIHM();
 			}
 		});
 
@@ -135,7 +135,7 @@ public class Client{
 	}
 
 	/**Methode permettant de lancer une nouvelle partie*/
-	public void nouvellePartie(){	
+	public void lancerIHM(){	
 		ajouterBots(); //methode pour ajouter les bots
 	}
 
@@ -307,7 +307,7 @@ public class Client{
 		JPanel framePanel = new JPanel(new BorderLayout());
 
 		//label nombre de joueur
-		nombreHumain = new JLabel(""+1);
+		nombreHumain = new JLabel(""+NOMBRE_MINIMAL_JOUEUR);
 		nombreHumain.setHorizontalAlignment(JLabel.CENTER); //permet de centrer le contenu du label
 
 		//bordure sur le label nombre de joueur
@@ -351,7 +351,7 @@ public class Client{
 		});
 
 		JPanel nombreHumainPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
-		JLabel mod = new JLabel("Nombre d'humains a ajouter (1 seul) : ("+ 1 + "-" + nombreTotalHumain +")");
+		JLabel mod = new JLabel("Nombre d'humains a ajouter (1 seul) : ("+ NOMBRE_MINIMAL_JOUEUR + "-" + nombreTotalHumain +")");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
@@ -408,26 +408,26 @@ public class Client{
 
 	private void ajouterInfoJoueurHumain() {
 		lancerPartie();
-		/*Faire le panel avec le nom et le prenom des joueurs*/
-		//System.out.println("/////////:test1");
-		//lancerPartie();//on peut lancer la partie
-		//ensuite lancerPartie(); //permet d'instancier les bots
+		//TODO faire une boucle for qui parcours nombreTotalJOueur
+		//on afiche Faire un panel avec deux champs de test et un label avec joueur+"i"
+		//on recupere dans l'arraylist nomHumains le premier champs de texte
+		//on recupere dans l'arraylist ageHumains le second champs de texte
 
 	}
 
 	/**Methode pour lancer la partie*/
 	private void lancerPartie() {
+		int nombreTotalJoueur = nombreTotalBot+nombreTotalHumain;
+		if(nombreTotalJoueur == 0){
+			int option = JOptionPane.showConfirmDialog(null, "Vous n'avez saisis aucun joueur", "probleme nombre de joeuur", 
+					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
+			retourMenuPrincipale();
+		}else{//sinon il y au moins un joueur
 		CreationJoueur();//methodes pour creer tous les joueurs
-		//TODO Dans la classe Player ajouter une instance observateur Player
-		//TODO Quand on pose une carte on notifie le joueur et la carte
-		//TODO faire un ObservateurPlayer dans view qui permet
-		//TODO Creer les bots puis les mettre games dans la nouvelle partie
-		//TODO il balance une carte il faut recuperer la carte et le nom du bot
-		//TODO il faut changer la vue car la methode MenuPrinciaple de la classe VUegame est fait pour la consolle il faut appeler une nouvelle methode
+	}
 
-
-		//POURQUOI CA MARCHE DANS LE MAIN ET PAS LA
-		/*
+	//POURQUOI CA MARCHE DANS LE MAIN ET PAS LA
+	/*
 		GameController gameController1 = new GameController();
 		gameController1.startGame();
 
@@ -435,45 +435,45 @@ public class Client{
 		gameController1.CreationJoueur("David", 20);
 
 		gameController1.lancerPartie();
-		 */
+	 */
+}
+
+/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
+private void CreationJoueur() {
+	//Creation et ajout des bots dans la partie
+	for(int i = 0; i<nombreTotalBot; i++){
+		gc.CreationBot(Game.getBotName(i), strategie);//ajout des bots
 	}
+	System.out.println("affichage des bots "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 
-	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
-	private void CreationJoueur() {
-		//Creation et ajout des bots dans la partie
-		for(int i = 0; i<nombreTotalBot; i++){
-			gc.CreationBot(Game.getBotName(i), strategie);//ajout des bots
-		}
-		System.out.println("affichage des bots "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
-
-		//Creation et ajout des humains dans la partie
-		for(int i = 0; i<nombreTotalHumain; i++){
-			gc.CreationJoueur("Humain"+i, 20); //TODO Il faudra Avoir un arraylist pour les noms et 1 pour les ages en attribut et lors de la methode Ajoutinfojoueurs on les recuperers
-		}
-		System.out.println("affichage des joueur "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
-
+	//Creation et ajout des humains dans la partie
+	for(int i = 0; i<nombreTotalHumain; i++){
+		gc.CreationJoueur("Humain"+i, 20); //TODO Il faudra Avoir un arraylist pour les noms et 1 pour les ages en attribut et lors de la methode Ajoutinfojoueurs on les recuperers
 	}
+	System.out.println("affichage des joueur "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 
-	/**Methode pour revenir au panel MenuPrincipale*/
-	private void retourMenuPrincipale() {
-		int option = JOptionPane.showConfirmDialog(null, "Voulez vous revenir au menu principal ?", "Revenir au Menu Principal", 
-				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
-		if(option == JOptionPane.OK_OPTION){
-			frame.setTitle("Client Pandocreon Divinae");
-			frame.setContentPane(menuPrincipal);
-			frame.repaint();
-			frame.validate();
-		}
+}
+
+/**Methode pour revenir au panel MenuPrincipale*/
+private void retourMenuPrincipale() {
+	int option = JOptionPane.showConfirmDialog(null, "Voulez vous revenir au menu principal ?", "Revenir au Menu Principal", 
+			JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
+	if(option == JOptionPane.OK_OPTION){
+		frame.setTitle("Client Pandocreon Divinae");
+		frame.setContentPane(menuPrincipal);
+		frame.repaint();
+		frame.validate();
 	}
+}
 
-	private void chargerPartie() {
-		JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpé", "chargement de partie", JOptionPane.WARNING_MESSAGE, logo);
-	}
+private void chargerPartie() {
+	JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpé", "chargement de partie", JOptionPane.WARNING_MESSAGE, logo);
+}
 
-	/**Methode permettant d'afficher les regles du jeu*/
-	private void afficherRegles(){
-		String regles = "<html><h1>Pandocreon Divinae</h1>"
-				+ "<h2>Livret de Regles</h2>"
+/**Methode permettant d'afficher les regles du jeu*/
+private void afficherRegles(){
+	String regles = "<html><h1>Pandocreon Divinae</h1>"
+			+ "<h2>Livret de Regles</h2>"
 
 		+ "<h3>Mythologie</h3>"
 		+ "Dans le monde de Pandocréon, les hommes prient le Haut Dieu, chacun à leur<br/>"
@@ -601,31 +601,31 @@ public class Client{
 		+ "<html><p><b>Auteurs: </b><i>Gilbert Valentin - Noga Lucas</i></p>"
 		+ "<p>Projet Pandocreon Divinae - Université de Technologie de Troyes</p>";
 
-		JLabel labelRegles = new JLabel(regles);
-		JScrollPane scrollPanel = new JScrollPane(labelRegles);
-		scrollPanel.getVerticalScrollBar().setUnitIncrement(10);//augmente la vitesse de scroling
-		scrollPanel.setPreferredSize( new Dimension(600, 700) );
-		JOptionPane.showMessageDialog(null, scrollPanel, "Regles du jeu", JOptionPane.INFORMATION_MESSAGE, logo);
-	}
+	JLabel labelRegles = new JLabel(regles);
+	JScrollPane scrollPanel = new JScrollPane(labelRegles);
+	scrollPanel.getVerticalScrollBar().setUnitIncrement(10);//augmente la vitesse de scroling
+	scrollPanel.setPreferredSize( new Dimension(600, 700) );
+	JOptionPane.showMessageDialog(null, scrollPanel, "Regles du jeu", JOptionPane.INFORMATION_MESSAGE, logo);
+}
 
-	/**Getter Jframe
-	 * @return la fenetre graphique
-	 */
-	public JFrame getFenetre(){
-		return frame;
-	}
+/**Getter Jframe
+ * @return la fenetre graphique
+ */
+public JFrame getFenetre(){
+	return frame;
+}
 
-	/**Getter nombre de joueur
-	 * @return le nombre de joueur choisi pour demarrer la partie
-	 */
-	public int getJoueurs(){
-		return Integer.parseInt(nombreJoueur.getText());
-	}
+/**Getter nombre de joueur
+ * @return le nombre de joueur choisi pour demarrer la partie
+ */
+public int getJoueurs(){
+	return Integer.parseInt(nombreJoueur.getText());
+}
 
-	/**Getter pour le controller de la partie
-	 * @return le GameControler
-	 */
-	public GameController getGc() {
-		return gc;
-	}
+/**Getter pour le controller de la partie
+ * @return le GameControler
+ */
+public GameController getGc() {
+	return gc;
+}
 }

@@ -26,7 +26,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 7;
+		int valeur = 6;
 		
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -81,7 +81,6 @@ public class Main{
 			gameController1.CreationJoueur("David", 20);
 			
 			gameController1.lancerPartie();
-			System.out.println("affichage des joueur "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 			break;
 		default:
 		}
