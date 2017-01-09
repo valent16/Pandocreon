@@ -216,9 +216,9 @@ public class Bot extends Player implements IObservableBot{
 	 }
 
 	 public boolean isLast(){
-		 //TODO a faire en sorte que cette methode marche faire une hasmap avec les bot et le score et utiliser une methode sort pour les tries
 		 Player p;
 		 
+		//TODO a mettre dans la vue du bot//////////////////////////////////////////////
 		 System.out.println("///////////////////");/////////////////////////////////////////////////////////////////////
 		 System.out.println("Score des joueurs dans la game");/////////////////////////////////////////////////////////////////
 		 ArrayList<Player> players1 = GameManager.getInstanceUniqueManager().getPlayers();//////////////////////////////////////////////
@@ -227,6 +227,7 @@ public class Bot extends Player implements IObservableBot{
 			 p = itPlayer1.next();//////////////////////////////////////////////////////////////////////////////////
 			 System.out.println(p.getNom() + " a un score : "+ p.getScore());/////////////////////////////////////////////////:
 		 }
+		//TODO a mettre dans la vue du bot//////////////////////////////////////////////
 
 		
 		 ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
@@ -276,37 +277,36 @@ public class Bot extends Player implements IObservableBot{
 
 	@Override
 	public void attacher(ObservateurJoueurReel o) {
-		// TODO Auto-generated method stub
+		// TODO faire la methode attacherr voir la methode attacher de HUMAN
 		
 	}
 
 	@Override
 	public void detacher(ObservateurJoueurReel o) {
-		// TODO Auto-generated method stub
+		// TODO faire la methode detacher voir la methode detacher de HUMAN
 		
 	}
 
 	@Override
 	public Player notifySelectPlayer() throws ObservateurNotLinkedException {
-		// TODO Auto-generated method stub
+		// TODO faire la methode notifySelectPlayer() voir la methode notifySelectPlayer() de HUMAN
 		return null;
 	}
 
 	@Override
 	public void notifyStartTour() throws ObservateurNotLinkedException {
-		// TODO Auto-generated method stub
-		
+		// TODO faire la methode notifyStartTour() voir la mathode notifyStartTour() de HUMAN
 	}
 
 	@Override
 	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException {
-		// TODO Auto-generated method stub
+		// TODO faire la methode notifySelectOriginePA voir la methode notifySelectOriginePA de HUMAN
 		return null;
 	}
 
 	@Override
 	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException {
-		// TODO Auto-generated method stub
+		// TODO faire la methode notifySelectCroyant voir la mathode notifySelectCroyant de HUMAN
 		return null;
 	}
 }

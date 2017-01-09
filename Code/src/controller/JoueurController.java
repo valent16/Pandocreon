@@ -191,6 +191,5 @@ public class JoueurController implements ObservateurJoueurReel {
 			System.out.println("coucou");
 			joueur.defausserGuideRattache(guide);
 		}
-		//TODO sacrifier carte Carte
 	}
 }

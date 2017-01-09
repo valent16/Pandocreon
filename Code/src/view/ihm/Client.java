@@ -237,7 +237,7 @@ public class Client extends JFrame{
 		int option = JOptionPane.showConfirmDialog(null, "Il y a "+ nombreJoueur.getText() +" bots. Voulez-vous continuer ?", "bots ajoutés", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
 		if(option == JOptionPane.OK_OPTION){
 			nombreTotalBot = Integer.parseInt(nombreJoueur.getText());
-			ajouterJoueurHumain();//TODO a faire la methode ajoute le joueur humain a la partie
+			ajouterJoueurHumain();
 			System.out.println("test");
 			ajouterBots();//ajoute les bots a la partie
 		}else{
@@ -246,8 +246,10 @@ public class Client extends JFrame{
 
 	}
 
-	//TODO methode qui permet d'ajouter le joueur humain FAIRE PAREIL QUE LA METHODE AjouterBots en demandant le nom du joueur et son age
+	
 	private void ajouterJoueurHumain() {
+		//TODO methode qui permet d'ajouter le joueur humain FAIRE PAREIL QUE LA METHODE AjouterBots avec un panel qui s'affiche dans la fenetre
+		//TODO dans ce panel on demande le nom du joueur et son age
 		gc.CreationJoueur("joueurhumain1", 22);//Creation du joueur
 	}
 
@@ -340,9 +342,8 @@ public class Client extends JFrame{
 		TableJeu tb = new TableJeu();
 		
 		//TODO Dans la classe Player ajouter une instance observateur Player
-		//TODO Quand on pose une carte on notifie le joueru et la carte
+		//TODO Quand on pose une carte on notifie le joueur et la carte
 		//TODO faire un ObservateurPlayer dans view qui permet
-
 		//TODO Creer les bots puis les mettre games dans la nouvelle partie
 		//TODO il balance une carte il faut recuperer la carte et le nom du bot
 		

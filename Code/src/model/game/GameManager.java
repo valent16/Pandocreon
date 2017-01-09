@@ -91,8 +91,9 @@ public class GameManager implements IObservableGameManager {
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
-		TableJeu tb = new TableJeu();
+		
 		this.deroulementTourJeu();	
+		TableJeu tb = new TableJeu();//l'appel graphique
 	}
 	
 	public void startGame(){
@@ -334,7 +335,7 @@ public class GameManager implements IObservableGameManager {
 				}
 			}
 		}
-		System.out.println("joueur Gagnant:"+joueurGagnant.getNom());
+		System.out.println("joueur Gagnant: "+joueurGagnant.getNom());
 		itPlayer = players.iterator();
 		while(itPlayer.hasNext()){
 			if(joueurGagnant.getScore() == itPlayer.next().getScore()){
@@ -342,7 +343,6 @@ public class GameManager implements IObservableGameManager {
 			}
 		}
 		if(cpt == 1){
-			//TODO tester quand il y a un bot d'annoncer la victoire
 			notifyPlayerVictory(joueurGagnant);
 			this.players.removeAll(this.players);
 		}

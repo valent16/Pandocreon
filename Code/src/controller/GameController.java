@@ -29,7 +29,6 @@ public class GameController {
 	/**Methode permettant de demarrer une partie*/
 	public void startGame(){
 		game.initGame();
-		//vueJeu.MenuPrincipal();/////////////////////////////////////TODO A ANLEVER PEUT ETRE
 	}
 
 	/**Methode permettant de verifier si le nombre de joueur est compris entre 2 et 10
@@ -42,17 +41,17 @@ public class GameController {
 		return false;
 	}
 
-	/**Methode permettant la creation d'un joueur a partir de parametres
+	/**Methode permettant la creation d'un joueur et de l'ajouter a la partie
 	 * @param nom le nom du joueur
 	 * @param age l'age du joueur 
 	 */
 	public void CreationJoueur(String nom, int age){
 		Human joueur = new Human(nom, age);
 		joueur.attacher(new JoueurController(joueur));
-		game.ajouterJoueurReel(joueur);
+		game.ajouterJoueurReel(joueur); //on ajoute le joueur a la partie
 	}
 
-	/**Methode permettant la creation d'un bot a partir de parametres
+	/**Methode permettant la creation d'un bot et de l'ajouter a la partie
 	 * @param nom le nom du joueur
 	 * @param age l'age du joueur 
 	 */
@@ -69,12 +68,10 @@ public class GameController {
 		case "difficile":
 			strat = new HardStrategy();
 		default:
-			//Lancement Exception
 			strat = new MediumStrategy();
 		}
-
 		Bot bot = new Bot(nom, strat);
-		game.ajouterBot(bot);//TODO voir si c'est comme ca qu'on ajoute le bot
+		game.ajouterBot(bot);//on ajoute le bot a la partie
 	}
 
 	/**Methode permettant de lancer la partie*/
@@ -91,7 +88,7 @@ public class GameController {
 		switch(mode){
 		case "console"://lance la partie en mode console
 			GameManager.getInstanceUniqueManager().startGameConsole();
-			//vueJeu.MenuPrincipal();
+			vueJeu.MenuPrincipal();//obliger de le laisser pour le main 4 mais ne marche pas//TODO VOIR SI ON PEUT METTRE CETTE METHODE A CET ENDROIT GameManager.getInstanceUniqueManager().startGameConsole(); //l'appel Console
 			break;
 		case "IHM"://lance la partie en mode graphique
 			GameManager.getInstanceUniqueManager().startGameIHM();

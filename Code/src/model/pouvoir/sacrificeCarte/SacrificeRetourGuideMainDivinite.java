@@ -14,7 +14,6 @@ public class SacrificeRetourGuideMainDivinite extends Pouvoir{
 	@Override
 	public void onAction(Card carte, Player joueur) throws Exception {
 		//TODO Sacrifice Faire revenir son guide dans sa main et les croyants au centre de la table
-		
 	}
 
 }

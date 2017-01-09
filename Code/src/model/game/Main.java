@@ -1,6 +1,7 @@
 package model.game;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -13,10 +14,8 @@ import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumDogme;
 import model.EnumType.EnumOrigineDivinite;
 import model.cards.Divinity;
-import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
-import model.strategy.MediumStrategy;
 import view.ihm.Client;
 import view.ihm.PanelCarte;
 import view.ihm.TableJeu;
@@ -27,7 +26,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 8;
+		int valeur = 4;
 		
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -45,6 +44,7 @@ public class Main{
 		case 4: // Pour demarrer une partie en mode console
 			GameController gc = new GameController();
 			gc.startGame();
+			gc.lancerPartie("console"); //on lance en mode console
 			break;
 
 		case 5: //test pour le lancement d'une partie
@@ -52,13 +52,8 @@ public class Main{
 			//gameController.getGame().initGame();
 			gameController.startGame();
 
-			Human joueur1 = new Human("valentin", 18);
-			joueur1.attacher(new JoueurController(joueur1));
-			Human joueur2 = new Human("David", 20);
-			joueur2.attacher(new JoueurController(joueur2));
-			
-			gameController.getGame().ajouterJoueurReel(joueur1);
-			gameController.getGame().ajouterJoueurReel(joueur2);
+			gameController.CreationJoueur("valentin", 18);
+			gameController.CreationJoueur("David", 20);
 
 			gameController.lancerPartie("console"); //on lance en mode console
 			break;
@@ -82,7 +77,7 @@ public class Main{
 			gameController = new GameController();
 			gameController.startGame();
 			
-			gameController.CreationJoueur("valentin", 18);
+			gameController.CreationJoueur("Valentin", 18);
 			gameController.CreationJoueur("David", 20);
 			
 			gameController.lancerPartie("IHM");//choisi de lancer en mode graphique
