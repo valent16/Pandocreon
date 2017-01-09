@@ -1,6 +1,7 @@
 package view.ihm.client;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -10,17 +11,13 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import controller.GameController;
-import model.game.Game;
 import view.ihm.Client;
 
 /**Classe qui gere la vue de la partie en mode console*/
@@ -30,11 +27,11 @@ public class PanelAjoutBot extends PanelType{
 
 	private JLabel nombreBot;
 
-	private AbstractButton annuler;
+	private JButton annuler;
 
-	private AbstractButton valider;
+	private JButton valider;
 
-	private AbstractButton moins;
+	private JButton moins;
 
 	private JButton plus;
 
@@ -151,8 +148,8 @@ public class PanelAjoutBot extends PanelType{
 			public void actionPerformed(ActionEvent e) {
 				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreBot.getText() +" bots. Voulez-vous continuer ?", "bots ajoutés", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
 				if(option == JOptionPane.OK_OPTION){
-					client.setNombreTotalBot(Integer.parseInt(nombreBot.getText()));
-					client.setNombreTotalHumain(Client.getNombreMaximalJoueur() - client.getNombreTotalBot());
+					client.setNombreBot(Integer.parseInt(nombreBot.getText()));
+					client.setNombreHumain(Client.getNombreMaximalJoueur() - client.getNombreBot());
 					client.ajouterDifficulte();//on ajoute les joueurs humain
 				}else{
 					JOptionPane.showMessageDialog(null, "Veuillez ajouté des bots pour pouvoir lancé une partie", "Probleme ajout de bot", JOptionPane.INFORMATION_MESSAGE, logo);

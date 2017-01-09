@@ -1,12 +1,12 @@
 package view.ihm.client;
 
 import java.awt.Dimension;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,10 +18,13 @@ import view.ihm.Client;
 /**Classe qui gere la vue de la partie en mode console*/
 public class PanelMenuPrincipale extends PanelType{
 	
+	/**bouton pour lancer une nouvelle partie*/
 	private JButton newGame;
-	
+
+	/**bouton pour le chargement d'une partie*/
 	private JButton loadGame;
-	
+
+	/**button pour les regles*/
 	private JButton rules;
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +33,7 @@ public class PanelMenuPrincipale extends PanelType{
 	public PanelMenuPrincipale(Client c){
 		client = c;
 		initialize();
-		ajoutListener();
+		ajouterListener();
 	}
 
 	@Override
@@ -60,9 +63,9 @@ public class PanelMenuPrincipale extends PanelType{
 		gbc.gridy = 2;
 		this.add(rules, gbc);
 	}
-
-	/**Methode permettant d'ajouter les listener au boutons*/
-	private void ajoutListener() {
+	
+	@Override
+	protected void ajouterListener() {
 		newGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,6 +86,7 @@ public class PanelMenuPrincipale extends PanelType{
 				afficherRegles();
 			}
 		});
+		
 	}
 	
 	private void chargerPartie() {
@@ -232,11 +236,5 @@ public class PanelMenuPrincipale extends PanelType{
 	 */
 	public JPanel getPanel(){
 		return this;
-	}
-
-	@Override
-	protected void ajouterListener() {
-		// TODO Auto-generated method stub
-		
 	}
 }

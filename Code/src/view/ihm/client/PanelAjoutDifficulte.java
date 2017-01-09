@@ -76,7 +76,6 @@ public class PanelAjoutDifficulte extends PanelType{
 
 	@Override
 	protected void ajouterListener() {
-		
 		annuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
