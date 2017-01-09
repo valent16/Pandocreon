@@ -33,6 +33,7 @@ public class GameController {
 	/**Methode permettant de demarrer une partie*/
 	public void startGame(){
 		game.initGame();
+
 		Human valentin = new Human("valentin",12);
 		
 		game.ajouterBot(new Bot("lala", new MediumStrategy()));
@@ -63,17 +64,19 @@ public class GameController {
 		return false;
 	}
 
-	/**Methode permettant la creation d'un joueur a partir de parametres
+	/**Methode permettant la creation d'un joueur et de l'ajouter a la partie
 	 * @param nom le nom du joueur
 	 * @param age l'age du joueur 
 	 */
 	public void CreationJoueur(String nom, int age){
 		Human joueur = new Human(nom, age);
+
 //		joueur.attacher(new JoueurController(joueur));
 		game.ajouterJoueurReel(joueur);
+
 	}
 
-	/**Methode permettant la creation d'un bot a partir de parametres
+	/**Methode permettant la creation d'un bot et de l'ajouter a la partie
 	 * @param nom le nom du joueur
 	 * @param age l'age du joueur 
 	 */
@@ -90,12 +93,10 @@ public class GameController {
 		case "difficile":
 			strat = new HardStrategy();
 		default:
-			//Lancement Exception
 			strat = new MediumStrategy();
 		}
-
 		Bot bot = new Bot(nom, strat);
-		game.ajouterBot(bot);//TODO voir si c'est comme ca qu'on ajoute le bot
+		game.ajouterBot(bot);//on ajoute le bot a la partie
 	}
 
 	/**Methode permettant de lancer la partie*/
@@ -104,6 +105,7 @@ public class GameController {
 //		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(new VueGameManager()));
 		GameManager.getInstanceUniqueManager().startGame();
 	}
+
 
 	/**Methode permettant de lancer la partie en mode console ou en mode IHM*/
 	public void lancerPartie(String mode){
@@ -120,6 +122,7 @@ public class GameController {
 			System.out.println("ce mode n'existe pas");
 		}
 	}
+
 
 	/**gettre du model
 	 * @return le mode du jeu

@@ -1,7 +1,6 @@
 package view.ihm;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -23,54 +22,55 @@ import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
 import controller.GameController;
-import controller.JoueurController;
-import model.game.Game;
-import model.game.GameManager;
-import model.player.Human;
 
+/**Classe qui represente le menu de l'IHM*/
 public class Client extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 
+	/**Attribut represennat les composants de l'interface graphique*/
 	private JFrame frame = new JFrame();
 
-	//panel du menu principale
+	/**panel du menu principale*/
 	private JPanel menuPrincipal;
 
-	//bouton pour lancer une nouvelle partie
+	/**bouton pour lancer une nouvelle partie*/
 	private JButton newGame;
 
-	//bouton pour le chargement d'une partie
+	/**bouton pour le chargement d'une partie*/
 	private JButton loadGame;
 
-	//button pour les regles
+	/**button pour les regles*/
 	private JButton rules;
 
-	//label pour le nombre de joueur
-	private JLabel nombreJoueur;
+	/**liste des strategie*/
+	private JComboBox<String> listeStrategie;
 
-	//logo du jeu
+	/**label pour le nombre de joueur*/
+	private JLabel nombreJoueur, nombreHumain, nombreBot;
+
+	/**logo du jeu*/
 	private ImageIcon logo = new ImageIcon("images/logo.png");
-
-	//liste de strategies
-	JComboBox<String> liste;
 
 	//model
 	private final static int NOMBRE_MINIMAL_JOUEUR = 1;
 	private final static int NOMBRE_MAXIMAL_JOUEUR = 9;
 
-	private GameController gc = new GameController();
+	/**Attribut representant le controlleur de la partie*/
+	private GameController gc;
 
-	//private GameManager gm = GameManager.getInstanceUniqueManager();//////////////////////////////////////////////////////////////////////////////////////
+	/**Attribut representant le nombre total de humain dans la partie*/
+	private int nombreTotalHumain = 0;
 
-	//le nombre de bot présent dans la partie
+	/**Attribut representant le nombre total de bot dans la partie*/
 	private int nombreTotalBot = 0;
 
-	//la strategie choisi par le joueur
+	/**Attribut representant la strategie choisi par le joueur*/
 	private String strategie;
 
 	/**Constructeur du client*/
 	public Client(){
+		gc = new GameController();
 		initialize();
 		ajoutListener();
 		frame.setTitle("Client Pandocreon Divinae");
@@ -135,17 +135,22 @@ public class Client extends JFrame{
 
 	/**Methode permettant de lancer une nouvelle partie*/
 	public void nouvellePartie(){	
+		ajouterBots(); //methode pour ajouter les bots
+	}
+
+	//methode qui permet d'ajouter les bots
+	private void ajouterBots() {
 		JPanel framePanel = new JPanel(new BorderLayout());
 
 		//label nombre de joueur
-		nombreJoueur = new JLabel(""+NOMBRE_MINIMAL_JOUEUR);
-		nombreJoueur.setHorizontalAlignment(JLabel.CENTER); //permet de centrer le contenu du label
+		nombreBot = new JLabel(""+NOMBRE_MINIMAL_JOUEUR);
+		nombreBot.setHorizontalAlignment(JLabel.CENTER); //permet de centrer le contenu du label
 
 		//bordure sur le label nombre de joueur
 		Border line = BorderFactory.createLineBorder(Color.GRAY, 2);
 		Border panelBorder = BorderFactory.createTitledBorder(line, "");
-		nombreJoueur.setBorder(panelBorder);
-		nombreJoueur.setPreferredSize(new Dimension(30,30));
+		nombreBot.setBorder(panelBorder);
+		nombreBot.setPreferredSize(new Dimension(30,30));
 
 		//bouton plus
 		JButton plus = new JButton("+");
@@ -153,13 +158,13 @@ public class Client extends JFrame{
 		plus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String d = nombreJoueur.getText();
+				String d = nombreBot.getText();
 				int c = Integer.parseInt(d);
 				if(c == NOMBRE_MAXIMAL_JOUEUR)
 					c = NOMBRE_MAXIMAL_JOUEUR;
 				else
 					c++;
-				nombreJoueur.setText(""+c);
+				nombreBot.setText(""+c);
 				frame.requestFocus();				
 			}
 		});
@@ -170,33 +175,33 @@ public class Client extends JFrame{
 		moins.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String d = nombreJoueur.getText();
+				String d = nombreBot.getText();
 				int c = Integer.parseInt(d);
 				if(c == NOMBRE_MINIMAL_JOUEUR)
 					c = NOMBRE_MINIMAL_JOUEUR;
 				else
 					c--;
-				nombreJoueur.setText(""+c);
+				nombreBot.setText(""+c);
 				frame.requestFocus();				
 			}
 		});
 
-		JPanel nombreJoueurPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
+		JPanel nombreBotPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
 		JLabel mod = new JLabel("Nombre de bots a ajouter : ("+NOMBRE_MINIMAL_JOUEUR+"-"+NOMBRE_MAXIMAL_JOUEUR+")");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		nombreJoueurPanel.add(mod, gbc);
+		nombreBotPanel.add(mod, gbc);
 
 		gbc.gridx = 1;
-		nombreJoueurPanel.add(moins, gbc);
+		nombreBotPanel.add(moins, gbc);
 
 		gbc.gridx = 2;
-		nombreJoueurPanel.add(nombreJoueur, gbc);
+		nombreBotPanel.add(nombreBot, gbc);
 
 		gbc.gridx = 3;
-		nombreJoueurPanel.add(plus, gbc);
+		nombreBotPanel.add(plus, gbc);
 
 		//bouton annuler
 		JButton annuler = new JButton("Annuler");
@@ -214,7 +219,14 @@ public class Client extends JFrame{
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				creationJoueurs(); //permet de creer le bon nombre de joueurs
+				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreBot.getText() +" bots. Voulez-vous continuer ?", "bots ajoutés", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
+				if(option == JOptionPane.OK_OPTION){
+					nombreTotalBot = Integer.parseInt(nombreBot.getText());
+					nombreTotalHumain = NOMBRE_MAXIMAL_JOUEUR - nombreTotalBot;
+					ajouterDifficulte();//on ajoute les joueurs humain
+				}else{
+					JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE, logo);
+				}
 			}
 		});
 
@@ -223,43 +235,24 @@ public class Client extends JFrame{
 		southPanel.add(annuler);
 		southPanel.add(valider);
 
-		framePanel.add(nombreJoueurPanel, BorderLayout.CENTER);
+		framePanel.add(nombreBotPanel, BorderLayout.CENTER);
 		framePanel.add(southPanel, BorderLayout.SOUTH);
 
-		frame.setTitle("Nombre de bots");
+		frame.setTitle("Ajout des Bots");
 		frame.setContentPane(framePanel);
 		frame.repaint();
 		frame.validate();
 	}
 
-	/**Methode qui valide creer les joueurs*/
-	private void creationJoueurs() {
-		int option = JOptionPane.showConfirmDialog(null, "Il y a "+ nombreJoueur.getText() +" bots. Voulez-vous continuer ?", "bots ajoutés", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
-		if(option == JOptionPane.OK_OPTION){
-			nombreTotalBot = Integer.parseInt(nombreJoueur.getText());
-			ajouterJoueurHumain();//TODO a faire la methode ajoute le joueur humain a la partie
-			System.out.println("test");
-			ajouterBots();//ajoute les bots a la partie
-		}else{
-			JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE, logo);
-		}
-
-	}
-
-	//TODO methode qui permet d'ajouter le joueur humain FAIRE PAREIL QUE LA METHODE AjouterBots en demandant le nom du joueur et son age
-	private void ajouterJoueurHumain() {
-		gc.CreationJoueur("joueurhumain1", 22);//Creation du joueur
-	}
-
-	//methode qui permet d'ajouter les bots
-	private void ajouterBots() {
+	/**Methode permettant d'ajouter la difficulté des bots*/
+	private void ajouterDifficulte(){
 		JPanel framePanel = new JPanel(new BorderLayout());
 
 		String[] strats = {"Facile", "Moyen", "Difficile"};//les differentes Strategies
-		liste = new JComboBox<String>(strats);
+		listeStrategie = new JComboBox<String>(strats);
 
 		JPanel strategieBotPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
-		JLabel mod = new JLabel("Choississez la strategie des bots (seul la difficulte Moyen fonctionne");
+		JLabel mod = new JLabel("Choississez la strategie des bots (seul la difficulte Moyen fonctionne)");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
@@ -267,7 +260,7 @@ public class Client extends JFrame{
 		strategieBotPanel.add(mod, gbc);
 
 		gbc.gridy = 1;
-		strategieBotPanel.add(liste, gbc);
+		strategieBotPanel.add(listeStrategie, gbc);
 
 		//bouton annuler
 		JButton annuler = new JButton("Annuler");
@@ -285,18 +278,15 @@ public class Client extends JFrame{
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				strategie = liste.getSelectedItem().toString();//recupere la strategie
-				for(int i=0; i<nombreTotalBot; i++){//on creer le nombre de bot
-					strategie = "medium";
-					System.out.println("le bot "+ Game.getBotName(i) +" avec la strategie "+ strategie);
-					gc.CreationBot(Game.getBotName(i), "medium");
-				}
-				lancerPartie();
-
-				
+				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté la strategie "+ listeStrategie.getSelectedItem() +" Voulez-vous continuer ?", "strategie des bots", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
+				if(option == JOptionPane.OK_OPTION){
+					strategie = ""+listeStrategie.getSelectedItem();
+					ajouterJoueurHumain();//on ajoute les joueurs humain
+				}else
+					JOptionPane.showMessageDialog(null, "Veuillez choisir une strtégie pour les bots", "Annulation de la stratégie", JOptionPane.INFORMATION_MESSAGE, logo);
 			}
 		});
-
+		
 		//Panel sud
 		JPanel southPanel = new JPanel (new FlowLayout());
 		southPanel.add(annuler);
@@ -311,41 +301,168 @@ public class Client extends JFrame{
 		frame.validate();
 	}
 
+	/**Methode qui permet d'ajouter les joueurs humains en fonction du nombre de joueur saisi*/
+	private void ajouterJoueurHumain() {
+		JPanel framePanel = new JPanel(new BorderLayout());
+
+		//label nombre de joueur
+		nombreHumain = new JLabel(""+1);
+		nombreHumain.setHorizontalAlignment(JLabel.CENTER); //permet de centrer le contenu du label
+
+		//bordure sur le label nombre de joueur
+		Border line = BorderFactory.createLineBorder(Color.GRAY, 2);
+		Border panelBorder = BorderFactory.createTitledBorder(line, "");
+		nombreHumain.setBorder(panelBorder);
+		nombreHumain.setPreferredSize(new Dimension(30,30));
+
+		//bouton plus
+		JButton plus = new JButton("+");
+		plus.setPreferredSize(new Dimension(30, 30));
+		plus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String d = nombreHumain.getText();
+				int c = Integer.parseInt(d);
+				if(c == nombreTotalHumain)
+					c = nombreTotalHumain;
+				else
+					c++;
+				nombreHumain.setText(""+c);
+				frame.requestFocus();				
+			}
+		});
+
+		//bouton moins
+		JButton moins = new JButton("-");
+		moins.setPreferredSize(new Dimension(30, 30));
+		moins.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String d = nombreHumain.getText();
+				int c = Integer.parseInt(d);
+				if(c == NOMBRE_MINIMAL_JOUEUR)
+					c = NOMBRE_MINIMAL_JOUEUR;
+				else
+					c--;
+				nombreHumain.setText(""+c);
+				frame.requestFocus();				
+			}
+		});
+
+		JPanel nombreHumainPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
+		JLabel mod = new JLabel("Nombre d'humains a ajouter : ("+ 1 + "-" + nombreTotalHumain +")");
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(2, 2, 2, 2);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		nombreHumainPanel.add(mod, gbc);
+
+		gbc.gridx = 1;
+		nombreHumainPanel.add(moins, gbc);
+
+		gbc.gridx = 2;
+		nombreHumainPanel.add(nombreHumain, gbc);
+
+		gbc.gridx = 3;
+		nombreHumainPanel.add(plus, gbc);
+
+		//bouton annuler
+		JButton annuler = new JButton("Annuler");
+		annuler.setPreferredSize(new Dimension(100, 30));
+		annuler.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				retourMenuPrincipale();
+			}
+		});
+
+		//bouton valider
+		JButton valider = new JButton("Valider");
+		valider.setPreferredSize(new Dimension(100, 30));
+		valider.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreHumain.getText() +" de joueurs humains. Voulez-vous continuer ?", "humain ajoutés", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
+				if(option == JOptionPane.OK_OPTION){
+					nombreTotalHumain = Integer.parseInt(nombreHumain.getText());
+					System.out.println(nombreTotalHumain);
+					ajouterInfoJoueurHumain();//on ajoute les noms et age des joueurs
+				}else
+					JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE, logo);
+			}
+		});
+
+		//Panel sud
+		JPanel southPanel = new JPanel (new FlowLayout());
+		southPanel.add(annuler);
+		southPanel.add(valider);
+
+		framePanel.add(nombreHumainPanel, BorderLayout.CENTER);
+		framePanel.add(southPanel, BorderLayout.SOUTH);
+
+		frame.setTitle("Nombre de bots");
+		frame.setContentPane(framePanel);
+		frame.repaint();
+		frame.validate();
+
+
+
+		///////
+		System.out.println("test");
+		///d'abord ajouterDifficulte();
+		
+		//////
+		System.out.println("test3");
+	}
+	
+	private void ajouterInfoJoueurHumain() {
+		/*Faire le panel avec le nom et le prenom des joueurs*/
+		lancerPartie();
+		//ensuite lancerPartie(); //permet d'instancier les bots
+		
+	}
 
 	/**Methode pour lancer la partie*/
 	private void lancerPartie() {
+		
+		GameController gameController = new GameController();
+		gameController.startGame();
+		
+		gameController.CreationJoueur("valentin", 18);
+		gameController.CreationJoueur("David", 20);
+		
+		gameController.lancerPartie();
+
 		///TODO A FAIRE AU COMPLET
-		gc.startGame();//lancement de la partie
 		//il faut changer la vue car la methode MenuPrinciaple de la classe VUegame est fait pour la consolle il faut appeler une nouvelle methode
 		//La methode de game est bonn mais 
-		
+
 		/////////:IL FAUT REPRENDRE CA POUR LANCER LA PARTIE
-		Game game = new Game();
+		/*Game game = new Game();
 		game.initGame();
-		
+
 		//POUR LES HUMAINS/////////////////////////
 		Human j1 = new Human("valentin", 18);
 		j1.attacher(new JoueurController(j1));
-		
+
 		Human j2 = new Human("David", 20);
 		j2.attacher(new JoueurController(j2));
 		game.ajouterJoueurReel(j1);
 		game.ajouterJoueurReel(j2);
 		game.nouvellePartie();
-		
+
 		//TODO POUR LES BOTS/////////////////////////
 		//faire la meme chose que ce qu'il ya pour les humains mais pour les bots
-		
-		GameManager.getInstanceUniqueManager().startGame();
-		TableJeu tb = new TableJeu();
-		
-		//TODO Dans la classe Player ajouter une instance observateur Player
-		//TODO Quand on pose une carte on notifie le joueru et la carte
-		//TODO faire un ObservateurPlayer dans view qui permet
 
+		GameManager.getInstanceUniqueManager().startGame();
+		TableJeu tb = new TableJeu();*/
+
+		//TODO Dans la classe Player ajouter une instance observateur Player
+		//TODO Quand on pose une carte on notifie le joueur et la carte
+		//TODO faire un ObservateurPlayer dans view qui permet
 		//TODO Creer les bots puis les mettre games dans la nouvelle partie
 		//TODO il balance une carte il faut recuperer la carte et le nom du bot
-		
+
 	}
 
 	/**Methode pour revenir au panel MenuPrincipale*/

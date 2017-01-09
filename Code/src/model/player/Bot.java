@@ -1,7 +1,6 @@
 ﻿package model.player;
 
 import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -23,7 +22,7 @@ import model.game.GameManager;
 import model.strategy.*;
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
-public class Bot extends Player implements IObservableBot{
+public class Bot extends Player{
 	public final static int AGE_BOT = 200;
 
 	/**Attribut representant la stratégie choisi au départ pour tous les bots*/
@@ -219,9 +218,9 @@ public class Bot extends Player implements IObservableBot{
 	 }
 
 	 public boolean isLast(){
-		 //TODO a faire en sorte que cette methode marche faire une hasmap avec les bot et le score et utiliser une methode sort pour les tries
 		 Player p;
 		 
+		//TODO a mettre dans la vue du bot//////////////////////////////////////////////
 		 System.out.println("///////////////////");/////////////////////////////////////////////////////////////////////
 		 System.out.println("Score des joueurs dans la game");/////////////////////////////////////////////////////////////////
 		 ArrayList<Player> players1 = GameManager.getInstanceUniqueManager().getPlayers();//////////////////////////////////////////////
@@ -230,6 +229,7 @@ public class Bot extends Player implements IObservableBot{
 			 p = itPlayer1.next();//////////////////////////////////////////////////////////////////////////////////
 			 System.out.println(p.getNom() + " a un score : "+ p.getScore());/////////////////////////////////////////////////:
 		 }
+		//TODO a mettre dans la vue du bot//////////////////////////////////////////////
 
 		
 		 ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();

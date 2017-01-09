@@ -116,7 +116,6 @@ public class MediumStrategy implements Strategy {
 						System.out.println(bot.getNom() +" A Lancer Une Apocalypse "+ apocalypse);////////////////////////////////////////////////////////
 						System.out.println("joueurs Restants : "+GameManager.getInstanceUniqueManager().getPlayers());//////////////////////////////////////////////////////////
 						//TODO a mettre dans la vue du bot//////////////////////////////////////////////////////////////////////////////////////////////
-						//TODO voir si on doit arreter la partie de nous meme ou si dans les methodes et classe apocalypse on l'arrete automatiquement
 					} catch (PAInsuffisantException e) {
 						this.convertirCroyants();
 					} catch (Exception e) {}

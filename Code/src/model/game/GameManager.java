@@ -1,6 +1,7 @@
-package model.game;
+﻿package model.game;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -37,7 +38,7 @@ public class GameManager implements IObservableGameManager {
 
 	/**Attribut representant les cartes divinites de la partie*/
 	private LinkedList<Divinity> listDivinites = new LinkedList<Divinity>();
-	
+
 	/**Attribut representant la pile de cartes appel�es pendant le tour*/
 	private LinkedList<Card> pilesCartesTour = new LinkedList<Card>();
 
@@ -72,7 +73,7 @@ public class GameManager implements IObservableGameManager {
 		this.listDivinites = divinites; 
 		this.pioche = cartesAction;
 	}
-	
+
 	// initialisation du controller de la partie 
 	public void initialisationController(IObserverGameManager controller){
 		observateur = controller;
@@ -100,7 +101,9 @@ public class GameManager implements IObservableGameManager {
 		this.melangerPioche();
 		this.intialisationDesJeux();
 	}
-	
+
+
+	/**Methode permeettant de demarrer la partie en mode console*/
 	public void startGame(){
 		this.melangerDivinites();
 		this.melangerPioche();
@@ -340,7 +343,7 @@ public class GameManager implements IObservableGameManager {
 				}
 			}
 		}
-		System.out.println("joueur Gagnant:"+joueurGagnant.getNom());
+		System.out.println("joueur Gagnant: "+joueurGagnant.getNom());
 		itPlayer = players.iterator();
 		while(itPlayer.hasNext()){
 			if(joueurGagnant.getScore() == itPlayer.next().getScore()){
@@ -348,7 +351,6 @@ public class GameManager implements IObservableGameManager {
 			}
 		}
 		if(cpt == 1){
-			//TODO tester quand il y a un bot d'annoncer la victoire
 			notifyPlayerVictory(joueurGagnant);
 			this.players.removeAll(this.players);
 		}
@@ -418,7 +420,7 @@ public class GameManager implements IObservableGameManager {
 	public int getNumeroTour() {
 		return nombreTour;
 	}
-	
+
 	/**Getter de la pile de carte des tours
 	 * @return liste de cartes jou�es pendant le tour
 	 */

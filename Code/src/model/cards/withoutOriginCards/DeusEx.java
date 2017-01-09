@@ -24,7 +24,7 @@ public class DeusEx extends ActionCard implements Serializable{
 	
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
-		// TODO Appeller le pouvoir des DEUS EX
+		// TODO A developper Appeller le pouvoir des DEUS EX
 	}
 
 	@Override
