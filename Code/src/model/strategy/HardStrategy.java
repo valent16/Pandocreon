@@ -34,7 +34,7 @@ public class HardStrategy implements Strategy {
 
 	@Override
 	//permet d'economiser ses points dans notre cas il pioche si il a moins de 7 cartes sinon il passe son tour
-	public void economy() {
+	public void defausser() {
 			
 	}
 

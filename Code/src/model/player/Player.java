@@ -82,21 +82,6 @@ public abstract class Player extends Observer{
 		return null;
 	}
 
-	//TODO A VOIR SON GARDE CES METHODES
-	/**Le joueur joue une carte et donc on l'enleve de sa main*/
-	public void JouerCarte(ActionCard carte) {
-		//carte.utiliserPouvoir(commande, this);
-		//hand.remove(carte);
-	}
-
-	public void jouerCarteRattachee(ActionCard carte){
-		if(carte instanceof SpiritGuide){
-
-		}else{
-
-		}
-	}
-
 	/**Methode permettant au joueur de piocher une carte*/
 	public void piocher(){
 		hand.add(GameManager.getInstanceUniqueManager().piocherCarte());
@@ -159,7 +144,7 @@ public abstract class Player extends Observer{
 		Iterator<ActionCard> it = hand.iterator();
 		while(it.hasNext()){
 			ActionCard card = (ActionCard) it.next();
-			System.out.println("Carte "+hand.indexOf(card) +": "+ card);
+			System.out.println("Carte "+ (hand.indexOf(card)+1) +": "+ card);
 		}
 	}
 

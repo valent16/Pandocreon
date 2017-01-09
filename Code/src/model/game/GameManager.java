@@ -193,6 +193,8 @@ public class GameManager implements IObservableGameManager {
 		while(players.size()!=0){
 			players.get(start%players.size()).lancerDe();
 			System.out.println("\nTour Numero "+ nombreTour + " le de est sur la face "+ De.getInstanceDe().getFace());
+			System.out.println("les joueurs dans la game "+GameManager.getInstanceUniqueManager().getPlayers());////////////////////////////////////////////////////////////
+			System.out.println();/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){

@@ -178,14 +178,6 @@ public class Bot extends Player{
 		 return apocalypses;
 	 }
 
-	 /**Methode permettant de se defausser d'une carte de maniere random utiliser pour la strategie Random et Easy*/
-	 public void defausserRandom(){
-		 int indexCard = (int) (Math.random() * this.getNbCartes())+1;
-		 ActionCard card = this.getHand().get(indexCard);
-		 this.defausserCarte(card);
-		 System.out.println("se defausse de la carte "+ card);
-	 }
-
 	 /**Methode permettant de deposer un croyant de sa main a la table en fonction de sa strategie*/
 	 public void depotCroyant(){
 		 strategy.depotCroyant();
@@ -225,39 +217,26 @@ public class Bot extends Player{
 		 //TODO a faire en sorte que cette methode marche faire une hasmap avec les bot et le score et utiliser une methode sort pour les tries
 		 Player p;
 		 Player joueurDernier = null;
-		 ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
-
-		 System.out.println("Affichage des Scores des joueurs");
-		 Iterator<Player> test = players.iterator();
-		 while(test.hasNext()){
-			 p = test.next();
-			 System.out.println("le joueur " + p.getNom() +" a un score de "+ p.getScore());
+		 
+		 System.out.println("///////////////////");/////////////////////////////////////////////////////////////////////
+		 System.out.println("Score des joueurs dans la game");/////////////////////////////////////////////////////////////////
+		 ArrayList<Player> players1 = GameManager.getInstanceUniqueManager().getPlayers();//////////////////////////////////////////////
+		 Iterator<Player> itPlayer1 = players1.iterator();////////////////////////////////////////////////////////////
+		 while(itPlayer1.hasNext()){///////////////////////////////////////////////////////////////////////////
+			 p = itPlayer1.next();//////////////////////////////////////////////////////////////////////////////////
+			 System.out.println(p.getNom() + " a un score : "+ p.getScore());/////////////////////////////////////////////////:
 		 }
 
-		 System.out.println("///////////////////");
-		 System.out.println(players);
-		 System.out.println("///////////////////");
+		
+		 ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
 		 Iterator<Player> itPlayer = players.iterator();
-
 		 while(itPlayer.hasNext()){
 			 p = itPlayer.next();
-			 if (joueurDernier == null){
-				 joueurDernier = p;
-			 }else{
-				 if(joueurDernier.getScore() < p.getScore()){
-					 System.out.println("score du joueur " + p+" est "+p.getScore());
-					 joueurDernier = p;
-				 }
-			 }
-			 if(joueurDernier==this){
-				 //players.remove(this);////////////////////////////:CEST ICI QUON SUPPRIME LE BOT//voir si on fait pas dans la methode lancer apocalypse 
-				 //du de la strategy un remove du joueur en appelant la methode elimination joueurfaible du gameManager 
-				 System.out.println(joueurDernier.getNom()+" est dernier");///////////////////////////////////////////////////////////////
-				 return true;
-			 }
+			 if(p.getScore() < this.getScore())//si un joueur a un score strictement inferieur au this alors il n'est pas dernier
+				 return false;
 		 }
-		 System.out.println(joueurDernier.getNom()+" est dernier");////////////////////////////////////////////////////////////////////
-		 return false;
+		 System.out.println(this.getNom() + " est dernier avec un score : "+this.getScore());//////////////////////////////////////////////
+		 return true;
 	 }
 
 	 @Override
@@ -280,17 +259,17 @@ public class Bot extends Player{
 		 return super.toString();
 	 }
 
-	 /**Setter de la strategie
-	  * @param strategy la strategie choisi au tout debut de la partie
-	  */
-	 private void setStrategy(Strategy strategy) {
-		 Bot.strategy = strategy;
-	 }
-
 	 /**Getter de la strategie
 	  * @return la strategie des bots
 	  */
 	 public static Strategy getStrategy() {
 		 return strategy;
+	 }
+
+	 /**Setter de la strategie
+	  * @param strategy la strategie choisi au tout debut de la partie
+	  */
+	 private void setStrategy(Strategy strategy) {
+		 Bot.strategy = strategy;
 	 }
 }

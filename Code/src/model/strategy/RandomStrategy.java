@@ -99,9 +99,8 @@ public class RandomStrategy implements Strategy{
 		
 	}
 
-
 	@Override
-	public void economy(){
+	public void defausser(){
 		bot.piocher();	
 	}
 
@@ -119,7 +118,7 @@ public class RandomStrategy implements Strategy{
 
 	@Override
 	public List<Believer> pickCroyant(SpiritGuide carte) {
-		// TODO recup les croyants sur la table prnedre un random regarder ses dogmes si il sont compabtles recuepr le croyant et 
+		//recup les croyants sur la table prnedre un random regarder ses dogmes si il sont compabtles recuepr le croyant et 
 		return null;
 	}
 }
