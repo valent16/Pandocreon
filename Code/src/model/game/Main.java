@@ -26,7 +26,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 5;
+		int valeur = 6;
 		
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains

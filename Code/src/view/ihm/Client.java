@@ -1,6 +1,7 @@
 package view.ihm;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -74,9 +75,9 @@ public class Client extends JFrame{
 		initialize();
 		ajoutListener();
 		frame.setTitle("Client Pandocreon Divinae");
-		frame.setSize(500, 300);
+		frame.setSize(500, 200);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);	
 	}
 
@@ -88,13 +89,13 @@ public class Client extends JFrame{
 		menuPrincipal.setPreferredSize(new Dimension(250,250));
 
 		newGame = new JButton("Nouvelle partie");
-		newGame.setPreferredSize(new Dimension(150,35));
+		newGame.setPreferredSize(new Dimension(200,50));
 
 		loadGame = new JButton("Charger Partie");
-		loadGame.setPreferredSize(new Dimension(150, 35));
+		loadGame.setPreferredSize(new Dimension(200, 50));
 
-		rules = new JButton("afficher les regles");
-		rules.setPreferredSize(new Dimension(150,35));
+		rules = new JButton("Afficher les regles");
+		rules.setPreferredSize(new Dimension(200,50));
 
 		//ajout des composants
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -150,11 +151,11 @@ public class Client extends JFrame{
 		Border line = BorderFactory.createLineBorder(Color.GRAY, 2);
 		Border panelBorder = BorderFactory.createTitledBorder(line, "");
 		nombreBot.setBorder(panelBorder);
-		nombreBot.setPreferredSize(new Dimension(30,30));
+		nombreBot.setPreferredSize(new Dimension(40, 40));
 
 		//bouton plus
 		JButton plus = new JButton("+");
-		plus.setPreferredSize(new Dimension(30, 30));
+		plus.setPreferredSize(new Dimension(45, 45));
 		plus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -171,7 +172,7 @@ public class Client extends JFrame{
 
 		//bouton moins
 		JButton moins = new JButton("-");
-		moins.setPreferredSize(new Dimension(30, 30));
+		moins.setPreferredSize(new Dimension(45, 45));
 		moins.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -205,7 +206,7 @@ public class Client extends JFrame{
 
 		//bouton annuler
 		JButton annuler = new JButton("Annuler");
-		annuler.setPreferredSize(new Dimension(100, 30));
+		annuler.setPreferredSize(new Dimension(120, 50));
 		annuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -215,7 +216,7 @@ public class Client extends JFrame{
 
 		//bouton valider
 		JButton valider = new JButton("Valider");
-		valider.setPreferredSize(new Dimension(100, 30));
+		valider.setPreferredSize(new Dimension(120, 50));
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -225,7 +226,7 @@ public class Client extends JFrame{
 					nombreTotalHumain = NOMBRE_MAXIMAL_JOUEUR - nombreTotalBot;
 					ajouterDifficulte();//on ajoute les joueurs humain
 				}else{
-					JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE, logo);
+					JOptionPane.showMessageDialog(null, "Veuillez ajouté des bots pour pouvoir lancé une partie", "Probleme ajout de bot", JOptionPane.INFORMATION_MESSAGE, logo);
 				}
 			}
 		});
@@ -264,7 +265,7 @@ public class Client extends JFrame{
 
 		//bouton annuler
 		JButton annuler = new JButton("Annuler");
-		annuler.setPreferredSize(new Dimension(100, 30));
+		annuler.setPreferredSize(new Dimension(120, 50));
 		annuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -274,7 +275,7 @@ public class Client extends JFrame{
 
 		//bouton valider
 		JButton valider = new JButton("Valider");
-		valider.setPreferredSize(new Dimension(100, 30));
+		valider.setPreferredSize(new Dimension(120, 50));
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -283,10 +284,10 @@ public class Client extends JFrame{
 					strategie = ""+listeStrategie.getSelectedItem();
 					ajouterJoueurHumain();//on ajoute les joueurs humain
 				}else
-					JOptionPane.showMessageDialog(null, "Veuillez choisir une strtégie pour les bots", "Annulation de la stratégie", JOptionPane.INFORMATION_MESSAGE, logo);
+					JOptionPane.showMessageDialog(null, "Veuillez choisir une stratégie pour les bots", "Annulation de la stratégie", JOptionPane.INFORMATION_MESSAGE, logo);
 			}
 		});
-		
+
 		//Panel sud
 		JPanel southPanel = new JPanel (new FlowLayout());
 		southPanel.add(annuler);
@@ -295,7 +296,7 @@ public class Client extends JFrame{
 		framePanel.add(strategieBotPanel, BorderLayout.CENTER);
 		framePanel.add(southPanel, BorderLayout.SOUTH);
 
-		frame.setTitle("Ajout des Bots");
+		frame.setTitle("Ajout de la strategie");
 		frame.setContentPane(framePanel);
 		frame.repaint();
 		frame.validate();
@@ -313,11 +314,11 @@ public class Client extends JFrame{
 		Border line = BorderFactory.createLineBorder(Color.GRAY, 2);
 		Border panelBorder = BorderFactory.createTitledBorder(line, "");
 		nombreHumain.setBorder(panelBorder);
-		nombreHumain.setPreferredSize(new Dimension(30,30));
+		nombreHumain.setPreferredSize(new Dimension(40, 40));
 
 		//bouton plus
 		JButton plus = new JButton("+");
-		plus.setPreferredSize(new Dimension(30, 30));
+		plus.setPreferredSize(new Dimension(45, 45));
 		plus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -334,7 +335,7 @@ public class Client extends JFrame{
 
 		//bouton moins
 		JButton moins = new JButton("-");
-		moins.setPreferredSize(new Dimension(30, 30));
+		moins.setPreferredSize(new Dimension(45, 45));
 		moins.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -350,7 +351,7 @@ public class Client extends JFrame{
 		});
 
 		JPanel nombreHumainPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
-		JLabel mod = new JLabel("Nombre d'humains a ajouter : ("+ 1 + "-" + nombreTotalHumain +")");
+		JLabel mod = new JLabel("Nombre d'humains a ajouter (1 seul) : ("+ 1 + "-" + nombreTotalHumain +")");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
@@ -368,7 +369,7 @@ public class Client extends JFrame{
 
 		//bouton annuler
 		JButton annuler = new JButton("Annuler");
-		annuler.setPreferredSize(new Dimension(100, 30));
+		annuler.setPreferredSize(new Dimension(120, 50));
 		annuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -378,7 +379,7 @@ public class Client extends JFrame{
 
 		//bouton valider
 		JButton valider = new JButton("Valider");
-		valider.setPreferredSize(new Dimension(100, 30));
+		valider.setPreferredSize(new Dimension(120, 50));
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -400,88 +401,24 @@ public class Client extends JFrame{
 		framePanel.add(nombreHumainPanel, BorderLayout.CENTER);
 		framePanel.add(southPanel, BorderLayout.SOUTH);
 
-		frame.setTitle("Nombre de bots");
+		frame.setTitle("Nombres d'humains");
 		frame.setContentPane(framePanel);
 		frame.repaint();
 		frame.validate();
-
-
-
-		///////
-		System.out.println("test");
-		///d'abord ajouterDifficulte();
-		
-		//////
-		System.out.println("test3");
 	}
-	
+
 	private void ajouterInfoJoueurHumain() {
-		/*Faire le panel avec le nom et le prenom des joueurs*/
 		lancerPartie();
+		/*Faire le panel avec le nom et le prenom des joueurs*/
+		//System.out.println("/////////:test1");
+		//lancerPartie();//on peut lancer la partie
 		//ensuite lancerPartie(); //permet d'instancier les bots
-		
+
 	}
 
 	/**Methode pour lancer la partie*/
 	private void lancerPartie() {
 		System.out.println("on lance la partie");
-		
-		JFrame test = new JFrame("salut");
-		JLabel salut = new JLabel("salut");
-		test.getContentPane().add(salut);
-		test.setVisible(true);
-		
-		
-		//TODO ca ne lance pas la fenetre
-		/**GameController gameController = new GameController();
-		gameController.startGame();
-		
-		GameController gameController = new GameController();
-		//gameController.getGame().initGame();
-		gameController.startGame();
-		
-		gameController.CreationJoueur("valentin", 22);////////////////////////
-		gameController.CreationJoueur("David", 20);//////////////////////////
-		
-		//Human joueur1 = new Human("valentin", 18);
-		//joueur1.attacher(new JoueurController(joueur1));
-		//Human joueur2 = new Human("David", 20);
-		//joueur2.attacher(new JoueurController(joueur2));
-		
-		//gameController.getGame().ajouterJoueurReel(joueur1);
-		//gameController.getGame().ajouterJoueurReel(joueur2);
-
-		gameController.lancerPartie(); //on lance en mode console
-		
-		//////////////////////////////////////////
-		//gameController.CreationJoueur("valentin", 18);
-		//gameController.CreationJoueur("David", 20);
-		
-		//gameController.lancerPartie();
-
-		///TODO A FAIRE AU COMPLET
-		//il faut changer la vue car la methode MenuPrinciaple de la classe VUegame est fait pour la consolle il faut appeler une nouvelle methode
-		//La methode de game est bonn mais 
-
-		/////////:IL FAUT REPRENDRE CA POUR LANCER LA PARTIE
-		/*Game game = new Game();
-		game.initGame();
-
-		//POUR LES HUMAINS/////////////////////////
-		Human j1 = new Human("valentin", 18);
-		j1.attacher(new JoueurController(j1));
-
-		Human j2 = new Human("David", 20);
-		j2.attacher(new JoueurController(j2));
-		game.ajouterJoueurReel(j1);
-		game.ajouterJoueurReel(j2);
-		game.nouvellePartie();
-
-		//TODO POUR LES BOTS/////////////////////////
-		//faire la meme chose que ce qu'il ya pour les humains mais pour les bots
-
-		GameManager.getInstanceUniqueManager().startGame();
-		TableJeu tb = new TableJeu();*/
 
 		//TODO Dans la classe Player ajouter une instance observateur Player
 		//TODO Quand on pose une carte on notifie le joueur et la carte
@@ -489,6 +426,42 @@ public class Client extends JFrame{
 		//TODO Creer les bots puis les mettre games dans la nouvelle partie
 		//TODO il balance une carte il faut recuperer la carte et le nom du bot
 
+		JFrame test = new JFrame("Test");
+		JLabel salut = new JLabel("salut");
+		test.getContentPane().add(salut);
+		
+		test.pack();
+		test.setVisible(true);
+		
+
+
+		///TODO A FAIRE AU COMPLET
+		//il faut changer la vue car la methode MenuPrinciaple de la classe VUegame est fait pour la consolle il faut appeler une nouvelle methode
+		//La methode de game est bonn mais 
+
+		//TODO PROBLEME CA NE LANCE PAS LA FENETRE
+		GameController gameController = new GameController();
+		gameController.startGame();
+
+		gameController.CreationJoueur("valentin", 22);////////////////////////
+		gameController.CreationJoueur("David", 20);//////////////////////////
+
+		gameController.lancerPartie();
+
+
+		////////////////////
+		/*GameController gameController = new GameController();
+		gameController.startGame();
+
+		Human joueur1 = new Human("valentin", 18);
+		joueur1.attacher(new JoueurController(joueur1));
+		Human joueur2 = new Human("David", 20);
+		joueur2.attacher(new JoueurController(joueur2));
+
+		gameController.getGame().ajouterJoueurReel(joueur1);
+		gameController.getGame().ajouterJoueurReel(joueur2);
+
+		gameController.lancerPartie();*/
 	}
 
 	/**Methode pour revenir au panel MenuPrincipale*/
