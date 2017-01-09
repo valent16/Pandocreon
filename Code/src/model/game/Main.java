@@ -2,6 +2,7 @@ package model.game;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ import model.player.Human;
 import model.player.Player;
 import view.ihm.Client;
 import view.ihm.PanelCarte;
-import view.ihm.TableJeu;
 
 /**Classe de lancement du programme*/
 public class Main{
@@ -26,7 +26,7 @@ public class Main{
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 8;
+		int valeur = 6;
 		
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -59,17 +59,15 @@ public class Main{
 			gameController.getGame().ajouterJoueurReel(joueur1);
 			gameController.getGame().ajouterJoueurReel(joueur2);
 
-			gameController.lancerPartie("console"); //on lance en mode console
+			gameController.lancerPartie(); //on lance en mode console
 			break;
 		
-		case 6:
-			TableJeu table = new TableJeu();
-			break;
-		case 7: //Pour lancer le client (Menu du jeu)
+		case 6: //Pour lancer le client (Menu du jeu)
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
 						Client window = new Client();
+						System.out.println(window);///////////
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -77,19 +75,18 @@ public class Main{
 			});
 			break;
 			
-		case 8:
+		case 7:
 			gameController = new GameController();
 			gameController.startGame();
 			
 			gameController.CreationJoueur("valentin", 18);
 			gameController.CreationJoueur("David", 20);
 			
-			gameController.lancerPartie("IHM");//choisi de lancer en mode graphique
+			gameController.lancerPartie();//choisi de lancer en mode graphique
 			break;
 		default:
 		}
 	}
-	
 	
 	public static void testCarte(){
 		ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
@@ -122,7 +119,7 @@ public class Main{
 		gc.CreationBot("bot2", "medium");
 		gc.CreationBot("bot3", "medium");
 
-		gc.lancerPartie("console");
+		gc.lancerPartie();
 	}
 
 	/**Methode permettant de tester le fonctionnement d'une partie*/
@@ -133,7 +130,7 @@ public class Main{
 		gc.CreationJoueur("valentin", 18);
 		gc.CreationJoueur("David", 20);
 		
-		gc.lancerPartie("console");
+		gc.lancerPartie();
 	}
 
 	/**Methode permettant de tester les humains*/
