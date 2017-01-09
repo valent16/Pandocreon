@@ -425,6 +425,7 @@ public class Client extends JFrame{
 	/**Methode pour lancer la partie*/
 	private void lancerPartie() {
 		
+		//TODO ca ne lance pas la fenetre
 		GameController gameController = new GameController();
 		gameController.startGame();
 		
