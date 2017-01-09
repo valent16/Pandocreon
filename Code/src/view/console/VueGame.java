@@ -3,10 +3,9 @@ import java.util.Scanner;
 import controller.GameController;
 import model.game.Game;
 
+/**Classe qui gere la vue de la partie en mode console*/
 public class VueGame {
-	
 	GameController controllerJeu;
-	
 	Game game;
 	
 	public VueGame(GameController gameController, Game jeu){
@@ -123,38 +122,11 @@ public class VueGame {
 	
 	//Permet de creer un bot
 	public void creationBot(int index){
-//		String nomStrat;
-//		Scanner sc = new Scanner(System.in);
-//		
-//		System.out.println("Veuillez renseigner le niveau de difficulte de ce bot : ");
-//		System.out.println("1- facile");
-//		System.out.println("2- medium");
-//		System.out.println("3- difficile");
-//		String choix = sc.nextLine();
-//		while(!choix.matches("[0-9]+") && Integer.parseInt(choix)>3 && Integer.parseInt(choix)<1){
-//			System.out.println("le choix de difficulte est invalide");
-//		}
-//		
-//		switch(choix){
-//		case "1":
-//			nomStrat = "facile";
-//			break;
-//		case "2": 
-//			nomStrat = "medium";
-//			break;
-//		case "3":
-//			nomStrat = "difficile";
-//			break;
-//		default:
-//			//Lancement Exception
-//			nomStrat = "";
-//		}
-		
-		controllerJeu.CreationBot(game.getBotName(index), "medium");//TODO on utilise la strategie medium
+		controllerJeu.CreationBot(Game.getBotName(index), "medium");//TODO on utilise la strategie medium
 		System.out.println("utilitaire de creation de joueur");
 	}
 	
-	//m�thode permettant le chargement d'une ancienne partie
+	//methode permettant le chargement d'une ancienne partie
 	public void chargerAnciennePartie(){
 		System.out.println("cette partie n'est pas encore implementee");
 		this.MenuPrincipal();

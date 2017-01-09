@@ -29,7 +29,7 @@ public class GameController {
 	/**Methode permettant de demarrer une partie*/
 	public void startGame(){
 		game.initGame();
-		vueJeu.MenuPrincipal();
+		//vueJeu.MenuPrincipal();/////////////////////////////////////TODO A ANLEVER PEUT ETRE
 	}
 
 	/**Methode permettant de verifier si le nombre de joueur est compris entre 2 et 10
@@ -91,6 +91,7 @@ public class GameController {
 		switch(mode){
 		case "console"://lance la partie en mode console
 			GameManager.getInstanceUniqueManager().startGameConsole();
+			//vueJeu.MenuPrincipal();
 			break;
 		case "IHM"://lance la partie en mode graphique
 			GameManager.getInstanceUniqueManager().startGameIHM();

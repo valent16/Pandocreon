@@ -48,20 +48,19 @@ public class Main{
 			break;
 
 		case 5: //test pour le lancement d'une partie
-			Game game = new Game();
-			game.initGame();
+			GameController gameController = new GameController();
+			//gameController.getGame().initGame();
+			gameController.startGame();
 
 			Human joueur1 = new Human("valentin", 18);
 			joueur1.attacher(new JoueurController(joueur1));
-			
 			Human joueur2 = new Human("David", 20);
 			joueur2.attacher(new JoueurController(joueur2));
-			game.ajouterJoueurReel(joueur1);
-			game.ajouterJoueurReel(joueur2);
-
-			game.nouvellePartie();
-			GameManager.getInstanceUniqueManager().startGameConsole();
 			
+			gameController.getGame().ajouterJoueurReel(joueur1);
+			gameController.getGame().ajouterJoueurReel(joueur2);
+
+			gameController.lancerPartie("console"); //on lance en mode console
 			break;
 		
 		case 6:
@@ -80,12 +79,8 @@ public class Main{
 			break;
 			
 		case 8:
-			GameController gameController = new GameController();
+			gameController = new GameController();
 			gameController.getGame().initGame();
-
-			Bot b1 = new Bot("bot1", new MediumStrategy());
-			Bot b2 = new Bot("bot2", new MediumStrategy());
-			Bot b3 = new Bot("bot3", new MediumStrategy());
 
 			Human j1 = new Human("valentin", 18);
 			j1.attacher(new JoueurController(j1));
@@ -96,11 +91,7 @@ public class Main{
 			gameController.getGame().ajouterJoueurReel(j2);
 			
 			gameController.lancerPartie("IHM");//choisi de lancer en mode graphique
-			
-			
-			
-			TableJeu tb = new TableJeu();
-//			testCarte();
+			break;
 		default:
 		}
 	}
