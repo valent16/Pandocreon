@@ -14,7 +14,11 @@ import model.player.Bot;
 import model.player.Player;
 
 public class PanelPlayer extends JPanel{
+		Player joueur;
+	
+	
 		public PanelPlayer(Player p){
+			this.joueur = p;
 			StringBuffer sb = new StringBuffer();
 		
 			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -37,5 +41,9 @@ public class PanelPlayer extends JPanel{
 			this.add(new ImagePanel("./images/imageJoueur/joueur.png", 225/2, 225/2));
 			
 			this.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
+		}
+		
+		public Player getPlayer(){
+			return joueur;
 		}
 }

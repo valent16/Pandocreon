@@ -9,4 +9,8 @@ public interface IViewJoueurReel {
 	public void majCartesRattachees();
 	
 	public void majDivinite();
+	
+	public void startTour();
+	
+	public boolean isTourFinished();
 }

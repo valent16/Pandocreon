@@ -1,0 +1,57 @@
+package view.ihm;
+
+import java.awt.Dimension;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class PanelChoixUtilisateur {
+	JFrame frame = new JFrame();
+	
+	public PanelChoixUtilisateur(){
+		initialize();
+	}
+	
+	public void initialize(){
+		frame.setTitle("Client Pandocreon Divinae");
+		frame.setSize(500, 300);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+		JPanel panelDeposerCartes = new JPanel();
+		JButton deposerCartes = new JButton("Nouvelle partie");
+		deposerCartes.setPreferredSize(new Dimension(150,35));
+		panelDeposerCartes.add(deposerCartes);
+
+		JPanel panelsupprimerCartes = new JPanel();
+		JButton supprimerCartes = new JButton("Charger Partie");
+		supprimerCartes.setPreferredSize(new Dimension(150, 35));
+		panelsupprimerCartes.add(supprimerCartes);
+
+		JPanel panelCompleterMain = new JPanel();
+		JButton completerMain = new JButton("afficher les regles");
+		completerMain.setPreferredSize(new Dimension(150,35));
+		
+		JButton passerTour = new JButton("Passer son tour");
+		passerTour.setPreferredSize(new Dimension(150,35));
+		
+		panel.add(panelDeposerCartes);
+		panel.add(supprimerCartes);
+		panel.add(completerMain);
+		panel.add(passerTour);
+		
+		panel.setAlignmentX(SwingConstants.CENTER);
+		
+		frame.add(panel);
+		
+		frame.pack();
+	}
+}

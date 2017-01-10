@@ -14,4 +14,8 @@ public interface IViewGame {
 	public void afficherVainqueur(Player p);
 	
 	public void afficherDefaite(Player p);
+	
+	public void changementJoueur();
+	
+	public void majJoueurActif();
 }

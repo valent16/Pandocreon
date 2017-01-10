@@ -1,0 +1,8 @@
+package view.ihm;
+
+public class EnumActionJoueur {
+	DEPOSER,
+	COMPLETERMAIN,
+	PASSERTOUR,
+	NOTREFERENCED
+}

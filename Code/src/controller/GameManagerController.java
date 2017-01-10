@@ -56,6 +56,9 @@ public class GameManagerController implements IObserverGameManager, IObserverDe{
 	public void miseAJourDe() {
 		vue.majFaceDe();
 	}
-	
-	
+
+	@Override
+	public void miseAJourJoueurActif() {
+		vue.majJoueurActif();
+	}
 }

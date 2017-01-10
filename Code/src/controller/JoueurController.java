@@ -19,12 +19,19 @@ import view.console.VueJoueurReel;
 /**Classe qui agit comme un controller du joueur humain en gerant la vue du joueur et le joueur */
 public class JoueurController implements IObserverJoueurReel {
 
+	private boolean finTour;
+	
 	/**Attribut correspondant a la vue du joueur*/
 	IViewJoueurReel vueJoueur;
 
 	/**Attribut correspondant au joueur humain*/
 	Human joueur;
 
+	public void setFinTour(boolean value){
+		finTour = value;
+	}
+	
+	
 	/**Constructeur
 	 * @param j l'humain qui sera utilise par le controller 
 	 */
@@ -101,6 +108,9 @@ public class JoueurController implements IObserverJoueurReel {
 		}if(joueur.getDicoPA().get(EnumCosmogonie.NUIT) >= 1 ){
 			listePA.add(EnumCosmogonie.NUIT);
 		}
+		
+		//lancement d'un sleep de thread
+		
 
 //		vueJoueur.selectOrigine(listePA);
 		return null;
@@ -108,8 +118,17 @@ public class JoueurController implements IObserverJoueurReel {
 
 	@Override
 	public void startTourJoueur() {
-//		vueJoueur.passageTour();
-//		vueJoueur.jouerTour();	
+		vueJoueur.startTour();
+		
+		//Boucle permettant au joueur d'executer ses actions
+		while (vueJoueur.isTourFinished() == false){
+			try{
+				Thread.sleep(200);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**Methode permettant de verifier le choix de la cible du joueur
@@ -199,6 +218,7 @@ public class JoueurController implements IObserverJoueurReel {
 
 	@Override
 	public void miseAJourCarte() {
+		System.out.println("encore bon endroit");
 		vueJoueur.majDeckCarte();
 	}
 

@@ -25,8 +25,6 @@ public class GameController {
 	/**Constructeur*/
 	public GameController(){
 		game = new Game();
-		
-		
 //		vueJeu = new VueGame(this, game);
 	}
 
@@ -41,7 +39,9 @@ public class GameController {
 		game.ajouterJoueurReel(valentin);
 		
 		TableJeu table = new TableJeu(valentin);
-		valentin.attacher(new JoueurController(valentin, table.getPanelJoueur()));
+		JoueurController controllerJ = new JoueurController(valentin, table.getPanelJoueur());
+		valentin.attacher(controllerJ);
+		table.getPanelJoueur().initializeController(controllerJ);;
 		
 		GameManagerController GAController = new GameManagerController(table.getPanelTableJeu());
 		De.getInstanceDe().attacher(GAController);

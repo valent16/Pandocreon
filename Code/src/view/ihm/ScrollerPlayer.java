@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import model.player.Player;
 public class ScrollerPlayer extends JPanel {
 
 	private JScrollPane scroll;
+	
+	private List<PanelPlayer> listePanel = new ArrayList<PanelPlayer>();
 	
 	JPanel panel;
 	//création de cet objet à chaque fois qu'un joueur est éliminé
@@ -35,7 +38,9 @@ public class ScrollerPlayer extends JPanel {
         Iterator<Player> it = listeJoueurs.iterator();
         
         while(it.hasNext()){
-        	panel.add(new PanelPlayer(it.next()));
+        	PanelPlayer p = new PanelPlayer(it.next()); 
+        	panel.add(p);
+        	listePanel.add(p);
         	panel.add(Box.createRigidArea(new Dimension(5,0)));
         }
         
@@ -46,14 +51,31 @@ public class ScrollerPlayer extends JPanel {
     public void majPlayer(){
     	List<Player> joueurs = GameManager.getInstanceUniqueManager().getPlayers();
     	
-    	
+    	listePanel.clear();
     	panel.removeAll();
     	Iterator<Player> it = joueurs.iterator();
     	while (it.hasNext()){
-    		panel.add(new PanelPlayer(it.next()));
+    		PanelPlayer p = new PanelPlayer(it.next());
+    		panel.add(p);
+    		listePanel.add(p);
         	panel.add(Box.createRigidArea(new Dimension(5,0)));
     	}
     	panel.revalidate();
         scroll.revalidate();
+    }
+    
+    /**Methode permettant de surligner le joueur actif
+     * 
+     */
+    public void surlignerJoueurActif(){
+    	Iterator<PanelPlayer> it = listePanel.iterator();
+    	while (it.hasNext()){
+    		PanelPlayer panel = it.next();
+    		if (panel.getPlayer() == GameManager.getInstanceUniqueManager().getJoueurActif()){
+    			panel.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.green));
+    		}else{
+    			panel.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
+    		}
+    	}
     }
 }

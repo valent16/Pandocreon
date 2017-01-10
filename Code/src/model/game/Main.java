@@ -19,6 +19,7 @@ import model.player.Human;
 import model.player.Player;
 import view.ihm.Client;
 import view.ihm.PanelCarte;
+import view.ihm.PanelChoixUtilisateur;
 
 /**Classe de lancement du programme*/
 public class Main{
@@ -27,7 +28,7 @@ public class Main{
 	public static void main(String[] args) {	
 
 		int valeur = 4;
-		
+//		int valeur = 8;
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
 			testCreationPartie();
@@ -61,9 +62,7 @@ public class Main{
 
 			gameController.lancerPartie(); //on lance en mode console
 			break;
-		
-
-		case 7: //Pour lancer le client (Menu du jeu)
+	
 
 		case 6: //Pour lancer le client (Menu du jeu)
 
@@ -88,6 +87,12 @@ public class Main{
 			
 			gameController.lancerPartie();
 			break;
+		
+		case 8:
+			PanelChoixUtilisateur p = new PanelChoixUtilisateur();
+			break;
+		
+		
 		default:
 		}
 	}

@@ -231,9 +231,17 @@ public class GameManager implements IObservableGameManager {
 
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){
+					joueurActif = players.get(i%players.size());
+					notifyJoueurActif();
+					try{
+						Thread.sleep(1000);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
 					players.get(i%players.size()).jouerTour();
 				}
 			}
+			
 			start = start+1;
 			if (players.size() != 0){
 				start = start%players.size();
@@ -453,5 +461,9 @@ public class GameManager implements IObservableGameManager {
 	@Override
 	public void notifyChangementJoueurs(){
 		observateur.miseAJourJoueurs();
+	}
+	
+	public void notifyJoueurActif(){
+		observateur.miseAJourJoueurActif();
 	}
 }

@@ -4,17 +4,22 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import controller.JoueurController;
 import model.EnumType.EnumDogme;
+import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
 import model.cards.OriginCards.ActionCardWithOrigin;
@@ -47,14 +52,26 @@ public class PanelCarte extends JPanel{
 	//carte rerpésenté dans le panel
 	private Card carte;
 	
+	private JButton bouton;
 	
+	private boolean activated = false;
 	
+	private JoueurController controller;
+	
+	private PanelJoueurReel father;
+	
+	public boolean isActivated(){
+		return activated;
+	}
 	
 	public PanelCarte(Card carte){
 		this.carte = carte;
-		//panelBox = new JPanel();
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setPreferredSize(new Dimension(150,200));
+//		this.setPreferredSize(new Dimension(150,200));
+		bouton = new JButton();
+
+		JPanel panelBox = new JPanel();
+		panelBox.setLayout(new BoxLayout(panelBox, BoxLayout.Y_AXIS));
+		panelBox.setPreferredSize(new Dimension(150,200));
 		
 		panelTop = new JPanel();
 		panelTop.setLayout(new BorderLayout());
@@ -76,14 +93,23 @@ public class PanelCarte extends JPanel{
 		
 		labelArea.setOpaque(false);
 		
+		bouton.add(panelBox);
+		panelBox.add(panelTop);
+		panelBox.add(panelTitre);
+		panelBox.add(labelArea);
+		panelBox.add(panelBot);
+		this.add(bouton);
+		bouton.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
 		
-		this.add(panelTop);
-		this.add(panelTitre);
-		this.add(labelArea);
-		this.add(panelBot);
-		
-		this.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
+		bouton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actionCarte();
+			}
+		});
 		panelFactory();
+		
+		bouton.setEnabled(false);
 	}
 	
 	public Card getCarte(){
@@ -259,5 +285,41 @@ public class PanelCarte extends JPanel{
 //			nom = "Deus Ex";
 //		}
 //		titre.setText(nom);
+	}
+	
+//	public void activateSuppression(final JoueurController controller){
+//		bouton.setEnabled(true);
+//		bouton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				controller.supprimerCarte((ActionCard)carte);
+//			}
+//		});
+//	}
+//	
+//	public void disactivateSuppression(){
+//		bouton.setEnabled(false);
+//		for(ActionListener listener : bouton.getActionListeners())
+//        {
+//			bouton.removeActionListener(listener);
+//        }
+//	}
+	
+	public void actionCarte(){
+		if (father.isSuppressionCarte()){
+			controller.supprimerCarte((ActionCard)this.carte);
+		}else if (father.isJouerCarte()){
+			//appel de la méthode de jeu
+		}else{
+			
+		}
+	}
+	
+	public void activateSelection(){
+		bouton.setEnabled(true);
+	}
+	
+	public void desactivateSelection(){
+		bouton.setEnabled(false);
 	}
 }

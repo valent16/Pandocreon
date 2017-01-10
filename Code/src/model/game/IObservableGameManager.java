@@ -20,11 +20,12 @@ public interface IObservableGameManager {
 	 */
 	public void notifyChangementCroyants();
 	
-	/**Methode permettant de notifier le controller lors du changement de tour de jeu
-	 * 
-	 */
+	/**Methode permettant de notifier le controller lors du changement de tour de jeu*/
 	public void notifyChangementTour();
 	
 	/**Methode permettant de notifier le controller lors du changement de contenu de la liste de joueur*/
 	public void notifyChangementJoueurs();
+	
+	/**Methode permettant de notrifier le controller lors du changement du joueur actif*/
+	public void notifyJoueurActif();
 }

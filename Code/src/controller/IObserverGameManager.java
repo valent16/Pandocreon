@@ -21,4 +21,7 @@ public interface IObserverGameManager {
 	
 	/**Methode permettant de mettre a jour le de de la partie*/
 	public void miseAJourDe();
+	
+	/**Methode permettant de mettre a jour le contour du joueur actif*/
+	public void miseAJourJoueurActif();
 }

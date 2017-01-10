@@ -160,6 +160,7 @@ public class Human extends Player implements IObservableHumain{
 	public void defausserCarte(ActionCard carte){
 		hand.remove(carte);
 		GameManager.getInstanceUniqueManager().defausserCarte(carte);
+		System.out.println("dans la bonne méthode");
 		notifyChangementHand();
 	}
 	

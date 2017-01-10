@@ -181,5 +181,17 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void changementJoueur() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void majJoueurActif() {
+		// TODO Auto-generated method stub
+		scrollJoueur.surlignerJoueurActif();
+	}
 	
 }

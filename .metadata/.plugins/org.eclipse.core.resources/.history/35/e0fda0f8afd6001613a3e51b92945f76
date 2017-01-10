@@ -1,0 +1,11 @@
+package view.ihm;
+
+public class PanelChoixUtilisateur {
+	public PanelChoixUtilisateur(){
+		initialize();
+	}
+	
+	public void initialize(){
+		
+	}
+}

@@ -1,0 +1,34 @@
+package view.ihm;
+
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class PanelChoixUtilisateur {
+	JFrame frame = new JFrame();
+	
+	public PanelChoixUtilisateur(){
+		initialize();
+	}
+	
+	public void initialize(){
+		frame.setTitle("Client Pandocreon Divinae");
+		frame.setSize(500, 300);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
+		
+		
+		
+		JButton deposerCartes = new JButton("Nouvelle partie");
+		newGame.setPreferredSize(new Dimension(150,35));
+
+		JButton supprimerCartes = new JButton("Charger Partie");
+		loadGame.setPreferredSize(new Dimension(150, 35));
+
+		JButton rules = new JButton("afficher les regles");
+		rules.setPreferredSize(new Dimension(150,35));
+	}
+}
