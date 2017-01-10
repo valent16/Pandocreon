@@ -132,11 +132,11 @@ public class PanelAjoutHumain extends PanelType{
 				
 				//si on a des joueurs humains on ajoute leurs info sinon
 				if(client.getNombreHumain() != 0)
-				client.ajouterInfoJoueurHumain();//on ajoute les noms et age des joueurs
+					client.ajouterInfoJoueurHumain();//on ajoute les noms et age des joueurs
 				
 				//sinon on passe a la confirmation
 				else
-				client.confirmerPartie();
+					client.confirmerPartie();
 			}
 		});
 	}

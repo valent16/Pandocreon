@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.ihm.Client;
@@ -42,8 +43,14 @@ public class PanelConfirmation extends PanelType{
 	 */
 	public PanelConfirmation(Client c){
 		client = c;
+		/*if(client.getNombreBot()+client.getNombreHumain() == 0){
+			JOptionPane.showMessageDialog(null, "Vous n'avez ajouté aucun joueur", "Aucun joueur dans la partie", JOptionPane.ERROR_MESSAGE, logo);
+			client.retourMenuPrincipale();
+		}*/
+		//else{
 		initialize();
 		ajouterListener();
+		//}
 	}
 
 	@Override
@@ -73,7 +80,7 @@ public class PanelConfirmation extends PanelType{
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		
+
 		//si il a au moins 1 humain on affiche sinon on le cache
 		if(client.getListeNomHumain().size() != 0)
 			panelNom.add(nomHumains, gbc);
@@ -132,7 +139,17 @@ public class PanelConfirmation extends PanelType{
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				client.lancerPartie();//on lance la partie
+				int nombreTotalJoueur = client.getNombreBot() + client.getNombreHumain();
+				if(nombreTotalJoueur < 2){//il faut au moins 2 joueurs pour lancer la partie
+					JOptionPane.showMessageDialog(null, "Vous avez besoin d'au moins 2 joueurs pour lancer la partie", "Probleme nombre de joueur", JOptionPane.ERROR_MESSAGE, logo);
+					client.getFenetre().setContentPane(client.getPanelMenuPrincipale());
+					client.getFenetre().setTitle("Client Pandocreon Divinae");
+					client.getFenetre().repaint();
+					client.getFenetre().validate();	
+					client.resetDonnees();
+				}else{
+					client.lancerPartie();//on lance la partie
+				}
 			}
 		});
 
