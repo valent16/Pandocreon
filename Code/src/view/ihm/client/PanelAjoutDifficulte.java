@@ -46,6 +46,7 @@ public class PanelAjoutDifficulte extends PanelType{
 		String[] strats = {"Facile", "Moyen", "Difficile"};//les differentes Strategies
 
 		listeStrategie = new JComboBox<String>(strats);
+		listeStrategie.setSelectedItem("Moyen");
 
 		JPanel strategieBotPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
 		JLabel labelStrategieBot = new JLabel("Choississez la strategie des bots (seul la difficulte Moyen fonctionne)");
@@ -93,19 +94,16 @@ public class PanelAjoutDifficulte extends PanelType{
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				String[] values = {"facile", "medium", "difficile"};//les noms des strategies
 				client.setStrategie(values[listeStrategie.getSelectedIndex()]);
-				System.out.println("test de la value : "+ client.getStrategie());//TODO A ENLEVER
 
 				if(client.getStrategie().equals("medium")){//TODO Pour l'instant on ne peut que mettre la strategie medium
-					System.out.println("c'est bonstrategie : " + client.getStrategie());//TODO A ENLEVER
+					System.out.println("strategie : " + client.getStrategie());//TODO A ENLEVER
 					client.ajouterJoueurHumain();//on ajoute les joueurs humain
 				}
 
 				else{
-					System.out.println("une autre strategie "+client.getStrategie());//TODO A ENLEVER
-					JOptionPane.showMessageDialog(null, "Cette strategie est en cours de developpement", "Choix de la strategie", JOptionPane.WARNING_MESSAGE, logo);
+					JOptionPane.showMessageDialog(null, "La strategie "+ listeStrategie.getSelectedItem().toString() +" est en cours de developpement", "Choix de la strategie", JOptionPane.WARNING_MESSAGE, logo);
 				}
 			}
 		});
