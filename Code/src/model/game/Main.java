@@ -10,24 +10,30 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import controller.GameController;
+import controller.GameManagerController;
 import controller.JoueurController;
 import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumDogme;
 import model.EnumType.EnumOrigineDivinite;
 import model.cards.Divinity;
+import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
+import model.strategy.MediumStrategy;
 import view.ihm.Client;
 import view.ihm.PanelCarte;
 import view.ihm.PanelChoixUtilisateur;
+import view.ihm.TableJeu;
 
 /**Classe de lancement du programme*/
 public class Main{
 
+	private static Game game;
+
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
 
-		int valeur = 4;
+		int valeur = 6;
 //		int valeur = 8;
 		switch(valeur){
 		case 1: //permet de tester une partie de 2 humains
@@ -44,6 +50,23 @@ public class Main{
 
 		case 4: // Pour demarrer une partie en mode console
 			GameController gc = new GameController();
+			
+			Human valentin = new Human("valentin",12);
+			
+			gc.getGame().ajouterBot(new Bot("lala", new MediumStrategy()));
+			gc.getGame().ajouterBot(new Bot("fhazihfze", new MediumStrategy()));
+			gc.getGame().ajouterJoueurReel(valentin);
+			
+			TableJeu table = new TableJeu(valentin);
+			JoueurController controllerJ = new JoueurController(valentin, table.getPanelJoueur());
+			valentin.attacher(controllerJ);
+			table.getPanelJoueur().initializeController(controllerJ);;
+			
+			GameManagerController GAController = new GameManagerController(table.getPanelTableJeu());
+			De.getInstanceDe().attacher(GAController);
+			
+			GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));
+			
 			gc.startGame();
 			break;
 

@@ -32,7 +32,7 @@ public class GameController {
 	public void startGame(){
 		game.initGame();
 
-		Human valentin = new Human("valentin",12);
+		/*Human valentin = new Human("valentin",12);
 		
 		game.ajouterBot(new Bot("lala", new MediumStrategy()));
 		game.ajouterBot(new Bot("fhazihfze", new MediumStrategy()));
@@ -46,12 +46,11 @@ public class GameController {
 		GameManagerController GAController = new GameManagerController(table.getPanelTableJeu());
 		De.getInstanceDe().attacher(GAController);
 		
-		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));
+		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));*/
 		
 		game.nouvellePartie();
 		
 		GameManager.getInstanceUniqueManager().startGame();
-		//vueJeu.MenuPrincipal();/////////////////////////////////////TODO A ANLEVER PEUT ETRE
 	}
 
 	/**Methode permettant de verifier si le nombre de joueur est compris entre 2 et 10
