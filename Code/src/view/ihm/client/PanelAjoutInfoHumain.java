@@ -29,7 +29,9 @@ public class PanelAjoutInfoHumain extends PanelType{
 
 	private JTextField tfNom;
 
-	private int compteurValider = 1;
+	private int compteurValider = 0;
+
+	private boolean joueurValide = false;
 
 
 	/**Constructeur
@@ -39,6 +41,7 @@ public class PanelAjoutInfoHumain extends PanelType{
 		client = c;
 		initialize();
 		ajouterListener();
+		compteurValider = client.getNombreHumain();
 	}
 
 	@Override
@@ -100,7 +103,6 @@ public class PanelAjoutInfoHumain extends PanelType{
 		client.getFenetre().setContentPane(this);
 		client.getFenetre().repaint();
 		client.getFenetre().validate();
-
 	}
 
 	@Override
@@ -116,34 +118,66 @@ public class PanelAjoutInfoHumain extends PanelType{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//TODO A developper faire des test sur le nom et l'age récuperé
-				if(compteurValider == client.getNombreHumain()){
-					System.out.println("stop");
-					client.getListeNomHumain().add(tfNom.getText());
-					client.getListeAgeHumain().add(Integer.parseInt(listeAges.getSelectedItem().toString()));
-					client.confirmerPartie();//on affiche le panel de confirmation
-				}
-				else{ //on ajoute le joueur
-					if(tfNom.getText().equals("")){//si le nom est vide
-						JOptionPane.showMessageDialog(null, "Vous n'avez pas donnée de nom au joueur", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);
+				System.out.println("compteur : "+compteurValider);//TODO A ENLEVER
+				System.out.println("nombreHumain : "+client.getNombreHumain());//TODO A ENLEVER
 
-					}else if(client.getListeNomHumain().contains(tfNom.getText())){//si ce nom a deja été donée par un joueur
-						JOptionPane.showMessageDialog(null, "Ce nom a déja éte donnée pour un autre joueur.", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);
-
-					}else if(client.getListeNomBot().contains(tfNom.getText())){//Si ce nom a été donnée par un bot
-						JOptionPane.showMessageDialog(null, "Ce nom a déja éte donnée pour un bot", "Probleme nom joueurr", JOptionPane.ERROR_MESSAGE, logo);
-
-					}else if(Integer.parseInt(listeAges.getSelectedItem().toString()) < 12){//si le joueur a moins de 12 ans il ne peut pas jouer
-						JOptionPane.showMessageDialog(null, "Le joueur est trop jeune pour jouer\nIl doit avoir plus de 12 ans.", "Probleme age joueur", JOptionPane.ERROR_MESSAGE, logo);	
-
-					}else{//sinon c'est bon on peut ajouter les infos
-						client.getListeNomHumain().add(tfNom.getText());
-						client.getListeAgeHumain().add(Integer.parseInt(listeAges.getSelectedItem().toString()));
-						client.setIndexHumain(client.getIndexHumain()+1);
-						client.getFenetre().setTitle("humain numero : "+client.getIndexHumain()+"/"+client.getNombreHumain());
-						compteurValider++;
+				if (compteurValider == 1){
+					if(testerDonnees()){
+						ajouterJoueur();
+						client.confirmerPartie();
 					}
+				}else if(compteurValider > 1 )
+					if(testerDonnees()){
+						ajouterJoueur();
+						compteurValider--;
+					}
+
+				/*if(client.getNombreHumain() == 1){
+					testerDonnees();
+					if(joueurValide)
+						client.confirmerPartie();
 				}
+
+				else if(compteurValider < client.getNombreHumain()){
+					testerDonnees();
+
+				}else{
+					if(joueurValide)//tant que le dernier n'est pas bien saisi
+						client.confirmerPartie();//on confirme la partie
+					else
+						testerDonnees();
+				}*/
 			}
 		});
+	}
+
+	/**Methode permettant de tester les donnees saisies par l'utilisateur*/
+	private boolean testerDonnees(){
+		if(tfNom.getText().equals("")){//si le nom est vide
+			JOptionPane.showMessageDialog(null, "Vous n'avez pas donnée de nom au joueur", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);
+			return false;
+		}else if(client.getListeNomHumain().contains(tfNom.getText())){//si ce nom a deja été donée par un joueur
+			JOptionPane.showMessageDialog(null, "Ce nom a déja éte donnée pour un autre joueur.", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);
+			return false;
+		}else if(client.getListeNomBot().contains(tfNom.getText())){//Si ce nom a été donnée par un bot
+			JOptionPane.showMessageDialog(null, "Ce nom a déja éte donnée pour un bot", "Probleme nom joueurr", JOptionPane.ERROR_MESSAGE, logo);
+			return false;
+		}else if(Integer.parseInt(listeAges.getSelectedItem().toString()) < 12){//si le joueur a moins de 12 ans il ne peut pas jouer
+			JOptionPane.showMessageDialog(null, "Le joueur est trop jeune pour jouer\nIl doit avoir plus de 12 ans.", "Probleme age joueur", JOptionPane.ERROR_MESSAGE, logo);
+			return false;
+		}
+		//sinon c'est bon on peut ajouter les infos
+		return true;
+	}
+
+	/**methode qui ajoute les données du joueur au client*/
+	private void ajouterJoueur(){
+		client.getListeNomHumain().add(tfNom.getText());
+		client.getListeAgeHumain().add(Integer.parseInt(listeAges.getSelectedItem().toString()));
+		client.setIndexHumain(client.getIndexHumain());//TODO A ENLEVER
+		System.out.println(client.getListeNomHumain());//TODO A ENLEVER
+		client.getFenetre().setTitle("humain numero : "+client.getIndexHumain()+"/"+client.getNombreHumain());
+		joueurValide = true;
+
 	}
 }

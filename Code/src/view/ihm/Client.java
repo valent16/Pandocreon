@@ -1,5 +1,6 @@
 package view.ihm;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.*;
@@ -134,19 +135,38 @@ public class Client{
 	/**Methode pour lancer la partie*/
 	public void lancerPartie(){
 		///////////////////////////////////////////////////////////////////////TODO ICI QU'on lance LA PARTIE
+		System.out.println("Instanciation des Bots");//TODO A ENLEVER
 		//Creation et ajout des bots dans la partie
+		Iterator<String> itBot = listeNomBot.iterator();
+		while(itBot.hasNext()){
+			gc.CreationBot(itBot.next(), getStrategie());//instanciation des bots
+		}
 		
+		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
+		
+		System.out.println("Instanciation des Humains");//TODO A ENLEVER
+		Iterator<String> itNomHumain = listeNomHumain.iterator();
+		Iterator<Integer> itAgeHumain = listeAgeHumain.iterator();
+		while( itNomHumain.hasNext() && itAgeHumain.hasNext() ){
+			gc.CreationJoueur(itNomHumain.next(), itAgeHumain.next());//instanciation des humains
+		}
+		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 		
 		//Creation et ajout des Humains dans la partie
 		System.out.println("Lancement de la partie");
-		GameController gc = new GameController();
+		
+		//LA ON AJOUTE CE QU'il y a dans le main
+		
+		////////////////////////////:
+		/*GameController gc = new GameController();
 		gc.startGame();
 
 		//TODO ON peut recuperer toutes les information (noms, age et strategie dans cette classe
 		gc.CreationJoueur("valentin", 18);
 		gc.CreationJoueur("David", 20);
 
-		gc.lancerPartie();
+		gc.lancerPartie();*/
+		/////////////////////////////////
 	}
 
 		/**Methode pour revenir au panel MenuPrincipale*/
@@ -158,6 +178,15 @@ public class Client{
 				frame.setContentPane(panelMenuPrincipale);
 				frame.repaint();
 				frame.validate();
+				//on reinitialise les données
+
+				setNombreHumain(0);
+				setNombreBot(0);
+				setStrategie("");
+				setListeNomBot(new LinkedList<String>());
+				setListeNomHumain(new LinkedList<String>());
+				setListeAgeHumain(new LinkedList<Integer>());
+				setIndexHumain(1);
 			}
 		}
 
@@ -228,9 +257,17 @@ public class Client{
 		public LinkedList<String> getListeNomHumain() {
 			return listeNomHumain;
 		}
+		
+		public void setListeNomHumain(LinkedList<String> liste) {
+			listeNomHumain = liste;
+		}
 
 		public LinkedList<Integer> getListeAgeHumain(){
 			return listeAgeHumain;
+		}
+		
+		public void setListeAgeHumain(LinkedList<Integer> liste) {
+			listeAgeHumain = liste;
 		}
 
 		public int getIndexHumain() {
