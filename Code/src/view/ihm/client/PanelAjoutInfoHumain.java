@@ -1,6 +1,7 @@
 package view.ihm.client;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -8,7 +9,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,14 +27,13 @@ public class PanelAjoutInfoHumain extends PanelType{
 	private JComboBox<String> listeAges;
 
 	private JTextField tfNom;
-
-	private JButton valider;
 	
-	private int compteurValider = 0;
+	private int compteurValider = 1;
 
-	private JButton annuler;
 
-	/**Constructeur*/
+	/**Constructeur
+	 * @param c l'interface client
+	 */
 	public PanelAjoutInfoHumain(Client c){
 		client = c;
 		initialize();
@@ -96,7 +95,7 @@ public class PanelAjoutInfoHumain extends PanelType{
 		this.add(infoHumainPanel, BorderLayout.CENTER);
 		this.add(southPanel, BorderLayout.SOUTH);
 
-		client.getFenetre().setTitle("humain numero : "+client.getIndexHumain());
+		client.getFenetre().setTitle("humain numero : "+client.getIndexHumain()+"/"+client.getNombreHumain());
 		client.getFenetre().setContentPane(this);
 		client.getFenetre().repaint();
 		client.getFenetre().validate();
@@ -115,32 +114,19 @@ public class PanelAjoutInfoHumain extends PanelType{
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("le compteur "+compteurValider);
+				//TODO A developper faire des test sur le nom et l'age récuperé
 				if(compteurValider == client.getNombreHumain()){
-					System.out.println("salut1");
-					//on passe a la suite
-					client.confirmerPartie();//on affiche le panel de conformation
-				}else{
-					//TODO RAPPELELER LE PANEL AJOUT INFO AUTANT DE FOIS QUE LE NOMBRE d'humain
-					System.out.println("salut2");
+					System.out.println("stop");
+					client.confirmerPartie();//on affiche le panel de confirmation
+				}
+				else{
 					client.getListeNomHumain().add(tfNom.getText());
 					client.getListeAgeHumain().add(20);
 					client.setIndexHumain(client.getIndexHumain()+1);
-					client.getFenetre().setTitle("humain numero : "+client.getIndexHumain());
+					client.getFenetre().setTitle("humain numero : "+client.getIndexHumain()+"/"+client.getNombreHumain());
 					compteurValider++;
 				}
-				//TODO faire des test sur le nom et l'age récuperé
-
 			}
 		});
 	}
-
-	/**Getter
-	 * @return le panel MenuPrincipale
-	 */
-	public JPanel getPanel(){
-		return this;
-	}
-
-
 }

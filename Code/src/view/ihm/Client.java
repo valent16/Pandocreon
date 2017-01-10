@@ -3,7 +3,6 @@ package view.ihm;
 import java.util.LinkedList;
 
 import javax.swing.*;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import controller.GameController;
@@ -21,9 +20,6 @@ public class Client{
 
 	/**Attribut represennat les composants de l'interface graphique*/
 	private JFrame frame = new JFrame();
-
-	/**label pour le nombre de joueur*/
-	private JLabel labelNombreJoueurs;
 
 	/**logo du jeu*/
 	private ImageIcon logo = new ImageIcon("images/logo.png");
@@ -44,8 +40,11 @@ public class Client{
 
 	/**Attribut representant la strategie choisi par le joueur*/
 	private String strategie;
+	
+	/**Attribut representant les noms des bots*/
+	private LinkedList<String> listeNomBot = new LinkedList<String>();
 
-	/**Attribut represenat les noms des humains*/
+	/**Attribut representant les noms des humains*/
 	private LinkedList<String> listeNomHumain = new LinkedList<String>();
 
 	/*Attribut representant les ages de humain*/
@@ -102,18 +101,12 @@ public class Client{
 
 	/**Methode Permettant d'ajouter le nom et l'age a un humain*/
 	public void ajouterInfoJoueurHumain() {
-		setPanelAjoutInfoHumain(new PanelAjoutInfoHumain(this));
-		//TODO faire une boucle for qui parcours nombreTotalJOueur
-		
-		//TODO AU LIEU d'appeler lancer partie on appeller ca    panelConfirmation = new PanelConfirmation(this);
-		
+		setPanelAjoutInfoHumain(new PanelAjoutInfoHumain(this));		
 	}
 
 
 	public void confirmerPartie() {
-		
-		//TODO lancerPartie();//on lance la partie maintenant
-		
+		setPanelConfirmation(new PanelConfirmation(this));
 	}
 
 	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
@@ -136,19 +129,18 @@ public class Client{
 			for(int i = 0; i < nombreHumain; i++){
 				gc.CreationJoueur("Humain "+Game.getBotName(i), AGE_JOUEUR);
 			}
-
 			System.out.println("affichage des joueur "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 		}
 	}
 
 	/**Methode pour lancer la partie*/
 	public void lancerPartie(){
-		//TODO cA a L'air de marcher
 		///////////////////////////////////////////////////////////////////////TODO ICI QU'on lance LA PARTIE
 		System.out.println("Lancement de la partie");
 		GameController gc = new GameController();
 		gc.startGame();
 
+		//TODO ON peut recuperer toutes les information (noms, age et strategie dans cette classe
 		gc.CreationJoueur("valentin", 18);
 		gc.CreationJoueur("David", 20);
 
@@ -177,8 +169,8 @@ public class Client{
 		/**Getter nombre de joueur
 		 * @return le nombre de joueur choisi pour demarrer la partie
 		 */
-		public int getJoueurs(){
-			return Integer.parseInt(labelNombreJoueurs.getText());
+		public int getNombreJoueurs(){
+			return this.getNombreBot()+this.getIndexHumain();
 		}
 
 		/**Getter pour le controller de la partie
@@ -213,6 +205,10 @@ public class Client{
 
 		public void setNombreBot(int nb){
 			nombreBot = nb;
+		}
+		
+		public String getStrategie(){
+			return strategie;
 		}
 
 		public void setStrategie(String strat) {
@@ -289,5 +285,13 @@ public class Client{
 
 		public void setPanelConfirmation(PanelConfirmation panelConfirmation) {
 			this.panelConfirmation = panelConfirmation;
+		}
+
+		public LinkedList<String> getListeNomBot() {
+			return listeNomBot;
+		}
+
+		public void setListeNomBot(LinkedList<String> listeNomBots) {
+			this.listeNomBot = listeNomBots;
 		}
 	}

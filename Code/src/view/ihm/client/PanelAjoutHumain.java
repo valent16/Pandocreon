@@ -13,18 +13,12 @@ import view.ihm.Client;
 public class PanelAjoutHumain extends PanelType{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private JLabel nombreHumain;
-	
-	private JButton annuler;
 
-	private JButton valider;
-
-	private JButton moins;
-
-	private JButton plus;
-
-	/**Constructeur*/
+	/**Constructeur
+	 * @param c l'interface client
+	 */
 	public PanelAjoutHumain(Client c){
 		client = c;
 		initialize();
@@ -48,7 +42,7 @@ public class PanelAjoutHumain extends PanelType{
 		//bouton plus
 		plus = new JButton("+");
 		plus.setPreferredSize(new Dimension(45, 45));
-		
+
 		//bouton moins
 		moins = new JButton("-");
 		moins.setPreferredSize(new Dimension(45, 45));
@@ -90,12 +84,11 @@ public class PanelAjoutHumain extends PanelType{
 		client.getFenetre().setContentPane(this);
 		client.getFenetre().repaint();
 		client.getFenetre().validate();
-		
+
 	}
 
 	@Override
 	protected void ajouterListener() {
-		
 		moins.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -109,7 +102,7 @@ public class PanelAjoutHumain extends PanelType{
 				client.getFenetre().requestFocus();				
 			}
 		});
-		
+
 		plus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -123,33 +116,20 @@ public class PanelAjoutHumain extends PanelType{
 				client.getFenetre().requestFocus();				
 			}
 		});
-		
+
 		annuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				client.retourMenuPrincipale();
 			}
 		});
-		
+
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreHumain.getText() +" de joueurs humains. Voulez-vous continuer ?", "humain ajoutés", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
-				if(option == JOptionPane.OK_OPTION){
-
-					client.setNombreHumain(Integer.parseInt(nombreHumain.getText()));
-					client.ajouterInfoJoueurHumain();//on ajoute les noms et age des joueurs
-
-				}else
-					JOptionPane.showMessageDialog(null, "Veuillez ajouté des joueurs pour pouvoir lancé une partie", "Probleme Ajout de joueur", JOptionPane.INFORMATION_MESSAGE, logo);
+				client.setNombreHumain(Integer.parseInt(nombreHumain.getText()));
+				client.ajouterInfoJoueurHumain();//on ajoute les noms et age des joueurs
 			}
 		});
-	}
-	
-	/**Getter
-	 * @return le panel MenuPrincipale
-	 */
-	public JPanel getPanel(){
-		return this;
 	}
 }

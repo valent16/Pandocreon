@@ -2,6 +2,7 @@ package view.ihm.client;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -14,10 +15,10 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import model.game.Game;
 import view.ihm.Client;
 
 /**Classe qui gere la vue de la partie en mode console*/
@@ -27,23 +28,15 @@ public class PanelAjoutBot extends PanelType{
 
 	private JLabel nombreBot;
 
-	private JButton annuler;
-
-	private JButton valider;
-
-	private JButton moins;
-
-	private JButton plus;
-
 	/**Constructeur
-	 * @param c le Client du jeu
+	 * @param c l'interface client
 	 */
 	public PanelAjoutBot(Client c){
 		client = c;
 		initialize();
 		ajouterListener();
 	}
-	
+
 	@Override
 	protected void initialize(){
 		this.setLayout(new BorderLayout());
@@ -104,8 +97,8 @@ public class PanelAjoutBot extends PanelType{
 		client.getFenetre().repaint();
 		client.getFenetre().validate();
 	}
-	
-	
+
+
 	@Override
 	protected void ajouterListener() {
 		plus.addActionListener(new ActionListener() {
@@ -121,7 +114,7 @@ public class PanelAjoutBot extends PanelType{
 				client.getFenetre().requestFocus();				
 			}
 		});
-		
+
 		moins.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -135,35 +128,26 @@ public class PanelAjoutBot extends PanelType{
 				client.getFenetre().requestFocus();				
 			}
 		});
-		
+
 		annuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				client.retourMenuPrincipale();
 			}
 		});
-		
+
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté "+ nombreBot.getText() +" bots. Voulez-vous continuer ?", "bots ajoutés", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
-				if(option == JOptionPane.OK_OPTION){
-					client.setNombreBot(Integer.parseInt(nombreBot.getText()));
-					client.setNombreHumain(Client.getNombreMaximalJoueur() - client.getNombreBot());
-					client.ajouterDifficulte();//on ajoute les joueurs humain
-				}else{
-					JOptionPane.showMessageDialog(null, "Veuillez ajouté des bots pour pouvoir lancé une partie", "Probleme ajout de bot", JOptionPane.INFORMATION_MESSAGE, logo);
-				}
+				client.setNombreBot(Integer.parseInt(nombreBot.getText()));
+				
+				//ajout des noms des bots
+				for(int i = 0; i<client.getNombreBot(); i++)
+					client.getListeNomBot().add(Game.getBotName(i));//ajout des noms de bots
+				client.setNombreHumain(Client.getNombreMaximalJoueur() - client.getNombreBot());
+				client.ajouterDifficulte();//on ajoute les joueurs humain
 			}
 		});
-		
-	}
-	
-	/**Getter
-	 * @return le panel MenuPrincipale
-	 */
-	public JPanel getPanel(){
-		return this;
-	}
 
+	}
 }

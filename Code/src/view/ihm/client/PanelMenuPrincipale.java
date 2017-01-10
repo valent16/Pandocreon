@@ -2,6 +2,7 @@ package view.ihm.client;
 
 import java.awt.Dimension;
 
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -10,7 +11,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import view.ihm.Client;
@@ -29,7 +29,9 @@ public class PanelMenuPrincipale extends PanelType{
 
 	private static final long serialVersionUID = 1L;
 
-	/**Constructeur*/
+	/**Constructeur
+	 * @param c l'interface client
+	 */
 	public PanelMenuPrincipale(Client c){
 		client = c;
 		initialize();
@@ -229,12 +231,5 @@ public class PanelMenuPrincipale extends PanelType{
 		scrollPanel.getVerticalScrollBar().setUnitIncrement(10);//augmente la vitesse de scroling
 		scrollPanel.setPreferredSize( new Dimension(600, 700) );
 		JOptionPane.showMessageDialog(null, scrollPanel, "Regles du jeu", JOptionPane.INFORMATION_MESSAGE, logo);
-	}
-
-	/**Getter
-	 * @return le panel MenuPrincipale
-	 */
-	public JPanel getPanel(){
-		return this;
 	}
 }

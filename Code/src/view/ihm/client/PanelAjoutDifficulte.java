@@ -1,6 +1,7 @@
 package view.ihm.client;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -12,31 +13,33 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.ihm.Client;
 
 public class PanelAjoutDifficulte extends PanelType{
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	JComboBox<String> listeStrategie;
 
 	private JButton annuler;
 
 	private JButton valider;
 
+	/**Constructeur
+	 * @param c l'interface client
+	 */
 	public PanelAjoutDifficulte(Client c){
 		client = c;
 		initialize();
 		ajouterListener();
 	}
-	
+
 	@Override
 	protected void initialize() {
 		this.setLayout(new BorderLayout());
-		
+
 		String[] strats = {"Facile", "Moyen", "Difficile"};//les differentes Strategies
 		listeStrategie = new JComboBox<String>(strats);
 
@@ -71,7 +74,7 @@ public class PanelAjoutDifficulte extends PanelType{
 		client.getFenetre().setContentPane(this);
 		client.getFenetre().repaint();
 		client.getFenetre().validate();
-		
+
 	}
 
 	@Override
@@ -82,23 +85,13 @@ public class PanelAjoutDifficulte extends PanelType{
 				client.retourMenuPrincipale();
 			}
 		});
-		
+
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int option = JOptionPane.showConfirmDialog(null, "Vous avez ajouté la strategie "+ listeStrategie.getSelectedItem() +" Voulez-vous continuer ?", "strategie des bots", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, logo);
-				if(option == JOptionPane.OK_OPTION){
-					client.setStrategie(""+listeStrategie.getSelectedItem());
-					client.ajouterJoueurHumain();//on ajoute les joueurs humain
-				}else
-					JOptionPane.showMessageDialog(null, "Veuillez choisir une stratégie pour les bots", "Annulation de la stratégie", JOptionPane.INFORMATION_MESSAGE, logo);
+				client.setStrategie(""+listeStrategie.getSelectedItem());
+				client.ajouterJoueurHumain();//on ajoute les joueurs humain
 			}
 		});
-		
 	}
-	
-
-	
-	
-
 }
