@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -27,7 +28,7 @@ public class PanelAjoutInfoHumain extends PanelType{
 	private JComboBox<String> listeAges;
 
 	private JTextField tfNom;
-	
+
 	private int compteurValider = 1;
 
 
@@ -119,12 +120,19 @@ public class PanelAjoutInfoHumain extends PanelType{
 					System.out.println("stop");
 					client.confirmerPartie();//on affiche le panel de confirmation
 				}
-				else{
-					client.getListeNomHumain().add(tfNom.getText());
-					client.getListeAgeHumain().add(20);
-					client.setIndexHumain(client.getIndexHumain()+1);
-					client.getFenetre().setTitle("humain numero : "+client.getIndexHumain()+"/"+client.getNombreHumain());
-					compteurValider++;
+				else{ //on ajoute le joueur
+					if(tfNom.getText().equals(""))//si le nom est vide
+						JOptionPane.showMessageDialog(null, "vous n'avez pas donnée de nom au joueur", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);
+					else if(Integer.parseInt(listeAges.getSelectedItem().toString()) < 12)//si le joueur a moins de 12 ans il ne peut pas jouer
+						JOptionPane.showMessageDialog(null, "le joueur est trop jeune pour jouer", "Probleme age joueur", JOptionPane.ERROR_MESSAGE, logo);
+					else{//sinon c'est bon on peut ajouter les infos
+
+						client.getListeNomHumain().add(tfNom.getText());
+						client.getListeAgeHumain().add(Integer.parseInt(listeAges.getSelectedItem().toString()));
+						client.setIndexHumain(client.getIndexHumain()+1);
+						client.getFenetre().setTitle("humain numero : "+client.getIndexHumain()+"/"+client.getNombreHumain());
+						compteurValider++;
+					}
 				}
 			}
 		});
