@@ -53,9 +53,9 @@ public class PanelConfirmation extends PanelType{
 
 		//les labels
 		nombreJoueur = new JLabel("joueurs au total : "+client.getNombreJoueurs()+ " | "); 
-		nombreBot = new JLabel("bots : "+client.getNombreBot()+ " | ");
-		nombreHumain = new JLabel("humain : "+client.getNombreHumain()+ " | ");
-		strategie = new JLabel("strategie bot : "+client.getStrategie());
+		nombreBot = new JLabel("Bots : "+client.getNombreBot()+ " | ");
+		nombreHumain = new JLabel("Humain : "+client.getNombreHumain()+ " | ");
+		strategie = new JLabel("Strategie bot : "+client.getStrategie());
 		
 		//panel nombre
 		panelNombre = new JPanel();	
@@ -124,7 +124,7 @@ public class PanelConfirmation extends PanelType{
 		annuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				client.retourMenuPrincipale();
+				client.retourMenuPrincipale();//on revient au menuPrincipale
 			}
 		});
 

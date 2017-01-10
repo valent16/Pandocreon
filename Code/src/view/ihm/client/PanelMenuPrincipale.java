@@ -88,11 +88,10 @@ public class PanelMenuPrincipale extends PanelType{
 				afficherRegles();
 			}
 		});
-		
 	}
 	
 	private void chargerPartie() {
-		JOptionPane.showMessageDialog(null, "Fonctionnalité pas encore developpé", "chargement de partie", JOptionPane.WARNING_MESSAGE, logo);
+		JOptionPane.showMessageDialog(null, "Le chargement de partie est en cours de developpement", "chargement de partie", JOptionPane.WARNING_MESSAGE, logo);
 	}
 
 	/**Methode permettant d'afficher les regles du jeu*/

@@ -13,8 +13,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import model.strategy.EasyStrategy;
+import model.strategy.MediumStrategy;
 import view.ihm.Client;
 
 public class PanelAjoutDifficulte extends PanelType{
@@ -41,6 +44,7 @@ public class PanelAjoutDifficulte extends PanelType{
 		this.setLayout(new BorderLayout());
 
 		String[] strats = {"Facile", "Moyen", "Difficile"};//les differentes Strategies
+
 		listeStrategie = new JComboBox<String>(strats);
 
 		JPanel strategieBotPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
@@ -89,9 +93,20 @@ public class PanelAjoutDifficulte extends PanelType{
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				client.setStrategie(""+listeStrategie.getSelectedItem());
-				System.out.println("strategie : "+client.getStrategie());//TODO A ENLEVER
-				client.ajouterJoueurHumain();//on ajoute les joueurs humain
+
+				String[] values = {"facile", "medium", "difficile"};//les noms des strategies
+				client.setStrategie(values[listeStrategie.getSelectedIndex()]);
+				System.out.println("test de la value : "+ client.getStrategie());//TODO A ENLEVER
+
+				if(client.getStrategie().equals("medium")){//TODO Pour l'instant on ne peut que mettre la strategie medium
+					System.out.println("c'est bonstrategie : " + client.getStrategie());//TODO A ENLEVER
+					client.ajouterJoueurHumain();//on ajoute les joueurs humain
+				}
+
+				else{
+					System.out.println("une autre strategie "+client.getStrategie());//TODO A ENLEVER
+					JOptionPane.showMessageDialog(null, "Cette strategie est en cours de developpement", "Choix de la strategie", JOptionPane.WARNING_MESSAGE, logo);
+				}
 			}
 		});
 	}

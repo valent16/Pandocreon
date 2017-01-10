@@ -134,6 +134,10 @@ public class Client{
 	/**Methode pour lancer la partie*/
 	public void lancerPartie(){
 		///////////////////////////////////////////////////////////////////////TODO ICI QU'on lance LA PARTIE
+		//Creation et ajout des bots dans la partie
+		
+		
+		//Creation et ajout des Humains dans la partie
 		System.out.println("Lancement de la partie");
 		GameController gc = new GameController();
 		gc.startGame();
