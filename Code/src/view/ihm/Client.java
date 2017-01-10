@@ -89,8 +89,6 @@ public class Client{
 
 	/**Methode permettant d'ajouter la difficulté des bots*/
 	public void ajouterDifficulte(){
-		System.out.println("bot: "+nombreBot);
-		System.out.println("humain: "+nombreHumain);
 		setPanelAjoutDifficulte(new PanelAjoutDifficulte(this));
 	}
 

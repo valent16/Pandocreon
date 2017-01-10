@@ -128,6 +128,7 @@ public class PanelAjoutHumain extends PanelType{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				client.setNombreHumain(Integer.parseInt(nombreHumain.getText()));
+				System.out.println("humain : "+client.getNombreHumain());//TODO A ENLEVER
 				client.ajouterInfoJoueurHumain();//on ajoute les noms et age des joueurs
 			}
 		});

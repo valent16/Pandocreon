@@ -60,7 +60,7 @@ public class PanelAjoutBot extends PanelType{
 		moins.setPreferredSize(new Dimension(45, 45));
 
 		JPanel nombreBotPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
-		JLabel labelNombreBot = new JLabel("Nombre de bots a ajouter : ("+Client.getNombreMinimalJoueur()+"-"+Client.getNombreMaximalJoueur()+")");
+		JLabel labelNombreBot = new JLabel("Nombre de bots à ajouter : ("+Client.getNombreMinimalJoueur()+"-"+Client.getNombreMaximalJoueur()+")");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;
@@ -144,7 +144,8 @@ public class PanelAjoutBot extends PanelType{
 				//ajout des noms des bots
 				for(int i = 0; i<client.getNombreBot(); i++)
 					client.getListeNomBot().add(Game.getBotName(i));//ajout des noms de bots
-				client.setNombreHumain(Client.getNombreMaximalJoueur() - client.getNombreBot());
+				client.setNombreHumain(Client.getNombreMaximalJoueur() - client.getNombreBot());//on ajuste le nombre de joueur pour ne pas dépasser 10
+				System.out.println("bot : "+client.getNombreBot());//TODO A ENLEVER
 				client.ajouterDifficulte();//on ajoute les joueurs humain
 			}
 		});

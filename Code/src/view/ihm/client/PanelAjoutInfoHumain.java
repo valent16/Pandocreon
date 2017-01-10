@@ -122,9 +122,9 @@ public class PanelAjoutInfoHumain extends PanelType{
 				}
 				else{ //on ajoute le joueur
 					if(tfNom.getText().equals(""))//si le nom est vide
-						JOptionPane.showMessageDialog(null, "vous n'avez pas donnée de nom au joueur", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);
+						JOptionPane.showMessageDialog(null, "Vous n'avez pas donnée de nom au joueur", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);
 					else if(Integer.parseInt(listeAges.getSelectedItem().toString()) < 12)//si le joueur a moins de 12 ans il ne peut pas jouer
-						JOptionPane.showMessageDialog(null, "le joueur est trop jeune pour jouer", "Probleme age joueur", JOptionPane.ERROR_MESSAGE, logo);
+						JOptionPane.showMessageDialog(null, "Le joueur est trop jeune pour jouer\nIl doit avoir plus de 12 ans.", "Probleme age joueur", JOptionPane.ERROR_MESSAGE, logo);
 					else{//sinon c'est bon on peut ajouter les infos
 
 						client.getListeNomHumain().add(tfNom.getText());

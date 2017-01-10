@@ -90,6 +90,7 @@ public class PanelAjoutDifficulte extends PanelType{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				client.setStrategie(""+listeStrategie.getSelectedItem());
+				System.out.println("strategie : "+client.getStrategie());//TODO A ENLEVER
 				client.ajouterJoueurHumain();//on ajoute les joueurs humain
 			}
 		});
