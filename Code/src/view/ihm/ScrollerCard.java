@@ -50,6 +50,7 @@ public class ScrollerCard extends JPanel {
         scroll.revalidate();
     }
     
+
     public void ajouterPanelJoueurReel(PanelJoueurReel father){
     	this.father = father;
     }
@@ -61,6 +62,30 @@ public class ScrollerCard extends JPanel {
     	Iterator<Card> it = cartes.iterator();
     	while (it.hasNext()){
         	PanelCarte panelCarte = new PanelCarte(it.next());
+
+    //Permet de mettre � jour le panel de carte en fonction de la liste de carte pass� en param�tre
+    public void majCarte(List<Card> cartes){
+    	ArrayList<Card> cartesASupprimer = new ArrayList<Card>();
+    	//Permet de faire une deep copy de la liste de cartes
+    	Iterator<PanelCarte> it = listeCartesGraphiques.iterator();
+    	while(it.hasNext()){
+    		cartesASupprimer.add(it.next().getCarte());
+    	}
+    	
+    	Iterator<PanelCarte> itPanelCarte = listeCartesGraphiques.iterator();
+    	while(itPanelCarte.hasNext()){
+    		PanelCarte panelCarte = itPanelCarte.next();
+    		if (cartes.contains(panelCarte.getCarte())){
+    			cartesASupprimer.remove(panelCarte.getCarte());
+    			cartes.remove(panelCarte.getCarte());
+    		}
+    	}
+    	
+    	//Ajout des cartes qui n'�taient pas pr�sentes
+    	Iterator<Card> itCarteAjout = cartes.iterator();
+    	while (itCarteAjout.hasNext()){
+    		PanelCarte panelCarte = new PanelCarte(itCarteAjout.next());
+
         	panel.add(panelCarte);
         	listeCartesGraphiques.add(panelCarte);
         	panel.add(Box.createRigidArea(new Dimension(5,0)));

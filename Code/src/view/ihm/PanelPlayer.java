@@ -14,6 +14,7 @@ import model.player.Bot;
 import model.player.Player;
 
 public class PanelPlayer extends JPanel{
+
 		Player joueur;
 	
 	
@@ -46,4 +47,33 @@ public class PanelPlayer extends JPanel{
 		public Player getPlayer(){
 			return joueur;
 		}
+
+
+	private static final long serialVersionUID = 1L;
+
+	public PanelPlayer(Player p){
+		StringBuffer sb = new StringBuffer();
+
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setPreferredSize(new Dimension(110,110));
+
+		JLabel nomPersonne = new JLabel();
+		if (p instanceof Bot){
+			sb.append("bot: ");
+			sb.append(p.getNom());
+			nomPersonne.setText(sb.toString());
+		}else {
+			nomPersonne.setText(p.getNom());
+		}
+
+		nomPersonne.setAlignmentX(Component.CENTER_ALIGNMENT);
+		nomPersonne.setVerticalAlignment(SwingConstants.CENTER);
+
+		this.add(nomPersonne);
+
+		this.add(new ImagePanel("./images/imageJoueur/joueur.png", 225/2, 225/2));
+
+		this.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
+	}
+
 }

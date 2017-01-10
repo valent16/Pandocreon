@@ -18,7 +18,7 @@ public class ScrollerPlayer extends JPanel {
 	private List<PanelPlayer> listePanel = new ArrayList<PanelPlayer>();
 	
 	JPanel panel;
-	//création de cet objet à chaque fois qu'un joueur est éliminé
+	//crï¿½ation de cet objet ï¿½ chaque fois qu'un joueur est ï¿½liminï¿½
     public ScrollerPlayer(List<Player> listeJoueurs) throws HeadlessException {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));

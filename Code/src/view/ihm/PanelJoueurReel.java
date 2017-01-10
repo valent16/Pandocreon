@@ -1,6 +1,7 @@
 package view.ihm;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -23,38 +24,44 @@ import javax.swing.SwingUtilities;
 
 import controller.JoueurController;
 import model.player.Human;
-import model.player.Player;
+
 import view.IViewJoueurReel;
 import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
 import model.cards.OriginCards.*;
+
 public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
+
 	
 	private boolean action = false;
 	
 	private boolean tourFinished = false;
-	
+
+
+	private static final long serialVersionUID = 1L;
+
+
 	JoueurController controller;
-	
+
 	Human joueurReel;
-	
+
 	//jour
 	JLabel label;
-	
+
 	//nuit
 	JLabel label_1;
-	
-	//néant
+
+	//nï¿½ant
 	JLabel label_2;
-	
+
 	//scroll label de la main du joueur
 	ScrollerCard mainJoueur;
-	
-	//scroll label des cartes rattachées au joueur
+
+	//scroll label des cartes rattachï¿½es au joueur
 	ScrollerCard cartesRattachees;
-	
+
 	JPanel panelDivinite;
-	
+
 	JPanel panelDroite;
 	
 	JPanel panelFinTour;
@@ -99,23 +106,33 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 		this.setLayout( new BorderLayout());
 		
+
+	public PanelJoueurReel(Human p){
+
+		this.joueurReel = p;
+
+		this.setLayout( new BorderLayout());
+
+		//		this.setLayout( new BoxLayout(this, BoxLayout.X_AXIS));
+
 		JPanel panelGauche = new JPanel();
 		panelGauche.setLayout(new BoxLayout(panelGauche, BoxLayout.Y_AXIS));
 		panelGauche.setPreferredSize(new Dimension(800,300));
-		
+
 		panelDroite = new JPanel();
 		panelDroite.setLayout(new BoxLayout(panelDroite, BoxLayout.Y_AXIS));
-		
+
 		//liste des cartes du joueur
 		final JPanel panelCartesJoueur = new JPanel();
 		panelCartesJoueur.setLayout(new BoxLayout(panelCartesJoueur, BoxLayout.Y_AXIS));
-		
+
 		JPanel panelLabelCartesJoueur = new JPanel();
 		JLabel LabelCartesJoueur = new JLabel("liste des cartes de votre jeu:");
 		panelLabelCartesJoueur.add(LabelCartesJoueur);
-		
+
 		panelCartesJoueur.add(panelLabelCartesJoueur);
 		SwingUtilities.invokeLater(new Runnable() {
+
             @Override
             public void run() {
             	mainJoueur = new ScrollerCard(new ArrayList<Card>(joueurReel.getHand()));
@@ -126,17 +143,29 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		
 		
 		//Affichages des cartes rattachées au joueur
+
+			@Override
+			public void run() {
+				mainJoueur = new ScrollerCard(new ArrayList<Card>(joueurReel.getHand()));
+				panelCartesJoueur.add(mainJoueur);
+				//            	frame.pack();
+			}
+		});
+
+		//Affichages des cartes rattachï¿½es au joueur
+
 		final JPanel panelCartesRattachesJoueur = new JPanel();
 		panelCartesRattachesJoueur.setLayout(new BoxLayout(panelCartesRattachesJoueur, BoxLayout.Y_AXIS));
 		panelCartesRattachesJoueur.setPreferredSize(new Dimension(800,200));
-		
+
 		JPanel panelLabelCartesRattaches = new JPanel();
 		JLabel LabelCartesRattaches = new JLabel("Listes des cartes rattachees au joueur:");
 		panelLabelCartesRattaches.add(LabelCartesRattaches);
-		
+
 		LabelCartesRattaches.setHorizontalAlignment(SwingConstants.LEFT);
 		panelCartesRattachesJoueur.add(panelLabelCartesRattaches);
 		SwingUtilities.invokeLater(new Runnable() {
+
             @Override
             public void run() {
             	cartesRattachees =new ScrollerCard(getCartesRattaches()); 
@@ -145,30 +174,40 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
         });
 		
 		
+
+			@Override
+			public void run() {
+				cartesRattachees =new ScrollerCard(getCartesRattaches()); 
+				panelCartesRattachesJoueur.add(cartesRattachees);
+				//            	frame.pack();
+			}
+		});
+
+
 		panelGauche.add(panelCartesJoueur);
 		panelGauche.add(panelCartesRattachesJoueur);
-		
-		
+
+
 		final JPanel panelPointsAction = new JPanel();
 		panelPointsAction.setLayout(new BoxLayout(panelPointsAction, BoxLayout.Y_AXIS));
-		
+
 		JPanel panelLabelPA = new JPanel();
 		JLabel labelPA = new JLabel("points d'action disponibles:");
 		labelPA.setHorizontalAlignment(SwingConstants.LEFT);
 		panelLabelPA.add(labelPA);
-		
+
 		JPanel grillePoints = new JPanel();
 		grillePoints.setLayout(new GridLayout(2, 3));
-		
+
 		ImagePanel imageJour = new ImagePanel("./images/OrigineCarte/jour.jpg",800/20,800/20);
 		grillePoints.add(new JLabel(new ImageIcon(imageJour.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH))));
-		
+
 		ImagePanel imageNuit = new ImagePanel("./images/OrigineCarte/nuit.jpg",800/20,800/20);
 		grillePoints.add(new JLabel(new ImageIcon(imageNuit.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH))));
-		
+
 		ImagePanel imageNeant = new ImagePanel("./images/OrigineCarte/neant.jpg",800/20,800/20);
 		grillePoints.add(new JLabel(new ImageIcon(imageNeant.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH))));
-		
+
 		label = new JLabel("jour");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		grillePoints.add(label);
@@ -178,9 +217,10 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		label_2 = new JLabel("neant");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		grillePoints.add(label_2);
-		
+
 		panelPointsAction.add(panelLabelPA);
 		panelPointsAction.add(grillePoints);
+
 		
 		panelFinTour = new JPanel();
 		JButton FinTour = new JButton("Fin de tour");
@@ -206,10 +246,28 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 	
 	//Méthode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
+
+
+		panelDroite.add(Box.createRigidArea(new Dimension(0,230)));
+		panelDroite.add(panelPointsAction);
+		//		panelDivinite = new JPanel();
+		//		panelDroite.add(panelDivinite);
+
+
+		this.add(panelGauche, BorderLayout.WEST);
+		this.add(panelDroite, BorderLayout.EAST);
+		//		this.add(panelGauche);
+		//		this.add(Box.createRigidArea(new Dimension(15,0)));
+		//		this.add(panelDroite);
+
+	}
+
+	//Mï¿½thode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
+
 	private List<Card> getCartesRattaches(){
 		final ArrayList<Card> cartesConverties = new ArrayList<Card>();
 		Iterator<SpiritGuide> it = joueurReel.getGuides().iterator();
-		
+
 		while(it.hasNext()){
 			SpiritGuide guide = it.next();
 			Iterator<Believer> itCroyants = guide.getCroyantsConvertis().iterator();
@@ -220,7 +278,7 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		}
 		return cartesConverties; 
 	}
-	
+
 	@Override
 	public void majDeckCarte(){
 		mainJoueur.majCarte(new ArrayList<Card>(joueurReel.getHand()));

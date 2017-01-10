@@ -92,7 +92,7 @@ public class PanelTableJeu extends JPanel implements IViewGame {
         });
 
 		
-		//définition de l'espace réservé au dé
+		//dï¿½finition de l'espace rï¿½servï¿½ au dï¿½
 		panelDeTour = new JPanel();
 		panelDeTour.setLayout(new BoxLayout(panelDeTour, BoxLayout.Y_AXIS));
 		
@@ -104,7 +104,7 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 		panelJoueurs.add(panelLabelJoueurJeu);
 		panelDeTour.add(panelLabelDe);
 		
-		// mettre une image non définie lorseque le dé est affiché pour la premiere fois
+		// mettre une image non dï¿½finie lorseque le dï¿½ est affichï¿½ pour la premiere fois
 		label = new JLabel();
 		label.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panelDeTour.add(label);

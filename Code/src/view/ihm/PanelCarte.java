@@ -34,7 +34,7 @@ import model.cards.withoutOriginCards.DeusEx;
 public class PanelCarte extends JPanel{
 	
 	//panel contenant l'origine bordure gauche
-	//contenant le nombre de coyant à droite
+	//contenant le nombre de coyant ï¿½ droite
 	private JPanel panelTop;
 	
 	//panel contenant les dogmes de la carte
@@ -49,7 +49,7 @@ public class PanelCarte extends JPanel{
 	//description de la carte
 	private JTextArea labelArea;
 	
-	//carte rerpésenté dans le panel
+	//carte rerpï¿½sentï¿½ dans le panel
 	private Card carte;
 	
 	private JButton bouton;
@@ -116,7 +116,7 @@ public class PanelCarte extends JPanel{
 		return carte;
 	}
 	
-	//Méthode de création du panel en fonction de la carte 
+	//Mï¿½thode de crï¿½ation du panel en fonction de la carte 
 	public void panelFactory(){
 		ajoutTitre();
 		if (carte instanceof Divinity){
@@ -141,7 +141,7 @@ public class PanelCarte extends JPanel{
 		}
 	}
 	 
-	 //Fonction permettant d'ajouter les dogmes à la carte 
+	 //Fonction permettant d'ajouter les dogmes ï¿½ la carte 
 	public void ajoutDogmes(){
 		List<EnumDogme> listeDogmes;
 		if (carte instanceof Divinity){

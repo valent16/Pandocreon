@@ -49,9 +49,8 @@ public class Main{
 
 		case 5: //test pour le lancement d'une partie
 			GameController gameController = new GameController();
-			//gameController.getGame().initGame();
 			gameController.startGame();
-
+			
 			Human joueur1 = new Human("valentin", 18);
 //			joueur1.attacher(new JoueurController(joueur1));
 			Human joueur2 = new Human("David", 20);
@@ -70,7 +69,6 @@ public class Main{
 				public void run() {
 					try {
 						Client window = new Client();
-						System.out.println(window);///////////
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -79,13 +77,13 @@ public class Main{
 			break;
 			
 		case 7:
-			gameController = new GameController();
-			gameController.startGame();
+			GameController gameController1 = new GameController();
+			gameController1.startGame();
 			
-			gameController.CreationJoueur("valentin", 18);
-			gameController.CreationJoueur("David", 20);
+			gameController1.CreationJoueur("valentin", 18);
+			gameController1.CreationJoueur("David", 20);
 			
-			gameController.lancerPartie();
+			gameController1.lancerPartie();
 			break;
 		
 		case 8:

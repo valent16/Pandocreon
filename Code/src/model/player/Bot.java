@@ -1,12 +1,12 @@
 ﻿package model.player;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import controller.IObserverJoueurReel;
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.Card;
@@ -15,7 +15,6 @@ import model.cards.OriginCards.ApocalypseWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
-import model.exception.ObservateurNotLinkedException;
 import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
 import model.game.GameManager;
@@ -325,40 +324,4 @@ public class Bot extends Player{
 	 private void setStrategy(Strategy strategy) {
 		 Bot.strategy = strategy;
 	 }
-
-	@Override
-	public void attacher(IObserverJoueurReel o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void detacher(IObserverJoueurReel o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Player notifySelectPlayer() throws ObservateurNotLinkedException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void notifyStartTour() throws ObservateurNotLinkedException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

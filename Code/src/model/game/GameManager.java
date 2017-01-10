@@ -14,7 +14,6 @@ import model.cards.Divinity;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.player.Player;
-import view.ihm.TableJeu;
 
 /**Classe qui gère tous les elements de la partie*/
 public class GameManager implements IObservableGameManager {
