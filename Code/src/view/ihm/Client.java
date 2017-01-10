@@ -11,6 +11,7 @@ import model.game.Game;
 import model.game.GameManager;
 import model.player.Bot;
 import model.player.Human;
+import model.strategy.MediumStrategy;
 import view.ihm.client.PanelAjoutBot;
 import view.ihm.client.PanelAjoutDifficulte;
 import view.ihm.client.PanelAjoutHumain;
@@ -112,20 +113,27 @@ public class Client{
 	/**Methode pour lancer la partie*/
 	public void lancerPartie(){
 		creationPartie();
-		System.out.println("Lancement de la partie");//TODO A ENLEVER
+		//System.out.println("Lancement de la partie");//TODO A ENLEVER
 		//gc.startGame();
-
-		GameController gameControler = new GameController();//TODO A ENLEVER
-		gameControler.startGame();//TODO A ENLEVER
+		
+		//GameController gameControler = new GameController();//TODO A ENLEVER
+		//gameControler.startGame();//TODO A ENLEVER
 	}
 
 
 	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
 	public void creationPartie(){
 		System.out.println("Creation de la partie");//TODO A ENLEVER
-		gc = new GameController();
 		
-		System.out.println("Instanciation des Bots");//TODO A ENLEVER
+		GameController gc = new GameController();
+		//game.ajouterBot( new Bot("test23", new MediumStrategy()));
+		
+		gc.CreationBot("test23", "medium");
+		gc.CreationBot("test32", "medium");
+		gc.CreationBot("test45", "medium");
+		gc.startGame();
+
+		/*System.out.println("Instanciation des Bots");//TODO A ENLEVER
 		//Creation et ajout des bots dans la partie
 		Iterator<String> itBot = listeNomBot.iterator();
 		while(itBot.hasNext()){
@@ -141,7 +149,7 @@ public class Client{
 		while( itNomHumain.hasNext() && itAgeHumain.hasNext() ){
 			gc.CreationJoueur(itNomHumain.next(), itAgeHumain.next());//instanciation des humains
 		}
-		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
+		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER*/
 	}
 
 	/**Methode pour revenir au panel MenuPrincipale*/
@@ -156,7 +164,7 @@ public class Client{
 			resetDonnees();
 		}
 	}
-	
+
 	/**Methode qui permet de reinitialiser les données*/
 	public void resetDonnees(){
 		setNombreHumain(0);
