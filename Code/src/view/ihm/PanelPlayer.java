@@ -15,47 +15,20 @@ import model.player.Player;
 
 public class PanelPlayer extends JPanel{
 
-		Player joueur;
-	
-	
-		public PanelPlayer(Player p){
-			this.joueur = p;
-			StringBuffer sb = new StringBuffer();
-		
-			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-			this.setPreferredSize(new Dimension(110,110));
-			
-			JLabel nomPersonne = new JLabel();
-			if (p instanceof Bot){
-				sb.append("bot: ");
-				sb.append(p.getNom());
-				nomPersonne.setText(sb.toString());
-			}else {
-				nomPersonne.setText(p.getNom());
-			}
-
-			nomPersonne.setAlignmentX(Component.CENTER_ALIGNMENT);
-			nomPersonne.setVerticalAlignment(SwingConstants.CENTER);
-
-			this.add(nomPersonne);
-			
-			this.add(new ImagePanel("./images/imageJoueur/joueur.png", 225/2, 225/2));
-			
-			this.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
-		}
-		
-		public Player getPlayer(){
-			return joueur;
-		}
-
-
 	private static final long serialVersionUID = 1L;
+	
+	/**Attribut representant le joueur sur le panel*/
+	Player joueur;
 
+	/**Constructeur
+	 * @param p le joueur du panel
+	 */
 	public PanelPlayer(Player p){
+		this.joueur = p;
 		StringBuffer sb = new StringBuffer();
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setPreferredSize(new Dimension(110,110));
+		this.setPreferredSize(new Dimension(110, 110));
 
 		JLabel nomPersonne = new JLabel();
 		if (p instanceof Bot){
@@ -70,10 +43,15 @@ public class PanelPlayer extends JPanel{
 		nomPersonne.setVerticalAlignment(SwingConstants.CENTER);
 
 		this.add(nomPersonne);
-
 		this.add(new ImagePanel("./images/imageJoueur/joueur.png", 225/2, 225/2));
 
-		this.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
+		this.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.black));
 	}
 
+	/**Getter du joueur
+	 * @return le joueur du panel
+	 */
+	public Player getPlayer(){
+		return joueur;
+	}
 }

@@ -2,6 +2,7 @@ package view.ihm;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -15,7 +16,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
@@ -32,9 +32,9 @@ import model.cards.OriginCards.*;
 
 public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
-	
-	private boolean action = false;
-	
+
+	//private boolean action = false; TODO A ENLEVER
+
 	private boolean tourFinished = false;
 
 
@@ -63,21 +63,21 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 	JPanel panelDivinite;
 
 	JPanel panelDroite;
-	
+
 	JPanel panelFinTour;
-	
+
 	private boolean suppressionCarte = false ;
-	
+
 	private boolean jouerCarte = false;
-	
+
 	public boolean isJouerCarte(){
 		return jouerCarte;
 	}
-	
+
 	public boolean isSuppressionCarte(){
 		return suppressionCarte;
 	}
-	
+
 	private void setTourFinished(boolean value){
 		if (value == false){
 			panelFinTour.setVisible(true);
@@ -85,27 +85,20 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 			panelFinTour.setVisible(false);
 		}
 		tourFinished = value;
-		
+
 		suppressionCarte = false;
 		jouerCarte = false;
 	}
-	
+
 	//Variable permettant de savoir si le tour du joueur est termine ou non
 	public boolean isTourFinished(){
 		return tourFinished;
 	}
-	
+
 	//Methode permettant d'initialiser le controller de la vue
 	public void initializeController(JoueurController controller){
 		this.controller = controller;
-	}
-	
-	//méthode d'initialisation du panel graphique
-	public PanelJoueurReel(Human p){
-		this.joueurReel = p;
-
-		this.setLayout( new BorderLayout());
-		
+	}	
 
 	public PanelJoueurReel(Human p){
 
@@ -133,17 +126,7 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		panelCartesJoueur.add(panelLabelCartesJoueur);
 		SwingUtilities.invokeLater(new Runnable() {
 
-            @Override
-            public void run() {
-            	mainJoueur = new ScrollerCard(new ArrayList<Card>(joueurReel.getHand()));
-            	panelCartesJoueur.add(mainJoueur);
-            }
-        });
-		
-		
-		
-		//Affichages des cartes rattachées au joueur
-
+			//Affichages des cartes rattachï¿½es au joueur
 			@Override
 			public void run() {
 				mainJoueur = new ScrollerCard(new ArrayList<Card>(joueurReel.getHand()));
@@ -153,7 +136,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		});
 
 		//Affichages des cartes rattachï¿½es au joueur
-
 		final JPanel panelCartesRattachesJoueur = new JPanel();
 		panelCartesRattachesJoueur.setLayout(new BoxLayout(panelCartesRattachesJoueur, BoxLayout.Y_AXIS));
 		panelCartesRattachesJoueur.setPreferredSize(new Dimension(800,200));
@@ -166,20 +148,10 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		panelCartesRattachesJoueur.add(panelLabelCartesRattaches);
 		SwingUtilities.invokeLater(new Runnable() {
 
-            @Override
-            public void run() {
-            	cartesRattachees =new ScrollerCard(getCartesRattaches()); 
-            	panelCartesRattachesJoueur.add(cartesRattachees);
-            }
-        });
-		
-		
-
 			@Override
 			public void run() {
 				cartesRattachees =new ScrollerCard(getCartesRattaches()); 
 				panelCartesRattachesJoueur.add(cartesRattachees);
-				//            	frame.pack();
 			}
 		});
 
@@ -221,7 +193,7 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		panelPointsAction.add(panelLabelPA);
 		panelPointsAction.add(grillePoints);
 
-		
+
 		panelFinTour = new JPanel();
 		JButton FinTour = new JButton("Fin de tour");
 		FinTour.setPreferredSize(new Dimension(150, 35));
@@ -235,19 +207,16 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 			}
 		});
 		panelFinTour.setVisible(false);
-		
+
 		panelDroite.add(Box.createRigidArea(new Dimension(0,190)));
 		panelDroite.add(panelFinTour);
 		panelDroite.add(panelPointsAction);
-		
+
 		this.add(panelGauche, BorderLayout.WEST);
 		this.add(panelDroite, BorderLayout.EAST);
-	}
-
-	
-	//Méthode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
 
 
+		//Methode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
 		panelDroite.add(Box.createRigidArea(new Dimension(0,230)));
 		panelDroite.add(panelPointsAction);
 		//		panelDivinite = new JPanel();
@@ -262,8 +231,7 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 	}
 
-	//Mï¿½thode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
-
+	//Methode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
 	private List<Card> getCartesRattaches(){
 		final ArrayList<Card> cartesConverties = new ArrayList<Card>();
 		Iterator<SpiritGuide> it = joueurReel.getGuides().iterator();
@@ -309,7 +277,7 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		createFrameChoixTour();
 	}
 	boolean buttonPressed = false;
-	
+
 	//fenetre permettant d'afficher les choix du joueur durant son tour
 	public void createFrameChoixTour(){
 
@@ -317,17 +285,17 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		frameChoix.setSize(500, 300);
 		frameChoix.setLocationRelativeTo(null);
 		frameChoix.setVisible(true);
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		//Bouton permettant de déposer des cartes du jeu
+		//Bouton permettant de dï¿½poser des cartes du jeu
 		JPanel panelDeposerCartes = new JPanel();
 		JButton deposerCartes = new JButton("Deposer cartes");
 		deposerCartes.setPreferredSize(new Dimension(150,35));
 		panelDeposerCartes.add(deposerCartes);
 		frameChoix.requestFocus();
-		
+
 		deposerCartes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -352,13 +320,13 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 				mainJoueur.activateSelection(controller);
 			}
 		});
-		
-		//Bouton permettant de compléter la main avec des cartes
+
+		//Bouton permettant de complï¿½ter la main avec des cartes
 		JPanel panelCompleterMain = new JPanel();
 		JButton completerMain = new JButton("Completer main");
 		completerMain.setPreferredSize(new Dimension(150,35));
 		panelCompleterMain.add(completerMain);
-		
+
 		completerMain.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -367,13 +335,13 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 				setTourFinished(true);
 			}
 		});
-		
+
 		//Bouton permettant de passer son tour
 		JPanel panelPasserTour = new JPanel();
 		JButton passerTour = new JButton("Passer son tour");
 		passerTour.setPreferredSize(new Dimension(150,35));
 		panelPasserTour.add(passerTour);
-		
+
 		passerTour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -381,16 +349,16 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 				setTourFinished(true);
 			}
 		});
-		
+
 		panel.add(panelDeposerCartes);
 		panel.add(panelsupprimerCartes);
 		panel.add(panelCompleterMain);
 		panel.add(panelPasserTour);
-		
+
 		panel.setAlignmentX(SwingConstants.CENTER);
-		
+
 		frameChoix.add(panel);
-		
+
 		frameChoix.pack();
 	}
 }

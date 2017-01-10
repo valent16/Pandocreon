@@ -54,16 +54,8 @@ public class ScrollerCard extends JPanel {
     public void ajouterPanelJoueurReel(PanelJoueurReel father){
     	this.father = father;
     }
-    
-    //Permet de mettre à jour le panel de carte en fonction de la liste de carte passé en paramètre
-    public void majCarte(List<Card> cartes){
-    	listeCartesGraphiques.clear();
-    	panel.removeAll();
-    	Iterator<Card> it = cartes.iterator();
-    	while (it.hasNext()){
-        	PanelCarte panelCarte = new PanelCarte(it.next());
 
-    //Permet de mettre ï¿½ jour le panel de carte en fonction de la liste de carte passï¿½ en paramï¿½tre
+    //Permet de mettre a jour le panel de carte en fonction de la liste de carte passe en parametre
     public void majCarte(List<Card> cartes){
     	ArrayList<Card> cartesASupprimer = new ArrayList<Card>();
     	//Permet de faire une deep copy de la liste de cartes

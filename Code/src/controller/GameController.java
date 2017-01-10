@@ -19,13 +19,13 @@ public class GameController {
 	/**Attribut correspondant a la vue du jeu*/
 	private VueGame vueJeu;
 
-	/**Attribut correspondant a la parte*/
+	/**Attribut correspondant a la partie*/
 	private Game game;
 
 	/**Constructeur*/
 	public GameController(){
 		game = new Game();
-//		vueJeu = new VueGame(this, game);
+		vueJeu = new VueGame(this, game);//TODO A ENLEVER
 	}
 
 	/**Methode permettant de demarrer une partie*/
@@ -105,24 +105,6 @@ public class GameController {
 //		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(new VueGameManager()));
 		GameManager.getInstanceUniqueManager().startGame();
 	}
-
-
-	/**Methode permettant de lancer la partie en mode console ou en mode IHM*/
-	public void lancerPartie(String mode){
-		game.nouvellePartie();
-//		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(new VueGameManager()));
-		switch(mode){
-		case "console"://lance la partie en mode console
-			GameManager.getInstanceUniqueManager().startGameConsole();
-			//vueJeu.MenuPrincipal();
-			break;
-		case "IHM"://lance la partie en mode graphique
-			GameManager.getInstanceUniqueManager().startGameIHM();
-		default:
-			System.out.println("ce mode n'existe pas");
-		}
-	}
-
 
 	/**gettre du model
 	 * @return le mode du jeu
