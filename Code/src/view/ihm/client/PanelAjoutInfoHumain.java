@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,6 +29,8 @@ public class PanelAjoutInfoHumain extends PanelType{
 	private JTextField tfNom;
 
 	private JButton valider;
+	
+	private int compteurValider = 0;
 
 	private JButton annuler;
 
@@ -45,17 +48,16 @@ public class PanelAjoutInfoHumain extends PanelType{
 
 		//ajout des champs de text
 		JLabel nomHumain = new JLabel("Nom : ");
+		JLabel ageHumain = new JLabel("Age : ");
 		tfNom = new JTextField();
 		tfNom.setColumns(10);
 
-		//JPanel[] infos = new JPanel[client.get];
-		
 		//Ajout du comboBox
-		String[] ages = new String[39];
-		for(int i = 0; i< ages.length; i++){
+		String[] ages = new String[60];
+		for(int i = 0; i < ages.length; i++){
 			ages[i] = ""+i;
 		}
-		
+
 		listeAges = new JComboBox<>(ages);
 
 		JPanel infoHumainPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
@@ -67,16 +69,20 @@ public class PanelAjoutInfoHumain extends PanelType{
 		infoHumainPanel.add(nomHumain, gbc);
 
 		gbc.gridx = 1;
+		gbc.gridy = 0;
 		infoHumainPanel.add(tfNom, gbc);
-		
-		gbc.gridy = 2;
+
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		infoHumainPanel.add(ageHumain, gbc);
+
+		gbc.gridx = 1;
+		gbc.gridy = 1;
 		infoHumainPanel.add(listeAges, gbc);
-		
 
 		//bouton annuler
 		annuler = new JButton("Annuler");
 		annuler.setPreferredSize(new Dimension(120, 50));
-
 
 		//bouton valider
 		valider = new JButton("Valider");
@@ -86,7 +92,7 @@ public class PanelAjoutInfoHumain extends PanelType{
 		JPanel southPanel = new JPanel (new FlowLayout());
 		southPanel.add(annuler);
 		southPanel.add(valider);
-		
+
 		this.add(infoHumainPanel, BorderLayout.CENTER);
 		this.add(southPanel, BorderLayout.SOUTH);
 
@@ -109,26 +115,22 @@ public class PanelAjoutInfoHumain extends PanelType{
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				//TODO faire des test sur le nom et l'age récuperé
-				//TODO Faire marcher cette methode
-				//TODO faire une boucle for qui parcours nombreTotalJOueur
-				//on afiche Faire un panel avec deux champs de test et un label avec joueur+"i"
-				//on recupere dans l'arraylist nomHumains le premier champs de texte
-				//on recupere dans l'arraylist ageHumains le second champs de texte
-
-				do{
-					System.out.println(client.getIndexHumain());
+				System.out.println("le compteur "+compteurValider);
+				if(compteurValider == client.getNombreHumain()){
+					System.out.println("salut1");
+					//on passe a la suite
+					client.confirmerPartie();//on affiche le panel de conformation
+				}else{
+					//TODO RAPPELELER LE PANEL AJOUT INFO AUTANT DE FOIS QUE LE NOMBRE d'humain
+					System.out.println("salut2");
 					client.getListeNomHumain().add(tfNom.getText());
 					client.getListeAgeHumain().add(20);
-					
-					//ajouterInfoJoueurHumain();
 					client.setIndexHumain(client.getIndexHumain()+1);
-					
-					//liste des joueurs
-					System.out.println("liste nom " + client.getListeNomHumain());//////////////////////////////////////////////////////////////////////////////
-					System.out.println("liste age "+ client.getListeAgeHumain());//////////////////////////////////////////////////////////////////////////////
-				}while(client.getIndexHumain() <= client.getNombreHumain());//on le fait pour le nombre d'humain demander
+					client.getFenetre().setTitle("humain numero : "+client.getIndexHumain());
+					compteurValider++;
+				}
+				//TODO faire des test sur le nom et l'age récuperé
+
 			}
 		});
 	}

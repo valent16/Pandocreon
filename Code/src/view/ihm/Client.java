@@ -79,7 +79,8 @@ public class Client{
 
 	//methode pour initialiser les composants de la fenetre
 	public void initialize(){
-		panelMenuPrincipale = new PanelMenuPrincipale(this);
+		setPanelMenuPrincipale(new PanelMenuPrincipale(this));
+		//panelAjoutInfoHumain = new PanelAjoutInfoHumain(this);	
 	}
 
 	//methode qui permet d'ajouter les bots
@@ -89,6 +90,8 @@ public class Client{
 
 	/**Methode permettant d'ajouter la difficulté des bots*/
 	public void ajouterDifficulte(){
+		System.out.println("bot: "+nombreBot);
+		System.out.println("humain: "+nombreHumain);
 		setPanelAjoutDifficulte(new PanelAjoutDifficulte(this));
 	}
 
@@ -99,14 +102,22 @@ public class Client{
 
 	/**Methode Permettant d'ajouter le nom et l'age a un humain*/
 	public void ajouterInfoJoueurHumain() {
-		//panelAjoutInfoHumain = new PanelAjoutInfoHumain(this);//TODO A FAIRRE POUR AVOIR LE NOM ET l'age du joueur ave un slecet pour l'age et un champ de texte pour le nom
+		setPanelAjoutInfoHumain(new PanelAjoutInfoHumain(this));
+		//TODO faire une boucle for qui parcours nombreTotalJOueur
+		
 		//TODO AU LIEU d'appeler lancer partie on appeller ca    panelConfirmation = new PanelConfirmation(this);
-		lancerPartie();//on lance la partie maintenant
+		
 	}
 
 
+	public void confirmerPartie() {
+		
+		//TODO lancerPartie();//on lance la partie maintenant
+		
+	}
+
 	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
-	private void CreationJoueurs(){
+	public void CreationJoueurs(){
 		int nombreTotalJoueur = nombreBot+nombreHumain;
 		if(nombreTotalJoueur == 0){
 			JOptionPane.showConfirmDialog(null, "Vous n'avez saisis aucun joueur", "probleme nombre de joueur", 
@@ -131,7 +142,7 @@ public class Client{
 	}
 
 	/**Methode pour lancer la partie*/
-	private void lancerPartie(){
+	public void lancerPartie(){
 		//TODO cA a L'air de marcher
 		///////////////////////////////////////////////////////////////////////TODO ICI QU'on lance LA PARTIE
 		System.out.println("Lancement de la partie");
@@ -230,6 +241,14 @@ public class Client{
 
 		public void setIndexHumain(int index) {
 			indexHumain = index;
+		}
+		
+		public PanelMenuPrincipale getPanelMenuPrincipale() {
+			return panelMenuPrincipale;
+		}
+
+		public void setPanelMenuPrincipale(PanelMenuPrincipale panelMenuPrincipale) {
+			this.panelMenuPrincipale = panelMenuPrincipale;
 		}
 
 		public PanelAjoutBot getPanelAjoutBot() {

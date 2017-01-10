@@ -13,7 +13,7 @@ public class SacrificePrendreTroisCartes extends Pouvoir{
 
 	@Override
 	public void onAction(Card carte, Player joueur) throws Exception {
-		// TODO //recuperer 3 cartes
+		// TODO A developper recuperer 3 cartes
 		
 	}
 }
