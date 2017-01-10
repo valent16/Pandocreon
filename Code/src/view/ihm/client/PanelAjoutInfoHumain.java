@@ -118,15 +118,24 @@ public class PanelAjoutInfoHumain extends PanelType{
 				//TODO A developper faire des test sur le nom et l'age récuperé
 				if(compteurValider == client.getNombreHumain()){
 					System.out.println("stop");
+					client.getListeNomHumain().add(tfNom.getText());
+					client.getListeAgeHumain().add(Integer.parseInt(listeAges.getSelectedItem().toString()));
 					client.confirmerPartie();//on affiche le panel de confirmation
 				}
 				else{ //on ajoute le joueur
-					if(tfNom.getText().equals(""))//si le nom est vide
+					if(tfNom.getText().equals("")){//si le nom est vide
 						JOptionPane.showMessageDialog(null, "Vous n'avez pas donnée de nom au joueur", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);
-					else if(Integer.parseInt(listeAges.getSelectedItem().toString()) < 12)//si le joueur a moins de 12 ans il ne peut pas jouer
-						JOptionPane.showMessageDialog(null, "Le joueur est trop jeune pour jouer\nIl doit avoir plus de 12 ans.", "Probleme age joueur", JOptionPane.ERROR_MESSAGE, logo);
-					else{//sinon c'est bon on peut ajouter les infos
 
+					}else if(client.getListeNomHumain().contains(tfNom.getText())){//si ce nom a deja été donée par un joueur
+						JOptionPane.showMessageDialog(null, "Ce nom a déja éte donnée pour un autre joueur.", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);
+
+					}else if(client.getListeNomBot().contains(tfNom.getText())){//Si ce nom a été donnée par un bot
+						JOptionPane.showMessageDialog(null, "Ce nom a déja éte donnée pour un bot", "Probleme nom joueurr", JOptionPane.ERROR_MESSAGE, logo);
+
+					}else if(Integer.parseInt(listeAges.getSelectedItem().toString()) < 12){//si le joueur a moins de 12 ans il ne peut pas jouer
+						JOptionPane.showMessageDialog(null, "Le joueur est trop jeune pour jouer\nIl doit avoir plus de 12 ans.", "Probleme age joueur", JOptionPane.ERROR_MESSAGE, logo);	
+
+					}else{//sinon c'est bon on peut ajouter les infos
 						client.getListeNomHumain().add(tfNom.getText());
 						client.getListeAgeHumain().add(Integer.parseInt(listeAges.getSelectedItem().toString()));
 						client.setIndexHumain(client.getIndexHumain()+1);

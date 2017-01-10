@@ -48,7 +48,7 @@ public class PanelAjoutHumain extends PanelType{
 		moins.setPreferredSize(new Dimension(45, 45));
 
 		JPanel nombreHumainPanel = new JPanel(new GridBagLayout()); //Panel pour le nombre de joueur
-		JLabel labelNombreHumain = new JLabel("Nombre d'humains a ajouter (1 seul) : ("+ Client.getNombreMinimalJoueur() + "-" + client.getNombreHumain() +")");
+		JLabel labelNombreHumain = new JLabel("Nombre d'humains à ajouter : ("+ Client.getNombreMinimalJoueur() + "-" + client.getNombreHumain() +")");
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(2, 2, 2, 2);
 		gbc.gridx = 0;

@@ -63,8 +63,8 @@ public class PanelConfirmation extends PanelType{
 		panelNombre.add(nombreBot);
 		panelNombre.add(nombreHumain);
 		
-		nomHumains = new JLabel("nom des humains : "+ client.getListeNomHumain().toString());
-		nomBots = new JLabel("nom des bots : "+ client.getListeNomBot().toString());
+		nomHumains = new JLabel("Nom des humains : "+ client.getListeNomHumain().toString());
+		nomBots = new JLabel("Nom des bots : "+ client.getListeNomBot().toString());
 		
 		//panel noms
 		panelNom = new JPanel(new GridBagLayout());
