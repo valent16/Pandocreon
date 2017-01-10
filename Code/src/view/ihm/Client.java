@@ -1,13 +1,15 @@
 package view.ihm;
 
-import java.util.Iterator;
+import java.awt.Toolkit;
 import java.util.LinkedList;
 
 import javax.swing.*;
 import javax.swing.JOptionPane;
 
 import controller.GameController;
-import model.game.Game;
+import controller.GameManagerController;
+import controller.JoueurController;
+import model.game.De;
 import model.game.GameManager;
 import model.player.Bot;
 import model.player.Human;
@@ -112,27 +114,36 @@ public class Client{
 
 	/**Methode pour lancer la partie*/
 	public void lancerPartie(){
+		getFenetre().dispose();
 		creationPartie();
-		//System.out.println("Lancement de la partie");//TODO A ENLEVER
-		//gc.startGame();
-		
-		//GameController gameControler = new GameController();//TODO A ENLEVER
-		//gameControler.startGame();//TODO A ENLEVER
 	}
 
 
 	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
-	public void creationPartie(){
+	public void creationPartie(){		
 		System.out.println("Creation de la partie");//TODO A ENLEVER
 		
 		GameController gc = new GameController();
-		//game.ajouterBot( new Bot("test23", new MediumStrategy()));
 		
-		gc.CreationBot("test23", "medium");
-		gc.CreationBot("test32", "medium");
-		gc.CreationBot("test45", "medium");
+		Human valentin = new Human("valentin",12);
+		
+		gc.getGame().ajouterBot(new Bot("lala", new MediumStrategy()));
+		gc.getGame().ajouterBot(new Bot("fhazihfze", new MediumStrategy()));
+		gc.getGame().ajouterJoueurReel(valentin);
+		
+		TableJeu table = new TableJeu(valentin);
+		JoueurController controllerJ = new JoueurController(valentin, table.getPanelJoueur());
+		valentin.attacher(controllerJ);
+		table.getPanelJoueur().initializeController(controllerJ);;
+		
+		GameManagerController GAController = new GameManagerController(table.getPanelTableJeu());
+		De.getInstanceDe().attacher(GAController);
+		
+		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));
+		
 		gc.startGame();
-
+		
+//	///////////////////////////////TODO A GARDER POUR INSTANCIER LES BONS JOUEUR////////////////////////////////////////////////////////////////: 
 		/*System.out.println("Instanciation des Bots");//TODO A ENLEVER
 		//Creation et ajout des bots dans la partie
 		Iterator<String> itBot = listeNomBot.iterator();
