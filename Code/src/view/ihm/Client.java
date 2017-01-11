@@ -7,10 +7,14 @@ import javax.swing.*;
 import javax.swing.JOptionPane;
 
 import controller.GameController;
+import controller.GameManagerController;
+import controller.JoueurController;
+import model.game.De;
 import model.game.Game;
 import model.game.GameManager;
 import model.player.Bot;
 import model.player.Human;
+import model.strategy.MediumStrategy;
 import view.ihm.client.PanelAjoutBot;
 import view.ihm.client.PanelAjoutDifficulte;
 import view.ihm.client.PanelAjoutHumain;
@@ -67,7 +71,13 @@ public class Client{
 	private PanelAjoutInfoHumain panelAjoutInfoHumain;
 
 	private PanelConfirmation panelConfirmation;
+	
+	private boolean initialize = false;
 
+	public boolean getInitialize(){
+		return initialize;
+	}
+	
 	/**Constructeur du client*/
 	public Client(){
 		gc = new GameController();
@@ -112,36 +122,41 @@ public class Client{
 	/**Methode pour lancer la partie*/
 	public void lancerPartie(){
 		creationPartie();
-		System.out.println("Lancement de la partie");//TODO A ENLEVER
+		//System.out.println("Lancement de la partie");//TODO A ENLEVER
 		//gc.startGame();
 
-		GameController gameControler = new GameController();//TODO A ENLEVER
-		gameControler.startGame();//TODO A ENLEVER
+//		GameController gameControler = new GameController();//TODO A ENLEVER
+//		gameControler.startGame();//TODO A ENLEVER
 	}
 
 
 	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
 	public void creationPartie(){
-		System.out.println("Creation de la partie");//TODO A ENLEVER
-		gc = new GameController();
 		
-		System.out.println("Instanciation des Bots");//TODO A ENLEVER
-		//Creation et ajout des bots dans la partie
-		Iterator<String> itBot = listeNomBot.iterator();
-		while(itBot.hasNext()){
-			gc.CreationBot(itBot.next(), getStrategie());//instanciation des bots
-		}
-
-		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
-
-		System.out.println("Instanciation des Humains");//TODO A ENLEVER
-		//Creation et ajout des Humains dans la partie
-		Iterator<String> itNomHumain = listeNomHumain.iterator();
-		Iterator<Integer> itAgeHumain = listeAgeHumain.iterator();
-		while( itNomHumain.hasNext() && itAgeHumain.hasNext() ){
-			gc.CreationJoueur(itNomHumain.next(), itAgeHumain.next());//instanciation des humains
-		}
-		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
+		
+//		System.out.println("Creation de la partie");//TODO A ENLEVER
+//		gc = new GameController();
+//		gc.startGame(listeNomBot, strategie, listeNomHumain, listeAgeHumain);
+		//gc.startGame(null, "lala", null, null);
+		initialize = true;
+		frame.setVisible(false);
+//		System.out.println("Instanciation des Bots");//TODO A ENLEVER
+//		//Creation et ajout des bots dans la partie
+//		Iterator<String> itBot = listeNomBot.iterator();
+//		while(itBot.hasNext()){
+//			gc.CreationBot(itBot.next(), getStrategie());//instanciation des bots
+//		}
+//
+//		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
+//
+//		System.out.println("Instanciation des Humains");//TODO A ENLEVER
+//		//Creation et ajout des Humains dans la partie
+//		Iterator<String> itNomHumain = listeNomHumain.iterator();
+//		Iterator<Integer> itAgeHumain = listeAgeHumain.iterator();
+//		while( itNomHumain.hasNext() && itAgeHumain.hasNext() ){
+//			gc.CreationJoueur(itNomHumain.next(), itAgeHumain.next());//instanciation des humains
+//		}
+//		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 	}
 
 	/**Methode pour revenir au panel MenuPrincipale*/

@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.Iterator;
+import java.util.List;
+
 import model.game.De;
 import model.game.Game;
 import model.game.GameManager;
@@ -29,29 +32,86 @@ public class GameController {
 	}
 
 	/**Methode permettant de demarrer une partie*/
-	public void startGame(){
-		game.initGame();
-
-		Human valentin = new Human("valentin",12);
-		
-		game.ajouterBot(new Bot("lala", new MediumStrategy()));
-		game.ajouterBot(new Bot("fhazihfze", new MediumStrategy()));
-		game.ajouterJoueurReel(valentin);
-		
-		TableJeu table = new TableJeu(valentin);
-		JoueurController controllerJ = new JoueurController(valentin, table.getPanelJoueur());
-		valentin.attacher(controllerJ);
-		table.getPanelJoueur().initializeController(controllerJ);;
-		
-		GameManagerController GAController = new GameManagerController(table.getPanelTableJeu());
-		De.getInstanceDe().attacher(GAController);
-		
-		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));
-		
-		game.nouvellePartie();
-		
-		GameManager.getInstanceUniqueManager().startGame();
+	public void startGame(List<String> listeNomBot, String strategie, List<String> listeNomHumain, List<Integer> listeAgeHumain){
+//		game.initGame();
+//
+//		Human valentin = new Human("valentin",12);
+//		
+//		game.ajouterBot(new Bot("lala", new MediumStrategy()));
+//		game.ajouterBot(new Bot("fhazihfze", new MediumStrategy()));
+//		game.ajouterJoueurReel(valentin);
+//		
+//		TableJeu table = new TableJeu(valentin);
+//		
+//		JoueurController controllerJ = new JoueurController(valentin, table.getPanelJoueur());
+//		valentin.attacher(controllerJ);
+//		table.getPanelJoueur().initializeController(controllerJ);;
+//		
+//		GameManagerController GAController = new GameManagerController(table.getPanelTableJeu());
+//		De.getInstanceDe().attacher(GAController);
+//		
+//		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));
+//		
+//		game.nouvellePartie();
+//		
+//		GameManager.getInstanceUniqueManager().startGame();
 		//vueJeu.MenuPrincipal();/////////////////////////////////////TODO A ANLEVER PEUT ETRE
+		
+		game.initGame();
+		
+		if (listeNomHumain.size() == 0){
+			
+			Iterator<String> itBot = listeNomBot.iterator();
+			while(itBot.hasNext()){
+				game.ajouterBot(new Bot(itBot.next(), getStrategie(strategie)));
+			}
+			TableJeu table = new TableJeu(null);
+		
+			GameManagerController GAController = new GameManagerController(table.getPanelTableJeu());
+			De.getInstanceDe().attacher(GAController);
+			
+			GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));
+			game.nouvellePartie();
+			GameManager.getInstanceUniqueManager().startGame();
+		}else{
+			Human joueur = new Human(listeNomHumain.get(0), listeAgeHumain.get(0));
+			
+			Iterator<String> itBot = listeNomBot.iterator();
+			while(itBot.hasNext()){
+				game.ajouterBot(new Bot(itBot.next(), getStrategie(strategie)));
+			}
+			game.ajouterJoueurReel(joueur);
+			TableJeu table = new TableJeu(joueur);
+			
+			JoueurController controllerJ = new JoueurController(joueur, table.getPanelJoueur());
+			joueur.attacher(controllerJ);
+			table.getPanelJoueur().initializeController(controllerJ);
+			
+			GameManagerController GAController = new GameManagerController(table.getPanelTableJeu());
+			De.getInstanceDe().attacher(GAController);
+			
+			GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));
+			game.nouvellePartie();
+			GameManager.getInstanceUniqueManager().startGame();
+		}
+		
+//		
+//		
+		
+		
+		
+		
+		
+//		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
+//
+//		System.out.println("Instanciation des Humains");//TODO A ENLEVER
+//		//Creation et ajout des Humains dans la partie
+//		Iterator<String> itNomHumain = listeNomHumain.iterator();
+//		Iterator<Integer> itAgeHumain = listeAgeHumain.iterator();
+//		while( itNomHumain.hasNext() && itAgeHumain.hasNext() ){
+//			this.CreationJoueur(itNomHumain.next(), itAgeHumain.next());//instanciation des humains
+//		}
+		
 	}
 
 	/**Methode permettant de verifier si le nombre de joueur est compris entre 2 et 10
@@ -97,6 +157,20 @@ public class GameController {
 		}
 		Bot bot = new Bot(nom, strat);
 		game.ajouterBot(bot);//on ajoute le bot a la partie
+	}
+	
+	public Strategy getStrategie(String nomStrat){
+		switch(nomStrat){
+		case "facile":
+			return new EasyStrategy();
+		case "medium":
+			return new MediumStrategy();
+		case "difficile":
+			return new HardStrategy();
+		default:
+			return new MediumStrategy();
+		}
+		
 	}
 
 	/**Methode permettant de lancer la partie*/

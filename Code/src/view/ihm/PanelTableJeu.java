@@ -2,6 +2,7 @@ package view.ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -92,7 +94,7 @@ public class PanelTableJeu extends JPanel implements IViewGame {
         });
 
 		
-		//d�finition de l'espace r�serv� au d�
+		//definition de l'espace reserve au de
 		panelDeTour = new JPanel();
 		panelDeTour.setLayout(new BoxLayout(panelDeTour, BoxLayout.Y_AXIS));
 		
@@ -153,7 +155,7 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 		panelDeTour.revalidate();
 		try{
 			System.out.println(De.getInstanceDe().getFace());
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -161,6 +163,15 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 
 	@Override
 	public void majTableCroyant() {
+		System.out.println("nb Croyant:"+GameManager.getInstanceUniqueManager().getCroyants().size());
+		try{
+		Thread.sleep(2000);
+		}
+		catch(Exception e){
+			
+		}
+		
+		
 		scrollCroyant.majCarte(new ArrayList<Card>(GameManager.getInstanceUniqueManager().getCroyants()));
 	}
 
@@ -172,14 +183,12 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 
 	@Override
 	public void afficherVainqueur(Player p) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, "le vainqueur de la partie est: "+p.getNom(),"Affichage du vainqueur",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override
 	public void afficherDefaite(Player p) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, "le joueur: "+p.getNom()+" a perdu","Affichage d'un perdant", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override
