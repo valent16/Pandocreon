@@ -1,6 +1,6 @@
 package view.ihm;
 
-import java.awt.Toolkit;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.*;
@@ -10,6 +10,7 @@ import controller.GameController;
 import controller.GameManagerController;
 import controller.JoueurController;
 import model.game.De;
+import model.game.Game;
 import model.game.GameManager;
 import model.player.Bot;
 import model.player.Human;
@@ -70,7 +71,13 @@ public class Client{
 	private PanelAjoutInfoHumain panelAjoutInfoHumain;
 
 	private PanelConfirmation panelConfirmation;
+	
+	private boolean initialize = false;
 
+	public boolean getInitialize(){
+		return initialize;
+	}
+	
 	/**Constructeur du client*/
 	public Client(){
 		gc = new GameController();
@@ -114,53 +121,42 @@ public class Client{
 
 	/**Methode pour lancer la partie*/
 	public void lancerPartie(){
-		getFenetre().dispose();
 		creationPartie();
+		//System.out.println("Lancement de la partie");//TODO A ENLEVER
+		//gc.startGame();
+
+//		GameController gameControler = new GameController();//TODO A ENLEVER
+//		gameControler.startGame();//TODO A ENLEVER
 	}
 
 
 	/**Methode pour instancier les joueurs et les ajouters dans le gameController*/
-	public void creationPartie(){		
-		System.out.println("Creation de la partie");//TODO A ENLEVER
+	public void creationPartie(){
 		
-		GameController gc = new GameController();
 		
-		Human valentin = new Human("valentin",12);
-		
-		gc.getGame().ajouterBot(new Bot("lala", new MediumStrategy()));
-		gc.getGame().ajouterBot(new Bot("fhazihfze", new MediumStrategy()));
-		gc.getGame().ajouterJoueurReel(valentin);
-		
-		TableJeu table = new TableJeu(valentin);
-		JoueurController controllerJ = new JoueurController(valentin, table.getPanelJoueur());
-		valentin.attacher(controllerJ);
-		table.getPanelJoueur().initializeController(controllerJ);;
-		
-		GameManagerController GAController = new GameManagerController(table.getPanelTableJeu());
-		De.getInstanceDe().attacher(GAController);
-		
-		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));
-		
-		gc.startGame();
-		
-//	///////////////////////////////TODO A GARDER POUR INSTANCIER LES BONS JOUEUR////////////////////////////////////////////////////////////////: 
-		/*System.out.println("Instanciation des Bots");//TODO A ENLEVER
-		//Creation et ajout des bots dans la partie
-		Iterator<String> itBot = listeNomBot.iterator();
-		while(itBot.hasNext()){
-			gc.CreationBot(itBot.next(), getStrategie());//instanciation des bots
-		}
-
-		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
-
-		System.out.println("Instanciation des Humains");//TODO A ENLEVER
-		//Creation et ajout des Humains dans la partie
-		Iterator<String> itNomHumain = listeNomHumain.iterator();
-		Iterator<Integer> itAgeHumain = listeAgeHumain.iterator();
-		while( itNomHumain.hasNext() && itAgeHumain.hasNext() ){
-			gc.CreationJoueur(itNomHumain.next(), itAgeHumain.next());//instanciation des humains
-		}
-		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER*/
+//		System.out.println("Creation de la partie");//TODO A ENLEVER
+//		gc = new GameController();
+//		gc.startGame(listeNomBot, strategie, listeNomHumain, listeAgeHumain);
+		//gc.startGame(null, "lala", null, null);
+		initialize = true;
+		frame.setVisible(false);
+//		System.out.println("Instanciation des Bots");//TODO A ENLEVER
+//		//Creation et ajout des bots dans la partie
+//		Iterator<String> itBot = listeNomBot.iterator();
+//		while(itBot.hasNext()){
+//			gc.CreationBot(itBot.next(), getStrategie());//instanciation des bots
+//		}
+//
+//		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
+//
+//		System.out.println("Instanciation des Humains");//TODO A ENLEVER
+//		//Creation et ajout des Humains dans la partie
+//		Iterator<String> itNomHumain = listeNomHumain.iterator();
+//		Iterator<Integer> itAgeHumain = listeAgeHumain.iterator();
+//		while( itNomHumain.hasNext() && itAgeHumain.hasNext() ){
+//			gc.CreationJoueur(itNomHumain.next(), itAgeHumain.next());//instanciation des humains
+//		}
+//		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 	}
 
 	/**Methode pour revenir au panel MenuPrincipale*/
@@ -175,7 +171,7 @@ public class Client{
 			resetDonnees();
 		}
 	}
-
+	
 	/**Methode qui permet de reinitialiser les données*/
 	public void resetDonnees(){
 		setNombreHumain(0);

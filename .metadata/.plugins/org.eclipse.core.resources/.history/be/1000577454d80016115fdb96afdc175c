@@ -43,8 +43,8 @@ public class Main{
 			break;
 
 		case 4: // Pour demarrer une partie en mode console
-//			GameController gc = new GameController();
-//			gc.startGame(null, "lala", null, null);
+			GameController gc = new GameController();
+			gc.startGame(null, "lala", null, null);
 			break;
 
 		case 5: //test pour le lancement d'une partie
@@ -147,3 +147,4 @@ public class Main{
 		System.out.println(p1.toString());
 	}
 }
+

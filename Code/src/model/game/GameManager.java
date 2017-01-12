@@ -174,6 +174,7 @@ public class GameManager implements IObservableGameManager {
 	public void deposerCroyant(Card carte){
 		if(carte instanceof Believer){
 			croyants.add((Believer) carte);
+			notifyChangementCroyants();
 		}
 	}
 
@@ -232,11 +233,11 @@ public class GameManager implements IObservableGameManager {
 				if (players.size() != 0){
 					joueurActif = players.get(i%players.size());
 					notifyJoueurActif();
-					try{
-						Thread.sleep(1000);
-					}catch(Exception e){
-						e.printStackTrace();
-					}
+//					try{
+//						Thread.sleep(1000);
+//					}catch(Exception e){
+//						e.printStackTrace();
+//					}
 					players.get(i%players.size()).jouerTour();
 				}
 			}
@@ -272,6 +273,7 @@ public class GameManager implements IObservableGameManager {
 	 */
 	public void retirerCroyant(Believer carte){
 		croyants.remove(carte);
+		notifyChangementCroyants();
 	}
 
 
@@ -307,29 +309,48 @@ public class GameManager implements IObservableGameManager {
 		Player p;
 		Player joueurElimine = null;
 		boolean egalite = false;
+		int cpt = 0;
+		
 		Iterator<Player> itPlayer = players.iterator();
 
+		
+		
 		while(itPlayer.hasNext()){
 			p = itPlayer.next();
+			
 			if (joueurElimine == null){
-				joueurElimine =p;
+				joueurElimine = p;
 			}else{
-				if(joueurElimine.getScore() < p.getScore()){
-					p = joueurElimine;
+				if(joueurElimine.getScore() > p.getScore()){
+					joueurElimine = p;
 				}
 			}
 		}
 
-		itPlayer = players.iterator();
-		while(itPlayer.hasNext()){
-			if(joueurElimine.getScore() == itPlayer.next().getScore()){
-				egalite = true;
+		Iterator<Player> it2=  players.iterator();
+		while(it2.hasNext()){
+			Player i = it2.next();
+			if (joueurElimine.getScore() == i.getScore()){
+				cpt++;
 			}
 		}
-		if(!egalite){
-			notifyPlayerDefeat(joueurElimine);
+		
+		if (cpt >= 2){
+			egalite = true;
+		}
+
+		if(!egalite){			
 			System.out.println("le joueur "+ joueurElimine.getNom()+" est elimine");
 			this.players.remove(joueurElimine);
+			notifyPlayerDefeat(joueurElimine);
+		}
+		System.out.println(egalite);
+		
+		try{
+			Thread.sleep(10000);
+		}
+		catch(Exception e ){
+			e.printStackTrace();
 		}
 	}
 

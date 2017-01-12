@@ -126,7 +126,7 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		panelCartesJoueur.add(panelLabelCartesJoueur);
 		SwingUtilities.invokeLater(new Runnable() {
 
-			//Affichages des cartes rattach�es au joueur
+			//Affichages des cartes rattachees au joueur
 			@Override
 			public void run() {
 				mainJoueur = new ScrollerCard(new ArrayList<Card>(joueurReel.getHand()));
@@ -135,7 +135,7 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 			}
 		});
 
-		//Affichages des cartes rattach�es au joueur
+		//Affichages des cartes rattachees au joueur
 		final JPanel panelCartesRattachesJoueur = new JPanel();
 		panelCartesRattachesJoueur.setLayout(new BoxLayout(panelCartesRattachesJoueur, BoxLayout.Y_AXIS));
 		panelCartesRattachesJoueur.setPreferredSize(new Dimension(800,200));
@@ -217,8 +217,8 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 
 		//Methode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
-		panelDroite.add(Box.createRigidArea(new Dimension(0,230)));
-		panelDroite.add(panelPointsAction);
+//		panelDroite.add(Box.createRigidArea(new Dimension(0,230)));
+//		panelDroite.add(panelPointsAction);
 		//		panelDivinite = new JPanel();
 		//		panelDroite.add(panelDivinite);
 

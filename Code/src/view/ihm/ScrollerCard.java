@@ -44,7 +44,7 @@ public class ScrollerCard extends JPanel {
         	PanelCarte panelCarte = new PanelCarte(it.next());
         	panel.add(panelCarte);
         	listeCartesGraphiques.add(panelCarte);
-        	panel.add(Box.createRigidArea(new Dimension(5,0)));
+//        	panel.add(Box.createRigidArea(new Dimension(5,0)));
         }
         panel.revalidate();
         scroll.revalidate();
@@ -80,8 +80,26 @@ public class ScrollerCard extends JPanel {
 
         	panel.add(panelCarte);
         	listeCartesGraphiques.add(panelCarte);
-        	panel.add(Box.createRigidArea(new Dimension(5,0)));
+//        	panel.add(Box.createRigidArea(new Dimension(5,0)));
         }
+    	
+    	Iterator<Card> itSup = cartesASupprimer.iterator();
+    	while(itSup.hasNext()){
+    		Card ca = itSup.next();
+    		for (int i=0;i<listeCartesGraphiques.size();i++){
+    			if (listeCartesGraphiques.get(i).getCarte() == ca){
+    				panel.remove(listeCartesGraphiques.get(i));
+    			}
+    		}
+    	}
+//    	System.out.println();
+//    	try{
+//        	Thread.sleep(2000);
+//    	}
+//    	catch(Exception e){
+//    		
+//    	}
+    	
     	panel.revalidate();
         scroll.revalidate();
     }
