@@ -23,7 +23,7 @@ import model.game.De;
 import model.game.GameManager;
 
 /**Classe qui représente un joueur ou un bot*/
-public abstract class Player{
+public abstract class Player extends Observer{
 
 	/**Attribut representant le nombre de carte maximal au depart que le joueur possede*/ 
 	public static final int NB_CARTE_MAX = 7;
