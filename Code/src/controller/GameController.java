@@ -58,8 +58,6 @@ public class GameController {
 		//vueJeu.MenuPrincipal();/////////////////////////////////////TODO A ANLEVER PEUT ETRE
 		
 		game.initGame();
-
-		/*Human valentin = new Human("valentin",12);
 		
 		if (listeNomHumain.size() == 0){
 			
@@ -103,7 +101,6 @@ public class GameController {
 		
 		
 		
-		GameManager.getInstanceUniqueManager().initialisationController(new GameManagerController(table.getPanelTableJeu()));*/
 		
 //		System.out.println("affichage des joueurs dans la partie "+ GameManager.getInstanceUniqueManager().getPlayers());//TODO A ENLEVER
 //
@@ -115,7 +112,6 @@ public class GameController {
 //			this.CreationJoueur(itNomHumain.next(), itAgeHumain.next());//instanciation des humains
 //		}
 		
-		GameManager.getInstanceUniqueManager().startGame();
 	}
 
 	/**Methode permettant de verifier si le nombre de joueur est compris entre 2 et 10
