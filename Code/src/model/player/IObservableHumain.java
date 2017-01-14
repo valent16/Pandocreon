@@ -56,6 +56,6 @@ public interface IObservableHumain {
 	/**Methode permettant de notifier le controller du changement des points d'action du joueur*/
 	public void notifyChangementPA();
 	
-	
+	/**Methode permettant de notifier le controller du changement de la divinite du joueur*/
 	public void notifyChangementDivinite();
 }

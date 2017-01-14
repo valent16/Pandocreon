@@ -1,15 +1,12 @@
 package model.cards.OriginCards;
 
-import java.io.Serializable;
 
 
 import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 
 /**Classe abstraite d'une carte action avec une origine*/
-public abstract class ActionCardWithOrigin extends ActionCard implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public abstract class ActionCardWithOrigin extends ActionCard {
 	
 	/**Attribut representant l'origine de la carte*/
 	private EnumCosmogonie origine;

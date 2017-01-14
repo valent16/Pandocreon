@@ -9,12 +9,21 @@ public class DeusExWithOrigin extends ActionCardWithOrigin implements Serializab
 
 	private static final long serialVersionUID = 1L;
 
+	
+	private String description;
+	
 	/**Constructeur 
 s	 * @param nom le nom de la carte DeusEx
 	 * @param origine l'origine de la carte DeusEx
 	 */
-	public DeusExWithOrigin(String nom, EnumCosmogonie origine) {
+	public DeusExWithOrigin(String nom, EnumCosmogonie origine, String description) {
 		super(nom, origine);
+		
+		this.description = description;
+	}
+	
+	public String getDescription(){
+		return description;
 	}
 
 	@Override

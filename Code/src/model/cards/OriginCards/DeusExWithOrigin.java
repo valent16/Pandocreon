@@ -1,15 +1,11 @@
 package model.cards.OriginCards;
 
-import java.io.Serializable;
 import model.EnumType.EnumCosmogonie;
 import model.player.Player;
 
 /**Classe DeusEx avec une origine*/
-public class DeusExWithOrigin extends ActionCardWithOrigin implements Serializable{
+public class DeusExWithOrigin extends ActionCardWithOrigin{
 
-	private static final long serialVersionUID = 1L;
-
-	
 	private String description;
 	
 	/**Constructeur 

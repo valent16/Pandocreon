@@ -64,9 +64,6 @@ public class De implements IObservableDe {
 		this.face = face;
 	}
 
-	/**
-	 * Méthode de notification pour le controller
-	 */
 	@Override
 	public void notifyChangementFace() {
 		Iterator<IObserverGameManager> it = observersDe.iterator();
@@ -78,5 +75,10 @@ public class De implements IObservableDe {
 	@Override
 	public void attacher(IObserverGameManager o) {
 		observersDe.add(o);
+	}
+
+	@Override
+	public void detacher(IObserverGameManager o) {
+		observersDe.remove(o);
 	}
 }

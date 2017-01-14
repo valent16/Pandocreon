@@ -1,16 +1,12 @@
 package model.cards;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.EnumType.EnumDogme;
 import model.EnumType.EnumOrigineDivinite;
 import model.player.Player;
 
-/**Classe representant une carte Divinite*/
-public class Divinity extends Card implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class Divinity extends Card{
 
 	/**Attribut representant la description de la carte*/
 	private String description;

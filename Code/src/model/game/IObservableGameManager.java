@@ -15,9 +15,7 @@ public interface IObservableGameManager {
 	 */
 	public void notifyPlayerDefeat(Player p);
 	
-	/**Methode permettant de notifier le controlleur lors du changement de la liste de croyants sur table
-	 * 
-	 */
+	/**Methode permettant de notifier le controlleur lors du changement de la liste de croyants sur table*/
 	public void notifyChangementCroyants();
 	
 	/**Methode permettant de notifier le controller lors du changement de tour de jeu*/

@@ -1,13 +1,10 @@
 package model.cards.withoutOriginCards;
 
-import java.io.Serializable;
 
 import model.cards.ActionCard;
 import model.player.Player;
 /**Classe DeusEx sans origine*/
-public class DeusEx extends ActionCard implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class DeusEx extends ActionCard{
 
 	private String description;
 	

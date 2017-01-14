@@ -1,0 +1,12 @@
+package model.game;
+
+import controller.IObserverGameManager;
+
+public interface IObservableDe {
+	/**Méthode permettant de notifier la vue lorsque la face du dé est changée*/
+	public void notifyChangementFace();
+	
+	public void attacher(IObserverGameManager o);
+	
+	public void detacher(IObserverGameManager o);
+}

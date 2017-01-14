@@ -1,16 +1,12 @@
 ﻿package model.cards.OriginCards;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.EnumType.EnumDogme;
 import model.player.Player;
 import model.EnumType.EnumCosmogonie;
 
-/**Classe représentant une carte croyant*/
-public class Believer extends CarteDogmatique implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+public class Believer extends CarteDogmatique{
 
 	/**Attribut representant le nombre de point que rapporte le croyant*/
 	private int nbPrieres;

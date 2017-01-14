@@ -1,6 +1,5 @@
 package model.cards;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,16 +9,12 @@ import model.player.Player;
 import model.pouvoir.Pouvoir;
 
 /**Classe abstraite qui represente n'importe quel carte*/
-public abstract class Card implements Serializable{
+public abstract class Card {
 
-	private static final long serialVersionUID = 1L;
 	private UUID id = UUID.randomUUID();
 
 	/**Attribut representant l'ensemble des pouvoirs des cartes*/
 	protected HashMap<String, Pouvoir> pouvoirs = new HashMap<String, Pouvoir>();
-	
-	/**Attribut representant le nom du fichier de l'image de la carte*/
-	private String img;
 	
 	/**Attribut representant le nom de la carte*/
 	protected String nom;
@@ -33,12 +28,6 @@ public abstract class Card implements Serializable{
 	
 	public String getNom(){
 		return nom;
-	}
-	
-
-	/**Getter qui renvoie le fichier contennant l'image de la carte*/
-	public String getImg(){
-		return this.img;
 	}
 	
 	@Override

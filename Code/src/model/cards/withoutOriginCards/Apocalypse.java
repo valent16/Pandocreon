@@ -1,13 +1,10 @@
 package model.cards.withoutOriginCards;
 
-import java.io.Serializable;
 
 import model.cards.ActionCard;
 import model.player.Player;
 /**Clase Apocalypse sans origine*/
-public class Apocalypse extends ActionCard implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class Apocalypse extends ActionCard{
 
 	/**Constructeur*/
 	public Apocalypse() {

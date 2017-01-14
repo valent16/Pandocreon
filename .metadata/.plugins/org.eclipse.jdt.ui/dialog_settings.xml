@@ -62,8 +62,8 @@
 		<item value="false" key="nodeprecated"/>
 		<item value="false" key="nonavbar"/>
 		<item value="" key="docletpath"/>
-		<item value="" key="javadoc_command_history"/>
-		<item value="1.8" key="source"/>
+		<item value="C:\Program Files\Java\jdk1.8.0_102\bin\javadoc.exe" key="javadoc_command_history"/>
+		<item value="1.7" key="source"/>
 		<item value="true" key="version"/>
 		<item value="" key="docletname"/>
 		<item value="true" key="splitindex"/>
@@ -72,6 +72,11 @@
 		<item value="C:\Users\Valentin\Desktop\Pandocreon\Code\doc" key="destdir"/>
 		<item value="false" key="openinbrowser"/>
 		<section name="projects">
+			<section name="Code">
+				<item value="C:\Users\Valentin\Desktop\Pandocreon\Code\javadoc.xml" key="antpath"/>
+				<item value="C:\Users\Valentin\Desktop\Pandocreon\Code\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
 		</section>
 	</section>
 	<section name="SourceActionDialog.methods">

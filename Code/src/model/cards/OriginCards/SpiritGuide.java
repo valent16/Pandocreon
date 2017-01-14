@@ -1,7 +1,5 @@
 ﻿package model.cards.OriginCards;
 
-import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -12,9 +10,7 @@ import model.player.Player;
 import model.EnumType.EnumCosmogonie;
 
 /**Classe représentant un guide spirituel*/
-public class SpiritGuide extends CarteDogmatique implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class SpiritGuide extends CarteDogmatique{
 
 	/**Attribut representant les points que possede le guide*/
 	private int pointPriere;

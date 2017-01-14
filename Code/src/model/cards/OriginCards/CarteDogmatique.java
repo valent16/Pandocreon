@@ -2,7 +2,6 @@ package model.cards.OriginCards;
 
 import model.EnumType.EnumCosmogonie;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,9 +9,7 @@ import java.util.List;
 import model.EnumType.EnumDogme;
 
 /**Classe Abstraite representant une carte avec des Dogmes et une origine*/ 
-public abstract class CarteDogmatique extends ActionCardWithOrigin implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public abstract class CarteDogmatique extends ActionCardWithOrigin{
 
 	/**Attribut listant les dogmes*/
 	private ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
