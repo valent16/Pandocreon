@@ -19,12 +19,6 @@ public class PanelChoixUtilisateur {
 	public void initialize(){
 		
 		JWindow fenetre = new JWindow();
-//		frame.setTitle("Client Pandocreon Divinae");
-//		frame.setSize(500, 300);
-//		frame.setLocationRelativeTo(null);
-//		frame.setDefaultCloseOperation(JFrame.ABORT);
-//		frame.setVisible(true);
-		
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));

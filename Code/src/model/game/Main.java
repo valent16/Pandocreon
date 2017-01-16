@@ -2,15 +2,12 @@ package model.game;
 
 import java.awt.BorderLayout;
 
-
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 import controller.GameController;
-import controller.JoueurController;
 import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumDogme;
 import model.EnumType.EnumOrigineDivinite;
@@ -85,10 +82,6 @@ public class Main{
 			gameController1.CreationJoueur("David", 20);
 			
 			gameController1.lancerPartie();
-			break;
-		
-		case 8:
-			PanelChoixUtilisateur p = new PanelChoixUtilisateur();
 			break;
 		default:
 		}

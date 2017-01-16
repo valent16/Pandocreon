@@ -33,8 +33,10 @@ import model.cards.withoutOriginCards.DeusEx;
 
 public class PanelCarte extends JPanel{
 	
+	private static final long serialVersionUID = 1L;
+
 	//panel contenant l'origine bordure gauche
-	//contenant le nombre de coyant ï¿½ droite
+	//contenant le nombre de coyant a droite
 	private JPanel panelTop;
 	
 	//panel contenant les dogmes de la carte
@@ -49,7 +51,7 @@ public class PanelCarte extends JPanel{
 	//description de la carte
 	private JTextArea labelArea;
 	
-	//carte rerpï¿½sentï¿½ dans le panel
+	//carte rerpesente dans le panel
 	private Card carte;
 	
 	private JButton bouton;
@@ -265,7 +267,7 @@ public class PanelCarte extends JPanel{
 	}
 	
 	public void ajoutNom(){
-		String nom = "";
+		//String nom = "";TODO A ENLEVER
 //		if (carte instanceof Divinity){
 //			
 //			//((Divinity)carte).get
@@ -309,7 +311,7 @@ public class PanelCarte extends JPanel{
 		if (father.isSuppressionCarte()){
 			controller.supprimerCarte((ActionCard)this.carte);
 		}else if (father.isJouerCarte()){
-			//appel de la méthode de jeu
+			//appel de la mï¿½thode de jeu
 		}else{
 			
 		}
