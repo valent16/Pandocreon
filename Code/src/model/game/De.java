@@ -1,10 +1,10 @@
 package model.game;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 
-import controller.IObserverDe;
 import controller.IObserverGameManager;
 import model.EnumType.EnumCosmogonie;
 

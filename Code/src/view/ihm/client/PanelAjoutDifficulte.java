@@ -2,6 +2,7 @@ package view.ihm.client;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -16,8 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import model.strategy.EasyStrategy;
-import model.strategy.MediumStrategy;
 import view.ihm.Client;
 
 public class PanelAjoutDifficulte extends PanelType{

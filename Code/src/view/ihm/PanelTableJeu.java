@@ -1,9 +1,8 @@
 package view.ihm;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Image;
 import java.util.ArrayList;
 
@@ -18,17 +17,16 @@ import javax.swing.SwingUtilities;
 
 import model.game.De;
 import model.game.GameManager;
-import model.player.Bot;
 import model.player.Player;
-import model.strategy.MediumStrategy;
 import view.IViewGame;
 import model.cards.*;
 
-import model.cards.OriginCards.*;
 import java.awt.Component;
 
 public class PanelTableJeu extends JPanel implements IViewGame {
 	
+	private static final long serialVersionUID = 1L;
+
 	JPanel panelJoueurs;
 	
 	ScrollerPlayer scrollJoueur;

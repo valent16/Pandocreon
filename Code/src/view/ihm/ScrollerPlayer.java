@@ -13,6 +13,8 @@ import model.player.Player;
 
 public class ScrollerPlayer extends JPanel {
 
+	private static final long serialVersionUID = 1L;
+
 	private JScrollPane scroll;
 	
 	private List<PanelPlayer> listePanel = new ArrayList<PanelPlayer>();

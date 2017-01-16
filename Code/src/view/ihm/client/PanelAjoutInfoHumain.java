@@ -31,8 +31,6 @@ public class PanelAjoutInfoHumain extends PanelType{
 
 	private int compteurValider = 0;
 
-	private boolean joueurValide = false;
-
 
 	/**Constructeur
 	 * @param c l'interface client
@@ -41,7 +39,7 @@ public class PanelAjoutInfoHumain extends PanelType{
 		client = c;
 		initialize();
 		ajouterListener();
-		compteurValider = client.getNombreHumain();
+		compteurValider = client.getNombreHumain(); //recupere le nombre d'humain que veut l'utilisateur
 	}
 
 	@Override
@@ -177,7 +175,6 @@ public class PanelAjoutInfoHumain extends PanelType{
 		client.setIndexHumain(client.getIndexHumain());//TODO A ENLEVER
 		System.out.println(client.getListeNomHumain());//TODO A ENLEVER
 		client.getFenetre().setTitle("humain numero : "+client.getIndexHumain()+"/"+client.getNombreHumain());
-		joueurValide = true;
 
 	}
 }

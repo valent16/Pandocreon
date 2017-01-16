@@ -16,7 +16,6 @@ import model.player.Human;
 import model.player.Player;
 import view.ihm.Client;
 import view.ihm.PanelCarte;
-import view.ihm.PanelChoixUtilisateur;
 
 /**Classe de lancement du programme*/
 public class Main{

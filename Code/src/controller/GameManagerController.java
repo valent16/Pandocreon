@@ -1,8 +1,8 @@
 package controller;
 
 import model.player.Player;
+
 import view.IViewGame;
-import view.console.VueGameManager;
 
 /**Classe qui agit comme un controller du gestionnaur de partie en gerant la vue de la partie et le gestionnaire de partie*/
 public class GameManagerController implements IObserverGameManager, IObserverDe{

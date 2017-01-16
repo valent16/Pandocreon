@@ -85,7 +85,6 @@ public class VueJoueurReel {
 	}
 	
 	public void defausserCartes(){
-		//LinkedList<ActionCard> cartesToDelete = new LinkedList<ActionCard>();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("liste des cartes pouvant etre defaussees:");
 		List<ActionCard> listeAAfficher = joueur.getHand();
@@ -156,12 +155,8 @@ public class VueJoueurReel {
 				}else{
 					this.choisirPouvoirCarteMain(listeAAfficher.get(Integer.parseInt(choix)));
 				}
-				//controller.jouerCarte(listeAAfficher.get(Integer.parseInt(choix)));
-				//controller.supprimerCarte(listeAAfficher.get(Integer.parseInt(choix)));
 			}
 		}
-		//TODO lister les cartes
-		//TODO faire un check si le joueur a bien des cartes
 	}
 	
 	//Fonction permettant de definir l'action a faire avec une carte Action
@@ -191,7 +186,7 @@ public class VueJoueurReel {
 		}
 	}
 	
-	//Permet la s�lection d'une cible
+	//Permet la selection d'une cible
 	public String selectTarget(){
 		Scanner sc = new Scanner(System.in);
 		int cpt = 0;
@@ -260,8 +255,6 @@ public class VueJoueurReel {
 				croyantsAPresenter.remove(croyantsAPresenter.get(Integer.parseInt(choix)));
 			}
 		}
-		
-		// TODO guide.convertirCroyant(croyantsAPresenter.get(Integer.parseInt(choix)));
 		return croyantSelected;	
 	}
 }

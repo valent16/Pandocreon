@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.Iterator;
+
 import java.util.List;
 
 import model.game.De;
@@ -13,7 +14,6 @@ import model.strategy.HardStrategy;
 import model.strategy.MediumStrategy;
 import model.strategy.Strategy;
 import view.console.VueGame;
-import view.console.VueGameManager;
 import view.ihm.TableJeu;
 
 /**Classe qui agit comme un controller de la partie*/
