@@ -1,7 +1,0 @@
-package view;
-
-public interface IViewGame {
-	public void majJoueurs();
-	
-	public void majFaceDe();
-}
