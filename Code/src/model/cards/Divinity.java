@@ -37,7 +37,7 @@ public class Divinity extends Card{
 
 	@Override
 	public void utiliserPouvoir(String commande, Player joueur) throws Exception {
-		//TODO pas eu le temps de developper cette methode
+		//TODO A developper le pouvoir des divinites
 	}
 	
 	/**Getter pour recuperer l'origine de la divinite

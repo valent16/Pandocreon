@@ -160,7 +160,7 @@ public class Human extends Player implements IObservableHumain{
 	public void defausserCarte(ActionCard carte){
 		hand.remove(carte);
 		GameManager.getInstanceUniqueManager().defausserCarte(carte);
-		System.out.println("dans la bonne méthode");
+		System.out.println("dans la bonne mï¿½thode");
 		notifyChangementHand();
 	}
 	
@@ -201,7 +201,6 @@ public class Human extends Player implements IObservableHumain{
 
 	@Override
 	public void notifyChangementDivinite() {
-		// TODO Auto-generated method stub
 		observateur.miseAJourDivinite();
 	}
 }

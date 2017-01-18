@@ -34,14 +34,13 @@ public class JoueurController implements IObserverJoueurReel {
 
 	/**Methode permettant au joueur de jouer hors de son tour*/
 	public void jouerCarteHorsTour(){
-		//TODO pas eu le temps de developper cette methode
+		//TODO A developper la phase hors du tour
 	}
-
+	
 	/**Methode permettant au joueur de completer sa main*/
 	public void completerMain(){
 		if (joueur.getNbCartes() == Player.NB_CARTE_MAX){
 			System.out.println("Votre jeu est deja complet");
-			//			vueJoueur.jouerTour();
 		}
 		joueur.piocherCartes();
 	}
@@ -67,18 +66,7 @@ public class JoueurController implements IObserverJoueurReel {
 
 	@Override
 	public Player selectTarget() {
-		String answer;
-		do{
-			answer = "lala";//A TODO A DEMANDER POURQUOI
-			//answer = vueJoueur.selectTarget();
-		}
-		while (!checkAnswerTarget(answer));
-		//		index = Integer.parseInt(answer);
-		//		if (index >= GameManager.getInstanceUniqueManager().getIndexJoueur(joueur)){
-		//			return GameManager.getInstanceUniqueManager().getJoueurAtIndex(index+1);
-		//		}
-		//		return GameManager.getInstanceUniqueManager().getJoueurAtIndex(index);
-		return GameManager.getInstanceUniqueManager().getJoueurAtIndex(1);
+		return GameManager.getInstanceUniqueManager().getJoueurAtIndex(1);//retourne le premier joueur
 	}
 
 	@Override

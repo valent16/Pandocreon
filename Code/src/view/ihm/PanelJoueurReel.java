@@ -32,14 +32,9 @@ import model.cards.OriginCards.*;
 
 public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
-
-	//private boolean action = false; TODO A ENLEVER
-
 	private boolean tourFinished = false;
 
-
 	private static final long serialVersionUID = 1L;
-
 
 	JoueurController controller;
 
@@ -51,13 +46,13 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 	//nuit
 	JLabel label_1;
 
-	//n�ant
+	//neant
 	JLabel label_2;
 
 	//scroll label de la main du joueur
 	ScrollerCard mainJoueur;
 
-	//scroll label des cartes rattach�es au joueur
+	//scroll label des cartes rattachees au joueur
 	ScrollerCard cartesRattachees;
 
 	JPanel panelDivinite;
@@ -106,8 +101,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 		this.setLayout( new BorderLayout());
 
-		//		this.setLayout( new BoxLayout(this, BoxLayout.X_AXIS));
-
 		JPanel panelGauche = new JPanel();
 		panelGauche.setLayout(new BoxLayout(panelGauche, BoxLayout.Y_AXIS));
 		panelGauche.setPreferredSize(new Dimension(800,300));
@@ -131,7 +124,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 			public void run() {
 				mainJoueur = new ScrollerCard(new ArrayList<Card>(joueurReel.getHand()));
 				panelCartesJoueur.add(mainJoueur);
-				//            	frame.pack();
 			}
 		});
 
@@ -215,20 +207,8 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		this.add(panelGauche, BorderLayout.WEST);
 		this.add(panelDroite, BorderLayout.EAST);
 
-
-		//Methode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
-//		panelDroite.add(Box.createRigidArea(new Dimension(0,230)));
-//		panelDroite.add(panelPointsAction);
-		//		panelDivinite = new JPanel();
-		//		panelDroite.add(panelDivinite);
-
-
 		this.add(panelGauche, BorderLayout.WEST);
 		this.add(panelDroite, BorderLayout.EAST);
-		//		this.add(panelGauche);
-		//		this.add(Box.createRigidArea(new Dimension(15,0)));
-		//		this.add(panelDroite);
-
 	}
 
 	//Methode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
@@ -266,7 +246,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 	@Override
 	public void majDivinite() {
-		// TODO Auto-generated method stub
 		panelDivinite = new PanelCarte(joueurReel.getDivinity());
 		panelDroite.add(panelDivinite);
 	}
@@ -289,7 +268,7 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		//Bouton permettant de d�poser des cartes du jeu
+		//Bouton permettant de deposer des cartes du jeu
 		JPanel panelDeposerCartes = new JPanel();
 		JButton deposerCartes = new JButton("Deposer cartes");
 		deposerCartes.setPreferredSize(new Dimension(150,35));
@@ -321,7 +300,7 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 			}
 		});
 
-		//Bouton permettant de compl�ter la main avec des cartes
+		//Bouton permettant de completer la main avec des cartes
 		JPanel panelCompleterMain = new JPanel();
 		JButton completerMain = new JButton("Completer main");
 		completerMain.setPreferredSize(new Dimension(150,35));

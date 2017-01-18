@@ -28,7 +28,7 @@ public class GameController {
 	/**Constructeur*/
 	public GameController(){
 		game = new Game();
-		vueJeu = new VueGame(this, game);//TODO A ENLEVER
+		vueJeu = new VueGame(this, game);
 	}
 
 	/**Methode permettant de demarrer une partie
@@ -39,7 +39,7 @@ public class GameController {
 	 */
 	public void startGame(List<String> listeNomBot, String strategie, List<String> listeNomHumain, List<Integer> listeAgeHumain){
 		game.initGame();
-		
+		Game.setStrategie(strategie);//on lui donne la strategie qu'aurons les bots
 		if (listeNomHumain.size() == 0){
 			
 			Iterator<String> itBot = listeNomBot.iterator();
@@ -133,7 +133,6 @@ public class GameController {
 		default:
 			return new MediumStrategy();
 		}
-		
 	}
 
 	/**Methode permettant de lancer la partie*/

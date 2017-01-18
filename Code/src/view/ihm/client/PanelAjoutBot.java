@@ -144,7 +144,6 @@ public class PanelAjoutBot extends PanelType{
 				for(int i = 0; i<client.getNombreBot(); i++)
 					client.getListeNomBot().add(Game.getBotName(i));//ajout des noms de bots
 				client.setNombreHumain(Client.getNombreMaximalJoueur() - client.getNombreBot());//on ajuste le nombre de joueur pour ne pas dépasser 10
-				System.out.println("bot : "+client.getNombreBot());//TODO A ENLEVER
 				client.ajouterDifficulte();//on ajoute les joueurs humain
 			}
 		});

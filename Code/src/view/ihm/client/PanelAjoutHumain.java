@@ -126,7 +126,6 @@ public class PanelAjoutHumain extends PanelType{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				client.setNombreHumain(Integer.parseInt(nombreHumain.getText()));
-				System.out.println("humain : "+client.getNombreHumain());//TODO A ENLEVER
 				
 				//si on a des joueurs humains on ajoute leurs info sinon
 				if(client.getNombreHumain() != 0)

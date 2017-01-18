@@ -33,18 +33,6 @@ public class MediumStrategy implements Strategy {
 	 */
 	public void jouer(Bot b){
 		this.setBot(b); //Passage des données du bot
-
-		//TODO a mettre dans la vue du bot//////////////////////////////////////////////
-		System.out.println();/////////////////////////////////////////////////////////////////////////////////////////////
-		System.out.println("Origine de la Divinite de "+ bot.getNom() +" "+ bot.getDivinity().getOrigine());////////////////////////////////////////////////////////
-		System.out.println("les points de "+ bot.getNom() +" "+ bot.getDicoPA());////////////////////////////////////////////////////////
-		System.out.println(bot.getNom() +" a comme cartes :");//////////////////////////////////////////////////////////////////////////////////////////////
-		bot.afficherHand();///////////////////////////////////////////////////////////////////:///////////////////////////////////////
-		System.out.println("les guides rattachés "+ bot.getGuides());
-		System.out.println("Score de "+ bot.getNom()+ " : "+bot.getScore());
-		//TODO a mettre dans la vue du bot//////////////////////////////////////////////
-
-
 		if(bot.hasApocalypse())
 			this.lancerApocalypse();//si le bot a une apocalypse
 		else
@@ -61,11 +49,6 @@ public class MediumStrategy implements Strategy {
 				if(bot.pointsOrigineSuffisants(guide)){
 					try{
 						guide.utiliserPouvoir("convertir Croyant", bot);
-						//TODO a mettre dans la vue du bot//////////////////////////////////////////////////////////////////////////////////////////////////
-						System.out.println(bot.getNom() +" a converti avec son guide des croyants ");////////////////////////////////////////////////////////
-						System.out.println("le guide qui a converti " + guide);////////////////////////////////////////////////////////////////////////////
-						System.out.println("les croyants convertis " +guide.getCroyantsConvertis());/////////////////////////////////////////////////////////
-						//TODO a mettre dans la vue du bot///////////////////////////////////////////////////////////////////////////////////////////////
 					}catch (Exception e) {
 						this.depotCroyant();
 					}
@@ -88,9 +71,6 @@ public class MediumStrategy implements Strategy {
 				if(bot.pointsOrigineSuffisants(believer)){	//test si le bot a suffisamment de point
 					try{
 						believer.utiliserPouvoir("deposer Croyant", bot);
-						//TODO a mettre dans la vue du bot////////////////////////////////////////////////////////////////////////////////////////////////
-						System.out.println(bot.getNom() +" a deposer"+ believer);
-						//TODO a mettre dans la vue du bot///////////////////////////////////////////////////////////////////////////////////////////////
 						break;
 					} catch (Exception e) {
 						this.defausser();
@@ -111,10 +91,6 @@ public class MediumStrategy implements Strategy {
 			if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
 				try {	
 					apocalypse.utiliserPouvoir("declencher apocalypse", bot);
-					//TODO a mettre dans la vue du bot////////////////////////////////////////////////////////////////////////////////////////////////
-					System.out.println(bot.getNom() +" A Lancer Une Apocalypse "+ apocalypse);////////////////////////////////////////////////////////
-					System.out.println("joueurs Restants : "+GameManager.getInstanceUniqueManager().getPlayers());//////////////////////////////////////////////////////////
-					//TODO a mettre dans la vue du bot//////////////////////////////////////////////////////////////////////////////////////////////
 				} catch (PAInsuffisantException e) {
 					this.convertirCroyants();
 				} catch (Exception e) {}

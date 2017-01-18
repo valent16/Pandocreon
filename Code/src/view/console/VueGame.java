@@ -122,7 +122,7 @@ public class VueGame {
 	
 	//Permet de creer un bot
 	public void creationBot(int index){
-		controllerJeu.CreationBot(Game.getBotName(index), "medium");//TODO on utilise la strategie medium a changer pour avoir d'autre strategie
+		controllerJeu.CreationBot(Game.getBotName(index), Game.getStrategie());
 		System.out.println("utilitaire de creation de joueur");
 	}
 	

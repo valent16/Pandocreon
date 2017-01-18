@@ -24,7 +24,7 @@ s	 * @param nom le nom de la carte DeusEx
 
 	@Override
 	public void utiliserPouvoir(String commande,Player joueur) throws Exception{
-		//TODO pas eu le temps de developper cette methode
+		//TODO A developper le pouvoir des deusEx
 	}
 
 	@Override

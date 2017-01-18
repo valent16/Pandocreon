@@ -31,41 +31,43 @@ import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.cards.withoutOriginCards.DeusEx;
 
+//TODO A COMMENTER
 public class PanelCarte extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 
 	//panel contenant l'origine bordure gauche
-	//contenant le nombre de coyant a droite
+	//TODO A COMMENTER//contenant le nombre de coyant a droite
 	private JPanel panelTop;
 	
-	//panel contenant les dogmes de la carte
+	//TODO A COMMENTER//panel contenant les dogmes de la carte
 	private JPanel panelBot;
 	
-	//Panel contenant le titre de la carte
+	//TODO A COMMENTER//Panel contenant le titre de la carte
 	private JLabel titre;
 	
-	//label contenant le nom de la carte
+	//TODO A COMMENTER//label contenant le nom de la carte
 	private JLabel nomCarte;
 	
-	//description de la carte
+	//TODO A COMMENTER//description de la carte
 	private JTextArea labelArea;
 	
 	//carte rerpesente dans le panel
 	private Card carte;
 	
+	//TODO A COMMENTER
 	private JButton bouton;
 	
+	//TODO A COMMENTER
 	private boolean activated = false;
 	
+	//TODO A COMMENTER
 	private JoueurController controller;
 	
+	//TODO A COMMENTER
 	private PanelJoueurReel father;
 	
-	public boolean isActivated(){
-		return activated;
-	}
-	
+	/**Constructeur*/
 	public PanelCarte(Card carte){
 		this.carte = carte;
 //		this.setPreferredSize(new Dimension(150,200));
@@ -114,11 +116,12 @@ public class PanelCarte extends JPanel{
 		bouton.setEnabled(false);
 	}
 	
+	//TODO A COMMENTER
 	public Card getCarte(){
 		return carte;
 	}
 	
-	//M�thode de cr�ation du panel en fonction de la carte 
+	//TODO A COMMENTER /M�thode de cr�ation du panel en fonction de la carte 
 	public void panelFactory(){
 		ajoutTitre();
 		if (carte instanceof Divinity){
@@ -143,7 +146,7 @@ public class PanelCarte extends JPanel{
 		}
 	}
 	 
-	 //Fonction permettant d'ajouter les dogmes � la carte 
+	////TODO A COMMENTER Fonction permettant d'ajouter les dogmes � la carte 
 	public void ajoutDogmes(){
 		List<EnumDogme> listeDogmes;
 		if (carte instanceof Divinity){
@@ -175,7 +178,7 @@ public class PanelCarte extends JPanel{
 		}
 	}
 	
-	
+	//TODO A COMMENTER
 	public void ajoutOrigine(){
 		String path="";
 		switch(((ActionCardWithOrigin) carte).getOrigine()){
@@ -198,6 +201,7 @@ public class PanelCarte extends JPanel{
 		panelTop.add(new ImagePanel(path, 800/20, 800/20), BorderLayout.WEST);
 	}
 	
+	//TODO A COMMENTER
 	public void ajoutOrigineDivinite(){
 		String path="";
 		switch(((Divinity) carte).getOrigine()){
@@ -223,7 +227,7 @@ public class PanelCarte extends JPanel{
 		panelTop.add(new ImagePanel(path, 800/20, 800/20), BorderLayout.WEST);
 	}
 	
-	
+	//TODO A COMMENTER
 	public void ajoutTitre(){
 		String nom = "";
 		if (carte instanceof Divinity){
@@ -245,6 +249,7 @@ public class PanelCarte extends JPanel{
 		titre.setText(nom);
 	}
 	
+	//TODO A COMMENTER
 	public void ajoutDescription(){
 		String description="";
 		
@@ -266,47 +271,7 @@ public class PanelCarte extends JPanel{
 		labelArea.setText(description);
 	}
 	
-	public void ajoutNom(){
-		//String nom = "";TODO A ENLEVER
-//		if (carte instanceof Divinity){
-//			
-//			//((Divinity)carte).get
-//			nom = "Divinite";
-//		}
-//		if(carte instanceof Believer){
-//			nom = "Croyant";
-//		}
-//		if (carte instanceof SpiritGuide){
-//			nom= "Guide spirituel";
-//		}
-//		
-//		if (carte instanceof ApocalypseWithOrigin || carte instanceof Apocalypse){
-//			nom = "Apocalypse";
-//		}
-//		if (carte instanceof DeusEx || carte instanceof DeusExWithOrigin){
-//			nom = "Deus Ex";
-//		}
-//		titre.setText(nom);
-	}
-	
-//	public void activateSuppression(final JoueurController controller){
-//		bouton.setEnabled(true);
-//		bouton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				controller.supprimerCarte((ActionCard)carte);
-//			}
-//		});
-//	}
-//	
-//	public void disactivateSuppression(){
-//		bouton.setEnabled(false);
-//		for(ActionListener listener : bouton.getActionListeners())
-//        {
-//			bouton.removeActionListener(listener);
-//        }
-//	}
-	
+	//TODO A COMMENTER
 	public void actionCarte(){
 		if (father.isSuppressionCarte()){
 			controller.supprimerCarte((ActionCard)this.carte);
@@ -317,11 +282,18 @@ public class PanelCarte extends JPanel{
 		}
 	}
 	
+	//TODO A COMMENTER
 	public void activateSelection(){
 		bouton.setEnabled(true);
 	}
 	
+	//TODO A COMMENTER
 	public void desactivateSelection(){
 		bouton.setEnabled(false);
+	}
+	
+	//TODO A COMMENTER
+	public boolean isActivated(){
+		return activated;
 	}
 }

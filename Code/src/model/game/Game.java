@@ -20,6 +20,9 @@ public class Game {
 	/**Attribut representant des noms de bots*/
 	private final static String[] BOT_NAME = {"Eden", "Alice", "Carla", "Andre", "Eline", "Cleo", "Ava", "Chloe", "Eva"};
 	
+	/**Attribut representant la strategie des bots*/
+	private static String strategie;
+	
 	/**Attribut representant le nombre de carte maximal qu'un joueur puisse posseder*/
 	private final static int NB_CARTE_MAX_MAIN = 7;
 
@@ -97,12 +100,24 @@ public class Game {
 		return players.size();
 	}
 	
-	/**Methode permettant d'attribuer un nom a un bot a partir d'un index
-	 * @param index numero ou se trouve le nom
+	/**Getter Nom du bot
+	 * @param index la position du bot
 	 * @return le nom du bot
 	 */
 	public static String getBotName(int index){
 		index = index%BOT_NAME.length;
 		return BOT_NAME[index];
+	}
+	/**Getter strategie des bots
+	 * @return la strategie
+	 */
+	public static String getStrategie() {
+		return strategie;
+	}
+	/**Setter strategie des bots
+	 * @param strategie la strategie
+	 */
+	public static void setStrategie(String strategie) {
+		Game.strategie = strategie;
 	}
 }

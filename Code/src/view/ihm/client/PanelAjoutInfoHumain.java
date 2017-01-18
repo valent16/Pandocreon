@@ -113,36 +113,17 @@ public class PanelAjoutInfoHumain extends PanelType{
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO A developper faire des test sur le nom et l'age récuperé
-				System.out.println("compteur : "+compteurValider);//TODO A ENLEVER
-				System.out.println("nombreHumain : "+client.getNombreHumain());//TODO A ENLEVER
-
 				if (compteurValider == 1){
 					if(testerDonnees()){
 						ajouterJoueur();
 						client.confirmerPartie();
 					}
-				}else if(compteurValider > 1 )
+				}else if(compteurValider > 1 ){
 					if(testerDonnees()){
 						ajouterJoueur();
 						compteurValider--;
 					}
-
-				/*if(client.getNombreHumain() == 1){
-					testerDonnees();
-					if(joueurValide)
-						client.confirmerPartie();
-				}
-
-				else if(compteurValider < client.getNombreHumain()){
-					testerDonnees();
-
-				}else{
-					if(joueurValide)//tant que le dernier n'est pas bien saisi
-						client.confirmerPartie();//on confirme la partie
-					else
-						testerDonnees();
-				}*/
+				}	
 			}
 		});
 	}
@@ -161,18 +142,14 @@ public class PanelAjoutInfoHumain extends PanelType{
 		}else if(Integer.parseInt(listeAges.getSelectedItem().toString()) < 12){//si le joueur a moins de 12 ans il ne peut pas jouer
 			JOptionPane.showMessageDialog(null, "Le joueur est trop jeune pour jouer\nIl doit avoir plus de 12 ans.", "Probleme age joueur", JOptionPane.ERROR_MESSAGE, logo);
 			return false;
-		}
-		//sinon c'est bon on peut ajouter les infos
-		return true;
+		}		
+		return true; //sinon c'est bon on peut ajouter les infos
 	}
 
 	/**methode qui ajoute les données du joueur au client*/
 	private void ajouterJoueur(){
 		client.getListeNomHumain().add(tfNom.getText());
 		client.getListeAgeHumain().add(Integer.parseInt(listeAges.getSelectedItem().toString()));
-		client.setIndexHumain(client.getIndexHumain());//TODO A ENLEVER
-		System.out.println(client.getListeNomHumain());//TODO A ENLEVER
 		client.getFenetre().setTitle("humain numero : "+client.getIndexHumain()+"/"+client.getNombreHumain());
-
 	}
 }

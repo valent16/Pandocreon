@@ -174,10 +174,7 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 	}
 
 	@Override
-	public void majNbTours() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void majNbTours() {}
 
 	@Override
 	public void afficherVainqueur(Player p) {
@@ -190,14 +187,10 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 	}
 
 	@Override
-	public void changementJoueur() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void changementJoueur() {}
 
 	@Override
 	public void majJoueurActif() {
-		// TODO Auto-generated method stub
 		scrollJoueur.surlignerJoueurActif();
 	}
 	

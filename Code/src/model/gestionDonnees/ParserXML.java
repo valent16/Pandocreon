@@ -61,7 +61,6 @@ public class ParserXML implements IDataLoad {
 		parserFichier();
 	}
 
-
 	@Override
 	public LinkedList<ActionCard> chargerCartes() {
 		return this.cartesAction;
@@ -74,7 +73,8 @@ public class ParserXML implements IDataLoad {
 
 	@Override
 	public void chargerPartie() {
-		//TODO pas eu le temps de developper cette methode
+		//TODO A developper le fait de pouvoir charger une partie, en utilisant la serialisation des classe Game et GameManager 
+		//on les stockent dans des fichiers txt que l'on deserialiserai pour pouvoir les charger
 	}
 
 	/**Methode permettant au parser de recuperer le type de la carte
@@ -213,7 +213,6 @@ public class ParserXML implements IDataLoad {
 	/**Methode permettant de parser le fichier XML*/
 	public void parserFichier(){
 		String pouvoir;
-
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		HashMap<String,Integer > mapNbCroyants = new HashMap<String,Integer >();
 		mapNbCroyants.put("nbr_un", 1);

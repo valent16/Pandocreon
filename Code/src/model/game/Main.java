@@ -22,12 +22,22 @@ public class Main{
 
 	/**Methode pour lancer l'application*/
 	public static void main(String[] args) {	
-
-		int valeur = 6;
-//		int valeur = 8;
+		int valeur = 1;
 		switch(valeur){
-		case 1: //permet de tester une partie de 2 humains
-			testCreationPartie();
+		case 1: //Pour lancer le client (Menu du jeu)
+			try {
+				Client window = new Client();
+				
+				while(!window.getInitialize()){
+					Thread.sleep(200);
+				}
+				
+				GameController g = new GameController();
+				g.startGame(window.getListeNomBot(), window.getStrategie(), window.getListeNomHumain(), window.getListeAgeHumain());
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			break;
 
 		case 2: //permet de voir si les points sont bien atttribues
@@ -52,35 +62,22 @@ public class Main{
 
 			gameController.lancerPartie(); //on lance en mode console
 			break;
-	
-		case 6: //Pour lancer le client (Menu du jeu)
-			try {
-				Client window = new Client();
-				
-				while(!window.getInitialize()){
-					Thread.sleep(200);
-				}
-				
-				GameController g = new GameController();
-				g.startGame(window.getListeNomBot(), window.getStrategie(), window.getListeNomHumain(), window.getListeAgeHumain());
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			
+		case 6: //permet de tester une partie de 2 humains
+			testCreationPartie();
 			break;
 			
 		case 7:
 			GameController gameController1 = new GameController();
-//			gameController1.startGame();
 			gameController1.CreationJoueur("valentin", 18);
 			gameController1.CreationJoueur("David", 20);
-			
 			gameController1.lancerPartie();
 			break;
 		default:
 		}
 	}
 	
+	/**Methode permettant de tester les cartes du jeu*/
 	public static void testCarte(){
 		ArrayList<EnumDogme> dogmes = new ArrayList<EnumDogme>();
 		dogmes.add(EnumDogme.CHAOS);
@@ -89,7 +86,6 @@ public class Main{
 		EnumOrigineDivinite origine = EnumOrigineDivinite.JOUR;
 		Divinity carte = new Divinity("nom divinite", dogmes, description, origine);
 		
-		
 		JFrame frame = new JFrame();
 		frame.setPreferredSize(new Dimension(1100,1000));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -97,32 +93,24 @@ public class Main{
 		frame.setVisible(true);
 		
 		PanelCarte panel = new PanelCarte(carte);
-		
 		frame.getContentPane().add(panel, BorderLayout.WEST);
-		
 		frame.pack();
 	}
 
 	/**Methode permettant de tester les bots dans une partie avec la strategie medium*/
 	private static void testBot() {
-		GameController gc = new GameController();
-//		gc.startGame();
-		
+		GameController gc = new GameController();		
 		gc.CreationBot("bot1", "medium");
 		gc.CreationBot("bot2", "medium");
 		gc.CreationBot("bot3", "medium");
-
 		gc.lancerPartie();
 	}
 
 	/**Methode permettant de tester le fonctionnement d'une partie*/
 	public static void testCreationPartie(){
 		GameController gc = new GameController();
-//		gc.startGame();
-
 		gc.CreationJoueur("valentin", 18);
 		gc.CreationJoueur("David", 20);
-		
 		gc.lancerPartie();
 	}
 

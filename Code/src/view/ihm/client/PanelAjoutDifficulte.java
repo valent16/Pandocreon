@@ -2,7 +2,6 @@ package view.ihm.client;
 
 import java.awt.BorderLayout;
 
-
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -14,7 +13,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PanelAjoutDifficulte extends PanelType{
@@ -93,15 +91,6 @@ public class PanelAjoutDifficulte extends PanelType{
 			public void actionPerformed(ActionEvent e) {
 				String[] values = {"facile", "medium", "difficile"};//les noms des strategies
 				client.setStrategie(values[listeStrategie.getSelectedIndex()]);
-
-				if(client.getStrategie().equals("medium")){//TODO Pour l'instant on ne peut que mettre la strategie medium
-					System.out.println("strategie : " + client.getStrategie());//TODO A ENLEVER
-					client.ajouterJoueurHumain();//on ajoute les joueurs humain
-				}
-
-				else{
-					JOptionPane.showMessageDialog(null, "La strategie "+ listeStrategie.getSelectedItem().toString() +" est en cours de developpement", "Choix de la strategie", JOptionPane.WARNING_MESSAGE, logo);
-				}
 			}
 		});
 	}

@@ -7,9 +7,7 @@ import view.IViewGame;
 /**Classe qui agit comme un controller du gestionnaur de partie en gerant la vue de la partie et le gestionnaire de partie*/
 public class GameManagerController implements IObserverGameManager, IObserverDe{
 
-	/**Attribut correspondant a la vue du gestionnaire de partie*/
-//	VueGameManager vue;
-	
+	/**Attribut correspondant a la vue du gestionnaire de partie*/	
 	IViewGame vue;
 	
 	/**Constructeur
@@ -22,13 +20,11 @@ public class GameManagerController implements IObserverGameManager, IObserverDe{
 	@Override
 	public void annoncerDefaitJoueur(Player joueur) {
 		vue.afficherDefaite(joueur);
-//		vue.afficherElimintation(joueur);
 	}
 
 	@Override
 	public void annoncerVictoireJoueur(Player joueur) {
 		vue.afficherVainqueur(joueur);
-//		vue.afficherVictoireJoueur(joueur);
 	}
 
 	@Override

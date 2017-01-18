@@ -16,9 +16,7 @@ public class Apocalypse extends ActionCard{
 		pouvoirs.get(commande).onAction(this, joueur);
 		joueur.defausserCarte(this);
 	}
-	
-	//TODO faire une methode du nom de apocalypse qui recupere le nombre de joueur et qui compte le nombre de croyants de chaque joueur
-	
+		
 	@Override
 	public String toString() {
 		return "Apocalypse [nom=" + nom + "]";

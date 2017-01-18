@@ -226,7 +226,6 @@ public class Bot extends Player{
 			 if(p.getScore() < this.getScore())//si un joueur a un score strictement inferieur au this alors il n'est pas dernier
 				 return false;
 		 }
-		 System.out.println(this.getNom() + " est dernier avec un score : "+this.getScore());//////////////////////////////////////////////
 		 return true;
 	 }
 	 

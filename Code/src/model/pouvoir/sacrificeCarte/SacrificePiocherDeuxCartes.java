@@ -13,7 +13,7 @@ public class SacrificePiocherDeuxCartes extends Pouvoir{
 
 	@Override
 	public void onAction(Card carte, Player joueur) throws Exception {
-		//TODO Faire piocher 2 cartes au joueur
+		//TODO A developper sacrifice qui fait piocher 2 cartes au joueur
 		
 	}
 }
