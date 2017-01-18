@@ -73,16 +73,41 @@ public class GameManager implements IObservableGameManager {
 		this.pioche = cartesAction;
 	}
 
-	/**Methode permettant l'initialisation du controller de la partie*/
+	// initialisation du controller de la partie 
 	public void initialisationController(IObserverGameManager controller){
 		observateur = controller;
 	}
+	
+//	/**Methode permeettant de demarrer la partie en mode console*/
+//	public void startGameConsole(){
+//		this.melangerDivinites();
+//		this.melangerPioche();
+//		this.intialisationDesJeux();
+//		this.deroulementTourJeu();
+//	}
+//
+//	/**Methode permettant de demarrer la partie en mode graphique*/
+//	public void startGameIHM() {
+//		this.melangerDivinites();
+//		this.melangerPioche();
+//		this.intialisationDesJeux();
+//		TableJeu tb = new TableJeu();
+//		this.deroulementTourJeu();	
+//	}
+	
+	public void nouvellePartie(){
+		this.melangerDivinites();
+		this.melangerPioche();
+		this.intialisationDesJeux();
+	}
+
 
 	/**Methode permeettant de demarrer la partie en mode console*/
 	public void startGame(){
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
+//		TableJeu tb = new TableJeu();
 		this.deroulementTourJeu();	
 	}
 
@@ -135,7 +160,7 @@ public class GameManager implements IObservableGameManager {
 	public ActionCard piocherCarte(){
 		if (pioche.size() == 0){
 			if (defausse.size() == 0){
-				//TODO A developper lancer une exception qui arrete la partie => pas assez de carte pour jouer
+				//lancer une exception qui arrete la partie => pas assez de carte pour jouer
 			}
 			pioche.addAll(defausse);
 			melangerPioche();
@@ -201,15 +226,22 @@ public class GameManager implements IObservableGameManager {
 		while(players.size()!=0){
 			players.get(start%players.size()).lancerDe();
 			System.out.println("\nTour Numero "+ nombreTour + " le de est sur la face "+ De.getInstanceDe().getFace());
+			System.out.println("les joueurs dans la game "+GameManager.getInstanceUniqueManager().getPlayers());////////////////////////////////////////////////////////////
+			System.out.println();/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			for (int i = start; i<start+this.getNbJoueur(); i++){
 				if (players.size() != 0){
 					joueurActif = players.get(i%players.size());
 					notifyJoueurActif();
+//					try{
+//						Thread.sleep(1000);
+//					}catch(Exception e){
+//						e.printStackTrace();
+//					}
 					players.get(i%players.size()).jouerTour();
 				}
 			}
-
+			
 			start = start+1;
 			if (players.size() != 0){
 				start = start%players.size();
@@ -278,14 +310,14 @@ public class GameManager implements IObservableGameManager {
 		Player joueurElimine = null;
 		boolean egalite = false;
 		int cpt = 0;
-
+		
 		Iterator<Player> itPlayer = players.iterator();
 
-
-
+		
+		
 		while(itPlayer.hasNext()){
 			p = itPlayer.next();
-
+			
 			if (joueurElimine == null){
 				joueurElimine = p;
 			}else{
@@ -302,7 +334,7 @@ public class GameManager implements IObservableGameManager {
 				cpt++;
 			}
 		}
-
+		
 		if (cpt >= 2){
 			egalite = true;
 		}
@@ -313,7 +345,7 @@ public class GameManager implements IObservableGameManager {
 			notifyPlayerDefeat(joueurElimine);
 		}
 		System.out.println(egalite);
-
+		
 		try{
 			Thread.sleep(10000);
 		}
@@ -445,12 +477,12 @@ public class GameManager implements IObservableGameManager {
 	public void notifyChangementTour() {
 		observateur.miseAJourNbTour();
 	}
-
+	
 	@Override
 	public void notifyChangementJoueurs(){
 		observateur.miseAJourJoueurs();
 	}
-
+	
 	public void notifyJoueurActif(){
 		observateur.miseAJourJoueurActif();
 	}

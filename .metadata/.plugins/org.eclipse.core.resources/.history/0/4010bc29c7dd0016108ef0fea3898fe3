@@ -167,8 +167,7 @@ public class Bot extends Player{
 
 	/**Methode permettant de recuperer toutes les cartes apocalypse de la main du bot
 	 * @return liste des apocalypse
-	 */	
-	public LinkedList<Apocalypse> getApocalypses(){
+	 */	public LinkedList<Apocalypse> getApocalypses(){
 		 List<ActionCard> liste = getHand();
 		 Collections.shuffle(liste);
 		 Iterator<ActionCard> it = liste.iterator();

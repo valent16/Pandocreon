@@ -16,17 +16,17 @@ import model.cards.Card;
 public class ScrollerCard extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
+	//TODO A COMMENTER
 	JPanel panel;
-
+	//TODO A COMMENTER
 	private final JScrollPane scroll;
-
+	//TODO A COMMENTER
 	private ArrayList<PanelCarte> listeCartesGraphiques = new ArrayList<PanelCarte>();
-
+	//TODO A COMMENTER
 	private PanelJoueurReel father;
 
+	//TODO A COMMENTER
 	public ScrollerCard(List<Card> listeCartes) throws HeadlessException {
-
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		panel.setBorder(BorderFactory.createLineBorder(Color.red));
@@ -46,12 +46,16 @@ public class ScrollerCard extends JPanel {
 		scroll.revalidate();
 	}
 
-	//TODO A commenter
+	/**Methode permettant d'ajouter le panel pour le joueur reel
+	 * @param father la panel parent
+	 */
 	public void ajouterPanelJoueurReel(PanelJoueurReel father){
 		this.setFather(father);
 	}
 
-	//TODO A commenter//Permet de mettre a jour le panel de carte en fonction de la liste de carte passe en parametre
+	/**Methode permettant de mettre a jour le panel de carte en fonction de la liste de carte passe en parametre
+	 * @param cartes les cartes a supprimer ou a ajouter sur le panel
+	 */
 	public void majCarte(List<Card> cartes){
 		ArrayList<Card> cartesASupprimer = new ArrayList<Card>();
 		//Permet de faire une deep copy de la liste de cartes
@@ -87,7 +91,6 @@ public class ScrollerCard extends JPanel {
 				}
 			}
 		}
-
 		panel.revalidate();
 		scroll.revalidate();
 	}

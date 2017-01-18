@@ -254,7 +254,7 @@ public class Client{
 	public void setListeNomBot(LinkedList<String> liste) {
 		this.listeNomBot = liste;
 	}
-	/**Setter pour la confirmation de la partie
+	/**Getter pour la confirmation de la partie
 	 * @return la confirmation de la partie
 	 */
 	public boolean getInitialize(){

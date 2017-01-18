@@ -34,7 +34,7 @@ public class Bot extends Player{
 		strategy.setBot(this); //donne les parametres du bot a la stratégie
 	}
 
-	@Override
+	/**Methode permettant au bot de jouer son tour en fonction de sa strategie*/
 	public void jouerTour(){	
 		incrementerPointActionWithDe();
 		strategy.jouer(this);
@@ -167,8 +167,7 @@ public class Bot extends Player{
 
 	/**Methode permettant de recuperer toutes les cartes apocalypse de la main du bot
 	 * @return liste des apocalypse
-	 */	
-	public LinkedList<Apocalypse> getApocalypses(){
+	 */	public LinkedList<Apocalypse> getApocalypses(){
 		 List<ActionCard> liste = getHand();
 		 Collections.shuffle(liste);
 		 Iterator<ActionCard> it = liste.iterator();

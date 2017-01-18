@@ -6,7 +6,7 @@ import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.OriginCards.Believer;
-import model.exception.NoCroyantLinkedAtConversionException;
+import model.exception.NoCroyantLinkedAtConversion;
 import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Human;
@@ -20,7 +20,7 @@ public class ConversionCroyant extends Pouvoir {
 	}
 
 	@Override
-	public void onAction(Card carte, Player joueur) throws PAInsuffisantException, NoCroyantLinkedAtConversionException{
+	public void onAction(Card carte, Player joueur) throws PAInsuffisantException, NoCroyantLinkedAtConversion{
 		int PAaUtiliser = 1;
 		EnumCosmogonie origine;
 		if(((SpiritGuide) carte).getOrigine() == EnumCosmogonie.NEANT){
@@ -38,7 +38,7 @@ public class ConversionCroyant extends Pouvoir {
 		
 		List<Believer> croyants = joueur.pickCroyant((SpiritGuide) carte);
 		if (croyants.size() == 0){
-			throw new NoCroyantLinkedAtConversionException("Aucun croyant n'ont ete lie au guide");
+			throw new NoCroyantLinkedAtConversion("Aucun croyant n'ont ete lie au guide");
 		}
 		joueur.decrementerPointAction(origine, PAaUtiliser);
 		Believer c;
