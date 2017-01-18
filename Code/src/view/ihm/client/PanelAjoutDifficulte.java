@@ -17,8 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import view.ihm.Client;
-
 public class PanelAjoutDifficulte extends PanelType{
 
 	private static final long serialVersionUID = 1L;

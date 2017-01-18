@@ -1,4 +1,4 @@
-package view.ihm;
+package view.ihm.client;
 
 import java.util.LinkedList;
 
@@ -6,12 +6,6 @@ import javax.swing.*;
 import javax.swing.JOptionPane;
 
 import controller.GameController;
-import view.ihm.client.PanelAjoutBot;
-import view.ihm.client.PanelAjoutDifficulte;
-import view.ihm.client.PanelAjoutHumain;
-import view.ihm.client.PanelAjoutInfoHumain;
-import view.ihm.client.PanelConfirmation;
-import view.ihm.client.PanelMenuPrincipale;
 
 /**Classe qui represente le menu de l'IHM*/
 public class Client{

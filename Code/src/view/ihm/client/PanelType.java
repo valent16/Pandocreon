@@ -4,8 +4,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import view.ihm.Client;
-
 public abstract class PanelType extends JPanel{
 	
 	private static final long serialVersionUID = 1L;

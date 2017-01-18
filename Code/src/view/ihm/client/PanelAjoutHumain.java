@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import view.ihm.Client;
-
 /**Classe qui gere la vue de la partie en mode console*/
 public class PanelAjoutHumain extends PanelType{
 

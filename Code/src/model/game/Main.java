@@ -14,8 +14,8 @@ import model.EnumType.EnumOrigineDivinite;
 import model.cards.Divinity;
 import model.player.Human;
 import model.player.Player;
-import view.ihm.Client;
 import view.ihm.PanelCarte;
+import view.ihm.client.Client;
 
 /**Classe de lancement du programme*/
 public class Main{
@@ -45,13 +45,8 @@ public class Main{
 
 		case 5: //test pour le lancement d'une partie
 			GameController gameController = new GameController();
-//			gameController.startGame();
-			
 			Human joueur1 = new Human("valentin", 18);
-//			joueur1.attacher(new JoueurController(joueur1));
 			Human joueur2 = new Human("David", 20);
-//			joueur2.attacher(new JoueurController(joueur2));
-			
 			gameController.getGame().ajouterJoueurReel(joueur1);
 			gameController.getGame().ajouterJoueurReel(joueur2);
 

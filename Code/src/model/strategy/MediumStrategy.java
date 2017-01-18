@@ -33,7 +33,7 @@ public class MediumStrategy implements Strategy {
 	 */
 	public void jouer(Bot b){
 		this.setBot(b); //Passage des données du bot
-		
+
 		//TODO a mettre dans la vue du bot//////////////////////////////////////////////
 		System.out.println();/////////////////////////////////////////////////////////////////////////////////////////////
 		System.out.println("Origine de la Divinite de "+ bot.getNom() +" "+ bot.getDivinity().getOrigine());////////////////////////////////////////////////////////
@@ -106,25 +106,22 @@ public class MediumStrategy implements Strategy {
 	@Override
 	/**Methode permettant au bot de lancer une apocalypse*/
 	public void lancerApocalypse(){
-		if(GameManager.getInstanceUniqueManager().getNumeroTour() > 5){//Si on est dans les 5 premiers tour de jeu on ne lance pas d'apocalypse
-			ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
-			if(!bot.isLast()){//on test s'il est dernier
-				if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
-					try {	
-						apocalypse.utiliserPouvoir("declencher apocalypse", bot);
-						//TODO a mettre dans la vue du bot////////////////////////////////////////////////////////////////////////////////////////////////
-						System.out.println(bot.getNom() +" A Lancer Une Apocalypse "+ apocalypse);////////////////////////////////////////////////////////
-						System.out.println("joueurs Restants : "+GameManager.getInstanceUniqueManager().getPlayers());//////////////////////////////////////////////////////////
-						//TODO a mettre dans la vue du bot//////////////////////////////////////////////////////////////////////////////////////////////
-					} catch (PAInsuffisantException e) {
-						this.convertirCroyants();
-					} catch (Exception e) {}
-				}else
+		ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
+		if(!bot.isLast()){//on test s'il est dernier
+			if(bot.pointsOrigineSuffisants((ActionCardWithOrigin) apocalypse) || apocalypse instanceof Apocalypse){
+				try {	
+					apocalypse.utiliserPouvoir("declencher apocalypse", bot);
+					//TODO a mettre dans la vue du bot////////////////////////////////////////////////////////////////////////////////////////////////
+					System.out.println(bot.getNom() +" A Lancer Une Apocalypse "+ apocalypse);////////////////////////////////////////////////////////
+					System.out.println("joueurs Restants : "+GameManager.getInstanceUniqueManager().getPlayers());//////////////////////////////////////////////////////////
+					//TODO a mettre dans la vue du bot//////////////////////////////////////////////////////////////////////////////////////////////
+				} catch (PAInsuffisantException e) {
 					this.convertirCroyants();
+				} catch (Exception e) {}
 			}else
-				this.convertirCroyants();	
+				this.convertirCroyants();
 		}else
-			this.convertirCroyants();
+			this.convertirCroyants();	
 	}
 
 	/*Methode permettant au bot d'economiser ses points et donc de piocher ou de se defausser dependant du nombre de cartes qu'il possede*/

@@ -73,41 +73,16 @@ public class GameManager implements IObservableGameManager {
 		this.pioche = cartesAction;
 	}
 
-	// initialisation du controller de la partie 
+	/**Methode permettant l'initialisation du controller de la partie*/
 	public void initialisationController(IObserverGameManager controller){
 		observateur = controller;
 	}
-	
-//	/**Methode permeettant de demarrer la partie en mode console*/
-//	public void startGameConsole(){
-//		this.melangerDivinites();
-//		this.melangerPioche();
-//		this.intialisationDesJeux();
-//		this.deroulementTourJeu();
-//	}
-//
-//	/**Methode permettant de demarrer la partie en mode graphique*/
-//	public void startGameIHM() {
-//		this.melangerDivinites();
-//		this.melangerPioche();
-//		this.intialisationDesJeux();
-//		TableJeu tb = new TableJeu();
-//		this.deroulementTourJeu();	
-//	}
-	
-	public void nouvellePartie(){
-		this.melangerDivinites();
-		this.melangerPioche();
-		this.intialisationDesJeux();
-	}
-
 
 	/**Methode permeettant de demarrer la partie en mode console*/
 	public void startGame(){
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
-//		TableJeu tb = new TableJeu();
 		this.deroulementTourJeu();	
 	}
 
@@ -233,15 +208,15 @@ public class GameManager implements IObservableGameManager {
 				if (players.size() != 0){
 					joueurActif = players.get(i%players.size());
 					notifyJoueurActif();
-//					try{
-//						Thread.sleep(1000);
-//					}catch(Exception e){
-//						e.printStackTrace();
-//					}
+					//					try{
+					//						Thread.sleep(1000);
+					//					}catch(Exception e){
+					//						e.printStackTrace();
+					//					}
 					players.get(i%players.size()).jouerTour();
 				}
 			}
-			
+
 			start = start+1;
 			if (players.size() != 0){
 				start = start%players.size();
@@ -310,14 +285,14 @@ public class GameManager implements IObservableGameManager {
 		Player joueurElimine = null;
 		boolean egalite = false;
 		int cpt = 0;
-		
+
 		Iterator<Player> itPlayer = players.iterator();
 
-		
-		
+
+
 		while(itPlayer.hasNext()){
 			p = itPlayer.next();
-			
+
 			if (joueurElimine == null){
 				joueurElimine = p;
 			}else{
@@ -334,7 +309,7 @@ public class GameManager implements IObservableGameManager {
 				cpt++;
 			}
 		}
-		
+
 		if (cpt >= 2){
 			egalite = true;
 		}
@@ -345,7 +320,7 @@ public class GameManager implements IObservableGameManager {
 			notifyPlayerDefeat(joueurElimine);
 		}
 		System.out.println(egalite);
-		
+
 		try{
 			Thread.sleep(10000);
 		}
@@ -477,12 +452,12 @@ public class GameManager implements IObservableGameManager {
 	public void notifyChangementTour() {
 		observateur.miseAJourNbTour();
 	}
-	
+
 	@Override
 	public void notifyChangementJoueurs(){
 		observateur.miseAJourJoueurs();
 	}
-	
+
 	public void notifyJoueurActif(){
 		observateur.miseAJourJoueurActif();
 	}

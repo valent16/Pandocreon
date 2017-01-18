@@ -13,8 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
-import view.ihm.Client;
-
 /**Classe qui gere la vue de la partie en mode console*/
 public class PanelMenuPrincipale extends PanelType{
 	

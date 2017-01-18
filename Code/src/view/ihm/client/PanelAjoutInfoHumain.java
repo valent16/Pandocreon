@@ -17,8 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import view.ihm.Client;
-
 /**Classe qui gere la vue de la partie en mode console*/
 public class PanelAjoutInfoHumain extends PanelType{
 

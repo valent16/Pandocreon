@@ -19,7 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import model.game.Game;
-import view.ihm.Client;
 
 /**Classe qui gere la vue de la partie en mode console*/
 public class PanelAjoutBot extends PanelType{
