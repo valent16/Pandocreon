@@ -78,6 +78,23 @@ public class GameManager implements IObservableGameManager {
 		observateur = controller;
 	}
 	
+//	/**Methode permeettant de demarrer la partie en mode console*/
+//	public void startGameConsole(){
+//		this.melangerDivinites();
+//		this.melangerPioche();
+//		this.intialisationDesJeux();
+//		this.deroulementTourJeu();
+//	}
+//
+//	/**Methode permettant de demarrer la partie en mode graphique*/
+//	public void startGameIHM() {
+//		this.melangerDivinites();
+//		this.melangerPioche();
+//		this.intialisationDesJeux();
+//		TableJeu tb = new TableJeu();
+//		this.deroulementTourJeu();	
+//	}
+	
 	public void nouvellePartie(){
 		this.melangerDivinites();
 		this.melangerPioche();
@@ -466,7 +483,6 @@ public class GameManager implements IObservableGameManager {
 		observateur.miseAJourJoueurs();
 	}
 	
-	@Override
 	public void notifyJoueurActif(){
 		observateur.miseAJourJoueurActif();
 	}

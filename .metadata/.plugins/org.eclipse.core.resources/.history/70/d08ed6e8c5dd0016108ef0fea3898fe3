@@ -466,7 +466,6 @@ public class GameManager implements IObservableGameManager {
 		observateur.miseAJourJoueurs();
 	}
 	
-	@Override
 	public void notifyJoueurActif(){
 		observateur.miseAJourJoueurActif();
 	}
