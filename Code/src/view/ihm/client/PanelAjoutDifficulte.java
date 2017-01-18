@@ -91,6 +91,7 @@ public class PanelAjoutDifficulte extends PanelType{
 			public void actionPerformed(ActionEvent e) {
 				String[] values = {"facile", "medium", "difficile"};//les noms des strategies
 				client.setStrategie(values[listeStrategie.getSelectedIndex()]);
+				client.ajouterJoueurHumain();//on appelle le panel suivant
 			}
 		});
 	}

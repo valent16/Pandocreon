@@ -142,7 +142,7 @@ public class Client{
 	 * @return le nombre de joueur choisi pour demarrer la partie
 	 */
 	public int getNombreJoueurs(){
-		return this.getNombreBot()+this.getIndexHumain();
+		return this.getNombreBot()+this.getNombreHumain();
 	}
 
 	/**Getter pour le controller de la partie

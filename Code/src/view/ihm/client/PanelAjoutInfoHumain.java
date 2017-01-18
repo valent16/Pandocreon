@@ -121,6 +121,7 @@ public class PanelAjoutInfoHumain extends PanelType{
 				}else if(compteurValider > 1 ){
 					if(testerDonnees()){
 						ajouterJoueur();
+						client.setIndexHumain(client.getIndexHumain()+1);
 						compteurValider--;
 					}
 				}	

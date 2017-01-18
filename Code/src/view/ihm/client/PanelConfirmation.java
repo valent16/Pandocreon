@@ -41,14 +41,8 @@ public class PanelConfirmation extends PanelType{
 	 */
 	public PanelConfirmation(Client c){
 		client = c;
-		/*if(client.getNombreBot()+client.getNombreHumain() == 0){
-			JOptionPane.showMessageDialog(null, "Vous n'avez ajouté aucun joueur", "Aucun joueur dans la partie", JOptionPane.ERROR_MESSAGE, logo);
-			client.retourMenuPrincipale();
-		}*/
-		//else{
 		initialize();
 		ajouterListener();
-		//}
 	}
 
 	@Override
@@ -79,13 +73,12 @@ public class PanelConfirmation extends PanelType{
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 
-		//si il a au moins 1 humain on affiche sinon on le cache
-		if(client.getListeNomHumain().size() != 0)
+		if(client.getListeNomHumain().size() != 0) //si il a au moins 1 humain on affiche sinon on le cache
 			panelNom.add(nomHumains, gbc);
 
 		gbc.gridy = 1;
-		//si il a au moins 1 bot on affiche sinon on le cache
-		if(client.getListeNomBot().size() != 0)
+		
+		if(client.getListeNomBot().size() != 0) //si il a au moins 1 bot on affiche sinon on le cache
 			panelNom.add(nomBots, gbc);
 
 		//pnael confirmation
