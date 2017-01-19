@@ -149,27 +149,11 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 		case NOTREFERENCED:
 			break;
 		}
-		
 		panelDeTour.revalidate();
-		try{
-			System.out.println(De.getInstanceDe().getFace());
-		//Thread.sleep(1000);
-		}catch (Exception e){
-			e.printStackTrace();
-		}
 	}
 
 	@Override
 	public void majTableCroyant() {
-		System.out.println("nb Croyant:"+GameManager.getInstanceUniqueManager().getCroyants().size());
-		try{
-		Thread.sleep(2000);
-		}
-		catch(Exception e){
-			
-		}
-		
-		
 		scrollCroyant.majCarte(new ArrayList<Card>(GameManager.getInstanceUniqueManager().getCroyants()));
 	}
 

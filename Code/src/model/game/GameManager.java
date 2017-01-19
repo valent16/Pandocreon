@@ -47,12 +47,6 @@ public class GameManager implements IObservableGameManager {
 	/**Attribut representant le joueur qui comence le tour*/
 	private Player joueurDebutTour;
 
-	/**Attribut representant le joueur qui joue pendant le tour*/
-	private Player joueurActif;
-
-	/**Attribut representant le nombre de tour*/
-	private int nombreTour = 1;
-
 	/** Methode permettant d'avoir une seule instance du gestionnaire de partie
 	 * @return le gestionnaire de partie
 	 */
@@ -83,7 +77,7 @@ public class GameManager implements IObservableGameManager {
 		this.melangerDivinites();
 		this.melangerPioche();
 		this.intialisationDesJeux();
-		this.deroulementTourJeu();	
+		Tour.deroulementTourJeu();	//lancement des tours de jeu
 	}
 
 	/**Méthode permettant de mélanger les cartes divinites*/	
@@ -195,32 +189,6 @@ public class GameManager implements IObservableGameManager {
 		}
 	}
 
-	/**Methode permettant d'effectuer les tours de jeu*/
-	public void deroulementTourJeu(){
-		int start = 1;
-		while(players.size()!=0){
-			players.get(start%players.size()).lancerDe();
-			System.out.println("\nTour Numero "+ nombreTour + " le de est sur la face "+ De.getInstanceDe().getFace());
-
-			for (int i = start; i<start+this.getNbJoueur(); i++){
-				if (players.size() != 0){
-					joueurActif = players.get(i%players.size());
-					notifyJoueurActif();
-					players.get(i%players.size()).jouerTour();
-				}
-			}
-
-			start = start+1;
-			if (players.size() != 0){
-				start = start%players.size();
-			}
-			nombreTour++;
-			System.out.println();
-			afficherCroyants();
-			System.out.println();
-		}
-	}
-
 	/**Methode permettant d'éliminer un joueur de la partie
 	 * @param joueur le joueur a eliminer
 	 */
@@ -243,7 +211,6 @@ public class GameManager implements IObservableGameManager {
 		croyants.remove(carte);
 		notifyChangementCroyants();
 	}
-
 
 	/**Methode permettant de recuperer l'index du plus jeune joueur
 	 * @return l'index de la liste des joueurs du joueur le plus jeune
@@ -280,8 +247,6 @@ public class GameManager implements IObservableGameManager {
 		int cpt = 0;
 
 		Iterator<Player> itPlayer = players.iterator();
-
-
 
 		while(itPlayer.hasNext()){
 			p = itPlayer.next();
@@ -366,13 +331,6 @@ public class GameManager implements IObservableGameManager {
 		return joueurDebutTour;
 	}
 
-	/**Getter un joueur
-	 * @return le joueur actif durant le tour de jeu
-	 */
-	public Player getJoueurActif() {
-		return joueurActif;
-	}
-
 	/**Getter iun entier
 	 * @return le nombre de joueur present dans la partie
 	 */
@@ -408,13 +366,6 @@ public class GameManager implements IObservableGameManager {
 	 */
 	public Player getJoueurAtIndex(int index){
 		return players.get(index);
-	}
-
-	/**Getter nombre tour
-	 * @return le nombre du tour actuel
-	 */
-	public int getNumeroTour() {
-		return nombreTour;
 	}
 
 	/**Getter de la pile de carte des tours

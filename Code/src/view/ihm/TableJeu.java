@@ -21,15 +21,15 @@ public class TableJeu extends ViewGame{
 	PanelTableJeu panelTableJeu;
 	
 	public TableJeu(Human joueur){
-		//super(controller, j);
 		initialize(joueur);
+		frame.setTitle("Pandocreon Divinae");
+		frame.setPreferredSize(new Dimension(1000,1000));
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	
 	public void initialize(Human joueur){
-//		frame.setTitle("Pandocreon Divinae");
-		frame.setPreferredSize(new Dimension(1000,1000));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout());
 		
 		JPanel panelGlobal = new JPanel();
@@ -37,17 +37,6 @@ public class TableJeu extends ViewGame{
 		
 		panelTableJeu = new PanelTableJeu(GameManager.getInstanceUniqueManager(), De.getInstanceDe());
 		panelGlobal.add(panelTableJeu);
-		
-//		ArrayList<Player> joueurs = GameManager.getInstanceUniqueManager().getPlayers();
-//		Iterator<Player> it = joueurs.iterator();
-//		
-//		Human joueur=null;
-//		while (it.hasNext()){
-//			Player p = it.next();
-//			if (p instanceof Human){
-//				joueur = (Human) p;
-//			}
-//		}
 		
 		if (joueur != null ){
 			panelJoueur = new PanelJoueurReel(joueur);

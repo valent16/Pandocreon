@@ -194,7 +194,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		FinTour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("coucou");
 				setTourFinished(true);
 			}
 		});

@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.game.GameManager;
+import model.game.Tour;
 import model.player.Player;
 
 public class ScrollerPlayer extends JPanel {
@@ -73,7 +74,7 @@ public class ScrollerPlayer extends JPanel {
     	Iterator<PanelPlayer> it = listePanel.iterator();
     	while (it.hasNext()){
     		PanelPlayer panel = it.next();
-    		if (panel.getPlayer() == GameManager.getInstanceUniqueManager().getJoueurActif()){
+    		if (panel.getPlayer() == Tour.getJoueurActif()){
     			panel.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.green));
     		}else{
     			panel.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
