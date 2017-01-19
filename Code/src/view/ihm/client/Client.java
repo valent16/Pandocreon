@@ -260,51 +260,75 @@ public class Client{
 	public boolean getInitialize(){
 		return initialize;
 	}
-	
+	/**Getter pour le menu principale
+	 * @return le menu principal
+	 */
 	public PanelMenuPrincipale getPanelMenuPrincipale() {
 		return panelMenuPrincipale;
 	}
-
+	/**Setter pour le menu principale
+	 * @param panelMenuPrincipale le menu principal
+	 */
 	public void setPanelMenuPrincipale(PanelMenuPrincipale panelMenuPrincipale) {
 		this.panelMenuPrincipale = panelMenuPrincipale;
 	}
-
+	/**Getter pour le panel d'ajout des bots
+	 * @return le panel d'ajout des bots
+	 */
 	public PanelAjoutBot getPanelAjoutBot() {
 		return panelAjoutBot;
 	}
-
+	/**Setter pour le panel d'ajout des bots
+	 * @param panelAjoutBot le panel d'ajout des bots
+	 */
 	public void setPanelAjoutBot(PanelAjoutBot panelAjoutBot) {
 		this.panelAjoutBot = panelAjoutBot;
 	}
-
+	/**Getter pour le panel de la difficulte
+	 * @return le panel de la difficulte
+	 */
 	public PanelAjoutDifficulte getPanelAjoutDifficulte() {
 		return panelAjoutDifficulte;
 	}
-
+	/**Setter pour le panel de la difficulte
+	 * @param panelAjoutDifficulte de la difficulte
+	 */
 	public void setPanelAjoutDifficulte(PanelAjoutDifficulte panelAjoutDifficulte) {
 		this.panelAjoutDifficulte = panelAjoutDifficulte;
 	}
-
+	/**Getter pour le panel d'ajout des humains
+	 * @return le panel d'ajout des humains
+	 */
 	public PanelAjoutHumain getPanelAjoutHumain() {
 		return panelAjoutHumain;
 	}
-
+	/**Setter pour le panel d'ajout des humains
+	 * @param panelAjoutHumain le panel d'ajout des humains
+	 */
 	public void setPanelAjoutHumain(PanelAjoutHumain panelAjoutHumain) {
 		this.panelAjoutHumain = panelAjoutHumain;
 	}
-
+	/**Getter pour le panel d'ajout des informations sur les humains
+	 * @return le panel d'ajout des informations sur les humains
+	 */
 	public PanelAjoutInfoHumain getPanelAjoutInfoHumain() {
 		return panelAjoutInfoHumain;
 	}
-
+	/**Setter pour le panel d'ajout des informations sur les humains
+	 * @param panelAjoutInfoHumain le panel d'ajout des informations sur les humains
+	 */
 	public void setPanelAjoutInfoHumain(PanelAjoutInfoHumain panelAjoutInfoHumain) {
 		this.panelAjoutInfoHumain = panelAjoutInfoHumain;
 	}
-
+	/**Getter pour le panel de confirmation
+	 * @return le panel de confirmation
+	 */
 	public PanelConfirmation getPanelConfirmation() {
 		return panelConfirmation;
 	}
-
+	/**Setter pour le panel de confirmation
+	 * @param panelConfirmationle panel de confirmation
+	 */
 	public void setPanelConfirmation(PanelConfirmation panelConfirmation) {
 		this.panelConfirmation = panelConfirmation;
 	}

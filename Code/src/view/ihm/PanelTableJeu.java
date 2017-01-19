@@ -158,7 +158,9 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 	}
 
 	@Override
-	public void majNbTours() {}
+	public void majNbTours() {
+		//TODO A developper pour afficher le tour de jeu
+	}
 
 	@Override
 	public void afficherVainqueur(Player p) {

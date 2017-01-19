@@ -133,7 +133,5 @@ public class PanelConfirmation extends PanelType{
 				}
 			}
 		});
-
 	}
-
 }
