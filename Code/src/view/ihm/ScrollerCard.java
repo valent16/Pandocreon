@@ -12,7 +12,7 @@ import controller.JoueurController;
 import java.util.List;
 
 import model.cards.Card;
-
+//TODO A COMMENTER
 public class ScrollerCard extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -31,7 +31,6 @@ public class ScrollerCard extends JPanel {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		panel.setBorder(BorderFactory.createLineBorder(Color.red));
 		scroll = new JScrollPane(panel);
-
 		setLayout(new BorderLayout());
 		add(scroll, BorderLayout.CENTER);
 
@@ -58,7 +57,6 @@ public class ScrollerCard extends JPanel {
 	 */
 	public void majCarte(List<Card> cartes){
 		ArrayList<Card> cartesASupprimer = new ArrayList<Card>();
-		//Permet de faire une deep copy de la liste de cartes
 		Iterator<PanelCarte> it = listeCartesGraphiques.iterator();
 		while(it.hasNext()){
 			cartesASupprimer.add(it.next().getCarte());
@@ -95,7 +93,7 @@ public class ScrollerCard extends JPanel {
 		scroll.revalidate();
 	}
 
-	//TODO A commenter
+	//TODO A COMMENTER
 	public void activateSelection(JoueurController controller){
 		Iterator<PanelCarte> it = listeCartesGraphiques.iterator();
 		while(it.hasNext()){
@@ -103,7 +101,7 @@ public class ScrollerCard extends JPanel {
 		}
 	}
 
-	//TODO A commenter
+	//TODO A COMMENTER
 	public void desactivateSelection(){
 		Iterator<PanelCarte> it = listeCartesGraphiques.iterator();
 		while(it.hasNext()){
@@ -111,12 +109,16 @@ public class ScrollerCard extends JPanel {
 		}
 	}
 
-	//TODO A commenter
+	/**Getter du panel du joueur
+	 * @return le panel du joueur
+	 */
 	public PanelJoueurReel getFather() {
 		return father;
 	}
 
-	//TODO A commenter
+	/**Setter du panel du joueur
+	 * @param father le panel du joueur
+	 */
 	public void setFather(PanelJoueurReel father) {
 		this.father = father;
 	}

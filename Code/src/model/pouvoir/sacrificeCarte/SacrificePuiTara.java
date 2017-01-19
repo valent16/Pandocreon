@@ -12,6 +12,7 @@ import model.pouvoir.Pouvoir;
 /**le Sacrifice de la divinite PuiTara qui consiste a detruire toutes les cartes croyants au centre de la table d'origine jour*/
 public class SacrificePuiTara extends Pouvoir{
 
+	/**Constructeur*/
 	public SacrificePuiTara() {
 		super("sacrifice");
 	}

@@ -11,6 +11,7 @@ import model.pouvoir.Pouvoir;
 /**Sacrifice de la divinite Llewella : Peut obliger un joueur à poser une carte Apocalypse s'il en possede une*/
 public class SacrificeLlewella extends Pouvoir{ 
 	
+	/**Constructeur*/
 	public SacrificeLlewella() {
 		super("sacrifice");
 	}
@@ -35,7 +36,5 @@ public class SacrificeLlewella extends Pouvoir{
 				e.printStackTrace();
 			}
 		}
-		
 	}
-
 }

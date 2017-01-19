@@ -12,6 +12,7 @@ import model.pouvoir.Pouvoir;
 /**Sacrifice de la divinite Yarstur : Detruit toutes les cartes de Croyants au centre de la table d'origine Neant*/
 public class SacrificeYarstur extends Pouvoir{
 
+	/**Constructeur*/
 	public SacrificeYarstur() {
 		super("sacrifice");
 	}
@@ -28,6 +29,5 @@ public class SacrificeYarstur extends Pouvoir{
 			}
 		}
 		System.out.println(joueur.getNom()+" a détruit toutes les cartes croyants d'origine Neant");
-
 	}
 }

@@ -22,31 +22,39 @@ import view.IViewGame;
 import model.cards.*;
 
 import java.awt.Component;
-
+//TODO A COMMENTER
 public class PanelTableJeu extends JPanel implements IViewGame {
 	
 	private static final long serialVersionUID = 1L;
 
+	//TODO A COMMENTER
 	JPanel panelJoueurs;
 	
+	//TODO A COMMENTER
 	ScrollerPlayer scrollJoueur;
 	
+	//TODO A COMMENTER
 	ImagePanel panelImageDe;
 	
+	//TODO A COMMENTER
 	JLabel label;
 	
+	//TODO A COMMENTER
 	JPanel panelDeTour;
 	
+	//TODO A COMMENTER
 	ScrollerCard scrollCroyant;
 	
+	/**Constructeur
+	 * @param gameManager le gestionnaire de partie
+	 * @param de le De
+	 */
 	public PanelTableJeu(final GameManager gameManager, De de){
 		this.setLayout(new BorderLayout());
-//		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		JPanel panelGauche = new JPanel();
 		panelGauche.setLayout(new BoxLayout(panelGauche, BoxLayout.Y_AXIS));
 		JPanel panelDroite = new JPanel();
 		panelDroite.setLayout(new BoxLayout(panelDroite, BoxLayout.Y_AXIS));
-		
 		
 		//Definition du panel des joueurs
 		panelJoueurs = new JPanel();
@@ -56,9 +64,6 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 		JPanel panelLabelJoueurJeu = new JPanel();
 		JLabel labelJoueurEnJeu = new JLabel("liste des joueurs en jeu:");
 		panelLabelJoueurJeu.add(labelJoueurEnJeu);
-//		final ArrayList<Player> liste = new ArrayList<Player>();
-//		liste.add(new Bot("lala", new MediumStrategy()));
-//		liste.add(new Bot("lala", new MediumStrategy()));
 		
 		panelJoueurs.add(panelLabelJoueurJeu);
 		SwingUtilities.invokeLater(new Runnable() {
@@ -71,7 +76,6 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 		
 		
 		//Panel de la pile d'appel de carte
-		
 		final JPanel panelCroyant = new JPanel();
 		panelCroyant.setLayout(new BoxLayout(panelCroyant, BoxLayout.Y_AXIS));
 		panelCroyant.setPreferredSize(new Dimension(800,200));
@@ -91,7 +95,6 @@ public class PanelTableJeu extends JPanel implements IViewGame {
             }
         });
 
-		
 		//definition de l'espace reserve au de
 		panelDeTour = new JPanel();
 		panelDeTour.setLayout(new BoxLayout(panelDeTour, BoxLayout.Y_AXIS));
@@ -104,7 +107,7 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 		panelJoueurs.add(panelLabelJoueurJeu);
 		panelDeTour.add(panelLabelDe);
 		
-		// mettre une image non d�finie lorseque le d� est affich� pour la premiere fois
+		//mettre une image non definie lorseque le d� est affich� pour la premiere fois
 		label = new JLabel();
 		label.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panelDeTour.add(label);
@@ -113,7 +116,6 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 		
 		panelGauche.add(panelJoueurs);
 		panelGauche.add(panelCroyant);
-		
 		
 		panelDroite.add(panelDeTour);
 		panelDroite.add(Box.createRigidArea(new Dimension(150,0)));
@@ -129,8 +131,6 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 
 	@Override
 	public void majFaceDe() {
-		
-		
 		switch(De.getInstanceDe().getFace()){
 		case JOUR:
 			panelImageDe = new ImagePanel("./images/OrigineCarte/jour.jpg",800/20,800/20);
@@ -177,5 +177,4 @@ public class PanelTableJeu extends JPanel implements IViewGame {
 	public void majJoueurActif() {
 		scrollJoueur.surlignerJoueurActif();
 	}
-	
 }

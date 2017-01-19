@@ -7,8 +7,8 @@ import model.pouvoir.Pouvoir;
 
 /**Donne un point d'action d'origine Jour*/
 public class SacrificeAjouterPointJour extends Pouvoir{
-    // Donne un point d'action d'origine Jour
     
+	/**Constructeur*/
     public SacrificeAjouterPointJour() {
 		super("sacrifice");
 	}

@@ -13,6 +13,7 @@ import model.pouvoir.Pouvoir;
 /**Sacrifice equivalent a la capacite d'une apocalypse*/
 public class SacrificeApocalypse extends Pouvoir{
 	
+	/**Constructeur*/
 	public SacrificeApocalypse() {
 		super("sacrifice");
 	}
@@ -32,9 +33,8 @@ public class SacrificeApocalypse extends Pouvoir{
                     joueurPlusFaiblePuissance.add(p);
                 }
             }
-            if (joueurPlusFaiblePuissance.size()<2) {
+            if (joueurPlusFaiblePuissance.size()<2)
                 System.out.println("Le joueur "+joueurPlusFaiblePuissance.get(0).getNom()+" est éliminé de la partie!");
-            }
         }else{
             ArrayList<Player> joueurPlusFortePuissance = new ArrayList<Player>();
             int maxPriere = gameManager.getPlayers().get(0).getScore();

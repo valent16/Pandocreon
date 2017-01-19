@@ -33,36 +33,36 @@ import model.cards.withoutOriginCards.DeusEx;
 
 /**Panel represeantant une carte*/
 public class PanelCarte extends JPanel{
-	
+
 	private static final long serialVersionUID = 1L;
 
 	/**contenant le nombre de croyant a droite*/
 	private JPanel panelTop;
-	
+
 	/**panel contenant les dogmes de la carte*/
 	private JPanel panelBot;
-	
+
 	/**Panel contenant le titre de la carte*/
 	private JLabel titre;
-	
+
 	/**label contenant le nom de la carte*/
 	private JLabel nomCarte;
-	
+
 	/**description de la carte*/
 	private JTextArea labelArea;
-	
+
 	/**la carte represente dans le panel*/
 	private Card carte;
-	
+
 	private JButton bouton;
 	private boolean activated = false;
-	
+
 	/**Le controller du joueur*/
 	private JoueurController controller;
-	
+
 	/**La panel de la main du joueur*/
 	private PanelJoueurReel father;
-	
+
 	/**Constructeur
 	 * @param carte la carte a afficher dans le panel
 	 */
@@ -73,27 +73,27 @@ public class PanelCarte extends JPanel{
 		JPanel panelBox = new JPanel();
 		panelBox.setLayout(new BoxLayout(panelBox, BoxLayout.Y_AXIS));
 		panelBox.setPreferredSize(new Dimension(150,200));
-		
+
 		panelTop = new JPanel();
 		panelTop.setLayout(new BorderLayout());
-		
+
 		panelBot = new JPanel();
 		panelBot.setLayout(new BoxLayout(panelBot, BoxLayout.X_AXIS));
-		
+
 		titre = new JLabel();
 		JPanel panelTitre = new JPanel();
 		panelTitre.add(titre);
-	
+
 		nomCarte = new JLabel();
 		nomCarte.setAlignmentX(Component.CENTER_ALIGNMENT);
 		nomCarte.setVerticalAlignment(SwingConstants.CENTER);
-		
+
 		labelArea = new JTextArea();
 		labelArea.setEditable(false);
 		labelArea.setLineWrap(true);
-		
+
 		labelArea.setOpaque(false);
-		
+
 		bouton.add(panelBox);
 		panelBox.add(panelTop);
 		panelBox.add(panelTitre);
@@ -101,7 +101,7 @@ public class PanelCarte extends JPanel{
 		panelBox.add(panelBot);
 		this.add(bouton);
 		bouton.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.black));
-		
+
 		bouton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -109,17 +109,16 @@ public class PanelCarte extends JPanel{
 			}
 		});
 		panelFactory();
-		
 		bouton.setEnabled(false);
 	}
-	
+
 	/**Getter de la carte 
 	 * @return la carte
 	 */
 	public Card getCarte(){
 		return carte;
 	}
-	
+
 	/**Methode de creation du panel en fonction de la carte*/ 
 	public void panelFactory(){
 		ajoutTitre();
@@ -127,7 +126,7 @@ public class PanelCarte extends JPanel{
 			ajoutDogmes();
 			ajoutOrigineDivinite();
 			ajoutDescription();
-		}else {
+		}else{
 			if (carte instanceof ActionCardWithOrigin){
 				ajoutOrigine();
 				if (carte instanceof CarteDogmatique){
@@ -142,15 +141,14 @@ public class PanelCarte extends JPanel{
 			}
 		}
 	}
-	 
+
 	/**Methode permettant d'ajouter les dogmes a la carte*/ 
 	public void ajoutDogmes(){
 		List<EnumDogme> listeDogmes;
-		if (carte instanceof Divinity){
+		if (carte instanceof Divinity)
 			listeDogmes = ((Divinity)carte).getDogmes();
-		}else{
+		else
 			listeDogmes = ((CarteDogmatique)carte).getDogmes();
-		}
 		Iterator<EnumDogme> it = listeDogmes.iterator();
 		while (it.hasNext()){
 			switch (it.next()){
@@ -174,7 +172,7 @@ public class PanelCarte extends JPanel{
 			}
 		}
 	}
-	
+
 	/**Methode permettant d'ajouter dans le panel l'origine de la carte*/
 	public void ajoutOrigine(){
 		String path="";
@@ -182,22 +180,18 @@ public class PanelCarte extends JPanel{
 		case JOUR:
 			path = "./images/OrigineCarte/jour.jpg";
 			break;
-			
 		case NEANT:
 			path = "./images/OrigineCarte/neant.jpg";
 			break;
-			
 		case NUIT:
 			path = "./images/OrigineCarte/nuit.jpg";
 			break;
-			
 		case NOTREFERENCED:
-			
 			break;
 		}
 		panelTop.add(new ImagePanel(path, 800/20, 800/20), BorderLayout.WEST);
 	}
-	
+
 	/**Methode permettant d'ajouter dans le panel l'origine de la divinite*/
 	public void ajoutOrigineDivinite(){
 		String path="";
@@ -205,88 +199,69 @@ public class PanelCarte extends JPanel{
 		case JOUR:
 			path = "./images/OrigineDivinite/jour.jpg";
 			break;
-		
 		case AUBE:
 			path = "./images/OrigineDivinite/aube.jpg";
 			break;
-			
 		case CREPUSCULE:
 			path = "./images/OrigineDivinite/crepuscule.jpg";
 			break;
-			
 		case NUIT:
 			path = "./images/OrigineDivinite/nuit.jpg";
-			
 		case NOTREFERENCED:
-			
 			break;
 		}
 		panelTop.add(new ImagePanel(path, 800/20, 800/20), BorderLayout.WEST);
 	}
-	
+
 	/**Methode permettant d'ajouter dans le type de la carte*/
 	public void ajoutTitre(){
 		String nom = "";
-		if (carte instanceof Divinity){
+		if (carte instanceof Divinity)
 			nom = "Divinite";
-		}
-		if(carte instanceof Believer){
+		if(carte instanceof Believer)
 			nom = "Croyant";
-		}
-		if (carte instanceof SpiritGuide){
+		if (carte instanceof SpiritGuide)
 			nom= "Guide spirituel";
-		}
-		
-		if (carte instanceof ApocalypseWithOrigin || carte instanceof Apocalypse){
+		if (carte instanceof ApocalypseWithOrigin || carte instanceof Apocalypse)
 			nom = "Apocalypse";
-		}
-		if (carte instanceof DeusEx || carte instanceof DeusExWithOrigin){
+		if (carte instanceof DeusEx || carte instanceof DeusExWithOrigin)
 			nom = "Deus Ex";
-		}
 		titre.setText(nom);
 	}
-	
+
 	/**Methode permettant d'ajouter dans le panel la description de la carte*/
 	public void ajoutDescription(){
 		String description="";
-		
-		if (carte instanceof Divinity){
+		if (carte instanceof Divinity)
 			description = ((Divinity)carte).getDescription();
-		}
-		
-		if (carte instanceof CarteDogmatique){
+		if (carte instanceof CarteDogmatique)
 			description = ((CarteDogmatique)carte).getTextSacrifice();
-		}
-		
-		if (carte instanceof DeusExWithOrigin){
+		if (carte instanceof DeusExWithOrigin)
 			description = ((DeusExWithOrigin)carte).getDescription();
-		}
-		if (carte instanceof DeusEx){
+		if (carte instanceof DeusEx)
 			description = ((DeusEx)carte).getDescription();
-		}
-		
 		labelArea.setText(description);
 	}
-	
+
 	/**Methode permettant de gerr les actions faites sur la carte*/
 	public void actionCarte(){
-		if (father.isSuppressionCarte()){
+		if (father.isSuppressionCarte())
 			controller.supprimerCarte((ActionCard)this.carte);
-		}else if (father.isJouerCarte()){
+		else if (father.isJouerCarte()){
 			//TODO A developper le fait de pouvoir jouer une carte en mode graphique
 		}
 	}
-	
+
 	//TODO A COMMENTER
 	public void activateSelection(){
 		bouton.setEnabled(true);
 	}
-	
+
 	//TODO A COMMENTER
 	public void desactivateSelection(){
 		bouton.setEnabled(false);
 	}
-	
+
 	//TODO A COMMENTER
 	public boolean isActivated(){
 		return activated;

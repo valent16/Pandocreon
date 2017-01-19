@@ -10,6 +10,7 @@ import model.pouvoir.Pouvoir;
 /**Sacrifice de la divinite Killinstred: peut obliger un joueur à poser une carte Apocalypse s'il en possède une*/
 public class SacrificeKillinstred extends Pouvoir{
 
+	/**Constructeur*/
 	public SacrificeKillinstred() {
 		super("sacrifice");
 	}

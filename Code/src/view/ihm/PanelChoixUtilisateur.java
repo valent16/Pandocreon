@@ -19,9 +19,7 @@ public class PanelChoixUtilisateur {
 	
 	/**methode permettant d'initialiser les composants de la fenetre*/
 	public void initialize(){
-		
 		JWindow fenetre = new JWindow();
-		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 

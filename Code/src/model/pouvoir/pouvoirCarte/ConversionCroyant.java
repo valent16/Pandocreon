@@ -12,9 +12,10 @@ import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;
 import model.pouvoir.Pouvoir;
-
+/**Pouvoir du guide spirituel pour convertir un croyant*/
 public class ConversionCroyant extends Pouvoir {
 
+	/**Constructeur*/
 	public ConversionCroyant() {
 		super("Permet de convertir des croyants situes sur la table");
 	}
@@ -26,20 +27,18 @@ public class ConversionCroyant extends Pouvoir {
 		if(((SpiritGuide) carte).getOrigine() == EnumCosmogonie.NEANT){
 			if (joueur.getDicoPA().get(EnumCosmogonie.NEANT)>= 1 ||joueur.getDicoPA().get(EnumCosmogonie.NUIT)>= 2 ||joueur.getDicoPA().get(EnumCosmogonie.JOUR)>= 2 ){
 				origine = joueur.pickOrigine((SpiritGuide) carte);
-				if (origine != EnumCosmogonie.NEANT){
+				if (origine != EnumCosmogonie.NEANT)
 					PAaUtiliser = 2;
-				}
-			}else{
+			}else
 				throw new PAInsuffisantException("le joueur n'a pas assez de PA pour utiliser cette carte");
-			}
-		}else{
+		}else
 			origine = ((SpiritGuide) carte).getOrigine();
-		}
-		
+
+
 		List<Believer> croyants = joueur.pickCroyant((SpiritGuide) carte);
-		if (croyants.size() == 0){
+		if (croyants.size() == 0)
 			throw new NoCroyantLinkedAtConversionException("Aucun croyant n'ont ete lie au guide");
-		}
+
 		joueur.decrementerPointAction(origine, PAaUtiliser);
 		Believer c;
 		Iterator<Believer> itCroyant = croyants.iterator();
@@ -51,10 +50,8 @@ public class ConversionCroyant extends Pouvoir {
 		joueur.getScore();
 		joueur.retirerCarte(carte);
 		joueur.rattacherGuide(carte);
-		
+
 		if (joueur instanceof Human)
-		{
 			((Human)joueur).notifyChangementCarteRattachees();
-		}
 	}
 }

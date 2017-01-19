@@ -1,5 +1,6 @@
 package view.ihm;
 import javax.swing.BoxLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -9,10 +10,9 @@ import java.awt.Dimension;
 import model.game.De;
 import model.game.GameManager;
 import model.player.Human;
-import view.ViewGame;
 
 
-public class TableJeu extends ViewGame{
+public class TableJeu{
 	
 	JFrame frame = new JFrame();
 	

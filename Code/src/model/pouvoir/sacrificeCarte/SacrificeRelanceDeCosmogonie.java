@@ -10,6 +10,7 @@ import model.pouvoir.Pouvoir;
 /**Sacrifice qui relance le de de Cosmogonie. Le tour se finit normalement sous la nouvelle influence*/
 public class SacrificeRelanceDeCosmogonie extends Pouvoir{
 
+	/**Constructeur*/
 	public SacrificeRelanceDeCosmogonie() {
 		super("sacrifice");
 	}
@@ -58,8 +59,6 @@ public class SacrificeRelanceDeCosmogonie extends Pouvoir{
 			break;
 		default:
 			break;
-		}
-		
+		}	
 	}
-
 }

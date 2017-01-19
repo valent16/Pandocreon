@@ -11,6 +11,7 @@ import model.pouvoir.Pouvoir;
 /**Sacrifice qui permet au joueur de poser le dé de Cosmogonie sur la face qu'il désire et commence un nouveau tour de jeu*/
 public class SacrificePoserDeFace extends Pouvoir{
     
+	/**Constructeur*/
     public SacrificePoserDeFace() {
 		super("sacrifice");
 	}

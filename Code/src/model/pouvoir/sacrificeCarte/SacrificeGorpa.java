@@ -15,6 +15,7 @@ import model.pouvoir.Pouvoir;
  */
 public class SacrificeGorpa extends Pouvoir{
 	
+	/**Constructeur*/
 	public SacrificeGorpa() {
 		super("sacrifice");
 	}
@@ -47,7 +48,6 @@ public class SacrificeGorpa extends Pouvoir{
 			}
 		}
 		System.out.println("Vous n'avez pas le droit de recevoir des points d'action");
-		sc.close();
-		
+		sc.close();	
 	}
 }   

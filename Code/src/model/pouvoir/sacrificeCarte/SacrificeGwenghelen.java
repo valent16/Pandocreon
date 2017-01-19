@@ -10,6 +10,7 @@ import model.pouvoir.Pouvoir;
 /**Sacrifice de la divinite Gwenghelen : Recupere autant de points d'Action d'origine Neant que le nombre de guides spirituels que la divinite possede*/
 public class SacrificeGwenghelen extends Pouvoir{
 	
+	/**Constructeur*/
 	public SacrificeGwenghelen(){
 		super("sacrifice");
 	}

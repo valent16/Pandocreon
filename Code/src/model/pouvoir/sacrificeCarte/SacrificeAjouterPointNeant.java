@@ -8,6 +8,7 @@ import model.pouvoir.Pouvoir;
 /**Donne un point d'action d'origine Neant*/
 public class SacrificeAjouterPointNeant extends Pouvoir{
     
+	/**Constructeur*/
 	public SacrificeAjouterPointNeant() {
 		super("sacrifice");
 	}
@@ -16,5 +17,4 @@ public class SacrificeAjouterPointNeant extends Pouvoir{
 	public void onAction(Card carte, Player joueur) throws Exception {
 		joueur.incrementerPointAction(EnumCosmogonie.NEANT, 1);
 	}
-
 }

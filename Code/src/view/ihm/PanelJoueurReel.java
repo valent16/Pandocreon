@@ -29,7 +29,7 @@ import view.IViewJoueurReel;
 import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
 import model.cards.OriginCards.*;
-
+//TODO A COMMENTER
 public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 	private boolean tourFinished = false;
@@ -236,7 +236,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 	/**fenetre permettant d'afficher les choix du joueur durant son tour*/
 	public void createFrameChoixTour(){
-
 		final JWindow frameChoix = new JWindow();
 		frameChoix.setSize(500, 300);
 		frameChoix.setLocationRelativeTo(null);

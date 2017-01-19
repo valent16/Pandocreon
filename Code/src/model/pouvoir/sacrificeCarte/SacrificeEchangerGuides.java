@@ -19,6 +19,7 @@ import model.pouvoir.Pouvoir;
  */
 public class SacrificeEchangerGuides extends Pouvoir{
 
+	/**Constructeur*/
 	public SacrificeEchangerGuides() {
 		super("sacrifice");
 	}

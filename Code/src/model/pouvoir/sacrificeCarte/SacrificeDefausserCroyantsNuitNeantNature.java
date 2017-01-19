@@ -14,6 +14,7 @@ import model.pouvoir.Pouvoir;
 /**Tous les croyants d'origine NUIT ou NEANT et d'ayant le dogme Nature, actuellement sur la table sont defausses. Les capacites speciales ne sont pas jouees*/
 public class SacrificeDefausserCroyantsNuitNeantNature extends Pouvoir{
 
+	/**Constructeur*/
 	public SacrificeDefausserCroyantsNuitNeantNature() {
 		super("sacrifice");
 	}
