@@ -19,21 +19,13 @@ public class PanelConfirmation extends PanelType{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panelConfirmation;
-
 	private JPanel panelNombre;
-
 	private JPanel panelNom;
-
 	private JLabel nombreJoueur;
-
 	private JLabel nombreBot;
-
 	private JLabel nombreHumain;
-
 	private JLabel strategie;
-
 	private JLabel nomBots;
-
 	private JLabel nomHumains;
 
 	/**Constructeur
@@ -48,8 +40,6 @@ public class PanelConfirmation extends PanelType{
 	@Override
 	protected void initialize() {
 		this.setLayout(new BorderLayout());
-		System.out.println("salut");
-
 		//les labels
 		nombreJoueur = new JLabel("joueurs au total : "+client.getNombreJoueurs()+ " | "); 
 		nombreBot = new JLabel("Bots : "+client.getNombreBot()+ " | ");

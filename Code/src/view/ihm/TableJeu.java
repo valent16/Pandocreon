@@ -42,8 +42,6 @@ public class TableJeu extends ViewGame{
 			panelJoueur = new PanelJoueurReel(joueur);
 			panelGlobal.add(panelJoueur);
 		}
-		
-
 		frame.getContentPane().add(panelGlobal, BorderLayout.CENTER);
 		frame.pack();
 	}
