@@ -9,15 +9,21 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
+//TODO A COMMENTER
 public class ImagePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	//TODO A COMMENTER
 	private BufferedImage image;
 	
 	private int width, height;
 	
+	/**Constructeur
+	 * @param path le chemin de l'image de la carte
+	 * @param width la largeur de la carte
+	 * @param height la hauteur de la carte
+	 */
 	public ImagePanel(String path, int width, int height){
 		this.width = width;
 		this.height = height;
@@ -30,6 +36,9 @@ public class ImagePanel extends JPanel {
 		
 	}
 	
+	/**Getter de l'image
+	 * @return l'image de la carte
+	 */
 	public BufferedImage getBufferedImage(){
 		return this.image;
 	}

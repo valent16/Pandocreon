@@ -65,7 +65,7 @@ public class Client{
 		frame.setVisible(true);	
 	}
 
-	//methode permettant d'initialiser les composants de la fenetre
+	/**methode permettant d'initialiser les composants de la fenetre*/
 	public void initialize(){
 		setPanelMenuPrincipale(new PanelMenuPrincipale(this));
 		//panelAjoutInfoHumain = new PanelAjoutInfoHumain(this);	

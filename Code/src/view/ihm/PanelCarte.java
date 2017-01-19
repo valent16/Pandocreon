@@ -113,12 +113,14 @@ public class PanelCarte extends JPanel{
 		bouton.setEnabled(false);
 	}
 	
-	//TODO A COMMENTER
+	/**Getter de la carte 
+	 * @return la carte
+	 */
 	public Card getCarte(){
 		return carte;
 	}
 	
-	//TODO A COMMENTER /M�thode de cr�ation du panel en fonction de la carte 
+	/**Methode de creation du panel en fonction de la carte*/ 
 	public void panelFactory(){
 		ajoutTitre();
 		if (carte instanceof Divinity){
@@ -132,18 +134,16 @@ public class PanelCarte extends JPanel{
 					ajoutDogmes();
 					ajoutDescription();
 				}
-				else if (carte instanceof DeusExWithOrigin){
+				else if (carte instanceof DeusExWithOrigin)
 					ajoutDescription();
-				}
-			}else {
-				if (carte instanceof DeusEx){
+			}else{
+				if (carte instanceof DeusEx)
 					ajoutDescription();
-				}
 			}
 		}
 	}
 	 
-	////TODO A COMMENTER Fonction permettant d'ajouter les dogmes � la carte 
+	/**Methode permettant d'ajouter les dogmes a la carte*/ 
 	public void ajoutDogmes(){
 		List<EnumDogme> listeDogmes;
 		if (carte instanceof Divinity){
@@ -175,7 +175,7 @@ public class PanelCarte extends JPanel{
 		}
 	}
 	
-	//TODO A COMMENTER
+	/**Methode permettant d'ajouter dans le panel l'origine de la carte*/
 	public void ajoutOrigine(){
 		String path="";
 		switch(((ActionCardWithOrigin) carte).getOrigine()){
@@ -198,7 +198,7 @@ public class PanelCarte extends JPanel{
 		panelTop.add(new ImagePanel(path, 800/20, 800/20), BorderLayout.WEST);
 	}
 	
-	//TODO A COMMENTER
+	/**Methode permettant d'ajouter dans le panel l'origine de la divinite*/
 	public void ajoutOrigineDivinite(){
 		String path="";
 		switch(((Divinity) carte).getOrigine()){
@@ -224,7 +224,7 @@ public class PanelCarte extends JPanel{
 		panelTop.add(new ImagePanel(path, 800/20, 800/20), BorderLayout.WEST);
 	}
 	
-	//TODO A COMMENTER
+	/**Methode permettant d'ajouter dans le type de la carte*/
 	public void ajoutTitre(){
 		String nom = "";
 		if (carte instanceof Divinity){
@@ -246,7 +246,7 @@ public class PanelCarte extends JPanel{
 		titre.setText(nom);
 	}
 	
-	//TODO A COMMENTER
+	/**Methode permettant d'ajouter dans le panel la description de la carte*/
 	public void ajoutDescription(){
 		String description="";
 		
@@ -268,14 +268,12 @@ public class PanelCarte extends JPanel{
 		labelArea.setText(description);
 	}
 	
-	//TODO A COMMENTER
+	/**Methode permettant de gerr les actions faites sur la carte*/
 	public void actionCarte(){
 		if (father.isSuppressionCarte()){
 			controller.supprimerCarte((ActionCard)this.carte);
 		}else if (father.isJouerCarte()){
-			//appel de la m�thode de jeu
-		}else{
-			
+			//TODO A developper le fait de pouvoir jouer une carte en mode graphique
 		}
 	}
 	

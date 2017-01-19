@@ -4,7 +4,7 @@ import model.player.Player;
 
 import view.IViewGame;
 
-/**Classe qui agit comme un controller du gestionnaur de partie en gerant la vue de la partie et le gestionnaire de partie*/
+/**Classe qui agit comme un controller du gestionnaire de partie en gerant la vue de la partie et le gestionnaire de partie*/
 public class GameManagerController implements IObserverGameManager, IObserverDe{
 
 	/**Attribut correspondant a la vue du gestionnaire de partie*/	

@@ -40,63 +40,32 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 	Human joueurReel;
 
-	//jour
-	JLabel label;
+	/**Label qui represente le jour*/
+	JLabel labelJour;
 
-	//nuit
-	JLabel label_1;
+	/**Label qui represente la nuit*/
+	JLabel labelNuit;
 
-	//neant
-	JLabel label_2;
+	/**Label qui represente le neant*/
+	JLabel labelNeant;
 
-	//scroll label de la main du joueur
+	/**panel representant la main du joueur*/
 	ScrollerCard mainJoueur;
 
-	//scroll label des cartes rattachees au joueur
+	/**panel representant les cartes rattachees au joueur*/
 	ScrollerCard cartesRattachees;
 
 	JPanel panelDivinite;
-
 	JPanel panelDroite;
-
 	JPanel panelFinTour;
-
 	private boolean suppressionCarte = false ;
+	private boolean jouerCarte = false;	
+	boolean buttonPressed = false;
 
-	private boolean jouerCarte = false;
-
-	public boolean isJouerCarte(){
-		return jouerCarte;
-	}
-
-	public boolean isSuppressionCarte(){
-		return suppressionCarte;
-	}
-
-	private void setTourFinished(boolean value){
-		if (value == false){
-			panelFinTour.setVisible(true);
-		}else{
-			panelFinTour.setVisible(false);
-		}
-		tourFinished = value;
-
-		suppressionCarte = false;
-		jouerCarte = false;
-	}
-
-	//Variable permettant de savoir si le tour du joueur est termine ou non
-	public boolean isTourFinished(){
-		return tourFinished;
-	}
-
-	//Methode permettant d'initialiser le controller de la vue
-	public void initializeController(JoueurController controller){
-		this.controller = controller;
-	}	
-
+	/**Constructeur
+	 * @param p l'humain 
+	 */
 	public PanelJoueurReel(Human p){
-
 		this.joueurReel = p;
 
 		this.setLayout( new BorderLayout());
@@ -172,15 +141,15 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		ImagePanel imageNeant = new ImagePanel("./images/OrigineCarte/neant.jpg",800/20,800/20);
 		grillePoints.add(new JLabel(new ImageIcon(imageNeant.getBufferedImage().getScaledInstance(800/20,800/20, Image.SCALE_SMOOTH))));
 
-		label = new JLabel("jour");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		grillePoints.add(label);
-		label_1 = new JLabel("nuit");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		grillePoints.add(label_1);
-		label_2 = new JLabel("neant");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		grillePoints.add(label_2);
+		labelJour = new JLabel("jour");
+		labelJour.setHorizontalAlignment(SwingConstants.CENTER);
+		grillePoints.add(labelJour);
+		labelNuit = new JLabel("nuit");
+		labelNuit.setHorizontalAlignment(SwingConstants.CENTER);
+		grillePoints.add(labelNuit);
+		labelNeant = new JLabel("neant");
+		labelNeant.setHorizontalAlignment(SwingConstants.CENTER);
+		grillePoints.add(labelNeant);
 
 		panelPointsAction.add(panelLabelPA);
 		panelPointsAction.add(grillePoints);
@@ -209,8 +178,17 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		this.add(panelGauche, BorderLayout.WEST);
 		this.add(panelDroite, BorderLayout.EAST);
 	}
+	
+	/**Methode permettant d'initialiser le controller de la vue
+	 * @param controller le controller du joueur 
+	 */
+	public void initializeController(JoueurController controller){
+		this.controller = controller;
+	}
 
-	//Methode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
+	/**Methode permettant de mettre les cartes converties par les joueurs dans une liste unique (guides et croyants)
+	 * @return les croyants convertis
+	 */
 	private List<Card> getCartesRattaches(){
 		final ArrayList<Card> cartesConverties = new ArrayList<Card>();
 		Iterator<SpiritGuide> it = joueurReel.getGuides().iterator();
@@ -233,9 +211,9 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
 	@Override
 	public void majPointsAction() {
-		label.setText(String.valueOf(joueurReel.getDicoPA().get(EnumCosmogonie.JOUR))); 
-		label_1.setText(String.valueOf(joueurReel.getDicoPA().get(EnumCosmogonie.NUIT)));
-		label_2.setText(String.valueOf(joueurReel.getDicoPA().get(EnumCosmogonie.NEANT)));
+		labelJour.setText(String.valueOf(joueurReel.getDicoPA().get(EnumCosmogonie.JOUR))); 
+		labelNuit.setText(String.valueOf(joueurReel.getDicoPA().get(EnumCosmogonie.NUIT)));
+		labelNeant.setText(String.valueOf(joueurReel.getDicoPA().get(EnumCosmogonie.NEANT)));
 	}
 
 	@Override
@@ -254,9 +232,9 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		this.setTourFinished(false);
 		createFrameChoixTour();
 	}
-	boolean buttonPressed = false;
+	
 
-	//fenetre permettant d'afficher les choix du joueur durant son tour
+	/**fenetre permettant d'afficher les choix du joueur durant son tour*/
 	public void createFrameChoixTour(){
 
 		final JWindow frameChoix = new JWindow();
@@ -334,9 +312,41 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		panel.add(panelPasserTour);
 
 		panel.setAlignmentX(SwingConstants.CENTER);
-
 		frameChoix.add(panel);
-
 		frameChoix.pack();
+	}
+	
+	/**Getter jouer carte
+	 * @return si on peut jouer la carte
+	 */
+	public boolean isJouerCarte(){
+		return jouerCarte;
+	}
+
+	/**Getter supprimer carte
+	 * @return si on peut supprimer la carte
+	 */
+	public boolean isSuppressionCarte(){
+		return suppressionCarte;
+	}
+
+	/**Setter pour termine le tour
+	 * @param value booleen pour savoir si on fini le tour ou pas
+	 */
+	private void setTourFinished(boolean value){
+		if (value == false)
+			panelFinTour.setVisible(true);
+		else
+			panelFinTour.setVisible(false);
+		tourFinished = value;
+		suppressionCarte = false;
+		jouerCarte = false;
+	}
+
+	/**Variable permettant de savoir si le tour du joueur est termine ou non
+	 * @return booleen pour savoir si on finit le tour ou pas
+	 */
+	public boolean isTourFinished(){
+		return tourFinished;
 	}
 }

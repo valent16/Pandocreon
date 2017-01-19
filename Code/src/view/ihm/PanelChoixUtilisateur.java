@@ -8,14 +8,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
-
+//TODO A COMMENTER
 public class PanelChoixUtilisateur {
 	JFrame frame = new JFrame();
 	
+	/**Constructeur*/
 	public PanelChoixUtilisateur(){
 		initialize();
 	}
 	
+	/**methode permettant d'initialiser les composants de la fenetre*/
 	public void initialize(){
 		
 		JWindow fenetre = new JWindow();
@@ -49,9 +51,7 @@ public class PanelChoixUtilisateur {
 		panel.add(panelPasserTour);
 		
 		panel.setAlignmentX(SwingConstants.CENTER);
-		
 		fenetre.add(panel);
-		
 		frame.pack();
 	}
 }
