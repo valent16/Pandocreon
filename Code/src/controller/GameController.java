@@ -78,6 +78,7 @@ public class GameController {
 	}
 
 	/**Methode permettant de verifier si le nombre de joueur est compris entre 2 et 10
+	 * @param nb le nombre de joueur
 	 * @return boolean true si le nombre est correct
 	 */
 	public boolean checkNbJoueur(int nb){
@@ -97,7 +98,7 @@ public class GameController {
 
 	/**Methode permettant la creation d'un bot et de l'ajouter a la partie
 	 * @param nom le nom du joueur
-	 * @param age l'age du joueur 
+	 * @param nomStrat l'age du joueur 
 	 */
 	public void CreationBot(String nom, String nomStrat){
 		Strategy strat;

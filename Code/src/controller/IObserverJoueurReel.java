@@ -14,14 +14,18 @@ public interface IObserverJoueurReel {
 	public Player selectTarget();
 	
 	/**Methode permettant au joueur par sa vue de choisir les croyants a convertir grace a un guide
-	 * @param carte le guide spirituel utilise pour convertir les croyants
+	 * @param guideSpirituel le guide spirituel utilise pour convertir les croyants
+	 * @return la liste des croyants choisi
 	 */
 	public List<Believer> selectCroyant(SpiritGuide guideSpirituel);
 	
 	/**Methode permettant au joueur par sa vue de demarrer son tour de jeu*/
 	public void startTourJoueur();
 	
-	/**Methode permettant au joueur par sa vue de verifier si c'est points d'origine sont suffisant pour utiliser la carte*/
+	/**Methode permettant au joueur par sa vue de verifier si c'est points d'origine sont suffisant pour utiliser la carte
+	 * @param carte la carte a joueur
+	 * @return l'origine a utiliser
+	 */
 	public EnumCosmogonie selectOrigine(ActionCardWithOrigin carte);
 	
 	/**Methode permettant de mettre a jour les cartes du joueur*/

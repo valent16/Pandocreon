@@ -9,7 +9,7 @@ import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.player.Bot;
 import model.player.Player;
-
+//TODO A developper
 /**Une strategie random avec un switch case*/
 public class RandomStrategy implements Strategy{
 

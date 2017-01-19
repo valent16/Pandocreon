@@ -12,6 +12,7 @@ import model.player.Player;
 /**Interface de startégie*/
 public interface Strategy {	
 	
+	/**Methode permettant de recuperer les données du bot*/
 	public void setBot(Bot bot);
 	
 	public void jouer(Bot bot);

@@ -4,10 +4,14 @@ import model.player.Player;
 /**Interface pour gerer le gestionnaire de partie*/
 public interface IObserverGameManager {
 	
-	/**Methode permettant d'annoncer a la vue la defaite d'un joueur*/
+	/**Methode permettant d'annoncer a la vue la defaite d'un joueur
+	 * @param joueur le joueur
+	 */
 	public void annoncerDefaitJoueur(Player joueur);
 	
-	/**Methode permettant d'annoncer a la vue la victoire d'un joueur*/
+	/**Methode permettant d'annoncer a la vue la victoire d'un joueur
+	 * @param joueur le joueur
+	 */
 	public void annoncerVictoireJoueur(Player joueur);
 	
 	/**Methode permettant de mettre a jour la liste de croyants sur la table a jour*/

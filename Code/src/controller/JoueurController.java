@@ -25,7 +25,8 @@ public class JoueurController implements IObserverJoueurReel {
 	Human joueur;
 
 	/**Constructeur
-	 * @param j l'humain qui sera utilise par le controller 
+	 * @param j le joueur
+	 * @param vueJoueur la vue du joueur
 	 */
 	public JoueurController(Human j, IViewJoueurReel vueJoueur) {
 		this.joueur = j;

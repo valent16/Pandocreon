@@ -1,10 +1,10 @@
 ﻿package model.cards.OriginCards;
+
 import java.util.ArrayList;
 
+import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumDogme;
 import model.player.Player;
-import model.EnumType.EnumCosmogonie;
-
 
 public class Believer extends CarteDogmatique{
 

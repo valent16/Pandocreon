@@ -8,7 +8,7 @@ import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.player.Bot;
 import model.player.Player;
-
+//TODO A developper
 /**Stratégie de jeu difficile pour les bots*/
 public class HardStrategy implements Strategy {
 
