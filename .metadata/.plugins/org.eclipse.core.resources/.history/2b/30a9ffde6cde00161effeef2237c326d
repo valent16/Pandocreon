@@ -21,11 +21,11 @@ public class TableJeu{
 	PanelTableJeu panelTableJeu;
 	
 	public TableJeu(Human joueur){
-		
+		initialize(joueur);
 		frame.setTitle("Pandocreon Divinae");
 		frame.setPreferredSize(new Dimension(1000,1000));
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		initialize(joueur);
 		frame.setVisible(true);
 	}
 	
