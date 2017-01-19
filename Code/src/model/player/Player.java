@@ -1,7 +1,6 @@
 package model.player;
 
 import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -123,7 +122,7 @@ public abstract class Player extends Observer{
 		}
 		return score;
 	}
-	
+
 	/**Methode permettant au joueur de lancer le de*/
 	public void lancerDe(){
 		De.getInstanceDe().lancerDe();
@@ -145,7 +144,7 @@ public abstract class Player extends Observer{
 
 	/**Methode permettant de choisir une cible (joueur)
 	 * @return le joueur ciblé
-	 * @throws TargetSelectionException
+	 * @throws TargetSelectionException exception sur le joueur selectionne
 	 */
 	public abstract Player pickTarget() throws TargetSelectionException;
 
@@ -182,7 +181,7 @@ public abstract class Player extends Observer{
 		if (carte instanceof ActionCard)
 			hand.remove((ActionCard)carte);
 	}
-	
+
 	/**Methode permettant de se defausser d'une carte
 	 * @param carte la carte a se defausser
 	 */
@@ -194,7 +193,7 @@ public abstract class Player extends Observer{
 	public abstract void defausserCartes(LinkedList<ActionCard> cartes);
 
 	/**Methode permettant de se defausser d'un guide
-	 * @param carte le guide a se defausser
+	 * @param guide le guide a se defausser
 	 */
 	public abstract void defausserGuideRattache(SpiritGuide guide);
 
@@ -213,7 +212,8 @@ public abstract class Player extends Observer{
 
 	/**Methode permettant de retirer des points d'action du joueur du nombre de points indiqué
 	 * @param typePA le type de PA (nuit, jour ou neant
-	 * @param nbPA le nombre de points a retirer
+	 *@param nbPA le nombre de points a retirer
+	 * @throws PAInsuffisantException exceprion si le joueur manque de point d'action
 	 */
 	public abstract void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException;
 
@@ -241,22 +241,30 @@ public abstract class Player extends Observer{
 				incrementerPointAction(De.getInstanceDe().getFace(), 1);//on ajoute 1 point pour une origine Crepuscule
 		}
 	}
-	
-	/**Getter de la divinite du joueur*/
+
+	/**Getter de la divinite du joueur
+	 * @return la divinite du joueur
+	 */
 	public Divinity getDivinity() {
 		return divinity;
 	}
-	/**Setter de la divinite du joueur*/
+	/**Setter de la divinite du joueur
+	 * @param divinity la divinite attribuer au joueur
+	 */
 	public void setDivinity(Divinity divinity) {
 		this.divinity = divinity;
 	}
 
-	/**Getter de l'age du joueur*/
+	/**Getter de l'age du joueur
+	 * @return l'age du joueur
+	 */
 	public int getAge() {
 		return age;
 	}
 
-	/**Setter de l'age du joueur*/
+	/**Setter de l'age du joueur
+	 * @param age l'age du joueur
+	 */
 	private void setAge(int age) {
 		this.age = age;
 	}
@@ -268,7 +276,7 @@ public abstract class Player extends Observer{
 		return dicoPA;
 	}
 
-	/**Getter lliste de guides
+	/**Getter liste des guides
 	 * @return les guides qui sont rattaché a ce joueur
 	 */
 	public LinkedList<SpiritGuide> getGuides() {
@@ -296,12 +304,16 @@ public abstract class Player extends Observer{
 		return hand.size();
 	}
 
-	/**Getter du pseudo*/
+	/**Getter du pseudo
+	 * @return le nom du joueur
+	 */
 	public String getNom(){
 		return pseudo;
 	}
 
-	/**Setter du pseudo*/
+	/**Setter du pseudo
+	 * @param pseudo le nom du joueur
+	 */
 	public void setNom(String pseudo){
 		this.pseudo = pseudo;
 	}
@@ -311,5 +323,3 @@ public abstract class Player extends Observer{
 		return "Player [pseudo=" + pseudo +", dicoPA="+ dicoPA;
 	}
 }
-
-

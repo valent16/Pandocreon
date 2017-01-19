@@ -20,7 +20,9 @@ import view.ihm.client.Client;
 /**Classe de lancement du programme*/
 public class Main{
 
-	/**Methode pour lancer l'application*/
+	/**Methode pour lancer l'application
+	 * @param args les arguments en ligne de commande
+	 */
 	public static void main(String[] args) {	
 		int valeur = 1;
 		switch(valeur){

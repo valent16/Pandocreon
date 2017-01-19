@@ -1,16 +1,16 @@
-﻿package model.cards.OriginCards;
+package model.cards.OriginCards;
 
 import java.util.ArrayList;
 
 import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumDogme;
 import model.player.Player;
-
+/**Classe representant une carte croyant*/
 public class Believer extends CarteDogmatique{
 
 	/**Attribut representant le nombre de point que rapporte le croyant*/
 	private int nbPrieres;
-	
+
 	/**Constructeur
 	 * @param nom le nom du croyant
 	 * @param origine l'origine du croyant

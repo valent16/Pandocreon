@@ -9,8 +9,9 @@ public class DeusExWithOrigin extends ActionCardWithOrigin{
 	private String description;
 	
 	/**Constructeur 
-s	 * @param nom le nom de la carte DeusEx
-	 * @param origine l'origine de la carte DeusEx
+	 * @param nom le nom de la carte DeusEx
+	 * @param origine l'origine de la carte DeusExe
+	 * @param description la description de la carte
 	 */
 	public DeusExWithOrigin(String nom, EnumCosmogonie origine, String description) {
 		super(nom, origine);

@@ -8,7 +8,10 @@ public class DeusEx extends ActionCard{
 
 	private String description;
 	
-	/**Constructeur*/
+	/**Constructeur
+	 * @param nom le nom de la carte
+	 * @param description la description de la carte
+	 */
 	public DeusEx(String nom, String description) {
 		super(nom);
 		

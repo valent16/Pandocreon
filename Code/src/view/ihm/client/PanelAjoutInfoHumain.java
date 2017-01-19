@@ -129,7 +129,9 @@ public class PanelAjoutInfoHumain extends PanelType{
 		});
 	}
 
-	/**Methode permettant de tester les donnees saisies par l'utilisateur*/
+	/**Methode permettant de tester les donnees saisies par l'utilisateur
+	 * @return true si les données sont valides sinon false
+	 */
 	private boolean testerDonnees(){
 		if(tfNom.getText().equals("")){//si le nom est vide
 			JOptionPane.showMessageDialog(null, "Vous n'avez pas donnée de nom au joueur", "Probleme nom joueur", JOptionPane.ERROR_MESSAGE, logo);

@@ -1,6 +1,7 @@
-﻿package model.pouvoir.sacrificeCarte;
+package model.pouvoir.sacrificeCarte;
 
 import java.util.Scanner;
+
 import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
 import model.game.De;
@@ -35,6 +36,5 @@ public class SacrificePoserDeFace extends Pouvoir{
                 break;
         }
         sc.close();
-		
 	}  
 }

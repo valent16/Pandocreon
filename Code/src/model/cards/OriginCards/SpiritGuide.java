@@ -1,14 +1,13 @@
-﻿package model.cards.OriginCards;
-
+package model.cards.OriginCards;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import model.EnumType.EnumCosmogonie;
 import model.EnumType.EnumDogme;
 import model.player.Player;
-import model.EnumType.EnumCosmogonie;
 
 /**Classe représentant un guide spirituel*/
 public class SpiritGuide extends CarteDogmatique{
@@ -91,7 +90,7 @@ public class SpiritGuide extends CarteDogmatique{
 	public void supprimerCroyant(Believer croyant){
 		croyantsConvertis.remove(croyant);
 	}
-
+	
 	/**Methode permettant convertir un croyant
 	 * @param croyant le croyant a convertir
 	 */

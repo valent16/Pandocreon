@@ -10,7 +10,9 @@ import model.player.Player;
 
 public interface IObserverJoueurReel {
 	
-	/**Methode permettant au joueur par sa vue de choisir un autre joueur au besoin lors d'une action*/
+	/**Methode permettant au joueur par sa vue de choisir un autre joueur au besoin lors d'une action
+	 * @return le joueur cible
+	 */
 	public Player selectTarget();
 	
 	/**Methode permettant au joueur par sa vue de choisir les croyants a convertir grace a un guide

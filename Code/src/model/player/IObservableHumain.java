@@ -24,26 +24,26 @@ public interface IObservableHumain {
 
 	/**Methode permettant de notifier la vue pour que le joueur selectionner une cible
 	 * @return le joueur selectionné
-	 * @throws ObservateurNotLinkedException
+	 * @throws ObservateurNotLinkedException exception levee si un observateur n'est pas lie au joueur
 	 */
 	public Player notifySelectPlayer() throws ObservateurNotLinkedException;
 
 	/**Methode permettant de notifier la vue pour que le joueur commence son tour de jeu 
-	 * @throws ObservateurNotLinkedException
+	 * @throws ObservateurNotLinkedException exception levee si un observateur n'est pas lie au joueur
 	 */
 	public void notifyStartTour() throws ObservateurNotLinkedException;
 
 	/**Methode permettant de notifier la vue pour que le joueur puisse selectionner le type de points d'actions a utiliser
 	 * @param carte la carte a utiliser
 	 * @return le type de PA selectionné
-	 * @throws ObservateurNotLinkedException
+	 * @throws ObservateurNotLinkedException exception levee si un observateur n'est pas lie au joueur
 	 */
 	public EnumCosmogonie notifySelectOriginePA(ActionCardWithOrigin carte) throws ObservateurNotLinkedException;
 
 	/**Methode permettant de notifier la vue pour que le joueur puisse selectionner les croyants a convertir
 	 * @param guideSpirituel le guide qui veut convertir
 	 * @return les croyants selectionné pour etre convertis
-	 * @throws ObservateurNotLinkedException
+	 * @throws ObservateurNotLinkedException exception levee si un observateur n'est pas lie au joueur
 	 */
 	public List<Believer> notifySelectCroyant(SpiritGuide guideSpirituel) throws ObservateurNotLinkedException;
 	

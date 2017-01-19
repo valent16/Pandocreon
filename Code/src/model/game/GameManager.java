@@ -1,7 +1,6 @@
-﻿package model.game;
+package model.game;
 
 import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -61,13 +60,18 @@ public class GameManager implements IObservableGameManager {
 		return managerUnique;
 	}
 
-	/**Methode permettant d'initialiser la partie en recuperant toutes les divinites et les cartes actions existantes*/
+	/**Methode permettant d'initialiser la partie en recuperant toutes les divinites et les cartes actions existantes
+	 * @param cartesAction les cartes actions a creer
+	 * @param divinites les divinites a creer
+	 */
 	public void initialisationPartie(LinkedList<ActionCard> cartesAction, LinkedList<Divinity> divinites ){
 		this.listDivinites = divinites; 
 		this.pioche = cartesAction;
 	}
 
-	/**Methode permettant l'initialisation du controller de la partie*/
+	/**Methode permettant l'initialisation du controller de la partie
+	 * @param controller le controller du gestionnaire de partie
+	 */
 	public void initialisationController(IObserverGameManager controller){
 		observateur = controller;
 	}
@@ -405,4 +409,5 @@ public class GameManager implements IObservableGameManager {
 	public void notifyJoueurActif(){
 		observateur.miseAJourJoueurActif();
 	}
+
 }

@@ -31,46 +31,43 @@ import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.cards.withoutOriginCards.DeusEx;
 
-//TODO A COMMENTER
+/**Panel represeantant une carte*/
 public class PanelCarte extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 
-	//panel contenant l'origine bordure gauche
-	//TODO A COMMENTER//contenant le nombre de coyant a droite
+	/**contenant le nombre de croyant a droite*/
 	private JPanel panelTop;
 	
-	//TODO A COMMENTER//panel contenant les dogmes de la carte
+	/**panel contenant les dogmes de la carte*/
 	private JPanel panelBot;
 	
-	//TODO A COMMENTER//Panel contenant le titre de la carte
+	/**Panel contenant le titre de la carte*/
 	private JLabel titre;
 	
-	//TODO A COMMENTER//label contenant le nom de la carte
+	/**label contenant le nom de la carte*/
 	private JLabel nomCarte;
 	
-	//TODO A COMMENTER//description de la carte
+	/**description de la carte*/
 	private JTextArea labelArea;
 	
-	//carte rerpesente dans le panel
+	/**la carte represente dans le panel*/
 	private Card carte;
 	
-	//TODO A COMMENTER
 	private JButton bouton;
-	
-	//TODO A COMMENTER
 	private boolean activated = false;
 	
-	//TODO A COMMENTER
+	/**Le controller du joueur*/
 	private JoueurController controller;
 	
-	//TODO A COMMENTER
+	/**La panel de la main du joueur*/
 	private PanelJoueurReel father;
 	
-	/**Constructeur*/
+	/**Constructeur
+	 * @param carte la carte a afficher dans le panel
+	 */
 	public PanelCarte(Card carte){
 		this.carte = carte;
-//		this.setPreferredSize(new Dimension(150,200));
 		bouton = new JButton();
 
 		JPanel panelBox = new JPanel();

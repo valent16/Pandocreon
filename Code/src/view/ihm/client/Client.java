@@ -177,7 +177,7 @@ public class Client{
 		return nombreBot;
 	}
 	/**Setter pour le nombre de bot
-	 * @param le nombre de bot
+	 * @param nb le nombre de bot
 	 */
 	public void setNombreBot(int nb){
 		nombreBot = nb;
@@ -189,7 +189,7 @@ public class Client{
 		return strategie;
 	}
 	/**Setter pour la strategie des bots
-	 * @param la strategie des bots
+	 * @param strat la strategie des bots
 	 */
 	public void setStrategie(String strat) {
 		strategie = strat;
@@ -201,7 +201,7 @@ public class Client{
 		return nombreHumain;
 	}
 	/**Setter pour le nombre d'humain
-	 * @param le nombre d'humain
+	 * @param nb le nombre d'humain
 	 */
 	public void setNombreHumain(int nb){
 		nombreHumain = nb;

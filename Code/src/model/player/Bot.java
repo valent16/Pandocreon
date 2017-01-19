@@ -1,7 +1,6 @@
-﻿package model.player;
+package model.player;
 
 import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -18,7 +17,8 @@ import model.cards.withoutOriginCards.Apocalypse;
 import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
 import model.game.GameManager;
-import model.strategy.*;
+import model.strategy.Strategy;
+
 
 /**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
 public class Bot extends Player{
@@ -27,7 +27,10 @@ public class Bot extends Player{
 	/**Attribut representant la stratégie choisi au départ pour tous les bots*/
 	private static Strategy strategy;
 
-	/**Constructeur de joueur qui est appelé pour créer un ordinateur*/
+	/**Constructeur de joueur qui est appelé pour créer un ordinateur
+	 * @param pseudo le nom du bot
+	 * @param strat la strategie du bot
+	 */
 	public Bot(String pseudo, Strategy strat) {
 		super(pseudo, AGE_BOT);
 		setStrategy(strat);
@@ -169,146 +172,146 @@ public class Bot extends Player{
 	 * @return liste des apocalypse
 	 */	
 	public LinkedList<Apocalypse> getApocalypses(){
-		 List<ActionCard> liste = getHand();
-		 Collections.shuffle(liste);
-		 Iterator<ActionCard> it = liste.iterator();
-		 LinkedList<Apocalypse> apocalypses = new LinkedList<Apocalypse>();
-		 while(it.hasNext()){
-			 ActionCard card = it.next(); 
-			 if(card instanceof Apocalypse){ //on retourne la premiere apocalypse croyant de la liste
-				 apocalypses.add((Apocalypse) card);
-			 }
-		 }
-		 return apocalypses;
-	 }
+		List<ActionCard> liste = getHand();
+		Collections.shuffle(liste);
+		Iterator<ActionCard> it = liste.iterator();
+		LinkedList<Apocalypse> apocalypses = new LinkedList<Apocalypse>();
+		while(it.hasNext()){
+			ActionCard card = it.next(); 
+			if(card instanceof Apocalypse){ //on retourne la premiere apocalypse croyant de la liste
+				apocalypses.add((Apocalypse) card);
+			}
+		}
+		return apocalypses;
+	}
 
-	 /**Methode permettant de deposer un croyant de sa main a la table en fonction de sa strategie*/
-	 public void depotCroyant(){
-		 strategy.depotCroyant();
-	 }
+	/**Methode permettant de deposer un croyant de sa main a la table en fonction de sa strategie*/
+	public void depotCroyant(){
+		strategy.depotCroyant();
+	}
 
-	 /**Methode permettant de convertir des croyants avec le guide en fonction de sa strategie*/
-	 public void convertirCroyants(){
-		 strategy.convertirCroyants();
-	 }
+	/**Methode permettant de convertir des croyants avec le guide en fonction de sa strategie*/
+	public void convertirCroyants(){
+		strategy.convertirCroyants();
+	}
 
-	 /**Methode permettant de lancer une apocalypse en fonction de sa strategie*/
-	 public void lancerApocalypse(){
-		 strategy.lancerApocalypse();
-	 }
+	/**Methode permettant de lancer une apocalypse en fonction de sa strategie*/
+	public void lancerApocalypse(){
+		strategy.lancerApocalypse();
+	}
 
-	 /**Methode qui test si le nombre de point est suffisant pour lancer une carte
-	  * @param card la carte a lancer
-	  * @return true si les points sont suffisants
-	  */
-	 public boolean pointsOrigineSuffisants(ActionCardWithOrigin card){
-		 EnumCosmogonie cosmogonie = card.getOrigine();
-		 if(this.getDicoPA().get(cosmogonie) >= 1){
-			 return true;
-		 }
-		 else if(cosmogonie == EnumCosmogonie.NEANT){//pour convertir les points NEANT en Cosmogonie
-			 if(this.getDicoPA().get(EnumCosmogonie.JOUR) >= 2)//si on 2 points jour ca passe 
-				 return true;
-			 else if(this.getDicoPA().get(EnumCosmogonie.NUIT) >= 2)//si on a 2 point nuit ca passe aussi
-				 return true;
-			 else
-				 return false;//sinon l'action ne peut etre faite	
-		 }
-		 return false;
-	 }
+	/**Methode qui test si le nombre de point est suffisant pour lancer une carte
+	 * @param card la carte a lancer
+	 * @return true si les points sont suffisants
+	 */
+	public boolean pointsOrigineSuffisants(ActionCardWithOrigin card){
+		EnumCosmogonie cosmogonie = card.getOrigine();
+		if(this.getDicoPA().get(cosmogonie) >= 1){
+			return true;
+		}
+		else if(cosmogonie == EnumCosmogonie.NEANT){//pour convertir les points NEANT en Cosmogonie
+			if(this.getDicoPA().get(EnumCosmogonie.JOUR) >= 2)//si on 2 points jour ca passe 
+				return true;
+			else if(this.getDicoPA().get(EnumCosmogonie.NUIT) >= 2)//si on a 2 point nuit ca passe aussi
+				return true;
+			else
+				return false;//sinon l'action ne peut etre faite	
+		}
+		return false;
+	}
 
-	 public boolean isLast(){
-		 Player p;
-		 ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
-		 Iterator<Player> itPlayer = players.iterator();
-		 while(itPlayer.hasNext()){
-			 p = itPlayer.next();
-			 if(p.getScore() < this.getScore())//si un joueur a un score strictement inferieur au this alors il n'est pas dernier
-				 return false;
-		 }
-		 return true;
-	 }
-	 
-	 @Override
-	 public void piocher(){
-		 hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
-	 }
-	 
-	 @Override
-	 public void rattacherGuide(Card carte){
-		 if(carte instanceof SpiritGuide){
-			 this.guidesRattaches.add((SpiritGuide) carte);
-		 }
-	 }	 
-	 
-	 @Override
-	 public void defausserCarte(ActionCard carte){
-		 hand.remove(carte);
-		 GameManager.getInstanceUniqueManager().defausserCarte(carte);
-	 }
-	 
-	 @Override
-	 public void defausserCartes(LinkedList<ActionCard> cartes){
-		 hand.removeAll(cartes);
-		 GameManager.getInstanceUniqueManager().defausserCarte(cartes);
-	 }
-	 
-	 @Override
-	 public void defausserGuideRattache(SpiritGuide guide){
-		 guidesRattaches.remove(guide);
-		 GameManager.getInstanceUniqueManager().defausserCarte(guide);
-	 }
-	 
-	 @Override
-	 public void incrementerPointAction(EnumCosmogonie typePA, int nbPA){
-		 dicoPA.put(typePA, dicoPA.get(typePA) + nbPA);		
-	 }
-	 
-	 @Override
-	 public void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException{
-		 if ((dicoPA.get(typePA) - nbPA) < 0){
-			 throw new PAInsuffisantException("Pas assez de point d'action "+dicoPA.get(typePA));
-		 }
-		 dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
-	 }
-	 
-	 
-	 @Override
+	public boolean isLast(){
+		Player p;
+		ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();
+		Iterator<Player> itPlayer = players.iterator();
+		while(itPlayer.hasNext()){
+			p = itPlayer.next();
+			if(p.getScore() < this.getScore())//si un joueur a un score strictement inferieur au this alors il n'est pas dernier
+				return false;
+		}
+		return true;
+	}
+
+	@Override
+	public void piocher(){
+		hand.push(GameManager.getInstanceUniqueManager().piocherCarte());
+	}
+
+	@Override
+	public void rattacherGuide(Card carte){
+		if(carte instanceof SpiritGuide){
+			this.guidesRattaches.add((SpiritGuide) carte);
+		}
+	}	 
+
+	@Override
+	public void defausserCarte(ActionCard carte){
+		hand.remove(carte);
+		GameManager.getInstanceUniqueManager().defausserCarte(carte);
+	}
+
+	@Override
+	public void defausserCartes(LinkedList<ActionCard> cartes){
+		hand.removeAll(cartes);
+		GameManager.getInstanceUniqueManager().defausserCarte(cartes);
+	}
+
+	@Override
+	public void defausserGuideRattache(SpiritGuide guide){
+		guidesRattaches.remove(guide);
+		GameManager.getInstanceUniqueManager().defausserCarte(guide);
+	}
+
+	@Override
+	public void incrementerPointAction(EnumCosmogonie typePA, int nbPA){
+		dicoPA.put(typePA, dicoPA.get(typePA) + nbPA);		
+	}
+
+	@Override
+	public void decrementerPointAction(EnumCosmogonie typePA, int nbPA) throws PAInsuffisantException{
+		if ((dicoPA.get(typePA) - nbPA) < 0){
+			throw new PAInsuffisantException("Pas assez de point d'action "+dicoPA.get(typePA));
+		}
+		dicoPA.replace(typePA, dicoPA.get(typePA), dicoPA.get(typePA) - nbPA);
+	}
+
+
+	@Override
 	public void ajouterMain(ActionCard card){
-		 this.hand.push(card);
-	 }
-	 
-	 @Override
-	 public Player pickTarget() throws TargetSelectionException {
-		 return strategy.pickTarget();
-	 }
+		this.hand.push(card);
+	}
 
-	 @Override
-	 public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
-		 return strategy.pickOrigine(carte);
-	 }
+	@Override
+	public Player pickTarget() throws TargetSelectionException {
+		return strategy.pickTarget();
+	}
 
-	 @Override
-	 public List<Believer> pickCroyant(SpiritGuide carte) {
-		 return strategy.pickCroyant(carte);
-	 }
+	@Override
+	public EnumCosmogonie pickOrigine(ActionCardWithOrigin carte) {
+		return strategy.pickOrigine(carte);
+	}
 
-	 @Override
-	 public String toString() {
-		 return super.toString();
-	 }
+	@Override
+	public List<Believer> pickCroyant(SpiritGuide carte) {
+		return strategy.pickCroyant(carte);
+	}
 
-	 /**Getter de la strategie
-	  * @return la strategie des bots
-	  */
-	 public static Strategy getStrategy() {
-		 return strategy;
-	 }
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 
-	 /**Setter de la strategie
-	  * @param strategy la strategie choisi au tout debut de la partie
-	  */
-	 private void setStrategy(Strategy strategy) {
-		 Bot.strategy = strategy;
-	 }
+	/**Getter de la strategie
+	 * @return la strategie des bots
+	 */
+	public static Strategy getStrategy() {
+		return strategy;
+	}
+
+	/**Setter de la strategie
+	 * @param strategy la strategie choisi au tout debut de la partie
+	 */
+	private void setStrategy(Strategy strategy) {
+		Bot.strategy = strategy;
+	}
 }

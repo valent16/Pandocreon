@@ -40,7 +40,6 @@ public class MediumStrategy implements Strategy {
 	}
 
 	@Override
-	/*Methode permettant au bot de convertir des croyants sinon il essaye de les deposer*/
 	public void convertirCroyants(){
 		if(bot.hasSpiritGuide()){	//si il a des guide spirituels on recupere nos croyants
 			LinkedList<Believer> possibleBelievers = GameManager.getInstanceUniqueManager().getCroyants();
@@ -61,7 +60,6 @@ public class MediumStrategy implements Strategy {
 	}
 
 	@Override
-	/*Methode permettant au bot de deposer des croyants sinon on lance la phase pour tester le nombre de carte et agir en consequence*/
 	public void depotCroyant(){
 		if(bot.hasBelievers()){
 			LinkedList<Believer> liste = bot.getBelievers();
@@ -84,7 +82,6 @@ public class MediumStrategy implements Strategy {
 	}
 
 	@Override
-	/**Methode permettant au bot de lancer une apocalypse*/
 	public void lancerApocalypse(){
 		ActionCard apocalypse = bot.getApocalypse(); //on recupere une apocalypse de maniere random
 		if(!bot.isLast()){//on test s'il est dernier
@@ -100,7 +97,6 @@ public class MediumStrategy implements Strategy {
 			this.convertirCroyants();	
 	}
 
-	/*Methode permettant au bot d'economiser ses points et donc de piocher ou de se defausser dependant du nombre de cartes qu'il possede*/
 	@Override
 	public void defausser(){
 		if(bot.getNbCartes() > 3){//si le bot a au moins 4 cartes il se defausse
