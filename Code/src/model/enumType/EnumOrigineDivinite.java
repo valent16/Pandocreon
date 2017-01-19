@@ -1,4 +1,4 @@
-package model.EnumType;
+package model.enumType;
 
 /**Enumeration des origines de la divinite*/
 public enum EnumOrigineDivinite {

@@ -3,10 +3,10 @@ package model.player;
 import java.util.List;
 
 import controller.IObserverJoueurReel;
-import model.EnumType.EnumCosmogonie;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
+import model.enumType.EnumCosmogonie;
 import model.exception.ObservateurNotLinkedException;
 
 /**Classe qui permet au controller joueur de notifier la vue*/

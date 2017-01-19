@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import controller.JoueurController;
-import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
+import model.enumType.EnumCosmogonie;
 import model.game.GameManager;
 import model.player.Human;
 import model.player.Player;

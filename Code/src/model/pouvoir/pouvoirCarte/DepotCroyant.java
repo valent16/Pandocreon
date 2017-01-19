@@ -1,7 +1,7 @@
 package model.pouvoir.pouvoirCarte;
 import model.cards.OriginCards.Believer;
+import model.enumType.EnumCosmogonie;
 import model.exception.PAInsuffisantException;
-import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
 import model.game.GameManager;
 import model.player.Player;

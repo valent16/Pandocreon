@@ -2,8 +2,8 @@ package model.cards.OriginCards;
 
 import java.util.ArrayList;
 
-import model.EnumType.EnumCosmogonie;
-import model.EnumType.EnumDogme;
+import model.enumType.EnumCosmogonie;
+import model.enumType.EnumDogme;
 import model.player.Player;
 /**Classe representant une carte croyant*/
 public class Believer extends CarteDogmatique{

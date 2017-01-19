@@ -2,8 +2,8 @@ package model.pouvoir.sacrificeCarte;
 
 import java.util.Scanner;
 
-import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
+import model.enumType.EnumCosmogonie;
 import model.game.De;
 import model.player.Player;
 import model.pouvoir.Pouvoir;

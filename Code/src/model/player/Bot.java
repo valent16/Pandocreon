@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.OriginCards.ActionCardWithOrigin;
@@ -14,6 +13,7 @@ import model.cards.OriginCards.ApocalypseWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
+import model.enumType.EnumCosmogonie;
 import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
 import model.game.GameManager;

@@ -8,14 +8,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Observer;
-import model.EnumType.EnumCosmogonie;
-import model.EnumType.EnumOrigineDivinite;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
+import model.enumType.EnumCosmogonie;
+import model.enumType.EnumOrigineDivinite;
 import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
 import model.game.De;

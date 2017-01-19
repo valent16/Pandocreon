@@ -16,12 +16,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import model.EnumType.*;
 import model.cards.ActionCard;
 import model.cards.Divinity;
 import model.cards.OriginCards.*;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.cards.withoutOriginCards.DeusEx;
+import model.enumType.*;
 import model.pouvoir.Pouvoir;
 import model.pouvoir.pouvoirCarte.*;
 import model.pouvoir.sacrificeCarte.*;

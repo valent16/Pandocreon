@@ -4,12 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import controller.IObserverJoueurReel;
-import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
+import model.enumType.EnumCosmogonie;
 import model.exception.ObservateurNotLinkedException;
 import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;

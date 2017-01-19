@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import model.EnumType.EnumCosmogonie;
-import model.EnumType.EnumDogme;
+import model.enumType.EnumCosmogonie;
+import model.enumType.EnumDogme;
 import model.player.Player;
 
 /**Classe représentant un guide spirituel*/

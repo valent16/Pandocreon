@@ -1,7 +1,7 @@
 package model.cards.OriginCards;
 
 
-import model.EnumType.EnumCosmogonie;
+import model.enumType.EnumCosmogonie;
 import model.player.Player;
 
 /**Classe qui represente une carte Apocalypse avec une Origine*/

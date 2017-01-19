@@ -1,9 +1,10 @@
 package model.pouvoir.sacrificeCarte;
 
 import java.util.Iterator;
-import model.EnumType.EnumCosmogonie;
+
 import model.cards.Card;
 import model.cards.OriginCards.SpiritGuide;
+import model.enumType.EnumCosmogonie;
 import model.player.Player;
 import model.pouvoir.Pouvoir;
 

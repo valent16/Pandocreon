@@ -2,13 +2,12 @@ package model.pouvoir.sacrificeCarte;
 
 import java.util.Iterator;
 
-
-import model.EnumType.EnumCosmogonie;
-import model.EnumType.EnumDogme;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
+import model.enumType.EnumCosmogonie;
+import model.enumType.EnumDogme;
 import model.game.GameManager;
 import model.player.Player;
 import model.pouvoir.Pouvoir;

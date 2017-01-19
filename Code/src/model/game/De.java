@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import controller.IObserverGameManager;
-import model.EnumType.EnumCosmogonie;
+import model.enumType.EnumCosmogonie;
 
 public class De implements IObservableDe {
 	/**Liste des observers du de*/

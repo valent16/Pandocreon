@@ -2,9 +2,10 @@ package model.pouvoir.pouvoirCarte;
 
 import java.util.Iterator;
 import java.util.List;
-import model.EnumType.EnumCosmogonie;
+
 import model.cards.Card;
 import model.cards.OriginCards.SpiritGuide;
+import model.enumType.EnumCosmogonie;
 import model.cards.OriginCards.Believer;
 import model.exception.NoCroyantLinkedAtConversionException;
 import model.exception.PAInsuffisantException;

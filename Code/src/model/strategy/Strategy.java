@@ -2,10 +2,10 @@ package model.strategy;
 
 import java.util.List;
 
-import model.EnumType.EnumCosmogonie;
 import model.cards.OriginCards.ActionCardWithOrigin;
 import model.cards.OriginCards.Believer;
 import model.cards.OriginCards.SpiritGuide;
+import model.enumType.EnumCosmogonie;
 import model.player.Bot;
 import model.player.Player;
 

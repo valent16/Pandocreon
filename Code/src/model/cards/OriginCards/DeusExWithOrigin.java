@@ -1,6 +1,6 @@
 package model.cards.OriginCards;
 
-import model.EnumType.EnumCosmogonie;
+import model.enumType.EnumCosmogonie;
 import model.player.Player;
 
 /**Classe DeusEx avec une origine*/

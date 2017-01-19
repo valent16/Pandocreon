@@ -1,7 +1,7 @@
 package model.pouvoir.sacrificeCarte;
 
-import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
+import model.enumType.EnumCosmogonie;
 import model.player.Player;
 import model.pouvoir.Pouvoir;
 

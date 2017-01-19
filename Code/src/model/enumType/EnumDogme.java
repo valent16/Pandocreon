@@ -1,4 +1,4 @@
-package model.EnumType;
+package model.enumType;
 
 /**Enumeration des dogmes de cartes*/
 public enum EnumDogme {

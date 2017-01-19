@@ -2,8 +2,8 @@ package model.cards.OriginCards;
 
 
 
-import model.EnumType.EnumCosmogonie;
 import model.cards.ActionCard;
+import model.enumType.EnumCosmogonie;
 
 /**Classe abstraite d'une carte action avec une origine*/
 public abstract class ActionCardWithOrigin extends ActionCard {

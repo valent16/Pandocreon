@@ -4,8 +4,8 @@ import java.util.Iterator;
 
 import java.util.Scanner;
 
-import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
+import model.enumType.EnumCosmogonie;
 import model.exception.PAInsuffisantException;
 import model.game.GameManager;
 import model.player.Player;

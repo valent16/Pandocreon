@@ -2,8 +2,8 @@ package model.cards;
 
 import java.util.ArrayList;
 
-import model.EnumType.EnumDogme;
-import model.EnumType.EnumOrigineDivinite;
+import model.enumType.EnumDogme;
+import model.enumType.EnumOrigineDivinite;
 import model.player.Player;
 
 public class Divinity extends Card{

@@ -1,4 +1,4 @@
-package model.EnumType;
+package model.enumType;
 
 /**Enumeration des faces du De*/
 public enum EnumCosmogonie {

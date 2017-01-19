@@ -1,12 +1,11 @@
 package model.cards.OriginCards;
 
-import model.EnumType.EnumCosmogonie;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import model.EnumType.EnumDogme;
+import model.enumType.EnumCosmogonie;
+import model.enumType.EnumDogme;
 
 /**Classe Abstraite representant une carte avec des Dogmes et une origine*/ 
 public abstract class CarteDogmatique extends ActionCardWithOrigin{

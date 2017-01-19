@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import controller.GameController;
-import model.EnumType.EnumCosmogonie;
-import model.EnumType.EnumDogme;
-import model.EnumType.EnumOrigineDivinite;
 import model.cards.Divinity;
+import model.enumType.EnumCosmogonie;
+import model.enumType.EnumDogme;
+import model.enumType.EnumOrigineDivinite;
 import model.player.Human;
 import model.player.Player;
 import view.ihm.PanelCarte;

@@ -18,7 +18,6 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import controller.JoueurController;
-import model.EnumType.EnumDogme;
 import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
@@ -30,6 +29,7 @@ import model.cards.OriginCards.DeusExWithOrigin;
 import model.cards.OriginCards.SpiritGuide;
 import model.cards.withoutOriginCards.Apocalypse;
 import model.cards.withoutOriginCards.DeusEx;
+import model.enumType.EnumDogme;
 
 /**Panel represeantant une carte*/
 public class PanelCarte extends JPanel{

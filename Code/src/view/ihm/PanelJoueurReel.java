@@ -26,9 +26,9 @@ import controller.JoueurController;
 import model.player.Human;
 
 import view.IViewJoueurReel;
-import model.EnumType.EnumCosmogonie;
 import model.cards.Card;
 import model.cards.OriginCards.*;
+import model.enumType.EnumCosmogonie;
 //TODO A COMMENTER
 public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
