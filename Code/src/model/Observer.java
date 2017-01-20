@@ -24,7 +24,7 @@ public abstract class Observer {
 		listeObservateur.remove(o);
 	}
 	
-	/**Methode permettant de mettre a jour les observateur*/
+	/**Methode permettant de mettre a jour les observateurs*/
 	public void notifier(){
 		Iterator<Observateur> itObservateur = listeObservateur.iterator();
 		Observateur o;

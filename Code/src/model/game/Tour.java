@@ -3,7 +3,7 @@ package model.game;
 import java.util.ArrayList;
 
 import model.player.Player;
-/**Classe gérant les tours de jeu*/
+/**Classe gerant les tours de jeu*/
 public class Tour {
 	
 	/**Attribut representant le joueur qui joue pendant le tour*/
@@ -46,8 +46,8 @@ public class Tour {
 	public static Player getJoueurActif() {
 		return joueurActif;
 	}
-	/**Getter nombre tour
-	 * @return le nombre du tour actuel
+	/**Getter numero tour
+	 * @return le numero du tour actuel
 	 */
 	public int getNumeroTour() {
 		return nombreTour;

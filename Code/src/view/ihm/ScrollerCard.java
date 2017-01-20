@@ -12,20 +12,24 @@ import controller.JoueurController;
 import java.util.List;
 
 import model.cards.Card;
-//TODO A COMMENTER
+/**Panel de scroll pour la representation des cartes dans la partie, classe utilisee plusieurs fois pour la cration du jeu du joueur et la creation de la liste de carte sur table de jeu*/
 public class ScrollerCard extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	//TODO A COMMENTER
+	
+	/**Panel englobant tous les items*/
 	JPanel panel;
-	//TODO A COMMENTER
+	
+	/**scroll du panel*/
 	private final JScrollPane scroll;
-	//TODO A COMMENTER
+	
+	/**Liste des cartes a afficher dans le panel*/
 	private ArrayList<PanelCarte> listeCartesGraphiques = new ArrayList<PanelCarte>();
-	//TODO A COMMENTER
-	private PanelJoueurReel father;
 
-	//TODO A COMMENTER
+	/**
+	 * Constructeur de la classe ScrollerCard
+	 * @param listeCartes liste des cartes a afficher dans le scroll
+	 */
 	public ScrollerCard(List<Card> listeCartes) throws HeadlessException {
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
@@ -45,15 +49,8 @@ public class ScrollerCard extends JPanel {
 		scroll.revalidate();
 	}
 
-	/**Methode permettant d'ajouter le panel pour le joueur reel
-	 * @param father la panel parent
-	 */
-	public void ajouterPanelJoueurReel(PanelJoueurReel father){
-		this.setFather(father);
-	}
-
-	/**Methode permettant de mettre a jour le panel de carte en fonction de la liste de carte passe en parametre
-	 * @param cartes les cartes a supprimer ou a ajouter sur le panel
+	/**Methode permettant de mettre a jour le panel de cartes en fonction de la liste de cartes passee en parametre
+	 * @param cartes les cartes a supprimer ou a ajouter dans le panel
 	 */
 	public void majCarte(List<Card> cartes){
 		ArrayList<Card> cartesASupprimer = new ArrayList<Card>();
@@ -91,35 +88,5 @@ public class ScrollerCard extends JPanel {
 		}
 		panel.revalidate();
 		scroll.revalidate();
-	}
-
-	//TODO A COMMENTER
-	public void activateSelection(JoueurController controller){
-		Iterator<PanelCarte> it = listeCartesGraphiques.iterator();
-		while(it.hasNext()){
-			it.next().activateSelection();
-		}
-	}
-
-	//TODO A COMMENTER
-	public void desactivateSelection(){
-		Iterator<PanelCarte> it = listeCartesGraphiques.iterator();
-		while(it.hasNext()){
-			it.next().desactivateSelection();
-		}
-	}
-
-	/**Getter du panel du joueur
-	 * @return le panel du joueur
-	 */
-	public PanelJoueurReel getFather() {
-		return father;
-	}
-
-	/**Setter du panel du joueur
-	 * @param father le panel du joueur
-	 */
-	public void setFather(PanelJoueurReel father) {
-		this.father = father;
 	}
 }

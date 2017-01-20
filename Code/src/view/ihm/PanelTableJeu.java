@@ -22,27 +22,27 @@ import view.IViewGame;
 import model.cards.*;
 
 import java.awt.Component;
-//TODO A COMMENTER
+/**Panel representant le panel de la table de jeu*/
 public class PanelTableJeu extends JPanel implements IViewGame {
 	
 	private static final long serialVersionUID = 1L;
 
-	//TODO A COMMENTER
+	/**Panel contenant la liste des joueur en jeu*/
 	JPanel panelJoueurs;
 	
-	//TODO A COMMENTER
+	/**scroller de la liste des joueurs en jeu*/
 	ScrollerPlayer scrollJoueur;
 	
-	//TODO A COMMENTER
+	/**panel contenant l'image de la face de de du tour*/
 	ImagePanel panelImageDe;
 	
-	//TODO A COMMENTER
+	/**label*/
 	JLabel label;
 	
-	//TODO A COMMENTER
+	/**panel englobant le de*/
 	JPanel panelDeTour;
 	
-	//TODO A COMMENTER
+	/**scroll des croyants poses sur la table*/
 	ScrollerCard scrollCroyant;
 	
 	/**Constructeur

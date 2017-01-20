@@ -6,12 +6,12 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-//TODO A COMMENTER
+/**Permet la creation d'une image encapsulee dans un label*/
 public class ImageLabel extends JLabel{
   
 	private static final long serialVersionUID = 1L;
 	
-	/**L'image a mettre dans le panel*/
+	/**L'image a mettre dans le label*/
 	private Image image;
 
 	/**Constructeur

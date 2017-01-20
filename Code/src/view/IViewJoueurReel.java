@@ -9,7 +9,7 @@ public interface IViewJoueurReel {
 	/**Methode permettant de mettre a jour les points d'actions du joueur*/
 	public void majPointsAction();
 	
-	/**Methode permettant de mettre a jour les croyants convertis du joueur*/
+	/**Methode permettant de mettre a jour les croyants et guides rattaches joueur*/
 	public void majCartesRattachees();
 	
 	/**Methode permettant de mettre a jour la divinite du joueur*/

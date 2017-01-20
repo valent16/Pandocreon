@@ -9,14 +9,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-//TODO A COMMENTER
+/**Panel permettant d'afficher une image de taille dynamique*/
 public class ImagePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	//TODO A COMMENTER
+	/**Image a afficher*/
 	private BufferedImage image;
 	
+	/**Proprietes de l'image*/
 	private int width, height;
 	
 	/**Constructeur

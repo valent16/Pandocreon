@@ -18,6 +18,10 @@ public class DeusEx extends ActionCard{
 		this.description = description;
 	}
 
+	/**
+	 * Getter sur la description de la carte
+	 * @return description de la carte
+	 */
 	public String getDescription() {
 		return description;
 	}

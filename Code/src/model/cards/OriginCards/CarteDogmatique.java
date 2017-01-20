@@ -20,7 +20,7 @@ public abstract class CarteDogmatique extends ActionCardWithOrigin{
 	 * @param nom le nom de la carte
 	 * @param origine l'origine de la carte
 	 * @param dogmes les dogmes de la carte
-	 * @param sacrifice la description du scrifice de la carte
+	 * @param sacrifice la description du sacrifice de la carte
 	 */
 	public CarteDogmatique(String nom, EnumCosmogonie origine, ArrayList<EnumDogme> dogmes, String sacrifice) {
 		super(nom, origine);
@@ -28,6 +28,10 @@ public abstract class CarteDogmatique extends ActionCardWithOrigin{
 		this.sacrifice = sacrifice;
 	}
 	
+	/**
+	 * Getter de la description du sacrifice
+	 * @return description du sacrifice
+	 */
 	public String getTextSacrifice(){
 		return this.sacrifice;
 	}

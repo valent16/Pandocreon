@@ -11,19 +11,21 @@ import java.util.List;
 import model.game.GameManager;
 import model.game.Tour;
 import model.player.Player;
-//TODO A COMMENTER
+/**Panel de scroll pour la representation des joueurs dans la partie*/
 public class ScrollerPlayer extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**scroll du panel*/
 	private JScrollPane scroll;
 
-	//TODO A COMMENTER a quoi cela correpond
+	/**liste des panel representant chacun un joueur de la partie*/
 	private List<PanelPlayer> listePanel = new ArrayList<PanelPlayer>();
 
 	JPanel panel;
-	/**Constructeur appeler a chaque fois qu'un joueur est elimine
-	 * @param listeJoueurs la liste des joueurs
-	 * @throws HeadlessException si la touche saisi n'est pas bonne
+	
+	/**Constructeur appele lors de l'initialisation du panel
+	 * @param listeJoueurs la liste des joueurs de la partie
 	 */
 	public ScrollerPlayer(List<Player> listeJoueurs) throws HeadlessException {
 		panel = new JPanel();
@@ -44,7 +46,7 @@ public class ScrollerPlayer extends JPanel {
 		scroll.revalidate();
 	}
 
-	/*Methode permettant de mettre a jour la liste des joueurs encore en lice dans la partie*/
+	/**Methode permettant de mettre a jour la liste des joueurs encore en lice dans la partie*/
 	public void majPlayer(){
 		List<Player> joueurs = GameManager.getInstanceUniqueManager().getPlayers();
 

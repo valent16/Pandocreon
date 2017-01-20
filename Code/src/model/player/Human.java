@@ -15,27 +15,27 @@ import model.exception.PAInsuffisantException;
 import model.exception.TargetSelectionException;
 import model.game.GameManager;
 
-/**Un joueur qui représente un humain*/
+/**Un joueur qui represente un humain*/
 public class Human extends Player implements IObservableHumain{
 	
-	/**Attribut representant le controlleur du joueur*/
+	/**Attribut representant l'observateur du joueur*/
 	private IObserverJoueurReel observateur;
 	
-	/**Methode permettant de lui ajouter un controleur
+	/**Methode permettant d'initialiser son observateur
 	 * @param o le controleur a ajouter
 	 */
 	public void attacher(IObserverJoueurReel o){
 		observateur = o;
 	}
 	
-	/**Methode permettant de lui enlever un controleur
+	/**Methode permettant de retirer son observateur
 	 * @param o le controleur a anlever
 	 */
 	public void detacher(IObserverJoueurReel o){
 		observateur = null;
 	}
 
-	/**Constructeur de joueur qui est appelé pour créer un joueur humain
+	/**Constructeur de joueur qui est appelee pour creer un joueur humain
 	 * @param pseudo le nom du joueur
 	 * @param age l'age du joueur
 	 */

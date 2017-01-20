@@ -8,11 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
-//TODO A COMMENTER
+/**Panel affichant les actions possibles de l'utilisateur lorsque c'est a son tour de jouer*/
 public class PanelChoixUtilisateur {
 	JFrame frame = new JFrame();
 	
-	/**Constructeur*/
+	/**Constructeur du panel*/
 	public PanelChoixUtilisateur(){
 		initialize();
 	}

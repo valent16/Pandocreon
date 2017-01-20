@@ -29,7 +29,7 @@ import model.pouvoir.sacrificeCarte.*;
 /**Classe qui permet de charger a partir d'un fichier CML les cartes du jeu*/
 public class ParserXML implements IDataLoad {
 
-	/**Attribut representant la liste des sacrifices possible par les cartes*/
+	/**Attribut representant la liste des sacrifices possibles*/
 	private static HashMap<String, Pouvoir> listeSacrifice = new HashMap<String, Pouvoir>();
 
 	/**Attribut representant la liste des cartes actions chargees grace au parser*/
@@ -78,7 +78,7 @@ public class ParserXML implements IDataLoad {
 	}
 
 	/**Methode permettant au parser de recuperer le type de la carte
-	 * @param type le type recherché
+	 * @param type le type recherche
 	 * @return le type dans le parser
 	 */
 	private String recupTypeCarte(String type){
@@ -153,7 +153,7 @@ public class ParserXML implements IDataLoad {
 		return null;
 	}
 
-	/**Methode permettant de convertir une chaine de caratere en EnumDogme
+	/**Methode permettant de convertir une chaine de carateres en EnumDogme
 	 * @param dogme la chaine a convertir
 	 * @return le dogme converti
 	 */
@@ -174,9 +174,9 @@ public class ParserXML implements IDataLoad {
 		}
 	}
 
-	/**Methode permettant de convertir une chaine de caratere en EnumOrigneDivinite
+	/**Methode permettant de convertir une chaine de carateres en EnumOrigneDivinite
 	 * @param origine la chaine a convertir
-	 * @return le l'origine converti
+	 * @return l'origine convertie
 	 */
 	private EnumOrigineDivinite convertOrigineDiviniteFromString(String origine){
 		switch(origine){
@@ -193,9 +193,9 @@ public class ParserXML implements IDataLoad {
 		}
 	}
 
-	/**Methode permettant de convertir une chaine de caratere en EnumOrigneCA (Carte Actions)
+	/**Methode permettant de convertir une chaine de carateres en EnumOrigneCA (Carte Actions)
 	 * @param origine la chaine a convertir
-	 * @return le l'origine converti
+	 * @return l'origine convertie
 	 */
 	private EnumCosmogonie convertOrigineCAFromString(String origine){
 		switch(origine){

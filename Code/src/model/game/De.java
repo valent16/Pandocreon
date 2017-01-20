@@ -12,7 +12,7 @@ public class De implements IObservableDe {
 	/**Liste des observers du de*/
 	private List<IObserverGameManager> observersDe = new ArrayList<IObserverGameManager>();
 	
-	/**Attribut representant un singleton pour avoir un unique de*/
+	/**Attribut representant un attribut de classe de*/
 	private volatile static De de;
 	
 	/**Attribut representant la face du de*/
@@ -21,7 +21,7 @@ public class De implements IObservableDe {
 	/**Constructeur*/
 	private De(){}
 
-	/**Méthode permetttant d'avoir qu'une seule instance de De
+	/**Methode permetttant d'avoir une seule instance de De
 	 * @return de le De de la classe
 	 */
 	public static synchronized De getInstanceDe(){
@@ -34,7 +34,7 @@ public class De implements IObservableDe {
 		return de;
 	}
 
-	/**Methode permettant de lancer de maniere random un Dé pour obtenir une face*/
+	/**Methode permettant de lancer de maniere random un de pour obtenir une face*/
 	public void lancerDe(){
 		int random = (int) (Math.random() * 3 + 1);
 		if(random == 1){
@@ -50,7 +50,7 @@ public class De implements IObservableDe {
 		notifyChangementFace();
 	}
 
-	/**Getter origine sur lequel le dé est retombé
+	/**Getter origine sur lequel le de est retombe
 	 * @return la face du De
 	 */
 	public EnumCosmogonie getFace(){

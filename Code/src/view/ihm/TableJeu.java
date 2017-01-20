@@ -11,17 +11,23 @@ import model.game.De;
 import model.game.GameManager;
 import model.player.Human;
 
-
+/**Table de jeu de la partie, frame englobant tous les autres composants*/
 public class TableJeu{
 	
+	/**frame de la partie*/
 	JFrame frame = new JFrame();
 	
+	/**panel contenant les donnees du joueur reel*/
 	PanelJoueurReel panelJoueur;
 	
+	/** panel representant le plateau de jeu commun*/
 	PanelTableJeu panelTableJeu;
 	
+	/**
+	 * Constructeur de la classe TableJeu
+	 * @param joueur joueur humain dans la partie
+	 */
 	public TableJeu(Human joueur){
-		
 		frame.setTitle("Pandocreon Divinae");
 		frame.setPreferredSize(new Dimension(1000,1000));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,6 +35,10 @@ public class TableJeu{
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Initialisation du plateau de jeu
+	 * @param joueur joueur humain dans la partie
+	 */
 	public void initialize(Human joueur){
 		frame.getContentPane().setLayout(new BorderLayout());
 		
@@ -46,10 +56,18 @@ public class TableJeu{
 		frame.pack();
 	}
 	
+	/**
+	 * Getter sur le panel du joueur humain
+	 * @return panel du joueur humain
+	 */
 	public PanelJoueurReel getPanelJoueur(){
 		return this.panelJoueur;
 	}
 	
+	/**
+	 * Getter sur le panel du plateau de jeu commun
+	 * @return panel contenant le plateau de jeu commun
+	 */
 	public PanelTableJeu getPanelTableJeu(){
 		return this.panelTableJeu;
 	}

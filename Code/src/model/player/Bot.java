@@ -20,14 +20,14 @@ import model.game.GameManager;
 import model.strategy.Strategy;
 
 
-/**Un joueur qui représente un ordinateur avec une stratégie de jeu*/
+/**Un joueur qui represente un ordinateur avec une strategie de jeu*/
 public class Bot extends Player{
 	public final static int AGE_BOT = 200;
 
-	/**Attribut representant la stratégie choisi au départ pour tous les bots*/
+	/**Attribut representant la strategie choisi au depart pour tous les bots*/
 	private static Strategy strategy;
 
-	/**Constructeur de joueur qui est appelé pour créer un ordinateur
+	/**Constructeur de joueur qui est appele pour creer un ordinateur
 	 * @param pseudo le nom du bot
 	 * @param strat la strategie du bot
 	 */
@@ -43,7 +43,7 @@ public class Bot extends Player{
 		strategy.jouer(this);
 	}
 
-	/**Methode qui test si le bot possede des croyants dans sa main
+	/**Methode qui teste si le bot possede des croyants dans sa main
 	 * @return true s'il possede des croyants
 	 */
 	public boolean hasBelievers(){
@@ -57,7 +57,7 @@ public class Bot extends Player{
 		return false;
 	}
 
-	/**Methode qui test si le bot possede des guide dans sa main
+	/**Methode qui test si le bot possede des guides dans sa main
 	 * @return true s'il possede des guides
 	 */
 	public boolean hasSpiritGuide(){
@@ -85,7 +85,7 @@ public class Bot extends Player{
 		return false;
 	}
 
-	/**Methode permettant de recuperer une carte croyant de la main du bot de maniere Random
+	/**Methode permettant de recuperer une carte croyant dans la main du bot de maniere Random
 	 * @return un croyant
 	 */
 	public Believer getBeliever(){
@@ -102,7 +102,7 @@ public class Bot extends Player{
 		return believer;
 	}
 
-	/**Methode permettant de recuperer un guide de la main du bot de maniere Random
+	/**Methode permettant de recuperer un guide dans la main du bot de maniere Random
 	 * @return un guide
 	 */
 	public SpiritGuide getSpiritGuide(){
@@ -119,7 +119,7 @@ public class Bot extends Player{
 		return spiritGuide;
 	}
 
-	/**Methode permettant de recuperer une carte apocalypse de la main du bot de maniere Random
+	/**Methode permettant de recuperer une carte apocalypse dans la main du bot de maniere Random
 	 * @return une apocalypse
 	 */
 	public ActionCard getApocalypse(){
@@ -136,7 +136,7 @@ public class Bot extends Player{
 		return apocalypse;
 	}
 
-	/**Methode permettant de recuperer toutes les cartes croyants de la main du bot
+	/**Methode permettant de recuperer toutes les cartes croyants dans la main du bot
 	 * @return liste des croyants
 	 */
 	public LinkedList<Believer> getBelievers(){
@@ -152,7 +152,7 @@ public class Bot extends Player{
 		return believers;
 	}
 
-	/**Methode permettant de recuperer toutes les cartes guides de la main du bot
+	/**Methode permettant de recuperer toutes les cartes guides dans la main du bot
 	 * @return liste des guides
 	 */
 	public LinkedList<SpiritGuide> getSpiritGuides(){
@@ -168,8 +168,8 @@ public class Bot extends Player{
 		return spiritGuides;
 	}
 
-	/**Methode permettant de recuperer toutes les cartes apocalypse de la main du bot
-	 * @return liste des apocalypse
+	/**Methode permettant de recuperer toutes les cartes apocalypses dans la main du bot
+	 * @return liste des apocalypses
 	 */	
 	public LinkedList<Apocalypse> getApocalypses(){
 		List<ActionCard> liste = getHand();
@@ -185,7 +185,7 @@ public class Bot extends Player{
 		return apocalypses;
 	}
 
-	/**Methode permettant de deposer un croyant de sa main a la table en fonction de sa strategie*/
+	/**Methode permettant de deposer un croyant de sa main sur la table en fonction de sa strategie*/
 	public void depotCroyant(){
 		strategy.depotCroyant();
 	}
@@ -200,7 +200,7 @@ public class Bot extends Player{
 		strategy.lancerApocalypse();
 	}
 
-	/**Methode qui test si le nombre de point est suffisant pour lancer une carte
+	/**Methode qui test si le nombre de points est suffisant pour lancer une carte
 	 * @param card la carte a lancer
 	 * @return true si les points sont suffisants
 	 */
@@ -220,6 +220,10 @@ public class Bot extends Player{
 		return false;
 	}
 
+	/**
+	 * Methode permettant de determiner si le joueur est le dernier au classement
+	 * @return boolean vrai ou faux
+	 */
 	public boolean isLast(){
 		Player p;
 		ArrayList<Player> players = GameManager.getInstanceUniqueManager().getPlayers();

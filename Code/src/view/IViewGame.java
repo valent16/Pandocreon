@@ -14,20 +14,20 @@ public interface IViewGame {
 	/**Methode permettant de mettre a jour la table des croyants*/
 	public void majTableCroyant();
 	
-	/**Methode permettant de mettre a jour le nombre de tour*/
+	/**Methode permettant de mettre a jour le nombre de tours*/
 	public void majNbTours();
 	
-	/**Methode permettant de mettre a jour la victoire d'un joueur
+	/**Methode permettant d'afficher la victoire d'un joueur
 	 * @param player le joueur vainqueur
 	 */
 	public void afficherVainqueur(Player player);
 	
-	/**Methode permettant de mettre a jour la defaite d'un joueur
+	/**Methode permettant d'afficher la defaite d'un joueur
 	 * @param player le joueur perdant
 	 */
 	public void afficherDefaite(Player player);
 	
-	/**Methode permettant de mettre a jour le changement de joueur*/
+	/**Methode permettant de mettre a jour le l'interface representant la liste de joueurs*/
 	public void changementJoueur();
 	
 	/**Methode permettant de mettre a jour le joueur actif*/

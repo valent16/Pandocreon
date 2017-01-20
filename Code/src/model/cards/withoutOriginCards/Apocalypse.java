@@ -3,7 +3,7 @@ package model.cards.withoutOriginCards;
 
 import model.cards.ActionCard;
 import model.player.Player;
-/**Clase Apocalypse sans origine*/
+/**Classe Apocalypse sans origine*/
 public class Apocalypse extends ActionCard{
 
 	/**Constructeur*/

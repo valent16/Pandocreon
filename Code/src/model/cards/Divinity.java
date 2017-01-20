@@ -17,7 +17,7 @@ public class Divinity extends Card{
 	/**Attribut representant l'origine de la carte*/
 	private EnumOrigineDivinite origine;
 
-	/**Constructeur d'une carte divinité
+	/**Constructeur d'une carte divinite
 	 * @param nom le nom de la divinite
 	 * @param dogmes les dogmes de la divinite
 	 * @param description la description de la carte
@@ -31,6 +31,10 @@ public class Divinity extends Card{
 		this.origine = origine;
 	}
 	
+	/**
+	 * Getter sur la description de la divinite
+	 * @return description de la divinite
+	 */
 	public String getDescription(){
 		return description;
 	}

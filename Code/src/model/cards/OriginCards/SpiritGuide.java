@@ -15,7 +15,7 @@ public class SpiritGuide extends CarteDogmatique{
 	/**Attribut representant les points que possede le guide*/
 	private int pointPriere;
 
-	/**Attribut representant le nombre de croyant converti*/
+	/**Attribut representant le nombre de croyants convertis*/
 	private int nbCarteCroyant;
 
 	/**Attribut representant les croyants convertis*/
@@ -25,7 +25,7 @@ public class SpiritGuide extends CarteDogmatique{
 	 * @param nom le nom du guide
 	 * @param origine l'origine du guide
 	 * @param dogmes les dogmes du guide
-	 * @param nbCarteCroyant le nombre de carte croyant convertibles par le guide
+	 * @param nbCarteCroyant le nombre de cartes croyant convertibles par le guide
 	 * @param sacrifice la description du sacrifice du guide
 	 */
 	public SpiritGuide(String nom, EnumCosmogonie origine, ArrayList<EnumDogme> dogmes, int nbCarteCroyant, String sacrifice) {
@@ -98,8 +98,8 @@ public class SpiritGuide extends CarteDogmatique{
 		croyantsConvertis.add(croyant);
 	}
 
-	/**Getter nombre maximale de croyants
-	 * @return le nombre maximum de croyants convertibles
+	/**Getter nombre maximal de croyants
+	 * @return le nombre maximal de croyants convertibles
 	 */
 	public int getNbMaxCroyant(){
 		return nbCarteCroyant;

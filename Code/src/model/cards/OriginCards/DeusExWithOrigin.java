@@ -19,6 +19,10 @@ public class DeusExWithOrigin extends ActionCardWithOrigin{
 		this.description = description;
 	}
 	
+	/**
+	 * Getter de la description de la carte
+	 * @return description de la carte
+	 */
 	public String getDescription(){
 		return description;
 	}

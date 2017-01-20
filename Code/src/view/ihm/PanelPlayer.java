@@ -12,12 +12,12 @@ import javax.swing.SwingConstants;
 
 import model.player.Bot;
 import model.player.Player;
-//TODO A COMMENTER
+/**Panel représentant les joueurs dans la liste de joueurs en haut du panel principal*/
 public class PanelPlayer extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
-	/**Attribut representant le joueur sur le panel*/
+	/**Attribut representant le joueur*/
 	Player joueur;
 
 	/**Constructeur
@@ -48,7 +48,7 @@ public class PanelPlayer extends JPanel{
 	}
 
 	/**Getter du joueur
-	 * @return le joueur du panel
+	 * @return le joueur 
 	 */
 	public Player getPlayer(){
 		return joueur;

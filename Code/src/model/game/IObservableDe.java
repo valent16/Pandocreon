@@ -3,7 +3,7 @@ package model.game;
 import controller.IObserverGameManager;
 
 public interface IObservableDe {
-	/**Methode permettant de notifier la vue lorsque la face du d� est chang�e*/
+	/**Methode permettant de notifier la vue lorsque la face du de est changee*/
 	public void notifyChangementFace();
 	
 	/**Methode permettant d'attacher un observer

@@ -11,6 +11,7 @@ import model.pouvoir.Pouvoir;
 /**Classe abstraite qui represente n'importe quel carte*/
 public abstract class Card {
 
+	/**Identifiant unique de la carte*/
 	private UUID id = UUID.randomUUID();
 
 	/**Attribut representant l'ensemble des pouvoirs des cartes*/
@@ -26,6 +27,10 @@ public abstract class Card {
 		this.nom = nom;
 	}
 	
+	/**
+	 * Getter de l'attribut nom
+	 * @return nom de la carte
+	 */
 	public String getNom(){
 		return nom;
 	}
@@ -35,19 +40,22 @@ public abstract class Card {
 		return "Card [nom=" + nom + "]";
 	}
 	
-	
+	/**
+	 * Getter de l'identifiant de l'instance
+	 * @return
+	 */
 	public UUID getID(){
 		return this.id;
 	}
 	
 	/**Methode permettant d'utiliser le pouvoir de la carte
-	 * @param commande le pouvoir en question
-	 * @param joueur le joueur qui lance le pouvoir
-	 * @throws Exception exception dans le cas ou le joueur n'a pas assez de points
+	 * @param commande: le pouvoir en question
+	 * @param joueur: le joueur qui lance le pouvoir
+	 * @throws Exception: exception dans le cas ou le joueur n'a pas assez de points
 	 */
 	public abstract void utiliserPouvoir(String commande, Player joueur) throws Exception;
 
-	/**getter permettant de recuperer l'ensemble des pouvoir de la carte
+	/**getter permettant de recuperer l'ensemble des pouvoirs de la carte
 	 * @return l'ensemble des pouvoirs
 	 */
 	public Map<String, Pouvoir>  getPouvoirs(){
@@ -55,8 +63,8 @@ public abstract class Card {
 	}
 	
 	/**Methode permettant d'ajouter des pouvoirs a la carte
-	 * @param commande le nom de la commande pour appeler le pouvoir
-	 * @param pouvoir le pouvoir a ajouter
+	 * @param commande: le nom de la commande pour appeler le pouvoir
+	 * @param pouvoir: le pouvoir a ajouter
 	 */
 	public void ajouterPouvoir(String commande, Pouvoir pouvoir){
 		this.pouvoirs.put(commande, pouvoir);

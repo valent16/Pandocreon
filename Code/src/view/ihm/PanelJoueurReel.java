@@ -29,15 +29,18 @@ import view.IViewJoueurReel;
 import model.cards.Card;
 import model.cards.OriginCards.*;
 import model.enumType.EnumCosmogonie;
-//TODO A COMMENTER
+/**Panel representant le jeu du joueur reel*/
 public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 
+	/**variable permettant de savoir si le jour a fini de jouer son tour, permet de bloquer le thread principal*/
 	private boolean tourFinished = false;
 
 	private static final long serialVersionUID = 1L;
 
+	/**controller du joueur humain*/
 	JoueurController controller;
 
+	/**instance du joueur humain*/
 	Human joueurReel;
 
 	/**Label qui represente le jour*/
@@ -55,13 +58,15 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 	/**panel representant les cartes rattachees au joueur*/
 	ScrollerCard cartesRattachees;
 
+	/**panel regroupant toutes les donnees de la divinite*/
 	JPanel panelDivinite;
+	
+	/**panel regroupant d'autres panels*/
 	JPanel panelDroite;
+	
+	/**panel regroupant d'autres panels*/
 	JPanel panelFinTour;
-	private boolean suppressionCarte = false ;
-	private boolean jouerCarte = false;	
-	boolean buttonPressed = false;
-
+	
 	/**Constructeur
 	 * @param p l'humain 
 	 */
@@ -255,9 +260,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frameChoix.dispose();
-				jouerCarte = true;
-				mainJoueur.activateSelection(controller);
-				cartesRattachees.activateSelection(controller);
 			}
 		});
 
@@ -271,8 +273,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frameChoix.dispose();
-				suppressionCarte = true;
-				mainJoueur.activateSelection(controller);
 			}
 		});
 
@@ -314,20 +314,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		frameChoix.add(panel);
 		frameChoix.pack();
 	}
-	
-	/**Getter jouer carte
-	 * @return si on peut jouer la carte
-	 */
-	public boolean isJouerCarte(){
-		return jouerCarte;
-	}
-
-	/**Getter supprimer carte
-	 * @return si on peut supprimer la carte
-	 */
-	public boolean isSuppressionCarte(){
-		return suppressionCarte;
-	}
 
 	/**Setter pour termine le tour
 	 * @param value booleen pour savoir si on fini le tour ou pas
@@ -338,8 +324,6 @@ public class PanelJoueurReel extends JPanel implements IViewJoueurReel {
 		else
 			panelFinTour.setVisible(false);
 		tourFinished = value;
-		suppressionCarte = false;
-		jouerCarte = false;
 	}
 
 	/**Variable permettant de savoir si le tour du joueur est termine ou non
