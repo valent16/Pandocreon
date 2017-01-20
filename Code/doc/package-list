@@ -1,9 +1,9 @@
 controller
 model
-model.EnumType
 model.cards
 model.cards.OriginCards
 model.cards.withoutOriginCards
+model.enumType
 model.exception
 model.game
 model.gestionDonnees

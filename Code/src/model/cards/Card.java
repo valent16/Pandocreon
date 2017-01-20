@@ -42,7 +42,7 @@ public abstract class Card {
 	
 	/**
 	 * Getter de l'identifiant de l'instance
-	 * @return
+	 * @return l'id de la carte
 	 */
 	public UUID getID(){
 		return this.id;
@@ -51,7 +51,7 @@ public abstract class Card {
 	/**Methode permettant d'utiliser le pouvoir de la carte
 	 * @param commande: le pouvoir en question
 	 * @param joueur: le joueur qui lance le pouvoir
-	 * @throws Exception: exception dans le cas ou le joueur n'a pas assez de points
+	 * @throws Exception dans le cas ou le joueur n'a pas assez de points
 	 */
 	public abstract void utiliserPouvoir(String commande, Player joueur) throws Exception;
 

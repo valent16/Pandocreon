@@ -18,6 +18,8 @@ public interface IViewJoueurReel {
 	/**Methode permettant de faire demarrer le tour du joueur*/
 	public void startTour();
 	
-	/**Methode permettant de savoir si le tour de jeu du joueur est fini*/
+	/**Methode permettant de savoir si le tour de jeu du joueur est fini
+	 * @return true si le tour du joueur est fini sinon false
+	 */
 	public boolean isTourFinished();
 }

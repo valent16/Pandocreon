@@ -106,7 +106,7 @@ public abstract class Player extends Observer{
 		return liste;
 	}
 
-	/**Getter calculé du score du joueur
+	/**Getter calcul du score du joueur
 	 * @return le score du joueur
 	 */
 	public int getScore() {

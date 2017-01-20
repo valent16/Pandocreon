@@ -7,8 +7,6 @@ import java.util.Iterator;
 
 import javax.swing.*;
 
-import controller.JoueurController;
-
 import java.util.List;
 
 import model.cards.Card;

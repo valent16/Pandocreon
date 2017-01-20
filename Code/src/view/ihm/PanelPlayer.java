@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 
 import model.player.Bot;
 import model.player.Player;
-/**Panel représentant les joueurs dans la liste de joueurs en haut du panel principal*/
+/**Panel representant les joueurs dans la liste de joueurs en haut du panel principal*/
 public class PanelPlayer extends JPanel{
 
 	private static final long serialVersionUID = 1L;

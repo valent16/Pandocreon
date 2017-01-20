@@ -327,7 +327,7 @@ public class Client{
 		return panelConfirmation;
 	}
 	/**Setter pour le panel de confirmation
-	 * @param panelConfirmationle panel de confirmation
+	 * @param panelConfirmation le panel de confirmation
 	 */
 	public void setPanelConfirmation(PanelConfirmation panelConfirmation) {
 		this.panelConfirmation = panelConfirmation;

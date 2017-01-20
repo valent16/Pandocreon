@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import controller.JoueurController;
-import model.cards.ActionCard;
 import model.cards.Card;
 import model.cards.Divinity;
 import model.cards.OriginCards.ActionCardWithOrigin;

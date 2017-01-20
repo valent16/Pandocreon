@@ -72,8 +72,8 @@ public class Game {
 	}
 	
 
-	/**Methode permettant d'ajouter un joueur a  la partie
-	 * @param joueur le joueur reel a  ajouter
+	/**Methode permettant d'ajouter un joueur a la partie
+	 * @param joueur le joueur reel a ajouter
 	 */
 	public void ajouterJoueurReel(Human joueur){
 		this.players.add(joueur);
